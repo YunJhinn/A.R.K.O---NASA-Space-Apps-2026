@@ -8,7 +8,7 @@ A.R.K.O turns NISAR satellite radar (NASA-ISRO) into simple alerts, maps and ans
 
 | Folder | What it holds |
 | --- | --- |
-| `app/` | The clickable prototype: one HTML file, no server. Open `app/index.html` in a browser. PT / EN switch in the left menu. |
+| `app/` | The clickable prototype: one HTML file, no server. Open `app/index.html` in a browser. PT / EN switch and *Data: Example / Real NISAR* switch in the left menu. |
 | `pipeline/` | Python scripts that search, read and compare real NISAR data and write the detections file. |
 | `data/` | Results from real NISAR data: `focos.json`, `focos.geojson` (open in QGIS or geojson.io) and the radar image. |
 | `docs/` | Links to the pitch, roadmap, design-thinking documents and Figma. |
@@ -23,7 +23,7 @@ We compared two real NISAR passes over the Madeira River (Amazonas, Brazil): **S
    - water gone: the reverse
    - vegetation loss: HV drops more than 2.5 dB where there was forest
 3. **Build app files** — `imagem_app.py` groups changes into detections (area in km², 0–100 degree of change, nearest town) and draws the background radar image.
-4. **Show** — the prototype's map has an *Example / Real NISAR* switch.
+4. **Show** — the prototype has two modes, *Example* and *Real NISAR*. The switch (left menu and map) changes the whole app: top numbers, map, alerts, comparison, mobile view and onboarding.
 
 ### Run it yourself
 
