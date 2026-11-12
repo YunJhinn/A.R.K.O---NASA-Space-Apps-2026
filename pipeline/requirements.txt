@@ -1,0 +1,8 @@
+earthaccess>=0.19
+asf_search>=14
+h5py
+numpy
+scipy
+pyproj
+matplotlib
+pillow

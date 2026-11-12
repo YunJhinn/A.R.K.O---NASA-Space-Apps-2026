@@ -1,0 +1,127 @@
+{
+ "fonte": "NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC",
+ "antes": {
+  "data": "2026-09-03",
+  "produto": "NISAR_L2_PR_GCOV_029_132_A_175_2005_DHDH_M_20260903T094546_20260903T094620_P05023_N_F_J_001"
+ },
+ "depois": {
+  "data": "2026-10-21",
+  "produto": "NISAR_L2_PR_GCOV_033_132_A_175_2005_DHDH_M_20261021T094546_20261021T094620_P05023_N_F_J_001"
+ },
+ "area": {
+  "oeste": -62.058,
+  "sul": -6.551,
+  "leste": -59.058,
+  "norte": -3.606
+ },
+ "focos": [
+  {
+   "id": "agua-1",
+   "tipo": "agua",
+   "lon": -60.0418,
+   "lat": -4.8966,
+   "area_km2": 0.56,
+   "grau": 100,
+   "delta_db": 12.0,
+   "local": "a 45 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "solo-2",
+   "tipo": "solo",
+   "lon": -60.687,
+   "lat": -5.2795,
+   "area_km2": 0.26,
+   "grau": 54,
+   "delta_db": 4.9,
+   "local": "a 38 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "solo-3",
+   "tipo": "solo",
+   "lon": -60.3862,
+   "lat": -5.1142,
+   "area_km2": 0.26,
+   "grau": 65,
+   "delta_db": 5.9,
+   "local": "Novo Aripuanã · AM"
+  },
+  {
+   "id": "arvore-4",
+   "tipo": "arvore",
+   "lon": -59.8585,
+   "lat": -5.7998,
+   "area_km2": 1.48,
+   "grau": 34,
+   "delta_db": 3.1,
+   "local": "a 95 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "arvore-5",
+   "tipo": "arvore",
+   "lon": -59.9718,
+   "lat": -5.9356,
+   "area_km2": 1.11,
+   "grau": 37,
+   "delta_db": 3.3,
+   "local": "a 101 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "arvore-6",
+   "tipo": "arvore",
+   "lon": -60.0218,
+   "lat": -3.9772,
+   "area_km2": 0.84,
+   "grau": 41,
+   "delta_db": 3.7,
+   "local": "a 45 km de Careiro · AM"
+  },
+  {
+   "id": "arvore-7",
+   "tipo": "arvore",
+   "lon": -60.308,
+   "lat": -5.1891,
+   "area_km2": 0.29,
+   "grau": 33,
+   "delta_db": 3.0,
+   "local": "a 11 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "arvore-8",
+   "tipo": "arvore",
+   "lon": -59.9396,
+   "lat": -6.0243,
+   "area_km2": 0.28,
+   "grau": 36,
+   "delta_db": 3.3,
+   "local": "a 112 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "arvore-9",
+   "tipo": "arvore",
+   "lon": -59.9786,
+   "lat": -5.88,
+   "area_km2": 0.28,
+   "grau": 34,
+   "delta_db": 3.1,
+   "local": "a 96 km de Novo Aripuanã · AM"
+  },
+  {
+   "id": "arvore-10",
+   "tipo": "arvore",
+   "lon": -59.9402,
+   "lat": -5.9116,
+   "area_km2": 0.26,
+   "grau": 32,
+   "delta_db": 3.0,
+   "local": "a 101 km de Novo Aripuanã · AM"
+  }
+ ],
+ "imagem": {
+  "arquivo": "radar_21out.jpg",
+  "oeste": -62.05,
+  "leste": -58.95,
+  "norte": -3.944,
+  "sul": -6.056,
+  "data": "2026-10-21"
+ }
+}

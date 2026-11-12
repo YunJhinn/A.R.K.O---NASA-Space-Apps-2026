@@ -1,0 +1,231 @@
+{
+ "type": "FeatureCollection",
+ "name": "arko_nisar_detections",
+ "properties": {
+  "source": "NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC",
+  "before_product": "NISAR_L2_PR_GCOV_029_132_A_175_2005_DHDH_M_20260903T094546_20260903T094620_P05023_N_F_J_001",
+  "after_product": "NISAR_L2_PR_GCOV_033_132_A_175_2005_DHDH_M_20261021T094546_20261021T094620_P05023_N_F_J_001"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.0418,
+     -4.8966
+    ]
+   },
+   "properties": {
+    "id": "agua-1",
+    "type": "agua",
+    "label_en": "New water",
+    "label_pt": "Agua nova",
+    "area_km2": 0.56,
+    "change_degree_0_100": 100,
+    "delta_db": 12.0,
+    "place": "a 45 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.687,
+     -5.2795
+    ]
+   },
+   "properties": {
+    "id": "solo-2",
+    "type": "solo",
+    "label_en": "Water gone (river receded)",
+    "label_pt": "Agua que sumiu (rio recuou)",
+    "area_km2": 0.26,
+    "change_degree_0_100": 54,
+    "delta_db": 4.9,
+    "place": "a 38 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.3862,
+     -5.1142
+    ]
+   },
+   "properties": {
+    "id": "solo-3",
+    "type": "solo",
+    "label_en": "Water gone (river receded)",
+    "label_pt": "Agua que sumiu (rio recuou)",
+    "area_km2": 0.26,
+    "change_degree_0_100": 65,
+    "delta_db": 5.9,
+    "place": "Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -59.8585,
+     -5.7998
+    ]
+   },
+   "properties": {
+    "id": "arvore-4",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 1.48,
+    "change_degree_0_100": 34,
+    "delta_db": 3.1,
+    "place": "a 95 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -59.9718,
+     -5.9356
+    ]
+   },
+   "properties": {
+    "id": "arvore-5",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 1.11,
+    "change_degree_0_100": 37,
+    "delta_db": 3.3,
+    "place": "a 101 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.0218,
+     -3.9772
+    ]
+   },
+   "properties": {
+    "id": "arvore-6",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 0.84,
+    "change_degree_0_100": 41,
+    "delta_db": 3.7,
+    "place": "a 45 km de Careiro · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.308,
+     -5.1891
+    ]
+   },
+   "properties": {
+    "id": "arvore-7",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 0.29,
+    "change_degree_0_100": 33,
+    "delta_db": 3.0,
+    "place": "a 11 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -59.9396,
+     -6.0243
+    ]
+   },
+   "properties": {
+    "id": "arvore-8",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 0.28,
+    "change_degree_0_100": 36,
+    "delta_db": 3.3,
+    "place": "a 112 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -59.9786,
+     -5.88
+    ]
+   },
+   "properties": {
+    "id": "arvore-9",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 0.28,
+    "change_degree_0_100": 34,
+    "delta_db": 3.1,
+    "place": "a 96 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -59.9402,
+     -5.9116
+    ]
+   },
+   "properties": {
+    "id": "arvore-10",
+    "type": "arvore",
+    "label_en": "Vegetation loss (clearing or fire)",
+    "label_pt": "Perda de vegetacao (desmatamento ou queimada)",
+    "area_km2": 0.26,
+    "change_degree_0_100": 32,
+    "delta_db": 3.0,
+    "place": "a 101 km de Novo Aripuanã · AM",
+    "before": "2026-09-03",
+    "after": "2026-10-21"
+   }
+  }
+ ]
+}

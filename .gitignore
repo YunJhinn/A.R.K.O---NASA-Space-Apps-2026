@@ -1,0 +1,11 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+# heavy NISAR caches and raw files
+cache*.npz
+*.h5
+# credentials (never commit)
+_netrc
+.netrc
+.env
