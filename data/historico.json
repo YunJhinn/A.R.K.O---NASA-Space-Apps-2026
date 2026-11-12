@@ -1,0 +1,17 @@
+[
+ {
+  "antes": "2026-09-03",
+  "depois": "2026-10-21",
+  "focos": 10,
+  "por_tipo": {
+   "agua": 1,
+   "solo": 2,
+   "arvore": 7
+  },
+  "area_km2": {
+   "agua": 0.56,
+   "solo": 0.52,
+   "arvore": 4.54
+  }
+ }
+]

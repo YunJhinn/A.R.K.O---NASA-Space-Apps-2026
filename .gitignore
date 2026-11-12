@@ -9,3 +9,6 @@ cache*.npz
 _netrc
 .netrc
 .env
+
+# cache local do atualizar.py
+pipeline/.cache/

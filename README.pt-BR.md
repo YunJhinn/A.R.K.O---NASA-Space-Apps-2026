@@ -53,3 +53,14 @@ NASA-ISRO Synthetic Aperture Radar (NISAR) — GCOV banda L, versão PROVISIONAL
 ## Equipe
 
 Equipe A.R.K.O · NASA Space Apps Challenge 2026.
+
+## Atualização automática
+
+O `pipeline/atualizar.py` roda todo dia no GitHub Actions (`.github/workflows/atualizar-nisar.yml`):
+
+1. Lista as passagens do NISAR da órbita do piloto (trilha 132, quadro 175) no ASF DAAC.
+2. Se houver passagem mais nova, compara com uma passagem da mesma órbita de pelo menos 45 dias antes.
+3. Regrava a pasta `data/` (`focos_app.json`, `radar.jpg`, `focos.geojson`, `historico.json`) e faz o commit.
+4. O app lê `data/focos_app.json` ao abrir, então o modo *NISAR real* mostra o dado mais novo. O arquivo HTML continua com os últimos dados dentro dele, para funcionar sem internet.
+
+Configuração (uma vez): cadastre os secrets `EARTHDATA_USERNAME` e `EARTHDATA_PASSWORD` no repositório (Settings → Secrets and variables → Actions). Para rodar na hora: Actions → *Atualizar dados NISAR* → Run workflow.
