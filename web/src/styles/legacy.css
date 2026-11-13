@@ -2672,3 +2672,13 @@ svg.ill {
   flex-wrap: wrap;
   row-gap: 8px;
 }
+/* menu lateral: rola sozinho quando a tela é baixa */
+.side {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f48 transparent;
+}
+.side::-webkit-scrollbar { width: 6px; }
+.side::-webkit-scrollbar-thumb { background: #3a3f48; border-radius: 3px; }
+.side > * { flex-shrink: 0; }

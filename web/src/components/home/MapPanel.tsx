@@ -143,7 +143,7 @@ function Pin() {
   if (!dentro(b, s.pin.lon, s.pin.lat)) return null
   const { x, y } = projetar(b, s.pin.lon, s.pin.lat)
   return (
-    <div className="pointer-events-none absolute z-[6]" style={{ ...pos(x, y), transform: 'translate(-50%,-100%)' }}>
+    <div id="pinmark" className="pointer-events-none absolute z-[6]" style={{ ...pos(x, y), transform: 'translate(-50%,-100%)' }}>
       <div className="pointer-events-auto mb-1 flex items-center gap-2 whitespace-nowrap rounded-md bg-white px-2.5 py-1.5 text-[12px] font-extrabold text-[#0F2A44] shadow-[0_6px_16px_rgba(0,0,0,.35)]">
         {s.pin.label}
         <button aria-label={t('Fechar')} className="text-[var(--mu)]" onClick={e => { e.stopPropagation(); set({ pin: null }) }}>✕</button>

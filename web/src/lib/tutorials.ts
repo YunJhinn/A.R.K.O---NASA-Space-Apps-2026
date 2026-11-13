@@ -1,7 +1,7 @@
 // Conteúdo dos tutoriais (PT e EN lado a lado). Cada tema ensina uma parte do sistema.
 export type TutAction = 'inicio' | 'map' | 'alerts' | 'comparar' | 'celular' | 'ob' | 'search' | 'regions'
 
-export interface TutText { t: string; d: string; steps: string[]; tip: string }
+export interface TutText { t: string; d: string; steps: string[]; tip: string; ex: string }
 export interface Tut { id: string; ic: string; group: 'start' | 'explore' | 'analyze' | 'more'; act?: TutAction; pt: TutText; en: TutText }
 
 export const TUT_GROUPS: Record<Tut['group'], [string, string]> = {
@@ -24,6 +24,7 @@ export const TUTORIALS: Tut[] = [
         'Tudo na tela muda junto: ao trocar região, período ou fonte de dados, mapa, números e alertas se atualizam.',
       ],
       tip: 'Clique em “Como funciona” no menu para rever a apresentação rápida a qualquer momento.',
+      ex: 'Uma técnica da Defesa Civil abre o A.R.K.O de manhã: olha o painel azul para ver o resumo, confere os alertas laranja e, se algo for alto risco, clica em “Ver no mapa”.',
     },
     en: {
       t: 'A.R.K.O overview',
@@ -35,6 +36,7 @@ export const TUTORIALS: Tut[] = [
         'Everything moves together: when you change region, period or data source, the map, numbers and alerts update.',
       ],
       tip: 'Click “How it works” in the menu to replay the quick introduction at any time.',
+      ex: 'A civil-defense officer opens A.R.K.O in the morning: checks the blue panel for the summary, reviews the orange alerts and, if something is high risk, clicks “See on map”.',
     },
   },
   {
@@ -49,6 +51,7 @@ export const TUTORIALS: Tut[] = [
         'Os dados reais são atualizados automaticamente todos os dias: quando o NISAR passa de novo sobre uma região, a nova passagem entra na linha do tempo.',
       ],
       tip: 'No modo real, fogo e previsões do tempo ainda não são medidos. Esses números aparecem como “—”.',
+      ex: 'Para aprender, comece no Exemplo e teste tudo sem medo. Depois troque para NISAR real e escolha Sul do Brasil para ver o que o satélite achou em Porto Alegre.',
     },
     en: {
       t: 'Example or real NISAR',
@@ -60,6 +63,7 @@ export const TUTORIALS: Tut[] = [
         'Real data updates automatically every day: when NISAR passes over a region again, the new pass joins the timeline.',
       ],
       tip: 'In real mode, fire and weather forecasts are not measured yet. Those numbers show as “—”.',
+      ex: 'To learn, start with Example and try everything freely. Then switch to Real NISAR and pick Southern Brazil to see what the satellite found in Porto Alegre.',
     },
   },
   {
@@ -75,6 +79,7 @@ export const TUTORIALS: Tut[] = [
         'Para tirar o alfinete do mapa, clique no × ao lado do nome do lugar.',
       ],
       tip: 'A busca usa o OpenStreetMap, então funciona com nomes em português, inglês e no idioma local (ex.: “Daca” ou “Dhaka”).',
+      ex: 'Você mora em Canoas (RS): digite “Canoas” na lupa, escolha o resultado e o mapa abre no Sul do Brasil com um alfinete em cima da sua cidade.',
     },
     en: {
       t: 'Choosing and searching regions',
@@ -87,6 +92,7 @@ export const TUTORIALS: Tut[] = [
         'To remove the pin from the map, click the × next to the place name.',
       ],
       tip: 'Search uses OpenStreetMap, so it works with names in Portuguese, English and the local language (e.g. “Daca” or “Dhaka”).',
+      ex: 'You live in Canoas (RS): type “Canoas” in the search box, pick the result and the map opens on Southern Brazil with a pin on your city.',
     },
   },
   {
@@ -101,6 +107,7 @@ export const TUTORIALS: Tut[] = [
         'Clique em um item da lista para abrir a região. Clique na estrela ao lado dele para favoritar ou desfavoritar.',
       ],
       tip: 'As listas ficam salvas no seu navegador: continuam lá quando você fecha e abre o site de novo no mesmo computador.',
+      ex: 'Um pesquisador acompanha Bangladesh e o RS: favorita os dois e, todo dia, troca entre eles com um clique em MINHAS REGIÕES.',
     },
     en: {
       t: 'Favorites and recent',
@@ -112,6 +119,7 @@ export const TUTORIALS: Tut[] = [
         'Click an item to open the region. Click the star next to it to save or unsave it.',
       ],
       tip: 'The lists are stored in your browser: they stay there when you close and reopen the site on the same computer.',
+      ex: 'A researcher follows Bangladesh and RS: saves both and switches between them every day with one click under MY REGIONS.',
     },
   },
   {
@@ -126,6 +134,7 @@ export const TUTORIALS: Tut[] = [
         'No modo NISAR real, o período usa as passagens do satélite que caem dentro do intervalo. Se nenhuma passagem cair nele, o app avisa para escolher um período maior.',
       ],
       tip: 'O NISAR passa sobre cada região a cada ~12 dias. Para dados reais, 30 dias ou mais costuma dar o melhor resultado.',
+      ex: 'Quer saber o que mudou no último mês? Clique em 30 dias. Quer ver só a semana da enchente? Abra o calendário e escolha as datas exatas.',
     },
     en: {
       t: 'Period and dates',
@@ -137,6 +146,7 @@ export const TUTORIALS: Tut[] = [
         'In Real NISAR mode, the period uses the satellite passes that fall inside it. If no pass falls inside, the app asks you to pick a longer period.',
       ],
       tip: 'NISAR passes over each region about every 12 days. For real data, 30 days or more usually works best.',
+      ex: 'Want to know what changed last month? Click 30 days. Want only the flood week? Open the calendar and pick the exact dates.',
     },
   },
   {
@@ -149,9 +159,10 @@ export const TUTORIALS: Tut[] = [
         'No modo Período, clique na data inicial e depois na final. Também dá para arrastar o mouse sobre as barras.',
         'Os seletores De e Até, embaixo, fazem a mesma coisa com mais precisão.',
         'Aperte ▶ para animar: em “Uma data” ele passa de data em data; em “Período” ele vai somando os focos até o fim.',
-        'Clique em “Período inteiro” para voltar a ver todas as passagens.',
+        'Clique em “Ver tudo” para voltar a ver todas as passagens.',
       ],
       tip: 'Use “Uma data” para achar quando algo apareceu e “Período” para ver tudo o que aconteceu num intervalo.',
+      ex: 'Para descobrir quando a água subiu em Porto Alegre, escolha “Uma data” e aperte ▶: as passagens vão uma a uma e você vê em qual delas os ícones de água aparecem.',
     },
     en: {
       t: 'Timeline',
@@ -161,9 +172,10 @@ export const TUTORIALS: Tut[] = [
         'In Period mode, click the start date and then the end date. You can also drag the mouse over the bars.',
         'The From and To selectors below do the same with more precision.',
         'Press ▶ to animate: in “One date” it steps date by date; in “Period” it keeps adding detections until the end.',
-        'Click “Whole period” to see all passes again.',
+        'Click “Show all” to see all passes again.',
       ],
       tip: 'Use “One date” to find when something appeared and “Period” to see everything that happened in a span.',
+      ex: 'To find out when water rose in Porto Alegre, pick “One date” and press ▶: passes go one by one and you see in which one the water icons appear.',
     },
   },
   {
@@ -179,6 +191,7 @@ export const TUTORIALS: Tut[] = [
         'Em “Colorir por”, escolha Tipo (cor de cada mudança) ou Mês (cor da data em que aconteceu).',
       ],
       tip: 'No modo Exemplo, “Mostrar previsões” desenha também o que pode acontecer nos próximos dias, com contorno tracejado.',
+      ex: 'Só quer ver desmatamento? Clique em Desmatamento acima do mapa e depois em um ícone de árvore cortada para ver a área perdida e a data.',
     },
     en: {
       t: 'Change map',
@@ -191,6 +204,7 @@ export const TUTORIALS: Tut[] = [
         'In “Color by”, pick Type (a color per change) or Month (a color per date).',
       ],
       tip: 'In Example mode, “Show forecasts” also draws what may happen in the next days, with a dashed outline.',
+      ex: 'Only want deforestation? Click Deforestation above the map, then a cut-tree icon to see the area lost and the date.',
     },
   },
   {
@@ -206,6 +220,7 @@ export const TUTORIALS: Tut[] = [
         'O sino no topo da tela e o número vermelho em Alertas, no menu, mostram quantos alertas estão ativos.',
       ],
       tip: 'Alertas de “Água que recuou” perto de rios grandes costumam ser margem exposta na seca, não necessariamente dano.',
+      ex: 'Um alerta ALTO diz “Água nova em vários pontos a 35 km de Venâncio Aires”: clique em “Ver no mapa” e o mapa vai direto para o lugar.',
     },
     en: {
       t: 'Risk alerts',
@@ -218,6 +233,7 @@ export const TUTORIALS: Tut[] = [
         'The bell at the top of the screen and the red number on Alerts in the menu show how many alerts are active.',
       ],
       tip: '“Water receded” alerts near large rivers are often riverbanks exposed by drought, not necessarily damage.',
+      ex: 'A HIGH alert says “New water in several spots 35 km from Venâncio Aires”: click “See on map” and the map jumps straight there.',
     },
   },
   {
@@ -233,6 +249,7 @@ export const TUTORIALS: Tut[] = [
         'À direita, o resumo em uma frase, a tabela Focos por tipo e o Grau de mudança explicam a diferença. “Causa provável” sugere o que pode ter acontecido.',
       ],
       tip: 'Use “Compartilhar imagem” para levar a comparação para uma apresentação ou relatório.',
+      ex: 'Uma professora mostra à turma o antes e depois em Bangladesh: escolhe Bangladesh em Região, Água nova em Tipo e arrasta a barra azul devagar enquanto explica.',
     },
     en: {
       t: 'Compare periods',
@@ -245,6 +262,7 @@ export const TUTORIALS: Tut[] = [
         'On the right, the one-sentence summary, the Detections by type table and the Degree of change explain the difference. “Likely cause” suggests what may have happened.',
       ],
       tip: 'Use “Share image” to take the comparison into a presentation or report.',
+      ex: 'A teacher shows the class before and after in Bangladesh: picks Bangladesh under Region, New water under Type and slowly drags the blue bar while explaining.',
     },
   },
   {
@@ -259,6 +277,7 @@ export const TUTORIALS: Tut[] = [
         'Ao lado do celular estão as decisões de design e o porquê de cada uma.',
       ],
       tip: 'Cores, ícones e níveis de risco são iguais no celular e no computador: quem aprende em um já sabe usar o outro.',
+      ex: 'Em campo, o agente abre a versão celular, vê o alerta mais urgente no topo e toca nele para saber exatamente onde ir.',
     },
     en: {
       t: 'Mobile version',
@@ -270,6 +289,7 @@ export const TUTORIALS: Tut[] = [
         'Next to the phone are the design decisions and the reason for each one.',
       ],
       tip: 'Colors, icons and risk levels are the same on phone and desktop: learn one and you know the other.',
+      ex: 'In the field, the agent opens the mobile version, sees the most urgent alert at the top and taps it to know exactly where to go.',
     },
   },
   {
@@ -284,6 +304,7 @@ export const TUTORIALS: Tut[] = [
         'O quadro “Dados NISAR reais”, no pé do menu, mostra quais passagens estão em uso.',
       ],
       tip: 'O radar atravessa nuvens e funciona à noite. Por isso ele enxerga enchentes mesmo com o céu fechado, quando satélites ópticos não conseguem.',
+      ex: 'Choveu forte e o céu está fechado há dias? O radar continua enxergando: na próxima passagem do NISAR, as áreas alagadas aparecem no mapa.',
     },
     en: {
       t: 'Where the data comes from',
@@ -295,6 +316,7 @@ export const TUTORIALS: Tut[] = [
         'The “Real NISAR data” box at the bottom of the menu shows which passes are in use.',
       ],
       tip: 'Radar sees through clouds and works at night. That is why it spots floods under overcast skies, when optical satellites cannot.',
+      ex: 'Heavy rain and cloudy skies for days? The radar still sees: on the next NISAR pass, flooded areas show up on the map.',
     },
   },
   {
@@ -308,6 +330,7 @@ export const TUTORIALS: Tut[] = [
         'Cores nunca são a única pista: cada tipo de mudança também tem ícone e nome.',
       ],
       tip: 'Datas e números também mudam de formato junto com o idioma.',
+      ex: 'Vai apresentar para uma banca estrangeira? Clique em EN no topo do menu e todo o app fica em inglês, inclusive datas e números.',
     },
     en: {
       t: 'Language and accessibility',
@@ -318,6 +341,7 @@ export const TUTORIALS: Tut[] = [
         'Color is never the only cue: each type of change also has an icon and a name.',
       ],
       tip: 'Dates and numbers also change format with the language.',
+      ex: 'Presenting to an international panel? Click EN at the top of the menu and the whole app switches to English, dates and numbers included.',
     },
   },
 ]
