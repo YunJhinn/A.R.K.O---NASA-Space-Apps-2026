@@ -23,7 +23,7 @@ export function Sidebar() {
     <aside className="side" aria-label={t('Menu principal')}>
       <div className="brand">
         <img id="brandIcon" src={brandIcon} alt="" width={40} height={40} style={{ borderRadius: 10, border: '1px solid var(--bd)' }} />
-        <div><img src={brandWord} alt="A.R.K.O" style={{ height: 15, display: 'block', marginBottom: 5 }} /><small>{t('Radar da Amazônia')}</small></div>
+        <div><img src={brandWord} alt="A.R.K.O" style={{ height: 15, display: 'block', marginBottom: 5 }} /><small>{t('Radar Mundial')}</small></div>
       </div>
       <div className="seg" role="group" aria-label="Idioma / Language" style={{ margin: '4px 0 10px', alignSelf: 'flex-start' }}>
         {(['pt', 'en'] as const).map(l => <button key={l} className={cx(s.lang === l && 'on')} aria-pressed={s.lang === l} onClick={() => set({ lang: l })}>{l.toUpperCase()}</button>)}
