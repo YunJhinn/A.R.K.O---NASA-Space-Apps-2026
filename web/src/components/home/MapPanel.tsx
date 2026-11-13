@@ -11,6 +11,7 @@ import { Timeline } from './Timeline'
 import { useFocus } from '../../lib/useFocus'
 import { fmtDate } from '../../lib/i18n'
 import { dentro, projetar } from '../../lib/regions'
+import '../../styles/map-extra.css'
 
 /** Escala aproximada: a barra da escala tem ~1/10 da largura do mapa */
 const scaleKm = (b: { oeste: number; leste: number; norte: number; sul: number }) => {
@@ -68,31 +69,114 @@ export function MapPanel() {
 function ChangeMap({ ev }: { ev: Ev[] }) {
   const { s, set, t, ds, setSrc } = useApp()
   const real = s.src === 'real'
+  const en = s.lang === 'en'
   const { img, step } = useFocus()
   const m = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ w: 0, h: 0 })
+  // zoom e arraste: z = escala, tx/ty = deslocamento (px) do palco
+  const [view, setView] = useState({ z: 1, tx: 0, ty: 0 })
+  const [full, setFull] = useState(false)
+  const drag = useRef<{ x: number; y: number; tx: number; ty: number; moved: boolean } | null>(null)
   useLayoutEffect(() => {
     const el = m.current; if (!el) return
     const ro = new ResizeObserver(() => setSize({ w: el.clientWidth, h: el.clientHeight }))
     ro.observe(el); return () => ro.disconnect()
   }, [])
   useEffect(() => {
-    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') set({ sel: null }) }
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') { set({ sel: null }); if (full && !document.fullscreenElement) setFull(false) } }
     document.addEventListener('keydown', key); return () => document.removeEventListener('keydown', key)
-  }, [set])
+  }, [set, full])
+  // tela cheia (API do navegador; se não houver, usa modo fixo por CSS)
+  useEffect(() => {
+    const on = () => setFull(document.fullscreenElement === m.current)
+    document.addEventListener('fullscreenchange', on); return () => document.removeEventListener('fullscreenchange', on)
+  }, [])
+  useEffect(() => { document.body.style.overflow = full ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [full])
+  const enterFull = () => {
+    const el = m.current
+    if (el?.requestFullscreen) el.requestFullscreen().catch(() => setFull(true))
+    else setFull(true)
+  }
+  const exitFull = () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); setFull(false) }
+
+  // palco: mantém a proporção do mapa (746:508) e centraliza
+  const ar = MAP_W / MAP_H
+  const sw = size.w && size.h ? Math.min(size.w, size.h * ar) : size.w
+  const sh = sw / ar
+  const ox = (size.w - sw) / 2, oy = (size.h - sh) / 2
+  const clamp = (z: number, tx: number, ty: number) => ({ z, tx: Math.min(0, Math.max(sw - sw * z, tx)), ty: Math.min(0, Math.max(sh - sh * z, ty)) })
+  const zoomAt = (z2: number, cx = sw / 2, cy = sh / 2) => setView(v => {
+    const z = Math.min(6, Math.max(1, z2))
+    return clamp(z, cx - (cx - v.tx) * (z / v.z), cy - (cy - v.ty) * (z / v.z))
+  })
+  useEffect(() => { setView(v => clamp(v.z, v.tx, v.ty)) }, [sw, sh]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { setView({ z: 1, tx: 0, ty: 0 }) }, [ds.realMeta.id, s.src, s.region])
+  const onWheel = (e: React.WheelEvent) => {
+    if (!full && !e.ctrlKey) return // fora da tela cheia, só com Ctrl (não atrapalha a rolagem da página)
+    e.preventDefault()
+    const r = m.current!.getBoundingClientRect()
+    zoomAt(view.z * (e.deltaY < 0 ? 1.25 : 0.8), e.clientX - r.left - ox, e.clientY - r.top - oy)
+  }
+  useEffect(() => {
+    const el = m.current; if (!el) return
+    const stop = (e: WheelEvent) => { if (full || e.ctrlKey) e.preventDefault() }
+    el.addEventListener('wheel', stop, { passive: false }); return () => el.removeEventListener('wheel', stop)
+  }, [full])
+  const onDown = (e: React.PointerEvent) => {
+    if (view.z <= 1 || (e.target as HTMLElement).closest('button,a,input,select,.float,.mctl,.pop,.legend')) return
+    drag.current = { x: e.clientX, y: e.clientY, tx: view.tx, ty: view.ty, moved: false }
+    ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
+  }
+  const onMove = (e: React.PointerEvent) => {
+    const d = drag.current; if (!d) return
+    const dx = e.clientX - d.x, dy = e.clientY - d.y
+    if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true
+    setView(v => clamp(v.z, d.tx + dx, d.ty + dy))
+  }
+  const onUp = () => { setTimeout(() => { drag.current = null }, 0) }
+
   const mc = (e: Ev) => (s.colorBy === 'mes' && e.st !== 'prev' ? evMonth(e.d)[3] : ds.types[e.k].c)
   const sel = ev.find(e => e.id === s.sel)
   const heats = !real && s.colorBy !== 'mes' && !step
     ? (Object.entries(ds.region.heat) as [EvType, [number, number, number]][]).filter(([k]) => s.type === 'todos' || s.type === k)
       .map(([k, [x, y, r]]) => { const n = ev.filter(e => e.k === k && e.st !== 'prev').length; return n ? <Heat key={k} x={x} y={y} r={r} color={rgba(ds.types[k].c, 0.18 + n * 0.05)} /> : null })
     : null
+  const drawn = real && realBase(ds.realMeta.id)
+  const stage: CSSProperties = {
+    position: 'absolute', left: ox, top: oy, width: sw, height: sh, transformOrigin: '0 0',
+    transform: `translate(${view.tx}px,${view.ty}px) scale(${view.z})`, transition: drag.current ? 'none' : 'transform .25s ease',
+    ['--iz' as string]: 1 / view.z, cursor: view.z > 1 ? (drag.current ? 'grabbing' : 'grab') : undefined,
+    backgroundImage: drawn ? 'none' : `url(${img})`, backgroundSize: '100% 100%',
+  }
   return (
-    <div className="map" id="map" ref={m} style={{ backgroundImage: real && realBase(ds.realMeta.id) ? 'none' : `url(${img})` }} onClick={() => s.sel && set({ sel: null })}>
-      {real && realBase(ds.realMeta.id) && <RealBackdrop img={img} />}
-      <MapBase bg={false} className="layer" style={{ position: 'absolute', inset: 0 }}>
-        {heats}
-      </MapBase>
-      <button className="float prevtog" aria-pressed={s.prev} onClick={e => { e.stopPropagation(); set({ prev: !s.prev }) }}>
+    <div className={cx('map', full && 'mapfull')} id="map" ref={m} onWheel={onWheel} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp}
+      onClick={() => { if (drag.current?.moved) return; if (s.sel) set({ sel: null }) }}>
+      <div className="stage" style={stage}>
+        {drawn && <RealBackdrop img={img} />}
+        <MapBase bg={false} className="layer" style={{ position: 'absolute', inset: 0 }}>
+          {heats}
+        </MapBase>
+        {ev.map(e => {
+          const c = mc(e)
+          if (e.st === 'cl') return <button key={e.id} className="mk cl" style={{ ...pos(e.x, e.y), background: c }} aria-label={t(`${e.n} focos de ${ds.types[e.k].s.toLowerCase()} perto de ${e.pl}`)}>{e.n}</button>
+          return (
+            <button key={e.id} className={cx('mk', e.st, s.sel === e.id && 'sel')} data-id={e.id}
+              style={{ ...pos(e.x, e.y), ...(e.st === 'obs' ? { background: c, color: '#FFFFFF' } : { color: c }), boxShadow: s.sel === e.id ? '' : `0 0 12px ${rgba(c, 0.5)}` }}
+              aria-label={t(`${e.st === 'prev' ? 'Previsão' : ds.types[e.k].s} em ${e.pl}`)}
+              onClick={ev2 => { ev2.stopPropagation(); if (!drag.current?.moved) set({ sel: e.id }) }}>
+              <Icon k={ds.types[e.k].ic} size={14} />
+            </button>
+          )
+        })}
+        <Pin />
+      </div>
+      {full && (
+        <button className="float mapback" onClick={e => { e.stopPropagation(); exitFull() }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+          {en ? 'Back' : 'Voltar'}
+        </button>
+      )}
+      <button className="float prevtog" style={full ? { top: 66 } : undefined} aria-pressed={s.prev} onClick={e => { e.stopPropagation(); set({ prev: !s.prev }) }}>
         <span className={cx('switch', s.prev && 'on')} aria-hidden="true" />{t('Mostrar previsões')}
       </button>
       <div className="float" id="srcWrap" style={{ left: '50%', top: 14, transform: 'translateX(-50%)', padding: '4px 4px 4px 10px', display: 'flex', gap: 8, alignItems: 'center', zIndex: 30 }} onClick={e => e.stopPropagation()}>
@@ -109,28 +193,24 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
         </div>
       )}
       <div className="mctl" onClick={e => e.stopPropagation()}>
-        <div className="grp"><button aria-label={t('Aproximar')}><Icon k="mais" size={16} /></button><button aria-label={t('Afastar')}><Icon k="menos" size={16} /></button></div>
-        <button className="one" aria-label={t('Centralizar')}><Icon k="alvo" size={16} /></button>
+        <div className="grp">
+          <button aria-label={t('Aproximar')} title={en ? 'Zoom in' : 'Aproximar'} disabled={view.z >= 6} onClick={() => zoomAt(view.z * 1.5)}><Icon k="mais" size={16} /></button>
+          <button aria-label={t('Afastar')} title={en ? 'Zoom out' : 'Afastar'} disabled={view.z <= 1} onClick={() => zoomAt(view.z / 1.5)}><Icon k="menos" size={16} /></button>
+        </div>
+        <button className="one" aria-label={t('Centralizar')} title={en ? 'Reset view' : 'Voltar ao mapa inteiro'} onClick={() => setView({ z: 1, tx: 0, ty: 0 })}><Icon k="alvo" size={16} /></button>
         <button className="one" aria-label={t('Camadas')} aria-pressed={s.radar} title={t(s.radar ? 'Esconder o radar' : 'Mostrar o radar')} onClick={() => set({ radar: !s.radar })}><Icon k="camadas" size={16} /></button>
+        <button className="one" aria-label={full ? (en ? 'Exit full screen' : 'Sair da tela cheia') : (en ? 'Full screen' : 'Tela cheia')} title={full ? (en ? 'Exit full screen' : 'Sair da tela cheia') : (en ? 'Full screen' : 'Tela cheia')} onClick={() => (full ? exitFull() : enterFull())}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {full ? <path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" /> : <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />}
+          </svg>
+        </button>
       </div>
-      {ev.map(e => {
-        const c = mc(e)
-        if (e.st === 'cl') return <button key={e.id} className="mk cl" style={{ ...pos(e.x, e.y), background: c }} aria-label={t(`${e.n} focos de ${ds.types[e.k].s.toLowerCase()} perto de ${e.pl}`)}>{e.n}</button>
-        return (
-          <button key={e.id} className={cx('mk', e.st, s.sel === e.id && 'sel')} data-id={e.id}
-            style={{ ...pos(e.x, e.y), ...(e.st === 'obs' ? { background: c, color: '#FFFFFF' } : { color: c }), boxShadow: s.sel === e.id ? '' : `0 0 12px ${rgba(c, 0.5)}` }}
-            aria-label={t(`${e.st === 'prev' ? 'Previsão' : ds.types[e.k].s} em ${e.pl}`)}
-            onClick={ev2 => { ev2.stopPropagation(); set({ sel: e.id }) }}>
-            <Icon k={ds.types[e.k].ic} size={14} />
-          </button>
-        )
-      })}
-      <Pin />
+      {view.z > 1 && <div className="float zoomhint">{en ? `Zoom ${view.z.toFixed(1)}× · drag to move` : `Zoom ${view.z.toFixed(1).replace('.', ',')}× · arraste para mover`}</div>}
       <Legend />
       <div className="scale">{real ? scaleKm(ds.realMeta.imagem) : '350 km'}<i /></div>
       <div className="attr">{t(real ? `Radar NISAR GCOV banda L · ${step ? fmtDate(step.date) : `${ds.rd.b} ${ds.rd.y}`} · NASA-ISRO / ASF DAAC` : 'Dados ilustrativos · base Natural Earth · radar NISAR')}</div>
       <div className="empty" style={{ display: ev.length ? 'none' : 'flex' }}><div>{t('Nenhum foco desse tipo no período.')}<br />{t('Tente um período maior.')}</div></div>
-      {sel && size.w > 0 && <Popup e={sel} W={size.w} H={size.h} />}
+      {sel && size.w > 0 && <Popup e={sel} W={size.w} H={size.h} px={ox + view.tx + (sel.x / MAP_W) * sw * view.z} py={oy + view.ty + (sel.y / MAP_H) * sh * view.z} />}
     </div>
   )
 }
@@ -173,7 +253,7 @@ function Legend() {
   return <div className={cx('float legend', open && 'open')} onClick={e => { e.stopPropagation(); setOpen(!open) }}>{body}</div>
 }
 
-function Popup({ e, W, H }: { e: Ev; W: number; H: number }) {
+function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; py: number }) {
   const { s, set, t, ds, go } = useApp()
   const real = s.src === 'real'
   const c = ds.types[e.k].c
@@ -182,13 +262,19 @@ function Popup({ e, W, H }: { e: Ev; W: number; H: number }) {
     d: e.st === 'prev' ? '' : '▲ vs. anterior', g: e.st === 'prev' ? 50 : 40 + e.n, st: e.st === 'prev' ? 'Previsto' : 'Observado',
     why: e.st === 'prev' ? 'Combinação de dados do radar e do tempo indica possibilidade do evento. Veja o alerta ao lado.' : `O radar detectou ${ds.types[e.k].s.toLowerCase()} nesta área no período escolhido.`,
   }
-  const px = (e.x / MAP_W) * W, py = (e.y / MAP_H) * H
-  const left = px > W * 0.55 ? px - 26 - 276 : px + 26
-  const top = Math.max(12, Math.min(H - 330, py - 150))
+  const box = useRef<HTMLDivElement>(null)
+  const [ph, setPh] = useState(330)
+  useLayoutEffect(() => { if (box.current) setPh(box.current.offsetHeight) })
+  const PW = Math.min(276, W - 24)
+  const maxH = H - 24
+  const hh = Math.min(ph, maxH)
+  let left = px > W * 0.55 ? px - 26 - PW : px + 26
+  left = Math.max(12, Math.min(W - PW - 12, left))
+  const top = Math.max(12, Math.min(H - hh - 12, py - hh / 2))
   const before = real ? (e.date ? ds.timeline.find(p => p.date === e.date)?.vs ?? ds.rd.a : ds.rd.a) : s.preset === '7d' ? '27 out' : '11 set'
   const after = real ? e.date ?? ds.rd.b : '10 nov'
   return (
-    <div className="pop" role="dialog" aria-label={t('Detalhe do foco')} style={{ left, top }} onClick={ev => ev.stopPropagation()}>
+    <div className="pop" ref={box} role="dialog" aria-label={t('Detalhe do foco')} style={{ left, top, width: PW, maxHeight: maxH, overflowY: 'auto' }} onClick={ev => ev.stopPropagation()} onPointerDown={ev => ev.stopPropagation()} onWheel={ev => ev.stopPropagation()}>
       <button className="x" aria-label={t('Fechar detalhe')} onClick={() => set({ sel: null })}><Icon k="x" size={14} /></button>
       <div style={{ display: 'flex', gap: 6 }}>
         <span className="tag" style={{ background: rgba(c, 0.14), color: c }}>{t(ds.types[e.k].s)}</span>
@@ -196,7 +282,7 @@ function Popup({ e, W, H }: { e: Ev; W: number; H: number }) {
       </div>
       <div><h3>{t(inf.t)}</h3><div className="sub">{t(inf.sub)}</div></div>
       <div className="metric"><b>{t(inf.m)}</b><span style={{ color: 'var(--red2)', fontSize: 12, fontWeight: 500 }}>{t(inf.d)}</span></div>
-      {e.st !== 'prev' && (
+      {e.st !== 'prev' && maxH >= 470 && (
         <div className="ba">
           <span><div style={{ background: 'linear-gradient(120deg,#EEF1F4,#C9D8E8 55%,#EEF1F4)' }} />{t(`Antes · ${before}`)}</span>
           <span><div style={{ background: `linear-gradient(120deg,#EEF1F4,${rgba(c, 0.55)} 55%,#EEF1F4)` }} />{t(`Depois · ${after}`)}</span>
