@@ -7,6 +7,9 @@ import { evMonth, kmf, lvlOf, pos, rgba } from '../../lib/util'
 import { fmtDate } from '../../lib/i18n'
 import { Heat, MapBase } from '../MapBase'
 import { Icon } from '../Icon'
+import { SearchBox } from '../home/SearchBox'
+import { REGION_LIST } from '../../lib/regions'
+import { realShort } from '../../lib/real'
 
 /** Estatísticas reais de um tipo (focos, área e grau médio) — usado na versão celular */
 export function useRealStats() {
@@ -71,7 +74,7 @@ function Marks({ ev, focus }: { ev: Ev[]; focus: string }) {
 }
 
 export function Compare() {
-  const { s, set, t, ds, go } = useApp()
+  const { s, set, t, ds, go, setRegion } = useApp()
   const real = s.src === 'real'
   const { k, a, b, swipe } = s.cmp
   const setC = (p: Partial<typeof s.cmp>) => set({ cmp: { ...s.cmp, ...p } })
@@ -108,7 +111,7 @@ export function Compare() {
 
   return (
     <section className="view on" id="v-comparar" style={{ flexDirection: 'column', gap: 16 }}>
-      <div className="head"><div><h1>{t('Comparar períodos')}</h1><div className="answer"><span className="dot" style={{ background: 'var(--acc)' }} /><span>{t(sentence)}</span></div></div></div>
+      <div className="head"><div><h1>{t('Comparar períodos')}</h1><div className="answer"><span className="dot" style={{ background: 'var(--acc)' }} /><span>{t(sentence)}</span></div></div><SearchBox /></div>
       <div className="bar"><div className="selects">
         <label className="sel">{t('Tipo de mudança')}
           <select value={k} onChange={e => setC({ k: e.target.value })}>
@@ -129,7 +132,15 @@ export function Compare() {
           </select>
         </label>
         <label className="sel">{t('Região')}
-          <select>{real ? <option>{t(ds.realMeta.nome)}</option> : (ds.region.id === 'sul' ? ['Sul do Brasil (PR, SC e RS)', 'Rio Grande do Sul', 'Santa Catarina', 'Paraná'] : ['Amazônia (todos os estados)', 'Amazonas', 'Pará']).map(r => <option key={r}>{t(r)}</option>)}</select>
+          <select value={(real ? 'r:' : 'd:') + (real ? ds.realMeta.id : ds.region.id)}
+            onChange={e => { const [src, id] = e.target.value.split(':'); setRegion(id, { src: src === 'r' ? 'real' : 'demo', pin: null }) }}>
+            <optgroup label={t('NISAR real')}>
+              {ds.realIndex.map(m => <option key={'r' + m.id} value={'r:' + m.id}>{t(realShort(m))} · {t(m.nome.split(' · ')[0].split(' e ')[0])}</option>)}
+            </optgroup>
+            <optgroup label={t('Exemplo')}>
+              {REGION_LIST.map(r => <option key={'d' + r.id} value={'d:' + r.id}>{t(r.name)}</option>)}
+            </optgroup>
+          </select>
         </label>
       </div></div>
       <div className="cmpgrid">

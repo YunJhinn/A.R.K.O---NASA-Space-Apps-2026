@@ -25,7 +25,7 @@ export function MyRegions() {
   const list = tab === 'fav' ? s.favs : s.recents
   const sub = (p: MyPlace) => (p.pin ? `${t(p.src === 'real' ? 'Dados reais · ' : 'Exemplo · ')}${t(regionName(p.src, p.region))}` : t(p.src === 'real' ? 'Dados reais' : 'Exemplo'))
   return (
-    <div className="mb-3">
+    <div className="mb-3 rounded-md transition" id="myRegions">
       <div style={{ fontSize: 11, color: 'var(--mu)', letterSpacing: '.06em', margin: '2px 0 6px' }}>{t('MINHAS REGIÕES')}</div>
       <div className="mb-1.5 flex gap-1 text-[11.5px] font-bold">
         {(['fav', 'rec'] as const).map(k => (

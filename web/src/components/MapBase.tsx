@@ -1,10 +1,20 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { useApp } from '../lib/store'
 import { pos } from '../lib/util'
+import { RealBackdrop, realBase } from './RealBackdrop'
 
 /** Camada base do mapa: imagem + nomes das cidades. Os filhos ficam por cima. */
 export function MapBase({ img, bg = true, className = 'layer', style, children }: { img?: string; bg?: boolean; className?: string; style?: CSSProperties; children?: ReactNode }) {
-  const { ds } = useApp()
+  const { s, ds } = useApp()
+  if (bg && s.src === 'real' && realBase(ds.realMeta.id)) return (
+    <div className={className} style={style}>
+      <RealBackdrop img={img ?? ds.img} />
+      {Object.entries(ds.cities).map(([n, [x, y]]) => (
+        <span key={n} className="city" style={pos(x, y)}><i />{n}</span>
+      ))}
+      {children}
+    </div>
+  )
   return (
     <div className={className} style={bg ? { backgroundImage: `url(${img ?? ds.img})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', ...style } : style}>
       {Object.entries(ds.cities).map(([n, [x, y]]) => (

@@ -6,6 +6,7 @@ import { cx, evMonth, lvlOf, pos, rgba } from '../../lib/util'
 import { REAL_NAMES } from '../../lib/real'
 import { Icon } from '../Icon'
 import { Heat, MapBase } from '../MapBase'
+import { RealBackdrop, realBase } from '../RealBackdrop'
 import { Timeline } from './Timeline'
 import { useFocus } from '../../lib/useFocus'
 import { fmtDate } from '../../lib/i18n'
@@ -35,7 +36,9 @@ export function MapPanel() {
       <div className="ph">
         <div style={{ flex: 1 }}><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p></div>
         <div className="seg" role="group" aria-label={t('Camada')}>
-          <button className="on">{t('Radar')}</button><button>{t('Satélite óptico')}</button><button onClick={() => go('comparar')}>{t('Antes / depois')}</button>
+          {s.src === 'real' && realBase(ds.realMeta.id)
+            ? <><button className={cx(!s.radar && 'on')} aria-pressed={!s.radar} onClick={() => set({ radar: false })}>{t('Mapa')}</button><button className={cx(s.radar && 'on')} aria-pressed={s.radar} onClick={() => set({ radar: true })}>{t('Radar')}</button></>
+            : <><button className="on">{t('Radar')}</button><button>{t('Satélite óptico')}</button></>}<button onClick={() => go('comparar')}>{t('Antes / depois')}</button>
         </div>
       </div>
       <div className="chiprow">
@@ -84,7 +87,8 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
       .map(([k, [x, y, r]]) => { const n = ev.filter(e => e.k === k && e.st !== 'prev').length; return n ? <Heat key={k} x={x} y={y} r={r} color={rgba(ds.types[k].c, 0.18 + n * 0.05)} /> : null })
     : null
   return (
-    <div className="map" id="map" ref={m} style={{ backgroundImage: `url(${img})` }} onClick={() => s.sel && set({ sel: null })}>
+    <div className="map" id="map" ref={m} style={{ backgroundImage: real && realBase(ds.realMeta.id) ? 'none' : `url(${img})` }} onClick={() => s.sel && set({ sel: null })}>
+      {real && realBase(ds.realMeta.id) && <RealBackdrop img={img} />}
       <MapBase bg={false} className="layer" style={{ position: 'absolute', inset: 0 }}>
         {heats}
       </MapBase>
@@ -107,7 +111,7 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
       <div className="mctl" onClick={e => e.stopPropagation()}>
         <div className="grp"><button aria-label={t('Aproximar')}><Icon k="mais" size={16} /></button><button aria-label={t('Afastar')}><Icon k="menos" size={16} /></button></div>
         <button className="one" aria-label={t('Centralizar')}><Icon k="alvo" size={16} /></button>
-        <button className="one" aria-label={t('Camadas')}><Icon k="camadas" size={16} /></button>
+        <button className="one" aria-label={t('Camadas')} aria-pressed={s.radar} title={t(s.radar ? 'Esconder o radar' : 'Mostrar o radar')} onClick={() => set({ radar: !s.radar })}><Icon k="camadas" size={16} /></button>
       </div>
       {ev.map(e => {
         const c = mc(e)

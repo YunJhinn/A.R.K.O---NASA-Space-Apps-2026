@@ -21,12 +21,14 @@ export interface State {
   custom: CustomRange | null
   type: TypeFilter
   prev: boolean
+  radar: boolean
   sel: string | null
   risk: Level | null
   profile: string | null
   colorBy: 'tipo' | 'mes'
   ob: boolean
   obStep: number
+  tut: string | null
   cmp: { k: string; a: string; b: string; swipe: number }
   phone: { tab: PhoneTab; type: TypeFilter; sel: string | null; cType: string; when: 'antes' | 'depois' }
   /** trecho escolhido na linha do tempo: do passo a ao passo b (null = período inteiro). Uma data só = a igual a b */
@@ -53,8 +55,8 @@ export interface MyPlace {
 }
 
 const initial: State = {
-  view: 'inicio', lang: 'pt', src: 'demo', preset: '30d', custom: null, type: 'todos', prev: true, sel: 'a1', risk: null,
-  profile: null, colorBy: 'tipo', ob: false, obStep: 0,
+  view: 'inicio', lang: 'pt', src: 'demo', preset: '30d', custom: null, type: 'todos', prev: true, radar: true, sel: 'a1', risk: null,
+  profile: null, colorBy: 'tipo', ob: false, obStep: 0, tut: null,
   cmp: { k: 'agua', a: 'set', b: 'nov', swipe: 50 },
   phone: { tab: 'alertas', type: 'todos', sel: 'a1', cType: 'agua', when: 'depois' },
   tl: null, tlMode: 'periodo', focus: null, region: 'amazonia', pin: null, favs: [], recents: [],
@@ -112,7 +114,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ob = localStorage.getItem('arko-ob') !== '1' && !location.hash
       localStorage.setItem('arko-ob', '1')
       const h = location.hash.slice(1)
-      if (h === 'comparar' || h === 'celular' || h === 'inicio') view = h
+      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'tutoriais') view = h
     } catch { /* sem localStorage */ }
     let favs: MyPlace[] = [], recents: MyPlace[] = []
     try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
@@ -181,7 +183,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [s.lang])
   useEffect(() => { try { if (location.hash !== '#' + s.view) history.replaceState(null, '', '#' + s.view) } catch { /* ok */ } }, [s.view])
   useEffect(() => {
-    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio') set({ view: h }) }
+    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'tutoriais') set({ view: h }) }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])
