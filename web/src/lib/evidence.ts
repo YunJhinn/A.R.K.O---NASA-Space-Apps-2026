@@ -104,6 +104,10 @@ export interface FocusEvidence {
   /** a mesma informação em palavras simples */
   plain: string
   plainPol: string
+  /** detecções no mesmo lugar (≤ 2 km) em outras datas, e a data e Δ deste foco */
+  others: Det[]
+  date: string
+  db: number
 }
 
 export function focusEvidence(e: Ev, tl: TimelinePoint[], fallback: { vs: string; date: string }, lang: Lang): FocusEvidence | null {
@@ -167,7 +171,7 @@ export function focusEvidence(e: Ev, tl: TimelinePoint[], fallback: { vs: string
     solo: `The satellite sends a wave and listens to the echo. Before, almost nothing came back here (like a mirror of water). Now the echo is ${fx} times stronger: the surface is rough again, a sign the water left.`,
     arvore: `The satellite sends a “lying down” wave and listens to the part that comes back “standing up”. Branches and leaves are what turn the wave. Here that part of the echo got ${fx} times weaker: there are fewer plants to turn the wave.`,
   }[k]
-  return { pol, measured, spot, reading, plain, plainPol }
+  return { pol, measured, spot, reading, plain, plainPol, others, date, db: e.db }
 }
 
 // ---------------- resumo de UMA região (todas as passagens) ----------------

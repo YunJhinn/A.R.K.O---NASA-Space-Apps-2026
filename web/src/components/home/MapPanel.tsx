@@ -14,7 +14,7 @@ import { dentro, projetar } from '../../lib/regions'
 import { SciButtons } from '../SciModal'
 import { L as LL, POL, worldviewUrl, type Lang } from '../../lib/science'
 import { RULE, factor, focusEvidence, physics } from '../../lib/evidence'
-import { regionHypo } from '../../lib/hypotheses'
+import { focusHypothesis } from '../../lib/hypotheses'
 import '../../styles/map-extra.css'
 
 /** Escala aproximada: a barra da escala tem ~1/10 da largura do mapa */
@@ -265,7 +265,7 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
   const lang = s.lang as Lang, en = lang === 'en'
   const evd = real ? focusEvidence(e, ds.timeline, { vs: ds.real.meta.antes.data, date: ds.real.meta.depois.data }, lang) : null
   const phy = physics(e.k, lang)
-  const hypT = real ? regionHypo(ds.realMeta.id, lang)?.byType[e.k as 'agua' | 'solo' | 'arvore'] : undefined
+  const fh = evd ? focusHypothesis(e.k, evd, e.a, ds.realMeta.id, lang) : null
   const n1 = (x: number) => (en ? x.toFixed(1) : x.toFixed(1).replace('.', ','))
   const pol = POL[e.k]
   const inf: Info = ds.info[e.id] ?? {
@@ -316,6 +316,13 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
       )}
       {more === 'causas' && (
         <div style={{ background: '#EAF2FF', border: '1px solid #BCD3F7', borderRadius: 10, padding: '10px 12px', fontSize: 12.5, lineHeight: 1.45 }}>
+          {fh && (
+            <div style={{ background: '#FFF8EB', border: '1px solid #F5D58A', borderRadius: 8, padding: '7px 9px', marginBottom: 6 }}>
+              <b style={{ color: '#B45309' }}>🧪 {en ? 'Hypothesis for this focus: ' : 'Hipótese para este foco: '}</b>{fh.text}
+              {fh.why.length > 0 && <div style={{ marginTop: 3 }}><b style={{ fontSize: 11.5 }}>{en ? 'Based on:' : 'Com base em:'}</b>{fh.why.map(w => <div key={w} style={{ display: 'flex', gap: 5, fontSize: 11.5 }}><span style={{ color: '#B45309', fontWeight: 800 }}>›</span><span>{w}</span></div>)}</div>}
+              <div style={{ color: '#5B6B7F', fontSize: 11, marginTop: 3 }}>{en ? 'A hypothesis, not a conclusion: confirm in the optical image below.' : 'É hipótese, não conclusão: confirme na imagem óptica abaixo.'}</div>
+            </div>
+          )}
           {evd ? (
             <>
               <div style={{ background: '#fff', borderRadius: 8, padding: '7px 9px', marginBottom: 6 }}><b>💬 {en ? 'In plain words: ' : 'Em palavras simples: '}</b>{evd.plain}</div>
@@ -327,12 +334,6 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
             </>
           ) : (
             <div style={{ marginBottom: 4 }}>{real ? (en ? 'This type is not measured by the radar.' : 'Este tipo não é medido pelo radar.') : (en ? 'Example mode: simulated data, no real measurement. Below is only the radar physics.' : 'Modo Exemplo: dados simulados, sem medição real. Abaixo está só a física do radar.')}</div>
-          )}
-          {hypT && (
-            <div style={{ background: '#FFF8EB', border: '1px solid #F5D58A', borderRadius: 8, padding: '7px 9px', marginTop: 6 }}>
-              <b style={{ color: '#B45309' }}>🧪 {en ? 'Hypothesis for this region: ' : 'Hipótese para esta região: '}</b>{hypT}
-              <div style={{ color: '#5B6B7F', fontSize: 11.5, marginTop: 2 }}>{en ? 'Data and sources in the map header, “Likely causes”.' : 'Dados e fontes no cabeçalho do mapa, em “Causas prováveis”.'}</div>
-            </div>
           )}
           {phy && (
             <>
