@@ -26,7 +26,7 @@ export function Onboarding() {
   if (!s.ob) return null
   const real = s.src === 'real'
   const p = st.art === 'dados'
-    ? `Exemplo mostra a Amazônia inteira com dados ilustrativos, para entender o app. NISAR real mostra o que o satélite detectou de verdade entre ${ds.rd.a} e ${ds.rd.b} de ${ds.rd.y} no rio Madeira. Troque quando quiser em Dados, no menu.`
+    ? 'Exemplo mostra regiões com dados ilustrativos, para entender o app. NISAR real mostra o que o satélite detectou de verdade no rio Madeira (AM), em Porto Alegre (RS) e em Bangladesh. Troque quando quiser em Dados, no menu.'
     : st.p
   const img = st.art === 'radar' ? hero : st.art === 'dados' ? ds.real.img : demoMap
   return (
@@ -44,7 +44,7 @@ export function Onboarding() {
           <div>
             {st.art === 'dados' && (
               <div className="prof" style={{ gridTemplateColumns: '1fr 1fr' }}>
-                {([['demo', 'Exemplo', 'Amazônia inteira · dados ilustrativos para aprender a usar'], ['real', 'NISAR real', `Rio Madeira (AM) · ${ds.rd.n} focos reais · ${ds.rd.a} → ${ds.rd.b} ${ds.rd.y}`]] as const).map(([k, h, d]) => (
+                {([['demo', 'Exemplo', 'Amazônia inteira · dados ilustrativos para aprender a usar'], ['real', 'NISAR real', `${ds.realIndex.length} regiões reais · passagens de jun a out 2026`]] as const).map(([k, h, d]) => (
                   <button key={k} className={cx(s.src === k && 'on')} aria-pressed={s.src === k} onClick={() => setSrc(k)}><b>{t(h)}</b>{t(d)}</button>
                 ))}
               </div>

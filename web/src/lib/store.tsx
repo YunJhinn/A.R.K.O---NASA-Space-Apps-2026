@@ -1,9 +1,9 @@
 // Estado global do app (período, filtros, modo Exemplo × NISAR real, idioma, telas).
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from 'react'
 import type { Alert, CmpEntry, CustomRange, Ev, EvType, Info, Lang, Level, LinhaTempoJson, PresetKey, RealDates, Src, TypeFilter, View } from './types'
 import { INFO_DEMO, PRESETS, TYPES, TYPES_REAL, type TypeMeta } from './demo'
 import { REGIONS, type Region, type RegionId } from './regions'
-import { buildReal, buildTimeline, type RealSet, type TimelinePoint } from './real'
+import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type RealSet, type TimelinePoint } from './real'
 import { setI18n, tr } from './i18n'
 import fallbackJson from '../data/focos-fallback.json'
 import fallbackImg from '../assets/radar-fallback.jpg'
@@ -29,13 +29,27 @@ export interface State {
   obStep: number
   cmp: { k: string; a: string; b: string; swipe: number }
   phone: { tab: PhoneTab; type: TypeFilter; sel: string | null; cType: string; when: 'antes' | 'depois' }
-  /** índice da passagem/semana escolhida na linha do tempo (null = período inteiro) */
-  tl: number | null
+  /** trecho escolhido na linha do tempo: do passo a ao passo b (null = período inteiro). Uma data só = a igual a b */
+  tl: { a: number; b: number } | null
+  /** linha do tempo: 'uma' data por vez ou um 'periodo' (vários passos juntos) */
+  tlMode: 'uma' | 'periodo'
   focus: 'map' | 'alerts' | null
-  /** região dos dados de exemplo */
-  region: RegionId
+  /** região escolhida (exemplo: amazonia, sul · real: as de data/regioes.json) */
+  region: string
   /** lugar buscado pela pessoa (pino no mapa) */
   pin: { lon: number; lat: number; label: string } | null
+  /** regiões favoritas e abertas recentemente (salvas no navegador) */
+  favs: MyPlace[]
+  recents: MyPlace[]
+}
+
+/** Uma região (ou lugar buscado) salva em "Minhas regiões" */
+export interface MyPlace {
+  key: string
+  label: string
+  src: Src
+  region: string
+  pin?: { lon: number; lat: number; label: string } | null
 }
 
 const initial: State = {
@@ -43,7 +57,7 @@ const initial: State = {
   profile: null, colorBy: 'tipo', ob: false, obStep: 0,
   cmp: { k: 'agua', a: 'set', b: 'nov', swipe: 50 },
   phone: { tab: 'alertas', type: 'todos', sel: 'a1', cType: 'agua', when: 'depois' },
-  tl: null, focus: null, region: 'amazonia', pin: null,
+  tl: null, tlMode: 'periodo', focus: null, region: 'amazonia', pin: null, favs: [], recents: [],
 }
 
 type Patch = Partial<State> | ((s: State) => Partial<State>)
@@ -63,6 +77,9 @@ export interface DataSet {
   real: RealSet
   timeline: TimelinePoint[]
   region: Region
+  /** região real em uso e todas as regiões reais */
+  realMeta: RealMeta
+  realIndex: RealMeta[]
 }
 
 interface Ctx {
@@ -71,7 +88,12 @@ interface Ctx {
   ds: DataSet
   t: (x: string) => string
   setSrc: (src: Src) => void
-  setRegion: (r: RegionId, extra?: Partial<State>) => void
+  setRegion: (r: string, extra?: Partial<State>) => void
+  /** lugar aberto agora (para favoritar) e abrir um lugar salvo */
+  here: MyPlace
+  openPlace: (p: MyPlace) => void
+  toggleFav: (p: MyPlace) => void
+  regionName: (src: Src, id: string) => string
   go: (v: View, focus?: State['focus']) => void
   // ajudantes de período
   days: () => number
@@ -92,26 +114,52 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const h = location.hash.slice(1)
       if (h === 'comparar' || h === 'celular' || h === 'inicio') view = h
     } catch { /* sem localStorage */ }
-    return { ...init, lang, ob, view }
+    let favs: MyPlace[] = [], recents: MyPlace[] = []
+    try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
+    return { ...init, lang, ob, view, favs, recents }
   })
-  const [real, setReal] = useState<RealSet>(() => buildReal(fallbackJson as FocosAppJson, fallbackImg))
-  const [timeline, setTimeline] = useState<TimelinePoint[]>([])
-
-  // dados reais mais novos (gerados pelo GitHub Actions)
+  // dados reais: índice das regiões e os dados de cada uma (carregados quando a região é aberta)
+  const [realIndex, setRealIndex] = useState<RealMeta[]>([REAL_DEFAULT])
+  const [sets, setSets] = useState<Record<string, { real: RealSet; timeline: TimelinePoint[] }>>(() => ({
+    amazonia: { real: buildReal(fallbackJson as FocosAppJson, fallbackImg), timeline: [] },
+  }))
+  const realMeta = realIndex.find(m => m.id === s.region) ?? realIndex[0]
   useEffect(() => {
-    fetch(DATA_BASE + 'focos_app.json', { cache: 'no-store' })
+    fetch(DATA_BASE + 'regioes.json', { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : null))
-      .then((d: FocosAppJson | null) => { if (d?.focos && d.imagem && d.depois) setReal(buildReal(d, `${DATA_BASE}${d.imagem.arquivo}?v=${d.depois.data}`)) })
-      .catch(() => {})
-    fetch(DATA_BASE + 'linha_tempo.json', { cache: 'no-store' })
-      .then(r => (r.ok ? r.json() : null))
-      .then((d: LinhaTempoJson | null) => { if (d?.passagens) setTimeline(buildTimeline(d, DATA_BASE)) })
+      .then((d: RealMeta[] | null) => { if (Array.isArray(d) && d.length) setRealIndex(d) })
       .catch(() => {})
   }, [])
+  const loaded = useRef(new Set<string>())
+  useEffect(() => {
+    const m = realMeta
+    if (loaded.current.has(m.id)) return
+    loaded.current.add(m.id)
+    const base = DATA_BASE + m.pasta
+    fetch(base + 'focos_app.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then((d: FocosAppJson | null) => {
+        if (!d?.focos || !d.imagem || !d.depois) return
+        const real = buildReal(d, `${base}${d.imagem.arquivo}?v=${d.depois.data}`, m.cidades)
+        setSets(x => ({ ...x, [m.id]: { real, timeline: x[m.id]?.timeline ?? [] } }))
+      })
+      .catch(() => {})
+    fetch(base + 'linha_tempo.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then((d: LinhaTempoJson | null) => {
+        if (!d?.passagens) return
+        const timeline = buildTimeline(d, base)
+        setSets(x => ({ ...x, [m.id]: { real: x[m.id]?.real ?? x.amazonia.real, timeline } }))
+      })
+      .catch(() => {})
+  }, [realMeta])
+  const cur = sets[realMeta.id] ?? sets.amazonia
+  const real = cur.real
+  const timeline = sets[realMeta.id] ? cur.timeline : []
 
   const ds = useMemo<DataSet>(() => {
     const isReal = s.src === 'real'
-    const region = REGIONS[s.region]
+    const region = REGIONS[s.region as RegionId] ?? REGIONS.amazonia
     const types = { ...TYPES } as Record<EvType, TypeMeta>
     if (isReal) (Object.keys(TYPES_REAL) as EvType[]).forEach(k => { types[k] = { ...types[k], ...TYPES_REAL[k] } })
     return {
@@ -121,9 +169,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       cmp: isReal ? real.cmp : region.cmp,
       info: { ...INFO_DEMO, ...region.info, ...real.info, ...Object.assign({}, ...timeline.map(p => p.info)) },
       img: isReal ? real.img : region.img,
-      types, rd: real.rd, real, timeline, region,
+      types, rd: real.rd, real, timeline, region, realMeta, realIndex,
     }
-  }, [s.src, s.region, real, timeline])
+  }, [s.src, s.region, real, timeline, realMeta, realIndex])
 
   // idioma: precisa estar pronto antes dos filhos renderizarem
   setI18n(s.lang, ds.rd)
@@ -145,25 +193,59 @@ export function AppProvider({ children }: { children: ReactNode }) {
     () => ds.ev.filter(e => (e.st === 'prev' ? s.prev : inRange(e.d)) && (s.type === 'todos' || e.k === s.type)),
     [ds.ev, s.prev, s.type, inRange],
   )
+  const hasReal = useCallback((id: string) => realIndex.some(m => m.id === id), [realIndex])
   const setSrc = useCallback((src: Src) => {
     const isReal = src === 'real'
-    set(st => ({
-      src, region: isReal ? 'amazonia' : st.region, pin: isReal ? null : st.pin,
-      sel: isReal ? null : REGIONS[isReal ? 'amazonia' : st.region].sel, type: 'todos', risk: null, custom: null, preset: isReal ? '30d' : st.preset, tl: null,
-      phone: { ...st.phone, sel: isReal ? null : REGIONS[st.region].sel, type: 'todos', cType: isReal ? 'arvore' : 'agua' },
-      cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' },
-    }))
-  }, [])
-  const setRegion = useCallback((r: RegionId, extra: Partial<State> = {}) => {
-    set(st => ({
-      region: r, src: 'demo', sel: REGIONS[r].sel, type: 'todos', risk: null, tl: null, pin: null,
-      phone: { ...st.phone, sel: REGIONS[r].sel, type: 'todos', cType: 'agua' },
-      cmp: { ...st.cmp, k: 'agua', a: 'set', b: 'nov' }, ...extra,
-    }))
-  }, [])
+    set(st => {
+      const region = isReal ? (hasReal(st.region) ? st.region : 'amazonia') : (st.region in REGIONS ? st.region : 'amazonia')
+      const ex = REGIONS[region as RegionId]
+      return {
+        src, region, pin: null,
+        sel: isReal ? null : ex.sel, type: 'todos', risk: null, custom: null, preset: isReal ? '30d' : st.preset, tl: null,
+        phone: { ...st.phone, sel: isReal ? null : ex.sel, type: 'todos', cType: isReal ? 'arvore' : 'agua' },
+        cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' },
+      }
+    })
+  }, [hasReal])
+  /** Abre uma região. Fica no modo atual se a região existir nele; senão troca de modo. */
+  const setRegion = useCallback((r: string, extra: Partial<State> = {}) => {
+    set(st => {
+      const src: Src = extra.src ?? (st.src === 'real' && hasReal(r) ? 'real' : r in REGIONS ? 'demo' : hasReal(r) ? 'real' : 'demo')
+      const region = src === 'real' ? (hasReal(r) ? r : 'amazonia') : (r in REGIONS ? r : 'amazonia')
+      const ex = REGIONS[(region in REGIONS ? region : 'amazonia') as RegionId]
+      const isReal = src === 'real'
+      return {
+        region, src, sel: isReal ? null : ex.sel, type: 'todos', risk: null, tl: null, pin: null, custom: null, preset: isReal ? '30d' : st.preset,
+        phone: { ...st.phone, sel: isReal ? null : ex.sel, type: 'todos', cType: isReal ? 'arvore' : 'agua' },
+        cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' }, ...extra,
+      }
+    })
+  }, [hasReal])
+  // ---- minhas regiões: favoritas e recentes ----
+  const regionName = useCallback((src: Src, id: string) => {
+    if (src === 'real') { const m = realIndex.find(x => x.id === id); return m ? realShort(m) : id }
+    return REGIONS[id as RegionId]?.name ?? id
+  }, [realIndex])
+  const here: MyPlace = useMemo(() => ({
+    key: `${s.src}:${s.region}:${s.pin?.label ?? ''}`,
+    label: s.pin?.label ?? regionName(s.src, s.region), src: s.src, region: s.region, pin: s.pin,
+  }), [s.src, s.region, s.pin, regionName])
+  useEffect(() => {
+    set(st => {
+      const recents = [here, ...st.recents.filter(x => x.key !== here.key)].slice(0, 6)
+      return recents.map(x => x.key).join() === st.recents.map(x => x.key).join() ? {} : { recents }
+    })
+  }, [here])
+  useEffect(() => { try { localStorage.setItem('arko-favs', JSON.stringify(s.favs)); localStorage.setItem('arko-recentes', JSON.stringify(s.recents)) } catch { /* ok */ } }, [s.favs, s.recents])
+  const toggleFav = useCallback((p: MyPlace) => set(st => ({ favs: st.favs.some(x => x.key === p.key) ? st.favs.filter(x => x.key !== p.key) : [p, ...st.favs].slice(0, 12) })), [])
+  const openPlace = useCallback((p: MyPlace) => {
+    setRegion(p.region, { src: p.src, pin: p.pin ?? null, preset: '1a' })
+    set({ view: 'inicio' })
+  }, [setRegion])
+
   const go = useCallback((view: View, focus: State['focus'] = null) => { set({ view, focus }); if (!focus) window.scrollTo(0, 0) }, [])
 
-  const value: Ctx = { s, set, ds, t: tr, setSrc, setRegion, go, days, inRange, periodLabel, visible }
+  const value: Ctx = { s, set, ds, t: tr, setSrc, setRegion, here, openPlace, toggleFav, regionName, go, days, inRange, periodLabel, visible }
   return <AppCtx.Provider value={value}>{children}</AppCtx.Provider>
 }
 

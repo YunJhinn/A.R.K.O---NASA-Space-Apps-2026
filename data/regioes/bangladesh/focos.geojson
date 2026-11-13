@@ -1,0 +1,865 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1515,
+     25.124
+    ]
+   },
+   "properties": {
+    "id": "agua-1",
+    "tipo": "agua",
+    "area_km2": 1.24,
+    "grau": 51,
+    "delta_db": 4.6,
+    "local": "a 86 km de Mymensingh · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1311,
+     25.1122
+    ]
+   },
+   "properties": {
+    "id": "agua-2",
+    "tipo": "agua",
+    "area_km2": 1.01,
+    "grau": 50,
+    "delta_db": 4.5,
+    "local": "a 83 km de Mymensingh · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.2605,
+     24.8256
+    ]
+   },
+   "properties": {
+    "id": "agua-3",
+    "tipo": "agua",
+    "area_km2": 0.63,
+    "grau": 58,
+    "delta_db": 5.3,
+    "local": "a 66 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.0565,
+     25.1669
+    ]
+   },
+   "properties": {
+    "id": "agua-4",
+    "tipo": "agua",
+    "area_km2": 0.47,
+    "grau": 49,
+    "delta_db": 4.5,
+    "local": "a 80 km de Mymensingh · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1434,
+     25.0849
+    ]
+   },
+   "properties": {
+    "id": "agua-5",
+    "tipo": "agua",
+    "area_km2": 0.45,
+    "grau": 53,
+    "delta_db": 4.8,
+    "local": "a 82 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3285,
+     24.5931
+    ]
+   },
+   "properties": {
+    "id": "agua-6",
+    "tipo": "agua",
+    "area_km2": 0.41,
+    "grau": 78,
+    "delta_db": 7.1,
+    "local": "a 58 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.069,
+     25.0782
+    ]
+   },
+   "properties": {
+    "id": "agua-7",
+    "tipo": "agua",
+    "area_km2": 0.34,
+    "grau": 52,
+    "delta_db": 4.7,
+    "local": "a 76 km de Mymensingh · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1099,
+     24.3095
+    ]
+   },
+   "properties": {
+    "id": "agua-8",
+    "tipo": "agua",
+    "area_km2": 0.34,
+    "grau": 54,
+    "delta_db": 4.9,
+    "local": "a 32 km de Bhairab · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3125,
+     24.663
+    ]
+   },
+   "properties": {
+    "id": "solo-9",
+    "tipo": "solo",
+    "area_km2": 2.85,
+    "grau": 80,
+    "delta_db": 7.2,
+    "local": "a 60 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1045,
+     24.5132
+    ]
+   },
+   "properties": {
+    "id": "solo-10",
+    "tipo": "solo",
+    "area_km2": 2.85,
+    "grau": 87,
+    "delta_db": 7.9,
+    "local": "a 34 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.474,
+     24.2371
+    ]
+   },
+   "properties": {
+    "id": "solo-11",
+    "tipo": "solo",
+    "area_km2": 2.58,
+    "grau": 70,
+    "delta_db": 6.3,
+    "local": "a 33 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.4797,
+     25.0216
+    ]
+   },
+   "properties": {
+    "id": "solo-12",
+    "tipo": "solo",
+    "area_km2": 2.52,
+    "grau": 78,
+    "delta_db": 7.1,
+    "local": "a 97 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3324,
+     24.2963
+    ]
+   },
+   "properties": {
+    "id": "solo-13",
+    "tipo": "solo",
+    "area_km2": 2.1,
+    "grau": 100,
+    "delta_db": 12.5,
+    "local": "a 45 km de Bhairab · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.4421,
+     24.2544
+    ]
+   },
+   "properties": {
+    "id": "solo-14",
+    "tipo": "solo",
+    "area_km2": 2.05,
+    "grau": 61,
+    "delta_db": 5.6,
+    "local": "a 34 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.1726,
+     24.6287
+    ]
+   },
+   "properties": {
+    "id": "solo-15",
+    "tipo": "solo",
+    "area_km2": 2.05,
+    "grau": 98,
+    "delta_db": 8.9,
+    "local": "a 32 km de Bogra · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.4445,
+     24.3078
+    ]
+   },
+   "properties": {
+    "id": "solo-16",
+    "tipo": "solo",
+    "area_km2": 1.96,
+    "grau": 65,
+    "delta_db": 5.9,
+    "local": "a 30 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3206,
+     24.2903
+    ]
+   },
+   "properties": {
+    "id": "solo-17",
+    "tipo": "solo",
+    "area_km2": 1.82,
+    "grau": 100,
+    "delta_db": 12.2,
+    "local": "a 44 km de Bhairab · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.509,
+     24.1671
+    ]
+   },
+   "properties": {
+    "id": "solo-18",
+    "tipo": "solo",
+    "area_km2": 1.77,
+    "grau": 61,
+    "delta_db": 5.6,
+    "local": "a 37 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.4037,
+     24.7037
+    ]
+   },
+   "properties": {
+    "id": "solo-19",
+    "tipo": "solo",
+    "area_km2": 1.7,
+    "grau": 59,
+    "delta_db": 5.4,
+    "local": "a 70 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3681,
+     24.6412
+    ]
+   },
+   "properties": {
+    "id": "solo-20",
+    "tipo": "solo",
+    "area_km2": 1.68,
+    "grau": 56,
+    "delta_db": 5.1,
+    "local": "a 64 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3457,
+     24.3043
+    ]
+   },
+   "properties": {
+    "id": "solo-21",
+    "tipo": "solo",
+    "area_km2": 1.64,
+    "grau": 100,
+    "delta_db": 12.9,
+    "local": "a 47 km de Bhairab · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1042,
+     24.9032
+    ]
+   },
+   "properties": {
+    "id": "solo-22",
+    "tipo": "solo",
+    "area_km2": 1.6,
+    "grau": 65,
+    "delta_db": 5.9,
+    "local": "a 62 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3254,
+     24.5851
+    ]
+   },
+   "properties": {
+    "id": "solo-23",
+    "tipo": "solo",
+    "area_km2": 1.56,
+    "grau": 89,
+    "delta_db": 8.1,
+    "local": "a 58 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3438,
+     24.2668
+    ]
+   },
+   "properties": {
+    "id": "solo-24",
+    "tipo": "solo",
+    "area_km2": 1.52,
+    "grau": 100,
+    "delta_db": 13.6,
+    "local": "a 44 km de Bhairab · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.517,
+     24.2193
+    ]
+   },
+   "properties": {
+    "id": "solo-25",
+    "tipo": "solo",
+    "area_km2": 1.49,
+    "grau": 64,
+    "delta_db": 5.8,
+    "local": "a 32 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.5023,
+     24.3941
+    ]
+   },
+   "properties": {
+    "id": "solo-26",
+    "tipo": "solo",
+    "area_km2": 1.45,
+    "grau": 54,
+    "delta_db": 4.9,
+    "local": "a 65 km de Bhairab · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3235,
+     24.7866
+    ]
+   },
+   "properties": {
+    "id": "solo-27",
+    "tipo": "solo",
+    "area_km2": 1.42,
+    "grau": 64,
+    "delta_db": 5.8,
+    "local": "a 68 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.3415,
+     24.4452
+    ]
+   },
+   "properties": {
+    "id": "solo-28",
+    "tipo": "solo",
+    "area_km2": 1.37,
+    "grau": 61,
+    "delta_db": 5.5,
+    "local": "a 57 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.4006,
+     24.5122
+    ]
+   },
+   "properties": {
+    "id": "solo-29",
+    "tipo": "solo",
+    "area_km2": 1.32,
+    "grau": 100,
+    "delta_db": 11.6,
+    "local": "a 64 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.1549,
+     24.4134
+    ]
+   },
+   "properties": {
+    "id": "solo-30",
+    "tipo": "solo",
+    "area_km2": 1.32,
+    "grau": 71,
+    "delta_db": 6.5,
+    "local": "a 38 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.059,
+     24.449
+    ]
+   },
+   "properties": {
+    "id": "solo-31",
+    "tipo": "solo",
+    "area_km2": 1.29,
+    "grau": 59,
+    "delta_db": 5.4,
+    "local": "a 28 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.4583,
+     24.2951
+    ]
+   },
+   "properties": {
+    "id": "solo-32",
+    "tipo": "solo",
+    "area_km2": 1.16,
+    "grau": 66,
+    "delta_db": 6.0,
+    "local": "a 30 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.3858,
+     24.2963
+    ]
+   },
+   "properties": {
+    "id": "solo-33",
+    "tipo": "solo",
+    "area_km2": 1.16,
+    "grau": 70,
+    "delta_db": 6.3,
+    "local": "a 36 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.2365,
+     24.4449
+    ]
+   },
+   "properties": {
+    "id": "arvore-34",
+    "tipo": "arvore",
+    "area_km2": 1.56,
+    "grau": 58,
+    "delta_db": 5.3,
+    "local": "a 47 km de Sirajganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.4585,
+     23.8978
+    ]
+   },
+   "properties": {
+    "id": "arvore-35",
+    "tipo": "arvore",
+    "area_km2": 0.91,
+    "grau": 48,
+    "delta_db": 4.4,
+    "local": "a 11 km de Daca · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.2746,
+     24.5448
+    ]
+   },
+   "properties": {
+    "id": "arvore-36",
+    "tipo": "arvore",
+    "area_km2": 0.83,
+    "grau": 44,
+    "delta_db": 4.0,
+    "local": "a 52 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.369,
+     24.5521
+    ]
+   },
+   "properties": {
+    "id": "arvore-37",
+    "tipo": "arvore",
+    "area_km2": 0.53,
+    "grau": 40,
+    "delta_db": 3.6,
+    "local": "a 33 km de Bogra · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.3404,
+     24.5334
+    ]
+   },
+   "properties": {
+    "id": "arvore-38",
+    "tipo": "arvore",
+    "area_km2": 0.44,
+    "grau": 38,
+    "delta_db": 3.5,
+    "local": "a 35 km de Bogra · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.8981,
+     23.6876
+    ]
+   },
+   "properties": {
+    "id": "arvore-39",
+    "tipo": "arvore",
+    "area_km2": 0.43,
+    "grau": 66,
+    "delta_db": 6.0,
+    "local": "a 10 km de Faridpur · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.6355,
+     25.0243
+    ]
+   },
+   "properties": {
+    "id": "arvore-40",
+    "tipo": "arvore",
+    "area_km2": 0.38,
+    "grau": 42,
+    "delta_db": 3.8,
+    "local": "a 38 km de Mymensingh · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.3534,
+     24.5474
+    ]
+   },
+   "properties": {
+    "id": "arvore-41",
+    "tipo": "arvore",
+    "area_km2": 0.34,
+    "grau": 37,
+    "delta_db": 3.4,
+    "local": "a 34 km de Bogra · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.9169,
+     24.7367
+    ]
+   },
+   "properties": {
+    "id": "arvore-42",
+    "tipo": "arvore",
+    "area_km2": 0.32,
+    "grau": 41,
+    "delta_db": 3.7,
+    "local": "a 37 km de Kishoreganj · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.2277,
+     24.5811
+    ]
+   },
+   "properties": {
+    "id": "arvore-43",
+    "tipo": "arvore",
+    "area_km2": 0.31,
+    "grau": 42,
+    "delta_db": 3.8,
+    "local": "a 33 km de Bogra · Bangladesh",
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  }
+ ]
+}

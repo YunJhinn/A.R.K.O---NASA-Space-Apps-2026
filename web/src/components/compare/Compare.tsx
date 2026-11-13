@@ -129,7 +129,7 @@ export function Compare() {
           </select>
         </label>
         <label className="sel">{t('Região')}
-          <select>{real ? <option>{t('Rio Madeira · sul do Amazonas')}</option> : (ds.region.id === 'sul' ? ['Sul do Brasil (PR, SC e RS)', 'Rio Grande do Sul', 'Santa Catarina', 'Paraná'] : ['Amazônia (todos os estados)', 'Amazonas', 'Pará']).map(r => <option key={r}>{t(r)}</option>)}</select>
+          <select>{real ? <option>{t(ds.realMeta.nome)}</option> : (ds.region.id === 'sul' ? ['Sul do Brasil (PR, SC e RS)', 'Rio Grande do Sul', 'Santa Catarina', 'Paraná'] : ['Amazônia (todos os estados)', 'Amazonas', 'Pará']).map(r => <option key={r}>{t(r)}</option>)}</select>
         </label>
       </div></div>
       <div className="cmpgrid">

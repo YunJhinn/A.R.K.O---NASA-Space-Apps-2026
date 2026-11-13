@@ -85,7 +85,7 @@ export function realAlerts(ev: Ev[], focos: FocoJson[], rd: RealDates): Alert[] 
   return out
 }
 
-export function buildReal(d: FocosAppJson, img: string): RealSet {
+export function buildReal(d: FocosAppJson, img: string, cidadesLL: Record<string, [number, number]> = CID_LL): RealSet {
   const rd = realDates(d.antes.data, d.depois.data, d.focos.length)
   const { X, Y } = projector(d.imagem)
   const dd = Math.max(0, ago(fmtD(d.depois.data).date))
@@ -93,7 +93,7 @@ export function buildReal(d: FocosAppJson, img: string): RealSet {
   const info: Record<string, Info> = {}
   d.focos.forEach(f => { info[f.id] = infoFoco(f, rd) })
   const cities: Record<string, [number, number]> = {}
-  Object.entries(CID_LL).forEach(([n, [lo, la]]) => { const x = X(lo), y = Y(la); if (x > 20 && x < 726 && y > 20 && y < 488) cities[n] = [+x.toFixed(1), +y.toFixed(1)] })
+  Object.entries(cidadesLL).forEach(([n, [lo, la]]) => { const x = X(lo), y = Y(la); if (x > 20 && x < 726 && y > 20 && y < 488) cities[n] = [+x.toFixed(1), +y.toFixed(1)] })
   const areaOf = (id: string) => d.focos.find(f => f.id === id)?.area_km2 ?? 0
   const cmp: Record<string, CmpEntry> = {}
   ;(['agua', 'arvore', 'solo'] as RealKind[]).forEach(k => { cmp[k] = { why: realWhy(k, rd), heat: ev.filter(e => e.k === k).map(e => [e.x, e.y, 22 + areaOf(e.id) * 14]) } })
@@ -121,3 +121,30 @@ export function buildTimeline(lt: LinhaTempoJson, base: string): TimelinePoint[]
     return { date: p.data, img: p.imagem ? base + p.imagem : null, vs: p.comparado_com, ev, info, resumo: p.resumo }
   })
 }
+
+/** Uma região com dados reais (data/regioes.json, gravado pelo pipeline) */
+export interface RealMeta {
+  id: string
+  nome: string
+  pais: string
+  /** subpasta dentro de data/ ('' = raiz, a Amazônia) */
+  pasta: string
+  imagem: { oeste: number; leste: number; norte: number; sul: number }
+  antes: string
+  depois: string
+  focos: number
+  linha_tempo: boolean
+  cidades?: Record<string, [number, number]>
+}
+export const REAL_DEFAULT: RealMeta = {
+  id: 'amazonia', nome: 'Rio Madeira · Amazonas', pais: 'Brasil', pasta: '',
+  imagem: { oeste: -62.05, leste: -58.95, norte: -3.944, sul: -6.056 }, antes: '2026-09-03', depois: '2026-10-21', focos: 10, linha_tempo: true,
+}
+/** Título do painel e nome curto para o menu */
+export const REAL_TITLES: Record<string, [string, string]> = {
+  amazonia: ['Radar da Amazônia', 'Amazônia'],
+  sul: ['Radar do Sul do Brasil', 'Sul do Brasil'],
+  bangladesh: ['Radar de Bangladesh', 'Bangladesh'],
+}
+export const realTitle = (m: RealMeta) => REAL_TITLES[m.id]?.[0] ?? `Radar · ${m.nome}`
+export const realShort = (m: RealMeta) => REAL_TITLES[m.id]?.[1] ?? m.nome.split(' · ')[0]

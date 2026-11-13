@@ -1,0 +1,228 @@
+[
+ {
+  "id": "amazonia",
+  "nome": "Rio Madeira · Amazonas",
+  "pais": "Brasil",
+  "pasta": "",
+  "imagem": {
+   "oeste": -62.05,
+   "leste": -58.95,
+   "norte": -3.944,
+   "sul": -6.056
+  },
+  "antes": "2026-09-03",
+  "depois": "2026-10-21",
+  "focos": 10,
+  "linha_tempo": true,
+  "cidades": {
+   "Careiro": [
+    -60.37,
+    -3.77
+   ],
+   "Careiro da Várzea": [
+    -59.83,
+    -3.2
+   ],
+   "Autazes": [
+    -59.13,
+    -3.58
+   ],
+   "Borba": [
+    -59.59,
+    -4.39
+   ],
+   "Nova Olinda do Norte": [
+    -59.09,
+    -3.89
+   ],
+   "Novo Aripuanã": [
+    -60.38,
+    -5.12
+   ],
+   "Manicoré": [
+    -61.3,
+    -5.81
+   ],
+   "Beruri": [
+    -61.37,
+    -3.9
+   ],
+   "Manaquiri": [
+    -60.46,
+    -3.43
+   ]
+  }
+ },
+ {
+  "id": "sul",
+  "nome": "Porto Alegre e vale do Taquari · RS",
+  "pais": "Brasil",
+  "pasta": "regioes/sul/",
+  "imagem": {
+   "oeste": -54.17,
+   "leste": -49.583,
+   "norte": -27.467,
+   "sul": -30.59
+  },
+  "antes": "2026-08-28",
+  "depois": "2026-10-15",
+  "focos": 34,
+  "linha_tempo": true,
+  "cidades": {
+   "Porto Alegre": [
+    -51.23,
+    -30.03
+   ],
+   "Canoas": [
+    -51.18,
+    -29.92
+   ],
+   "São Leopoldo": [
+    -51.15,
+    -29.76
+   ],
+   "Novo Hamburgo": [
+    -51.13,
+    -29.68
+   ],
+   "Guaíba": [
+    -51.33,
+    -30.11
+   ],
+   "Eldorado do Sul": [
+    -51.62,
+    -30.08
+   ],
+   "Gravataí": [
+    -50.99,
+    -29.94
+   ],
+   "Viamão": [
+    -51.02,
+    -30.08
+   ],
+   "Montenegro": [
+    -51.46,
+    -29.69
+   ],
+   "Lajeado": [
+    -51.96,
+    -29.47
+   ],
+   "Estrela": [
+    -51.95,
+    -29.5
+   ],
+   "Santa Cruz do Sul": [
+    -52.43,
+    -29.72
+   ],
+   "Camaquã": [
+    -51.81,
+    -30.85
+   ],
+   "Taquara": [
+    -50.78,
+    -29.65
+   ],
+   "Caxias do Sul": [
+    -51.18,
+    -29.17
+   ],
+   "Venâncio Aires": [
+    -52.19,
+    -29.61
+   ],
+   "Triunfo": [
+    -51.72,
+    -29.94
+   ],
+   "Barra do Ribeiro": [
+    -51.3,
+    -30.29
+   ]
+  }
+ },
+ {
+  "id": "bangladesh",
+  "nome": "Daca e rio Jamuna · Bangladesh",
+  "pais": "Bangladesh",
+  "pasta": "regioes/bangladesh/",
+  "imagem": {
+   "oeste": 87.871,
+   "leste": 92.764,
+   "norte": 26.412,
+   "sul": 23.08
+  },
+  "antes": "2026-08-29",
+  "depois": "2026-10-16",
+  "focos": 43,
+  "linha_tempo": true,
+  "cidades": {
+   "Daca": [
+    90.41,
+    23.81
+   ],
+   "Narayanganj": [
+    90.5,
+    23.62
+   ],
+   "Gazipur": [
+    90.42,
+    24.0
+   ],
+   "Tangail": [
+    89.92,
+    24.25
+   ],
+   "Manikganj": [
+    90.0,
+    23.86
+   ],
+   "Faridpur": [
+    89.84,
+    23.61
+   ],
+   "Mymensingh": [
+    90.41,
+    24.75
+   ],
+   "Sirajganj": [
+    89.7,
+    24.45
+   ],
+   "Jamalpur": [
+    89.94,
+    24.92
+   ],
+   "Kishoreganj": [
+    90.78,
+    24.43
+   ],
+   "Chandpur": [
+    90.67,
+    23.23
+   ],
+   "Munshiganj": [
+    90.53,
+    23.54
+   ],
+   "Narsingdi": [
+    90.72,
+    23.92
+   ],
+   "Bhairab": [
+    90.98,
+    24.05
+   ],
+   "Rajbari": [
+    89.64,
+    23.76
+   ],
+   "Bogra": [
+    89.37,
+    24.85
+   ]
+  }
+ }
+]

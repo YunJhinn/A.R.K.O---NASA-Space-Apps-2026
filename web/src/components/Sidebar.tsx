@@ -4,6 +4,8 @@ import brandIcon from '../assets/brand-icon.webp'
 import brandWord from '../assets/brand-word-light.webp'
 import { cx } from '../lib/util'
 import { REGION_LIST } from '../lib/regions'
+import { realShort } from '../lib/real'
+import { MyRegions } from './MyRegions'
 
 export function Sidebar() {
   const { s, set, t, ds, setSrc, setRegion, go } = useApp()
@@ -31,12 +33,21 @@ export function Sidebar() {
         <button className={cx(real && 'on')} aria-pressed={real} onClick={() => setSrc('real')}>{t('NISAR real')}</button>
       </div>
       <div style={{ fontSize: 11, color: 'var(--mu)', letterSpacing: '.06em', margin: '2px 0 6px' }}>{t('REGIÃO')}</div>
-      <div className="seg" role="group" aria-label={t('Região')} style={{ margin: '0 0 12px', alignSelf: 'flex-start' }}>
-        {REGION_LIST.map(r => {
-          const on = !real && s.region === r.id || (real && r.id === 'amazonia')
-          return <button key={r.id} className={cx(on && 'on')} aria-pressed={on} onClick={() => setRegion(r.id)}>{t(r.name)}</button>
-        })}
-      </div>
+      {real ? (
+        // dados reais: uma lista (cresce quando o pipeline ganha regiões novas)
+        <select value={ds.realMeta.id} onChange={e => setRegion(e.target.value, { src: 'real' })} aria-label={t('Região')}
+          className="mb-3 w-full rounded-md border border-white/15 bg-[#1C1F26] px-2.5 py-2 text-[13px] font-bold text-white">
+          {ds.realIndex.map(m => <option key={m.id} value={m.id}>{t(realShort(m))} · {t(m.nome.split(' · ')[0].split(' e ')[0])}</option>)}
+        </select>
+      ) : (
+        <div className="seg" role="group" aria-label={t('Região')} style={{ margin: '0 0 12px', alignSelf: 'flex-start' }}>
+          {REGION_LIST.map(r => {
+            const on = s.region === r.id
+            return <button key={r.id} className={cx(on && 'on')} aria-pressed={on} onClick={() => setRegion(r.id, { src: 'demo' })}>{t(r.name)}</button>
+          })}
+        </div>
+      )}
+      <MyRegions />
       <div className="sec">{t('MENU')}</div>
       {nav.map(([ic, label, fn, on, badge]) => (
         <button key={label} className={cx('nav', on && 'on')} onClick={fn}>

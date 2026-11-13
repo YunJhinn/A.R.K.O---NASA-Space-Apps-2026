@@ -61,7 +61,7 @@ export function AlertPanel() {
       <div className="note">
         <Icon k="info" size={16} className="text-acc" />
         <span>{real
-          ? t(`Dados reais do NISAR: duas passagens (${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) sobre o rio Madeira, sul do Amazonas. Fogo e previsões do tempo ainda não entram nesta versão.`)
+          ? <>{t(`Dados reais do NISAR: duas passagens (${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) sobre`)} {t(ds.realMeta.nome)}. {t('Fogo e previsões do tempo ainda não entram nesta versão.')}{ds.realMeta.id !== 'amazonia' && <> {t('Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.')}</>}</>
           : <>{t('Água, fogo, vegetação e solo vêm do radar NISAR. Ventos e tornados vêm de modelos do tempo (')}<b style={{ color: 'var(--amb2)', fontWeight: 500 }}>{t('fonte externa')}</b>).</>}</span>
       </div>
     </div>

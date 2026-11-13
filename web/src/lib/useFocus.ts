@@ -24,24 +24,24 @@ export function useSteps(): Step[] {
 export function useFocus() {
   const { s, ds, visible } = useApp()
   const real = s.src === 'real'
-  const i = s.tl
-  if (i == null) return { ev: visible(), base: null as Ev[] | null, img: ds.img, step: null as null | { date: string; vs: string | null; label: string } }
+  const r = s.tl
+  if (r == null) return { ev: visible(), base: null as Ev[] | null, img: ds.img, step: null as null | { date: string; vs: string | null; label: string } }
+  const { a, b } = r
+  const one = a === b
 
   if (real && ds.timeline.length) {
-    // só os focos encontrados nesta passagem (comparada com a passagem anterior)
-    const p = ds.timeline[i]
-    const img = p.img ?? [...ds.timeline.slice(0, i)].reverse().find(x => x.img)?.img ?? ds.img
-    return {
-      ev: p.ev.filter(e => s.type === 'todos' || e.k === s.type), base: p.ev, img,
-      step: { date: p.date, vs: p.vs, label: `Passagem de ${fmtDate(p.date)}` },
-    }
+    // focos de todas as passagens do trecho (cada passagem comparada com a anterior)
+    const pts = ds.timeline.slice(a, b + 1)
+    const all = pts.flatMap(p => p.ev)
+    const last = ds.timeline[b]
+    const img = last.img ?? [...ds.timeline.slice(0, b)].reverse().find(x => x.img)?.img ?? ds.img
+    const label = one ? `Passagem de ${fmtDate(last.date)}` : `Passagens de ${fmtDate(ds.timeline[a].date, false)} a ${fmtDate(last.date)}`
+    return { ev: all.filter(e => s.type === 'todos' || e.k === s.type), base: all, img, step: { date: last.date, vs: last.vs, label } }
   }
-  // exemplo: só os focos detectados na semana escolhida
-  const endAgo = (DEMO_WEEKS - 1 - i) * 7
-  const all = ds.ev.filter(e => e.st === 'obs' && e.d >= endAgo && e.d < endAgo + 7)
-  const date = iso(new Date(REF.getTime() - endAgo * 864e5))
-  return {
-    ev: all.filter(e => s.type === 'todos' || e.k === s.type), base: all, img: ds.img,
-    step: { date, vs: null, label: `Semana até ${fmtDate(date)}` },
-  }
+  // exemplo: focos detectados entre o início da semana a e o fim da semana b
+  const endAgo = (DEMO_WEEKS - 1 - b) * 7, startAgo = (DEMO_WEEKS - 1 - a) * 7 + 7
+  const all = ds.ev.filter(e => e.st === 'obs' && e.d >= endAgo && e.d < startAgo)
+  const end = iso(new Date(REF.getTime() - endAgo * 864e5)), start = iso(new Date(REF.getTime() - (startAgo - 1) * 864e5))
+  const label = one ? `Semana até ${fmtDate(end)}` : `De ${fmtDate(start, false)} a ${fmtDate(end)}`
+  return { ev: all.filter(e => s.type === 'todos' || e.k === s.type), base: all, img: ds.img, step: { date: end, vs: null, label } }
 }

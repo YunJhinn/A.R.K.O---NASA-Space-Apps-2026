@@ -11,6 +11,13 @@ import { useFocus } from '../../lib/useFocus'
 import { fmtDate } from '../../lib/i18n'
 import { dentro, projetar } from '../../lib/regions'
 
+/** Escala aproximada: a barra da escala tem ~1/10 da largura do mapa */
+const scaleKm = (b: { oeste: number; leste: number; norte: number; sul: number }) => {
+  const km = (b.leste - b.oeste) * 111.32 * Math.cos((((b.norte + b.sul) / 2) * Math.PI) / 180) / 10
+  const nice = km > 30 ? Math.round(km / 10) * 10 : Math.round(km)
+  return `${nice} km`
+}
+
 export function MapPanel() {
   const { s, set, t, ds, go, inRange, periodLabel } = useApp()
   const real = s.src === 'real'
@@ -94,7 +101,7 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
       {real && (
         <div className="float" id="srcBadge" style={{ left: '50%', top: 62, transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, padding: '6px 10px', whiteSpace: 'nowrap', zIndex: 3 }} onClick={e => e.stopPropagation()}>
           <span className="dot" style={{ background: 'var(--acc)' }} /><b style={{ fontWeight: 600 }}>{t('Radar NISAR real')}</b>
-          {t(step ? `· ${fmtDate(step.date)} · rio Madeira (AM) · NASA-ISRO / ASF DAAC` : `· ${ds.rd.a} → ${ds.rd.b} ${ds.rd.y} · rio Madeira (AM) · NASA-ISRO / ASF DAAC`)}
+          · {step ? fmtDate(step.date) : t(`${ds.rd.a} → ${ds.rd.b} ${ds.rd.y}`)} · {t(ds.realMeta.nome)} · NASA-ISRO / ASF DAAC
         </div>
       )}
       <div className="mctl" onClick={e => e.stopPropagation()}>
@@ -116,7 +123,7 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
       })}
       <Pin />
       <Legend />
-      <div className="scale">{real ? '37 km' : '350 km'}<i /></div>
+      <div className="scale">{real ? scaleKm(ds.realMeta.imagem) : '350 km'}<i /></div>
       <div className="attr">{t(real ? `Radar NISAR GCOV banda L · ${step ? fmtDate(step.date) : `${ds.rd.b} ${ds.rd.y}`} · NASA-ISRO / ASF DAAC` : 'Dados ilustrativos · base Natural Earth · radar NISAR')}</div>
       <div className="empty" style={{ display: ev.length ? 'none' : 'flex' }}><div>{t('Nenhum foco desse tipo no período.')}<br />{t('Tente um período maior.')}</div></div>
       {sel && size.w > 0 && <Popup e={sel} W={size.w} H={size.h} />}

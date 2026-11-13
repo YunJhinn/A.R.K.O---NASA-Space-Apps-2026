@@ -75,7 +75,7 @@ function PAlerts() {
     <>
       <div>
         <h1 style={{ fontSize: 22, fontWeight: 600, lineHeight: 1.25 }}>{t(high === 1 ? '1 alerta de alto risco perto de você' : `${high} alertas de alto risco perto de você`)}</h1>
-        <p style={{ color: 'var(--mu)', fontSize: 13, marginTop: 6 }}>{t(`${s.src === 'real' ? 'Novo Aripuanã e região' : s.region === 'sul' ? 'Porto Alegre e região' : 'Manaus e região'} · toque em um alerta para ver no mapa`)}</p>
+        <p style={{ color: 'var(--mu)', fontSize: 13, marginTop: 6 }}>{s.src === 'real' ? `${t(ds.realMeta.nome)} · ${t('toque em um alerta para ver no mapa')}` : t(`${s.region === 'sul' ? 'Porto Alegre e região' : 'Manaus e região'} · toque em um alerta para ver no mapa`)}</p>
       </div>
       {ds.alerts.map((a, i) => {
         const c = a.ty === 'tornado' ? TORNADO_C : ds.types[a.ty].c

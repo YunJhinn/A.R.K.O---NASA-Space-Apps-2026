@@ -13,6 +13,10 @@ Linha do tempo (v2): cada passagem nova vira um ponto em data/linha_tempo.json, 
 encontrados desde a passagem anterior e uma imagem de radar em data/radar/AAAA-MM-DD.jpg.
 O app usa isso para a linha do tempo animada; o usuário escolhe a data na barra.
 
+Várias regiões (v2.1): a lista REGIOES abaixo define cada área monitorada. A Amazônia fica em data/
+(como antes) e as outras em data/regioes/<id>/. O índice data/regioes.json diz ao app quais existem.
+Para rodar só uma região: python pipeline/atualizar.py --regiao sul
+
 Login: usa EARTHDATA_USERNAME / EARTHDATA_PASSWORD (GitHub Actions) ou o _netrc do computador.
 """
 import argparse, datetime as dt, json, math, os, re, sys
@@ -21,21 +25,48 @@ from scipy import ndimage
 from pyproj import Transformer
 from PIL import Image
 
-# ---------------- configuração do piloto ----------------
+# ---------------- configuração ----------------
 COLECAO = "NISAR_L2_GCOV_PROVISIONAL_V1"
-ORBITA = "_132_A_175_"                 # trilha 132, passagem ascendente, quadro 175 (rio Madeira, AM)
-BBOX_BUSCA = (-61.0, -5.5, -60.0, -4.5)   # oeste, sul, leste, norte: um ponto dentro do quadro
 INICIO = "2026-06-17"                  # primeiras observações públicas calibradas
 DIAS_MIN = 45                          # "antes" precisa ser pelo menos 45 dias antes do "depois"
 FREQ = "frequencyB"                    # grade de ~80 m
 MIN_PX, MAX_POR_TIPO = 40, 25
-IMG = dict(oeste=-62.05, leste=-58.95, norte=-3.944, sul=-6.056, w=1492, h=1016)   # recorte do mapa do app
-CIDADES = {"Careiro": (-60.37, -3.77), "Careiro da Várzea": (-59.83, -3.20), "Autazes": (-59.13, -3.58),
-           "Borba": (-59.59, -4.39), "Nova Olinda do Norte": (-59.09, -3.89), "Novo Aripuanã": (-60.38, -5.12),
-           "Manicoré": (-61.30, -5.81), "Beruri": (-61.37, -3.90), "Manaquiri": (-60.46, -3.43)}
+MAX_LT = 8                             # linha do tempo de uma região nova começa pelas 8 passagens mais recentes
+W_IMG, H_IMG = 1492, 1016              # tamanho da imagem de radar do app (proporção do mapa 746 × 508)
+
+# Regiões monitoradas com dados reais. Para adicionar uma:
+#  1) rode pipeline/buscar.py (ou o exemplo da documentação) para achar trilha e quadro com passagens DHDH
+#  2) copie um bloco abaixo: id, nome, órbita "_TRILHA_A/D_QUADRO_", um ponto dentro do quadro e cidades próximas
+#  3) img=None calcula o recorte do mapa sozinho na primeira passagem
+REGIOES = [
+    dict(id="amazonia", nome="Rio Madeira · Amazonas", pais="Brasil", pasta="",
+         orbita="_132_A_175_", bbox=(-61.0, -5.5, -60.0, -4.5), sufixo=" · AM",
+         img=dict(oeste=-62.05, leste=-58.95, norte=-3.944, sul=-6.056),
+         cidades={"Careiro": (-60.37, -3.77), "Careiro da Várzea": (-59.83, -3.20), "Autazes": (-59.13, -3.58),
+                  "Borba": (-59.59, -4.39), "Nova Olinda do Norte": (-59.09, -3.89), "Novo Aripuanã": (-60.38, -5.12),
+                  "Manicoré": (-61.30, -5.81), "Beruri": (-61.37, -3.90), "Manaquiri": (-60.46, -3.43)}),
+    dict(id="sul", nome="Porto Alegre e vale do Taquari · RS", pais="Brasil", pasta="regioes/sul/",
+         orbita="_053_D_103_", bbox=(-51.25, -30.05, -51.15, -29.95), sufixo=" · RS", img=None,
+         cidades={"Porto Alegre": (-51.23, -30.03), "Canoas": (-51.18, -29.92), "São Leopoldo": (-51.15, -29.76),
+                  "Novo Hamburgo": (-51.13, -29.68), "Guaíba": (-51.33, -30.11), "Eldorado do Sul": (-51.62, -30.08),
+                  "Gravataí": (-50.99, -29.94), "Viamão": (-51.02, -30.08), "Montenegro": (-51.46, -29.69),
+                  "Lajeado": (-51.96, -29.47), "Estrela": (-51.95, -29.50), "Santa Cruz do Sul": (-52.43, -29.72),
+                  "Camaquã": (-51.81, -30.85), "Taquara": (-50.78, -29.65), "Caxias do Sul": (-51.18, -29.17),
+                  "Venâncio Aires": (-52.19, -29.61), "Triunfo": (-51.72, -29.94), "Barra do Ribeiro": (-51.30, -30.29)}),
+    dict(id="bangladesh", nome="Daca e rio Jamuna · Bangladesh", pais="Bangladesh", pasta="regioes/bangladesh/",
+         orbita="_069_A_014_", bbox=(90.35, 23.75, 90.45, 23.85), sufixo=" · Bangladesh", img=None,
+         cidades={"Daca": (90.41, 23.81), "Narayanganj": (90.50, 23.62), "Gazipur": (90.42, 24.00),
+                  "Tangail": (89.92, 24.25), "Manikganj": (90.00, 23.86), "Faridpur": (89.84, 23.61),
+                  "Mymensingh": (90.41, 24.75), "Sirajganj": (89.70, 24.45), "Jamalpur": (89.94, 24.92),
+                  "Kishoreganj": (90.78, 24.43), "Chandpur": (90.67, 23.23), "Munshiganj": (90.53, 23.54),
+                  "Narsingdi": (90.72, 23.92), "Bhairab": (90.98, 24.05), "Rajbari": (89.64, 23.76), "Bogra": (89.37, 24.85)}),
+]
+# valores da região em uso (trocados por usar_regiao)
+ORBITA = BBOX_BUSCA = IMG = CIDADES = SUFIXO = None
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DADOS = os.path.join(RAIZ, "data")
+DADOS_RAIZ = os.path.join(RAIZ, "data")
+DADOS = DADOS_RAIZ
 CACHE = os.path.join(RAIZ, "pipeline", ".cache")
 
 
@@ -106,7 +137,7 @@ def ler(nome):
 def lugar(lon, lat):
     km = {k: 111.32 * math.hypot((lon - v[0]) * math.cos(math.radians(lat)), lat - v[1]) for k, v in CIDADES.items()}
     nome = min(km, key=km.get)
-    return f"{nome} · AM" if km[nome] < 8 else f"a {round(km[nome])} km de {nome} · AM"
+    return f"{nome}{SUFIXO}" if km[nome] < 8 else f"a {round(km[nome])} km de {nome}{SUFIXO}"
 
 
 def comparar(a, d):
@@ -166,7 +197,7 @@ def imagem(d, arq):
     """Imagem de radar (HV) no recorte do app, no estilo do mapa v2:
     terra em grafite com o relevo do próprio radar, água em azul vivo,
     fora da passagem em azul-aço e uma borda branca marcando a área coberta."""
-    lon = np.linspace(IMG["oeste"], IMG["leste"], IMG["w"]); lat = np.linspace(IMG["norte"], IMG["sul"], IMG["h"])
+    lon = np.linspace(IMG["oeste"], IMG["leste"], W_IMG); lat = np.linspace(IMG["norte"], IMG["sul"], H_IMG)
     LON, LAT = np.meshgrid(lon, lat)
     X, Y = Transformer.from_crs(4326, d["epsg"], always_xy=True).transform(LON, LAT)
     x, y = d["x"], d["y"]
@@ -208,42 +239,66 @@ def resumo(focos):
 
 def linha_tempo(lista):
     """Acrescenta à linha do tempo as passagens que ainda não estão lá.
-    Cada ponto compara a passagem com a anterior válida (mesma órbita, ~12 dias)."""
+    Cada ponto compara a passagem com a anterior válida da mesma órbita (~12 dias antes).
+    Numa região nova, começa pelas MAX_LT passagens mais recentes."""
     arq = os.path.join(DADOS, "linha_tempo.json")
     lt = json.load(open(arq, encoding="utf-8")) if os.path.exists(arq) else {"passagens": []}
     feitas = {p["produto"] for p in lt["passagens"]}
-    novas = [n for n in lista if n not in feitas]
+    janela = lista if feitas else lista[-MAX_LT:]
+    novas = [n for n in janela if n not in feitas]
     if not novas:
         return False
-    anterior, mudou = None, False
-    for nome in lista:
-        dado = None
-        if nome in novas:
-            dado = ler(nome)
-            ponto = {"data": str(data_de(nome)), "produto": nome, "imagem": None, "comparado_com": None,
-                     "focos": [], "resumo": resumo([])}
-            if dado is not None:
-                rel = f"radar/{data_de(nome)}.jpg"
-                imagem(dado, os.path.join(DADOS, rel)); ponto["imagem"] = rel
-                ant = ler(anterior) if anterior else None
+    for nome in novas:
+        dado = ler(nome)
+        ponto = {"data": str(data_de(nome)), "produto": nome, "imagem": None, "comparado_com": None,
+                 "focos": [], "resumo": resumo([])}
+        if dado is not None:
+            rel = f"radar/{data_de(nome)}.jpg"
+            imagem(dado, os.path.join(DADOS, rel)); ponto["imagem"] = rel
+            # passagem anterior válida (com HH e HV), mesmo que esteja fora da janela
+            ant, nome_ant = None, None
+            for cand in reversed(lista[:lista.index(nome)]):
+                ant = ler(cand)
                 if ant is not None:
-                    print("Linha do tempo:", data_de(anterior), "→", data_de(nome))
-                    focos, _ = comparar(ant, dado)
-                    for f in focos:
-                        f["id"] = f"{data_de(nome)}-{f['id']}"; f["data"] = ponto["data"]
-                    ponto.update(comparado_com=str(data_de(anterior)), focos=focos, resumo=resumo(focos))
-            lt["passagens"].append(ponto); mudou = True
-            ok = dado is not None
-        else:
-            ok = any(p["produto"] == nome and p["imagem"] for p in lt["passagens"])
-        if ok:
-            anterior = nome
+                    nome_ant = cand; break
+            if ant is not None:
+                print("Linha do tempo:", data_de(nome_ant), "→", data_de(nome))
+                focos, _ = comparar(ant, dado)
+                for f in focos:
+                    f["id"] = f"{data_de(nome)}-{f['id']}"; f["data"] = ponto["data"]
+                ponto.update(comparado_com=str(data_de(nome_ant)), focos=focos, resumo=resumo(focos))
+        lt["passagens"].append(ponto)
     lt["passagens"].sort(key=lambda p: p["data"])
     lt.update(fonte="NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC", orbita=ORBITA.strip("_"),
               recorte={k: IMG[k] for k in ("oeste", "leste", "norte", "sul")},
               atualizado_em=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
     gravar("linha_tempo.json", lt)
-    return mudou
+    return True
+
+
+def recorte_auto(d):
+    """Recorte do mapa (lon/lat) que mostra o quadro inteiro, na proporção 746 × 508."""
+    tr = Transformer.from_crs(d["epsg"], 4326, always_xy=True)
+    xs, ys = [d["x"][0], d["x"][-1]], [d["y"][0], d["y"][-1]]
+    pts = [tr.transform(x, y) for x in xs for y in ys]
+    lo0, lo1 = min(p[0] for p in pts), max(p[0] for p in pts)
+    la0, la1 = min(p[1] for p in pts), max(p[1] for p in pts)
+    cx, cy = (lo0 + lo1) / 2, (la0 + la1) / 2
+    w = max((lo1 - lo0) * 1.08, (la1 - la0) * 1.08 * (746 / 508))
+    h = w * 508 / 746
+    return {"oeste": round(cx - w / 2, 3), "leste": round(cx + w / 2, 3), "norte": round(cy + h / 2, 3), "sul": round(cy - h / 2, 3)}
+
+
+def usar_regiao(reg):
+    """Troca a configuração em uso para a região reg."""
+    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS
+    ORBITA, BBOX_BUSCA, CIDADES, SUFIXO = reg["orbita"], reg["bbox"], reg["cidades"], reg["sufixo"]
+    DADOS = os.path.join(DADOS_RAIZ, reg["pasta"]) if reg["pasta"] else DADOS_RAIZ
+    os.makedirs(DADOS, exist_ok=True)
+    IMG = reg["img"]
+    rec = os.path.join(DADOS, "recorte.json")
+    if IMG is None and os.path.exists(rec):
+        IMG = json.load(open(rec, encoding="utf-8"))
 
 
 def gravar(nome, obj):
@@ -251,42 +306,44 @@ def gravar(nome, obj):
         json.dump(obj, f, ensure_ascii=False, indent=1)
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--forcar", action="store_true")
-    ap.add_argument("--antes"); ap.add_argument("--depois")
-    args = ap.parse_args()
-    forcar = args.forcar or os.environ.get("FORCAR", "").lower() == "true"
-
-    login()
+def processar_regiao(reg, args, forcar):
+    """Faz tudo para uma região. Devolve (houve_novidade, periodo)."""
+    global IMG
+    usar_regiao(reg)
+    print(f"\n===== {reg['nome']} ({reg['id']}) =====")
+    lt_novo = False
     if args.antes and args.depois:
         antes, depois = args.antes, args.depois
     else:
         lista = passagens()
         print(f"{len(lista)} passagens da órbita {ORBITA.strip('_')}:", ", ".join(str(data_de(n)) for n in lista))
+        if not lista:
+            return False, ""
         gravar("passagens.json", [{"data": str(data_de(n)), "produto": n} for n in lista])
+        if IMG is None:   # região nova: recorte calculado pela passagem mais nova com HH/HV
+            for n in reversed(lista):
+                d0 = ler(n)
+                if d0 is not None:
+                    IMG = recorte_auto(d0); gravar("recorte.json", IMG); print("recorte do mapa:", IMG); break
         lt_novo = linha_tempo(lista)
         if lt_novo:
             print("Linha do tempo atualizada:", len(lista), "passagens")
         if len(lista) < 2:
-            print("Ainda não há duas passagens para comparar."); saida("novo", str(lt_novo).lower()); return
+            print("Ainda não há duas passagens para comparar."); return lt_novo, ""
         antes, depois = escolher(lista)
 
     estado_arq = os.path.join(DADOS, "estado.json")
     estado = json.load(open(estado_arq, encoding="utf-8")) if os.path.exists(estado_arq) else {}
-    lt_novo = locals().get("lt_novo", False)
     if not forcar and estado.get("antes") == antes and estado.get("depois") == depois:
         print("Nada novo no par principal:", data_de(antes), "→", data_de(depois))
-        saida("novo", str(lt_novo).lower())
-        if lt_novo:
-            saida("periodo", "linha do tempo")
-        return
+        return lt_novo, "linha do tempo" if lt_novo else ""
 
     print("Comparando", data_de(antes), "→", data_de(depois))
     a, d = ler(antes), ler(depois)
+    if a is None or d is None:
+        print("Par sem HH/HV, pulando."); return lt_novo, ""
     focos, area = comparar(a, d)
     da, dd = str(data_de(antes)), str(data_de(depois))
-
     out = {"fonte": "NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC",
            "antes": {"data": da, "produto": antes}, "depois": {"data": dd, "produto": depois},
            "area": area, "focos": focos}
@@ -313,14 +370,59 @@ def main():
     hist_arq = os.path.join(DADOS, "historico.json")
     hist = json.load(open(hist_arq, encoding="utf-8")) if os.path.exists(hist_arq) else []
     hist = [h for h in hist if not (h["antes"] == da and h["depois"] == dd)]
-    hist.append({"antes": da, "depois": dd, "focos": len(focos),
-                 "por_tipo": {t: sum(f["tipo"] == t for f in focos) for t in ("agua", "solo", "arvore")},
-                 "area_km2": {t: round(sum(f["area_km2"] for f in focos if f["tipo"] == t), 2) for t in ("agua", "solo", "arvore")}})
+    hist.append({"antes": da, "depois": dd} | resumo(focos))
     gravar("historico.json", hist)
     gravar("estado.json", {"antes": antes, "depois": depois,
                            "processado_em": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")})
-    print(f"{len(focos)} focos gravados em data/ ({da} → {dd})")
-    saida("novo", "true"); saida("periodo", f"{da} → {dd}")
+    print(f"{len(focos)} focos gravados em {DADOS} ({da} → {dd})")
+    return True, f"{da} → {dd}"
+
+
+def gravar_indice():
+    """data/regioes.json: lista das regiões com dados reais, para o app."""
+    idx = []
+    for reg in REGIOES:
+        pasta = os.path.join(DADOS_RAIZ, reg["pasta"]) if reg["pasta"] else DADOS_RAIZ
+        f = os.path.join(pasta, "focos_app.json")
+        if not os.path.exists(f):
+            continue
+        fa = json.load(open(f, encoding="utf-8"))
+        idx.append({"id": reg["id"], "nome": reg["nome"], "pais": reg["pais"], "pasta": reg["pasta"],
+                    "imagem": {k: fa["imagem"][k] for k in ("oeste", "leste", "norte", "sul")},
+                    "antes": fa["antes"]["data"], "depois": fa["depois"]["data"], "focos": len(fa["focos"]),
+                    "linha_tempo": os.path.exists(os.path.join(pasta, "linha_tempo.json")),
+                    "cidades": {k: list(v) for k, v in reg["cidades"].items()}})
+    with open(os.path.join(DADOS_RAIZ, "regioes.json"), "w", encoding="utf-8") as fp:
+        json.dump(idx, fp, ensure_ascii=False, indent=1)
+    print("\nÍndice data/regioes.json:", ", ".join(r["id"] for r in idx))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--forcar", action="store_true")
+    ap.add_argument("--regiao", help="processa só esta região (id da lista REGIOES)")
+    ap.add_argument("--antes"); ap.add_argument("--depois")
+    ap.add_argument("--indice", action="store_true", help="só regrava data/regioes.json")
+    args = ap.parse_args()
+    if args.indice:
+        gravar_indice(); return
+    forcar = args.forcar or os.environ.get("FORCAR", "").lower() == "true"
+    login()
+    novo, periodos = False, []
+    for reg in REGIOES:
+        if args.regiao and reg["id"] != args.regiao:
+            continue
+        try:
+            n, per = processar_regiao(reg, args, forcar)
+        except Exception as e:      # uma região com problema não impede as outras
+            print(f"ERRO na região {reg['id']}: {e}"); n, per = False, ""
+        novo |= n
+        if per:
+            periodos.append(f"{reg['id']} {per}")
+    gravar_indice()
+    saida("novo", str(novo).lower())
+    if periodos:
+        saida("periodo", "; ".join(periodos))
 
 
 if __name__ == "__main__":

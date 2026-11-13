@@ -3,14 +3,17 @@ import { useApp } from '../../lib/store'
 import { CMPL } from '../../lib/demo'
 import { kmf } from '../../lib/util'
 import { Icon } from '../Icon'
+import { realTitle } from '../../lib/real'
+import { FavButton } from '../MyRegions'
 import { useFocus } from '../../lib/useFocus'
+import { cfg } from '../../lib/i18n'
 
 /** Painel de dados principais (estilo telão de previsão do tempo, azul profundo + vidro) */
 export function KpiPanel() {
   const { s, t, ds, inRange, periodLabel } = useApp()
   const real = s.src === 'real'
   const { base, step } = useFocus()
-  const live = step ? (real ? `NISAR · ${step.label}` : step.label) : real ? `NISAR · ${ds.rd.a} → ${ds.rd.b}` : periodLabel()
+  const live = step ? (real ? `NISAR · ${step.label}` : step.label) : real ? `NISAR · ${cfg.lang === 'en' ? ds.rd.aEN : ds.rd.a} → ${cfg.lang === 'en' ? ds.rd.bEN : ds.rd.b}` : periodLabel()
 
   let cards: { k: 'fogo' | 'agua' | 'arvore' | 'solo'; title: string; v: string; delta?: string; foot: string }[]
   if (real) {
@@ -29,7 +32,7 @@ export function KpiPanel() {
   }
   return (
     <div className="kpis">
-      <div className="kpihead"><b>{t(real ? 'Radar da Amazônia' : ds.region.title)}</b><span className="kpilive"><i />{t(live)}</span></div>
+      <div className="kpihead"><span className="flex items-center"><b>{t(real ? realTitle(ds.realMeta) : ds.region.title)}</b><FavButton /></span><span className="kpilive"><i />{t(live)}</span></div>
       {cards.map(c => {
         const col = ds.types[c.k].c
         return (
