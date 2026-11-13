@@ -4,6 +4,13 @@ import type { Alert, CmpEntry, Ev, FocoJson, FocosAppJson, Info, LinhaTempoJson,
 import { MAP_H, MAP_W } from './demo'
 import { ago, dbf, fmtD, kmf } from './util'
 
+/** campos reais do foco que as explicações usam (Δ, posição, HH/HV) */
+const extra = (f: FocoJson, vs: string) => ({
+  vs, db: f.delta_db, lon: f.lon, lat: f.lat,
+  hh: f.hh_antes != null && f.hh_depois != null ? [f.hh_antes, f.hh_depois] as [number, number] : undefined,
+  hv: f.hv_antes != null && f.hv_depois != null ? [f.hv_antes, f.hv_depois] as [number, number] : undefined,
+})
+
 export const CID_LL: Record<string, [number, number]> = {
   Careiro: [-60.37, -3.77], 'Careiro da Várzea': [-59.83, -3.2], Autazes: [-59.13, -3.58], Borba: [-59.59, -4.39],
   'Nova Olinda do Norte': [-59.09, -3.89], 'Novo Aripuanã': [-60.38, -5.12], 'Manicoré': [-61.3, -5.81], Beruri: [-61.37, -3.9], Manaquiri: [-60.46, -3.43],
@@ -34,15 +41,15 @@ export function realDates(antes: string, depois: string, n: number): RealDates {
 }
 
 export const whyFoco = (tipo: FocoJson['tipo'], d: string, rd: RealDates) => ({
-  agua: `Apareceu água parada onde antes não havia: o sinal caiu ${d} dB entre ${rd.a} e ${rd.b}.`,
-  solo: `Onde havia água em ${rd.a}, o radar agora vê superfície exposta (${d} dB a mais): o rio recuou com a seca.`,
-  arvore: `O sinal de volume (HV) do radar caiu ${d} dB entre ${rd.a} e ${rd.b}: a floresta perdeu estrutura. Pode ser desmatamento ou queimada; o radar sozinho não separa os dois.`,
+  agua: `O sinal HH caiu ${d} dB entre ${rd.a} e ${rd.b} e ficou abaixo de −16 dB, nível típico de água parada.`,
+  solo: `Em ${rd.a} o sinal HH estava abaixo de −16 dB, típico de água; até ${rd.b} subiu ${d} dB: a água deixou de cobrir a superfície.`,
+  arvore: `O sinal de volume da vegetação (HV) caiu ${d} dB entre ${rd.a} e ${rd.b}. Pode ser corte, queimada, colheita ou vegetação mais seca; o radar sozinho não separa essas causas.`,
 }[tipo])
 
 export const realWhy = (k: RealKind, rd: RealDates) => ({
   agua: 'Pixels que eram terra passaram a refletir como água lisa (queda forte no sinal HH). Pode ser alagamento, lago novo ou mudança no leito do rio.',
-  arvore: 'O sinal de volume da vegetação (HV) caiu: a floresta perdeu estrutura. Pode ser corte raso, queimada ou exploração seletiva.',
-  solo: `Onde havia água em ${rd.a}, o radar agora vê superfície exposta. É o rio baixando com a seca de ${rd.y}.`,
+  arvore: 'O sinal de volume da vegetação (HV) caiu. Pode ser corte, queimada, colheita ou vegetação mais seca; o radar sozinho não separa essas causas.',
+  solo: `Onde o radar via água em ${rd.a}, o sinal HH voltou a subir: a água deixou de cobrir a superfície.`,
 }[k])
 
 export function infoFoco(f: FocoJson, rd: RealDates): Info {
@@ -65,11 +72,11 @@ export function realAlerts(ev: Ev[], focos: FocoJson[], rd: RealDates): Alert[] 
     const rep = g.slice().sort((a, b) => b.f.area_km2 - a.f.area_km2)[0]
     const lvl = gm >= 81 ? 'Alto' : gm >= 51 ? 'Médio' : n >= 3 ? 'Médio' : 'Baixo'
     const t = n > 1
-      ? { agua: 'Água nova em vários pontos', solo: 'Rio recuou em vários pontos', arvore: 'Perda de floresta em grupo' }[k]
-      : { agua: 'Água nova fora do rio', solo: 'Rio recuou com a seca', arvore: 'Perda de floresta isolada' }[k]
+      ? { agua: 'Água nova em vários pontos', solo: 'Água recuou em vários pontos', arvore: 'Perda de floresta em grupo' }[k]
+      : { agua: 'Água nova', solo: 'Água que recuou', arvore: 'Queda no sinal da vegetação' }[k]
     const m = n > 1
       ? { agua: `${n} focos próximos somam ${kmf(area)} de água nova.`, solo: `${n} focos próximos somam ${kmf(area)} de margem exposta.`, arvore: `${n} focos próximos somam ${kmf(area)} de floresta perdida.` }[k]
-      : { agua: `${kmf(area)} de água parada onde não havia em ${rd.a}. O sinal caiu ${Math.round(rep.f.delta_db)} dB.`, solo: `Onde havia água em ${rd.a}, agora há margem exposta.`, arvore: 'Queda no sinal da vegetação. Pode ser corte ou queimada.' }[k]
+      : { agua: `${kmf(area)} de água parada onde não havia em ${rd.a}. O sinal caiu ${Math.round(rep.f.delta_db)} dB.`, solo: `Onde o radar via água em ${rd.a}, a água saiu.`, arvore: 'Queda no sinal da vegetação. Pode ser corte, queimada, colheita ou seca.' }[k]
     return { id: rep.id, lvl, p: gm, t, l: rep.f.local, ty: k, m, pz: `Detectado em ${rd.b}`, src: 'NISAR', _x: rep.x, _y: rep.y }
   })
   const R = { Alto: 0, 'Médio': 1, Baixo: 2 }
@@ -89,7 +96,7 @@ export function buildReal(d: FocosAppJson, img: string, cidadesLL: Record<string
   const rd = realDates(d.antes.data, d.depois.data, d.focos.length)
   const { X, Y } = projector(d.imagem)
   const dd = Math.max(0, ago(fmtD(d.depois.data).date))
-  const ev: Ev[] = d.focos.map(f => ({ id: f.id, k: f.tipo, x: +X(f.lon).toFixed(1), y: +Y(f.lat).toFixed(1), n: 1, d: dd, st: 'obs', pl: f.local, a: f.area_km2 }))
+  const ev: Ev[] = d.focos.map(f => ({ id: f.id, k: f.tipo, x: +X(f.lon).toFixed(1), y: +Y(f.lat).toFixed(1), n: 1, d: dd, st: 'obs', pl: f.local, a: f.area_km2, ...extra(f, d.antes.data) }))
   const info: Record<string, Info> = {}
   d.focos.forEach(f => { info[f.id] = infoFoco(f, rd) })
   const cities: Record<string, [number, number]> = {}
@@ -115,7 +122,7 @@ export function buildTimeline(lt: LinhaTempoJson, base: string): TimelinePoint[]
   return lt.passagens.map(p => {
     const rd = p.comparado_com ? realDates(p.comparado_com, p.data, p.focos.length) : null
     const dd = Math.max(0, ago(fmtD(p.data).date))
-    const ev: Ev[] = p.focos.map(f => ({ id: f.id, k: f.tipo, x: +X(f.lon).toFixed(1), y: +Y(f.lat).toFixed(1), n: 1, d: dd, st: 'obs', pl: f.local, a: f.area_km2, date: p.data }))
+    const ev: Ev[] = p.focos.map(f => ({ id: f.id, k: f.tipo, x: +X(f.lon).toFixed(1), y: +Y(f.lat).toFixed(1), n: 1, d: dd, st: 'obs', pl: f.local, a: f.area_km2, date: p.data, ...(p.comparado_com ? extra(f, p.comparado_com) : {}) }))
     const info: Record<string, Info> = {}
     if (rd) p.focos.forEach(f => { info[f.id] = infoFoco(f, rd) })
     return { date: p.data, img: p.imagem ? base + p.imagem : null, vs: p.comparado_com, ev, info, resumo: p.resumo }

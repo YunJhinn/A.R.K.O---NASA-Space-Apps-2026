@@ -2,7 +2,7 @@
 
 export type Src = 'demo' | 'real'
 export type Lang = 'pt' | 'en'
-export type View = 'inicio' | 'comparar' | 'celular' | 'tutoriais'
+export type View = 'inicio' | 'comparar' | 'celular' | 'tutoriais' | 'futuro'
 export type EvType = 'fogo' | 'agua' | 'arvore' | 'solo' | 'vento'
 export type AlertType = EvType | 'tornado'
 export type TypeFilter = 'todos' | EvType
@@ -26,6 +26,13 @@ export interface Ev {
   a?: number
   /** data ISO (só dados reais da linha do tempo) */
   date?: string
+  /** dados reais: data comparada, Δ em dB, posição e valores HH/HV (antes, depois) quando gravados */
+  vs?: string
+  db?: number
+  lon?: number
+  lat?: number
+  hh?: [number, number]
+  hv?: [number, number]
 }
 
 export interface Info {
@@ -90,6 +97,11 @@ export interface FocoJson {
   delta_db: number
   local: string
   data?: string
+  /** médias em dB no foco (gravadas pelo pipeline a partir de nov/2026) */
+  hh_antes?: number
+  hh_depois?: number
+  hv_antes?: number
+  hv_depois?: number
 }
 
 export interface FocosAppJson {

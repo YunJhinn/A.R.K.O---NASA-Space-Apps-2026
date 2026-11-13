@@ -30,7 +30,7 @@ export function Tutorials() {
 
   const run = (a: TutAction) => {
     if (a === 'ob') return set({ ob: true, obStep: 0 })
-    if (a === 'comparar' || a === 'celular' || a === 'inicio') return go(a)
+    if (a === 'comparar' || a === 'celular' || a === 'inicio' || a === 'futuro') return go(a)
     if (a === 'map' || a === 'alerts') return go('inicio', a)
     if (a === 'search') {
       go('inicio')

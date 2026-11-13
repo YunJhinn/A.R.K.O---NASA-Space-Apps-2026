@@ -16,6 +16,7 @@ export function Sidebar() {
     ['sino', 'Alertas', () => go('inicio', 'alerts'), s.view === 'inicio' && s.focus === 'alerts', String(ds.alerts.length)],
     ['grafico', 'Comparar períodos', () => go('comparar'), s.view === 'comparar'],
     ['celular', 'Versão celular', () => go('celular'), s.view === 'celular'],
+    ['radar', 'Aplicações futuras', () => go('futuro'), s.view === 'futuro'],
     ['play', 'Tutoriais', () => go('tutoriais'), s.view === 'tutoriais'],
     ['info', 'Como funciona', () => set({ ob: true, obStep: 0 }), false],
   ]

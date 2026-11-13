@@ -114,7 +114,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ob = localStorage.getItem('arko-ob') !== '1' && !location.hash
       localStorage.setItem('arko-ob', '1')
       const h = location.hash.slice(1)
-      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'tutoriais') view = h
+      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'tutoriais' || h === 'futuro') view = h
     } catch { /* sem localStorage */ }
     let favs: MyPlace[] = [], recents: MyPlace[] = []
     try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
@@ -183,7 +183,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [s.lang])
   useEffect(() => { try { if (location.hash !== '#' + s.view) history.replaceState(null, '', '#' + s.view) } catch { /* ok */ } }, [s.view])
   useEffect(() => {
-    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'tutoriais') set({ view: h }) }
+    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'tutoriais' || h === 'futuro') set({ view: h }) }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])

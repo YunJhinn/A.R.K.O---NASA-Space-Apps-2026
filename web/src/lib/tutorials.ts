@@ -1,5 +1,5 @@
 // Conteúdo dos tutoriais (PT e EN lado a lado). Cada tema ensina uma parte do sistema.
-export type TutAction = 'inicio' | 'map' | 'alerts' | 'comparar' | 'celular' | 'ob' | 'search' | 'regions'
+export type TutAction = 'inicio' | 'map' | 'alerts' | 'comparar' | 'celular' | 'ob' | 'search' | 'regions' | 'futuro'
 
 export interface TutText { t: string; d: string; steps: string[]; tip: string; ex: string }
 export interface Tut { id: string; ic: string; group: 'start' | 'explore' | 'analyze' | 'more'; act?: TutAction; pt: TutText; en: TutText }
@@ -266,6 +266,62 @@ export const TUTORIALS: Tut[] = [
     },
   },
   {
+    id: 'ciencia', ic: 'radar', group: 'analyze', act: 'map',
+    pt: {
+      t: 'Causas prováveis e polarizações',
+      d: 'Entenda por que algo mudou e qual sinal do radar mostrou essa mudança. Está em cada foco, no mapa e na comparação.',
+      steps: [
+        'No cabeçalho do Mapa de mudanças, clique em “🔎 Causas prováveis” para ver as medições reais da região e o que pode gerar cada sinal.',
+        'Clique em “📡 Polarizações” para entender a diferença entre radar e satélite comum, e o que os sinais HH e HV mostram.',
+        'Clique em um foco no mapa. No cartão, use os botões próprios “Causas prováveis” e “Polarização” daquele foco.',
+        'Em “Causas prováveis”, use “Conferir imagem óptica (NASA Worldview)” para ver a mesma área numa foto de satélite comum.',
+        'Na tela Comparar períodos, os mesmos dois botões aparecem embaixo da “Causa provável”.',
+      ],
+      tip: 'O radar mede a mudança, não a causa. Confirme qual possibilidade aconteceu com a imagem óptica ou com quem está na região.',
+      ex: 'Em Bangladesh, nas passagens de 22 set, 4 out e 16 out, o radar achou mais focos de água que recuou (25, 25 e 17) que de água nova (5 em cada). Os dados mostram a água saindo; o motivo se confirma na imagem óptica.',
+    },
+    en: {
+      t: 'Likely causes and polarizations',
+      d: 'Understand why something changed and which radar signal showed it. It is on every detection, on the map and in the comparison.',
+      steps: [
+        'In the Change map header, click “🔎 Likely causes” to see the real measurements for the region and what can produce each signal.',
+        'Click “📡 Polarizations” to understand the difference between radar and a regular satellite, and what the HH and HV signals show.',
+        'Click a detection on the map. On its card, use that detection’s own “Likely causes” and “Polarization” buttons.',
+        'In “Likely causes”, use “Check optical image (NASA Worldview)” to see the same area in a regular satellite photo.',
+        'On the Compare periods screen, the same two buttons appear below the “Likely cause”.',
+      ],
+      tip: 'Radar measures the change, not the cause. Confirm which possibility happened with the optical image or with people in the region.',
+      ex: 'In Bangladesh, on the 22 Sep, 4 Oct and 16 Oct passes, radar found more water-receded detections (25, 25 and 17) than new water (5 each). The data shows water leaving; the reason is confirmed in the optical image.',
+    },
+  },
+  {
+    id: 'futuro', ic: 'radar', group: 'more', act: 'futuro',
+    pt: {
+      t: 'Aplicações futuras',
+      d: 'O que mais o NISAR consegue medir e para onde o A.R.K.O pode crescer.',
+      steps: [
+        'No menu lateral, clique em “Aplicações futuras”.',
+        'No topo, veja os dados da missão NISAR: agências, tipo de radar, revisita e o produto que usamos.',
+        'Os cartões mostram usos futuros: agricultura, terremotos, cidades, gelo, biomassa e áreas úmidas.',
+        'Embaixo estão os próximos passos do A.R.K.O e os limites honestos dos dados de hoje.',
+      ],
+      tip: 'Os links de fontes levam aos sites oficiais do NISAR, do ASF DAAC, do Earthdata e do Worldview.',
+      ex: 'Um agricultor poderia receber, a cada 12 dias, um aviso de solo muito seco na sua região, mesmo com o céu nublado.',
+    },
+    en: {
+      t: 'Future applications',
+      d: 'What else NISAR can measure and where A.R.K.O can grow.',
+      steps: [
+        'In the side menu, click “Future applications”.',
+        'At the top, see the NISAR mission facts: agencies, radar type, revisit and the product we use.',
+        'The cards show future uses: agriculture, earthquakes, cities, ice, biomass and wetlands.',
+        'Below are A.R.K.O’s next steps and the honest limits of today’s data.',
+      ],
+      tip: 'The source links lead to the official NISAR, ASF DAAC, Earthdata and Worldview sites.',
+      ex: 'A farmer could get, every 12 days, a very-dry-soil warning for their area, even under cloudy skies.',
+    },
+  },
+  {
     id: 'celular', ic: 'celular', group: 'more', act: 'celular',
     pt: {
       t: 'Versão celular',
@@ -355,4 +411,5 @@ export const ACT_LABEL: Record<TutAction, [string, string]> = {
   ob: ['Rever o primeiro acesso', 'Replay the first-access intro'],
   search: ['Experimentar a busca', 'Try the search'],
   regions: ['Ver Minhas regiões', 'See My regions'],
+  futuro: ['Abrir Aplicações futuras', 'Open Future applications'],
 }

@@ -7,6 +7,7 @@ import { Compare } from './components/compare/Compare'
 import { PhoneView } from './components/phone/Phone'
 import { Onboarding } from './components/Onboarding'
 import { Tutorials } from './components/Tutorials'
+import { Future } from './components/Future'
 
 function Screens() {
   const { s } = useApp()
@@ -19,6 +20,7 @@ function Screens() {
           {s.view === 'comparar' && <Compare />}
           {s.view === 'celular' && <PhoneView />}
           {s.view === 'tutoriais' && <Tutorials />}
+          {s.view === 'futuro' && <Future />}
         </main>
       </div>
       <Onboarding />

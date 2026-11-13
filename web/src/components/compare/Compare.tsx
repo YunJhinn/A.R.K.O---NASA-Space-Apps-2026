@@ -7,6 +7,7 @@ import { evMonth, kmf, lvlOf, pos, rgba } from '../../lib/util'
 import { fmtDate } from '../../lib/i18n'
 import { Heat, MapBase } from '../MapBase'
 import { Icon } from '../Icon'
+import { SciButtons } from '../SciModal'
 import { SearchBox } from '../home/SearchBox'
 import { REGION_LIST } from '../../lib/regions'
 import { realShort } from '../../lib/real'
@@ -201,6 +202,7 @@ export function Compare() {
             ))}
           </div>
           <div className="why"><b>{t('Causa provável')}</b><span>{t(why)}</span></div>
+          <SciButtons kind={k} />
           <div className="btns"><button className="btn pri">{t('Compartilhar imagem')}</button><button className="btn" onClick={() => go('inicio')}>{t('Voltar ao início')}</button></div>
         </div>
       </div>

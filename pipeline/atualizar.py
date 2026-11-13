@@ -179,6 +179,9 @@ def comparar(a, d):
             continue
         idx = np.arange(1, nlab + 1)
         cnt = ndimage.sum(mask, lab, idx); dm = ndimage.mean(delta, lab, idx)
+        # médias de HH e HV (dB) antes e depois em cada foco: o app usa para explicar a polarização
+        med = {n: ndimage.mean(np.nan_to_num(v), lab, idx) for n, v in
+               (("hh_antes", HH1), ("hh_depois", HH2), ("hv_antes", HV1), ("hv_depois", HV2))}
         cy, cx = np.array(ndimage.center_of_mass(mask, lab, idx)).T
         for i in np.argsort(-cnt)[:MAX_POR_TIPO]:
             if cnt[i] < MIN_PX:
@@ -186,7 +189,8 @@ def comparar(a, d):
             lon, lat = tr.transform(X[int(cx[i])], Y[int(cy[i])])
             focos.append({"id": f"{tipo}-{len(focos)+1}", "tipo": tipo, "lon": round(lon, 4), "lat": round(lat, 4),
                           "area_km2": round(float(cnt[i] * area_px), 2), "grau": int(min(100, round(dm[i] * 11))),
-                          "delta_db": round(float(dm[i]), 1), "local": lugar(lon, lat)})
+                          "delta_db": round(float(dm[i]), 1), "local": lugar(lon, lat),
+                          **{n: round(float(v[i]), 1) for n, v in med.items()}})
         print(f"  {tipo}: {sum(f['tipo'] == tipo for f in focos)} focos")
     lon0, lat0 = tr.transform(X[0], Y[-1]); lon1, lat1 = tr.transform(X[-1], Y[0])
     area = {"oeste": round(lon0, 3), "sul": round(lat0, 3), "leste": round(lon1, 3), "norte": round(lat1, 3)}

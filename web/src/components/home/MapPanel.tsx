@@ -11,6 +11,9 @@ import { Timeline } from './Timeline'
 import { useFocus } from '../../lib/useFocus'
 import { fmtDate } from '../../lib/i18n'
 import { dentro, projetar } from '../../lib/regions'
+import { SciButtons } from '../SciModal'
+import { L as LL, POL, worldviewUrl, type Lang } from '../../lib/science'
+import { RULE, factor, focusEvidence, physics } from '../../lib/evidence'
 import '../../styles/map-extra.css'
 
 /** Escala aproximada: a barra da escala tem ~1/10 da largura do mapa */
@@ -35,7 +38,7 @@ export function MapPanel() {
   return (
     <div className="card panel" id="mapPanel" ref={ref}>
       <div className="ph">
-        <div style={{ flex: 1 }}><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p></div>
+        <div style={{ flex: 1 }}><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p><div style={{ marginTop: 8 }}><SciButtons kind={s.type} compact /></div></div>
         <div className="seg" role="group" aria-label={t('Camada')}>
           {s.src === 'real' && realBase(ds.realMeta.id)
             ? <><button className={cx(!s.radar && 'on')} aria-pressed={!s.radar} onClick={() => set({ radar: false })}>{t('Mapa')}</button><button className={cx(s.radar && 'on')} aria-pressed={s.radar} onClick={() => set({ radar: true })}>{t('Radar')}</button></>
@@ -257,6 +260,12 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
   const { s, set, t, ds, go } = useApp()
   const real = s.src === 'real'
   const c = ds.types[e.k].c
+  const [more, setMore] = useState<'causas' | 'pol' | null>(null)
+  const lang = s.lang as Lang, en = lang === 'en'
+  const evd = real ? focusEvidence(e, ds.timeline, { vs: ds.real.meta.antes.data, date: ds.real.meta.depois.data }, lang) : null
+  const phy = physics(e.k, lang)
+  const n1 = (x: number) => (en ? x.toFixed(1) : x.toFixed(1).replace('.', ','))
+  const pol = POL[e.k]
   const inf: Info = ds.info[e.id] ?? {
     t: e.pl, sub: e.st === 'prev' ? 'Previsão para os próximos dias' : 'Foco detectado pelo radar', m: e.st === 'prev' ? 'Risco em análise' : `${e.n * 4} km²`,
     d: e.st === 'prev' ? '' : '▲ vs. anterior', g: e.st === 'prev' ? 50 : 40 + e.n, st: e.st === 'prev' ? 'Previsto' : 'Observado',
@@ -297,6 +306,57 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
         <div className="gbar"><i style={{ width: `${inf.g}%` }} /></div>
       </div>
       <div className="why"><b>{t('O que isso significa?')}</b>{t(inf.why)}</div>
+      {e.st !== 'prev' && (
+        <div style={{ display: 'flex', gap: 6 }}>
+          <button className={cx('btn', more === 'causas' && 'pri')} style={{ flex: 1, fontSize: 12, padding: '7px 6px' }} aria-expanded={more === 'causas'} onClick={() => setMore(more === 'causas' ? null : 'causas')}>🔎 {en ? 'Likely causes' : 'Causas prováveis'}</button>
+          <button className={cx('btn', more === 'pol' && 'pri')} style={{ flex: 1, fontSize: 12, padding: '7px 6px' }} aria-expanded={more === 'pol'} onClick={() => setMore(more === 'pol' ? null : 'pol')}>📡 {en ? 'Polarization' : 'Polarização'}</button>
+        </div>
+      )}
+      {more === 'causas' && (
+        <div style={{ background: '#EAF2FF', border: '1px solid #BCD3F7', borderRadius: 10, padding: '10px 12px', fontSize: 12.5, lineHeight: 1.45 }}>
+          {evd ? (
+            <>
+              <div style={{ background: '#fff', borderRadius: 8, padding: '7px 9px', marginBottom: 6 }}><b>💬 {en ? 'In plain words: ' : 'Em palavras simples: '}</b>{evd.plain}</div>
+              <b style={{ display: 'block', marginBottom: 3 }}>{en ? 'What the radar measured here (scientific data)' : 'O que o radar mediu aqui (dados científicos)'}</b>
+              {evd.measured.map(x => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span style={{ color: '#2563EB', fontWeight: 800 }}>›</span><span>{x}</span></div>)}
+              <b style={{ display: 'block', margin: '6px 0 3px' }}>{en ? 'Same spot in other passes (≤ 2 km)' : 'Mesmo lugar em outras passagens (≤ 2 km)'}</b>
+              {evd.spot.map(x => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span style={{ color: '#2563EB', fontWeight: 800 }}>›</span><span>{x}</span></div>)}
+              {evd.reading && <div style={{ marginTop: 3 }}><b>{en ? 'From the data: ' : 'Pelos dados: '}</b>{evd.reading}</div>}
+            </>
+          ) : (
+            <div style={{ marginBottom: 4 }}>{real ? (en ? 'This type is not measured by the radar.' : 'Este tipo não é medido pelo radar.') : (en ? 'Example mode: simulated data, no real measurement. Below is only the radar physics.' : 'Modo Exemplo: dados simulados, sem medição real. Abaixo está só a física do radar.')}</div>
+          )}
+          {phy && (
+            <>
+              <b style={{ display: 'block', margin: '6px 0 3px' }}>{en ? 'What can produce this signal' : 'O que pode gerar esse sinal'}</b>
+              {phy.could.map(h => <div key={h} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span style={{ color: '#2563EB', fontWeight: 800 }}>›</span><span>{h}</span></div>)}
+              <div style={{ color: '#5B6B7F', marginTop: 4 }}>{phy.notRadar}</div>
+            </>
+          )}
+          {real && <a href={worldviewUrl(ds.realMeta.imagem, e.date ?? ds.timeline.at(-1)?.date)} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 6, fontWeight: 800, color: '#2563EB' }}>{en ? 'Check which one in the optical image (NASA Worldview) ↗' : 'Conferir qual foi na imagem óptica (NASA Worldview) ↗'}</a>}
+        </div>
+      )}
+      {more === 'pol' && pol && (
+        <div style={{ background: '#F3F5F8', borderRadius: 10, padding: '10px 12px', fontSize: 12.5, lineHeight: 1.45 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+            <span style={{ background: pol.pol === 'HH' ? '#1C7ED6' : '#2F9E44', color: '#fff', fontWeight: 800, borderRadius: 6, padding: '2px 8px' }}>{pol.pol}</span>
+            <b>{LL(lang, pol.what as [string, string])}</b>
+          </div>
+          {pol.pol === 'HH'
+            ? <span>{en ? 'HH = sends and receives horizontal. Still water reflects like a mirror and returns little signal, so new water makes HH drop; when water leaves, HH rises again.' : 'HH = envia e recebe na horizontal. Água parada reflete como espelho e devolve pouco sinal: água nova faz o HH cair; quando a água sai, o HH volta a subir.'}</span>
+            : pol.pol === 'HV' ? <span>{en ? 'HV = sends horizontal, receives vertical. Mostly branches and leaves “rotate” the wave, so HV measures vegetation volume: less vegetation, lower HV.' : 'HV = envia na horizontal e recebe na vertical. Principalmente galhos e folhas “giram” a onda, então o HV mede o volume da vegetação: menos vegetação, HV mais baixo.'}</span>
+            : <span>{en ? 'This type comes from weather data, not radar.' : 'Este tipo vem de dados do tempo, não do radar.'}</span>}
+          {evd && <div style={{ marginTop: 6, background: '#fff', borderRadius: 8, padding: '7px 9px' }}><b>💬 {en ? 'In plain words: ' : 'Em palavras simples: '}</b>{evd.plainPol}</div>}
+          {real && e.db != null && (e.k === 'agua' || e.k === 'solo' || e.k === 'arvore') && (
+            <div style={{ marginTop: 6, background: '#fff', borderRadius: 8, padding: '6px 8px' }}>
+              <b>{en ? 'In this focus: ' : 'Neste foco: '}</b>
+              {en ? `${pol.pol} ${e.k === 'solo' ? 'rose' : 'dropped'} ${n1(e.db)} dB (echo ${n1(factor(e.db))}× ${e.k === 'solo' ? 'stronger' : 'weaker'}). Rule: ${RULE[e.k][1]}.` : `${pol.pol} ${e.k === 'solo' ? 'subiu' : 'caiu'} ${n1(e.db)} dB (eco ${n1(factor(e.db))}× ${e.k === 'solo' ? 'mais forte' : 'mais fraco'}). Regra: ${RULE[e.k][0]}.`}
+              {e.hh && <div>HH: {n1(e.hh[0])} → {n1(e.hh[1])} dB</div>}
+              {e.hv && <div>HV: {n1(e.hv[0])} → {n1(e.hv[1])} dB</div>}
+            </div>
+          )}
+        </div>
+      )}
       <div className="btns"><button className="btn pri" onClick={() => go('comparar')}>{t('Comparar períodos')}</button><button className="btn">{t('Compartilhar')}</button></div>
     </div>
   )
