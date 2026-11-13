@@ -3,6 +3,7 @@ import { useApp } from '../lib/store'
 import { cx } from '../lib/util'
 import { Icon } from './Icon'
 import { L, POL, SCI, worldviewUrl, type Lang } from '../lib/science'
+import { dataPatterns, regionHypo } from '../lib/hypotheses'
 import { NAME, POL_OF, RULE, factor, fmtDate, physics, regionEvidence, statLines, statPlain } from '../lib/evidence'
 
 type Tab = 'causas' | 'pol'
@@ -41,6 +42,8 @@ export function SciModal({ tab: t0, kind, onClose }: { tab: Tab; kind?: string; 
   }, [onClose])
   const kinds = (real ? ['agua', 'solo', 'arvore'] : ['agua', 'fogo', 'arvore', 'solo']).filter(k => !kind || kind === 'todos' || k === kind)
   const rev = real ? regionEvidence(ds.timeline) : null
+  const hyp = real ? regionHypo(rid, lang) : null
+  const pats = rev ? dataPatterns(rev, lang) : []
   const n1 = (x: number) => (en ? x.toFixed(1) : x.toFixed(1).replace('.', ','))
   const typeName = (k: string) => (en ? ({ agua: real ? 'New water' : 'Floods', solo: real ? 'Water receded' : 'Dry soil', arvore: real ? 'Forest lost' : 'Deforestation', fogo: 'Fires' } as Record<string, string>)[k] : ds.types[k as keyof typeof ds.types]?.n ?? k)
 
@@ -63,6 +66,32 @@ export function SciModal({ tab: t0, kind, onClose }: { tab: Tab; kind?: string; 
         <div className="flex-1 overflow-y-auto px-6 pb-6 pt-4 text-[14px] leading-relaxed" style={{ color: '#2B3A4D', borderTop: '2px solid #0F1B33' }}>
           {tab === 'causas' ? (
             <>
+              {real && rev && (hyp || pats.length > 0) && (
+                <div className="mb-4 rounded-xl p-4" style={{ background: '#FFF8EB', border: '1px solid #F5D58A' }}>
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[.08em]" style={{ background: '#B45309', color: '#fff' }}>{en ? 'Hypothesis' : 'Hipótese'}</span>
+                    <b className="text-[14px]" style={{ color: '#1E2A3A' }}>{en ? 'What probably caused these changes' : 'O que provavelmente causou essas mudanças'}</b>
+                  </div>
+                  {hyp && <p className="m-0 mb-3 text-[14.5px] font-semibold" style={{ color: '#1E2A3A' }}>🧪 {hyp.main}</p>}
+                  {pats.length > 0 && (
+                    <div className="mb-3">
+                      <b>{en ? 'Why we think so (real NISAR data):' : 'Por que achamos isso (dados reais do NISAR):'}</b>
+                      {pats.map(x => <div key={x} className="mt-1 flex gap-2"><span style={{ color: '#B45309', fontWeight: 800 }}>›</span><span>{x}</span></div>)}
+                    </div>
+                  )}
+                  {hyp && hyp.context.length > 0 && (
+                    <div className="mb-3">
+                      <b>{en ? 'Known context of the place (sources):' : 'Contexto conhecido do lugar (fontes):'}</b>
+                      {hyp.context.map(c => <div key={c.url} className="mt-1 flex gap-2"><span style={{ color: '#B45309', fontWeight: 800 }}>›</span><span>{c.text} <a href={c.url} target="_blank" rel="noreferrer" style={{ color: BLUE, fontWeight: 700 }}>{c.src} ↗</a></span></div>)}
+                    </div>
+                  )}
+                  <div className="flex flex-wrap items-center gap-2 text-[13px]">
+                    <b>{en ? 'How to confirm:' : 'Como confirmar:'}</b>
+                    <span>{en ? 'compare with an optical image of the same dates, or ask people in the region.' : 'compare com uma imagem óptica das mesmas datas ou pergunte a quem está na região.'}</span>
+                    <a className="btn" style={{ flex: 'none', width: 'auto' }} href={worldviewUrl(ds.realMeta.imagem, ds.timeline.at(-1)?.date)} target="_blank" rel="noreferrer">NASA Worldview ↗</a>
+                  </div>
+                </div>
+              )}
               {real && rev && (
                 <div className="mb-4 rounded-xl p-4" style={{ background: '#EAF2FF', border: '1px solid #BCD3F7' }}>
                   <div className="mb-1 text-[12px] font-extrabold uppercase tracking-[.08em]" style={{ color: BLUE }}>{ds.realMeta.nome} · {en ? 'what the real data shows' : 'o que os dados reais mostram'}</div>
