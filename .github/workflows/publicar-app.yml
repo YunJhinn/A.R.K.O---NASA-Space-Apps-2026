@@ -1,0 +1,51 @@
+# A.R.K.O · compila o app React (web/) e publica em app/ sempre que o código do app muda.
+# Os dados (data/) NÃO precisam deste passo: o app lê data/*.json ao abrir,
+# e o workflow "Atualizar dados NISAR" atualiza essa pasta sozinho a cada passagem do satélite.
+name: Publicar app
+
+on:
+  push:
+    branches: [main]
+    paths: ["web/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: publicar-app
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Instalar e compilar
+        working-directory: web
+        run: |
+          npm ci
+          ARKO_OUT=../app npm run build
+
+      - name: Salvar o app compilado
+        run: |
+          git config user.name "yunjhinn"
+          git config user.email "joaovtoralves@gmail.com"
+          git add app/
+          git diff --cached --quiet && exit 0
+          git commit -m "Publicar app: ${{ github.event.head_commit.message || 'build manual' }}"
+          git push
+
+      - name: Atualizar o GitHub Pages
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
