@@ -9,6 +9,10 @@ Uso / usage (na raiz do repositório / from the repository root):
     python pipeline/atualizar.py --forcar        # reprocessa mesmo sem passagem nova
     python pipeline/atualizar.py --antes NOME --depois NOME   # escolhe o par na mão
 
+Linha do tempo (v2): cada passagem nova vira um ponto em data/linha_tempo.json, com os focos
+encontrados desde a passagem anterior e uma imagem de radar em data/radar/AAAA-MM-DD.jpg.
+O app usa isso para a linha do tempo animada; o usuário escolhe a data na barra.
+
 Login: usa EARTHDATA_USERNAME / EARTHDATA_PASSWORD (GitHub Actions) ou o _netrc do computador.
 """
 import argparse, datetime as dt, json, math, os, re, sys
@@ -90,6 +94,9 @@ def ler(nome):
     res = earthaccess.search_data(short_name=COLECAO, granule_name=nome)
     h = h5py.File(earthaccess.open(res)[0], "r")
     g = h[f"science/LSAR/GCOV/grids/{FREQ}"]
+    if "HHHH" not in g or "HVHV" not in g:
+        print("  produto sem HH/HV, ignorado na comparação:", nome)
+        return None
     r = dict(hh=g["HHHH"][:], hv=g["HVHV"][:], x=g["xCoordinates"][:], y=g["yCoordinates"][:],
              epsg=int(g["projection"].attrs["epsg_code"]))
     np.savez(arq, **r)
@@ -156,7 +163,9 @@ def comparar(a, d):
 
 
 def imagem(d, arq):
-    """Imagem de radar (HV do 'depois') no recorte e nas cores do app."""
+    """Imagem de radar (HV) no recorte do app, no estilo do mapa v2:
+    terra em grafite com o relevo do próprio radar, água em azul vivo,
+    fora da passagem em azul-aço e uma borda branca marcando a área coberta."""
     lon = np.linspace(IMG["oeste"], IMG["leste"], IMG["w"]); lat = np.linspace(IMG["norte"], IMG["sul"], IMG["h"])
     LON, LAT = np.meshgrid(lon, lat)
     X, Y = Transformer.from_crs(4326, d["epsg"], always_xy=True).transform(LON, LAT)
@@ -166,11 +175,75 @@ def imagem(d, arq):
     v = np.full(LON.shape, np.nan, dtype="float32"); v[dentro] = d["hv"][iy[dentro], ix[dentro]]
     with np.errstate(divide="ignore", invalid="ignore"):
         dbv = 10 * np.log10(v)
-    t = np.nan_to_num(np.clip((dbv + 26) / 18, 0, 1), nan=0.0) ** 1.2
-    fundo, claro = np.array([9, 9, 11]), np.array([150, 160, 150])
-    rgb = (fundo + (claro - fundo) * t[..., None]).astype("uint8")
-    rgb[~dentro | ~np.isfinite(dbv)] = (12, 12, 14)
-    Image.fromarray(rgb).save(arq, quality=78, optimize=True)
+    vazio = ~dentro | ~np.isfinite(dbv) | (dbv < -32)
+    P = 8   # margem para a limpeza não criar linhas na borda da imagem
+    vp = np.pad(vazio, P, mode="edge")
+    vazio = ndimage.binary_closing(ndimage.binary_opening(vp, iterations=2), iterations=3)[P:-P, P:-P]
+    vazio |= ~dentro
+    b = np.nan_to_num(np.clip((dbv + 26) / 18, 0, 1), nan=0.0)
+    terra = np.clip((b - 0.30) / 0.40, 0, 1); terra = terra * terra * (3 - 2 * terra)     # 0 = água, 1 = terra
+    suave = ndimage.gaussian_filter(b, 1.0)
+    relevo = np.clip(0.45 + (suave - ndimage.gaussian_filter(suave, 8)) * 4.5, 0, 1)   # textura do próprio radar
+    brilho = relevo[..., None]
+    escuro, claro = np.array([20, 30, 42.]), np.array([62, 82, 104.])
+    cor_terra = escuro + (claro - escuro) * brilho
+    agua = np.array([79, 169, 232.])
+    rgb = agua + (cor_terra - agua) * terra[..., None]
+    rng = np.random.default_rng(1)
+    aco = np.array([52, 100, 140.]) + ndimage.gaussian_filter(rng.standard_normal(LON.shape), 6)[..., None] * 40
+    m = ndimage.gaussian_filter(vazio.astype(float), 1.0)[..., None]
+    rgb = rgb * (1 - m) + aco * m
+    borda = (vazio ^ ndimage.binary_erosion(np.pad(vazio, P, mode="edge"), iterations=2)[P:-P, P:-P])
+    rgb[borda] = (245, 248, 252)
+    if os.path.dirname(arq):
+        os.makedirs(os.path.dirname(arq), exist_ok=True)
+    Image.fromarray(np.clip(rgb, 0, 255).astype("uint8")).save(arq, quality=82, optimize=True)
+
+
+def resumo(focos):
+    return {"focos": len(focos),
+            "por_tipo": {t: sum(f["tipo"] == t for f in focos) for t in ("agua", "solo", "arvore")},
+            "area_km2": {t: round(sum(f["area_km2"] for f in focos if f["tipo"] == t), 2) for t in ("agua", "solo", "arvore")}}
+
+
+def linha_tempo(lista):
+    """Acrescenta à linha do tempo as passagens que ainda não estão lá.
+    Cada ponto compara a passagem com a anterior válida (mesma órbita, ~12 dias)."""
+    arq = os.path.join(DADOS, "linha_tempo.json")
+    lt = json.load(open(arq, encoding="utf-8")) if os.path.exists(arq) else {"passagens": []}
+    feitas = {p["produto"] for p in lt["passagens"]}
+    novas = [n for n in lista if n not in feitas]
+    if not novas:
+        return False
+    anterior, mudou = None, False
+    for nome in lista:
+        dado = None
+        if nome in novas:
+            dado = ler(nome)
+            ponto = {"data": str(data_de(nome)), "produto": nome, "imagem": None, "comparado_com": None,
+                     "focos": [], "resumo": resumo([])}
+            if dado is not None:
+                rel = f"radar/{data_de(nome)}.jpg"
+                imagem(dado, os.path.join(DADOS, rel)); ponto["imagem"] = rel
+                ant = ler(anterior) if anterior else None
+                if ant is not None:
+                    print("Linha do tempo:", data_de(anterior), "→", data_de(nome))
+                    focos, _ = comparar(ant, dado)
+                    for f in focos:
+                        f["id"] = f"{data_de(nome)}-{f['id']}"; f["data"] = ponto["data"]
+                    ponto.update(comparado_com=str(data_de(anterior)), focos=focos, resumo=resumo(focos))
+            lt["passagens"].append(ponto); mudou = True
+            ok = dado is not None
+        else:
+            ok = any(p["produto"] == nome and p["imagem"] for p in lt["passagens"])
+        if ok:
+            anterior = nome
+    lt["passagens"].sort(key=lambda p: p["data"])
+    lt.update(fonte="NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC", orbita=ORBITA.strip("_"),
+              recorte={k: IMG[k] for k in ("oeste", "leste", "norte", "sul")},
+              atualizado_em=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+    gravar("linha_tempo.json", lt)
+    return mudou
 
 
 def gravar(nome, obj):
@@ -192,14 +265,22 @@ def main():
         lista = passagens()
         print(f"{len(lista)} passagens da órbita {ORBITA.strip('_')}:", ", ".join(str(data_de(n)) for n in lista))
         gravar("passagens.json", [{"data": str(data_de(n)), "produto": n} for n in lista])
+        lt_novo = linha_tempo(lista)
+        if lt_novo:
+            print("Linha do tempo atualizada:", len(lista), "passagens")
         if len(lista) < 2:
-            print("Ainda não há duas passagens para comparar."); saida("novo", "false"); return
+            print("Ainda não há duas passagens para comparar."); saida("novo", str(lt_novo).lower()); return
         antes, depois = escolher(lista)
 
     estado_arq = os.path.join(DADOS, "estado.json")
     estado = json.load(open(estado_arq, encoding="utf-8")) if os.path.exists(estado_arq) else {}
+    lt_novo = locals().get("lt_novo", False)
     if not forcar and estado.get("antes") == antes and estado.get("depois") == depois:
-        print("Nada novo: o app já mostra", data_de(antes), "→", data_de(depois)); saida("novo", "false"); return
+        print("Nada novo no par principal:", data_de(antes), "→", data_de(depois))
+        saida("novo", str(lt_novo).lower())
+        if lt_novo:
+            saida("periodo", "linha do tempo")
+        return
 
     print("Comparando", data_de(antes), "→", data_de(depois))
     a, d = ler(antes), ler(depois)
@@ -217,6 +298,17 @@ def main():
         {"type": "Feature", "geometry": {"type": "Point", "coordinates": [f["lon"], f["lat"]]},
          "properties": {k: v for k, v in f.items() if k not in ("lon", "lat")} | {"antes": da, "depois": dd}}
         for f in focos]})
+
+    # forçar: refaz as imagens da linha do tempo no estilo atual
+    if forcar and not (args.antes and args.depois):
+        lt_arq = os.path.join(DADOS, "linha_tempo.json")
+        if os.path.exists(lt_arq):
+            lt = json.load(open(lt_arq, encoding="utf-8"))
+            for p in lt["passagens"]:
+                if p["imagem"]:
+                    r = ler(p["produto"])
+                    if r is not None:
+                        imagem(r, os.path.join(DADOS, p["imagem"]))
 
     hist_arq = os.path.join(DADOS, "historico.json")
     hist = json.load(open(hist_arq, encoding="utf-8")) if os.path.exists(hist_arq) else []

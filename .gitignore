@@ -12,3 +12,6 @@ _netrc
 
 # cache local do atualizar.py
 pipeline/.cache/
+
+# dados geograficos do mapa_base.py
+pipeline/geo/

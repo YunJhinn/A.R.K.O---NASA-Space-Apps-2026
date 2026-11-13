@@ -8,8 +8,9 @@ O A.R.K.O transforma o radar do satélite NISAR (NASA-ISRO) em alertas, mapas e 
 
 | Pasta | O que guarda |
 | --- | --- |
-| `app/` | O protótipo navegável: um arquivo HTML, sem servidor. Abra `app/index.html` no navegador. Botões PT / EN e *Dados: Exemplo / NISAR real* no menu à esquerda. |
-| `pipeline/` | Scripts Python que buscam, leem e comparam dados reais do NISAR e geram o arquivo de focos. |
+| `web/` | **Código do app (v2.0): React + TypeScript + Tailwind.** Rode `npm install` e `npm run dev` dentro de `web/`. Veja `web/README.md`. |
+| `app/` | O app publicado (compilado a partir de `web/` pelo GitHub Actions). Abra pelo GitHub Pages. PT / EN, *Exemplo / NISAR real*, região e busca mundial no menu e no topo. |
+| `pipeline/` | Scripts Python que buscam, leem e comparam dados reais do NISAR e geram os arquivos de focos e da linha do tempo. |
 | `data/` | Resultados com dados reais do NISAR: `focos.json`, `focos.geojson` (abre no QGIS ou no geojson.io) e a imagem de radar. |
 | `docs/` | Links para o pitch, o roadmap, os documentos de design thinking e o Figma. |
 
@@ -64,3 +65,14 @@ O `pipeline/atualizar.py` roda todo dia no GitHub Actions (`.github/workflows/at
 4. O app lê `data/focos_app.json` ao abrir, então o modo *NISAR real* mostra o dado mais novo. O arquivo HTML continua com os últimos dados dentro dele, para funcionar sem internet.
 
 Configuração (uma vez): cadastre os secrets `EARTHDATA_USERNAME` e `EARTHDATA_PASSWORD` no repositório (Settings → Secrets and variables → Actions). Para rodar na hora: Actions → *Atualizar dados NISAR* → Run workflow.
+
+## v2.0 — o que mudou
+
+- **App refeito em React + TypeScript + Tailwind** (`web/`); o Python continua sendo o pipeline de dados (`pipeline/`).
+- **Visual de telão de previsão do tempo**: mapas de radar escuros, ícones 3D ilustrados, painel de dados principais e painel *Alerta de riscos*.
+- **Linha do tempo animada** embaixo do mapa: um ponto por passagem real do NISAR, atualizada sozinha a cada ~12 dias. Escolha uma data, arraste ou dê play.
+- **Comparar períodos** mostra os ícones dos dois lados e quantos focos de cada tipo.
+- **Busca mundial**: digite qualquer lugar (OpenStreetMap). Lugares dentro de uma região com dados abrem a região com um pino; os outros mostram quais regiões têm dados.
+- **Duas regiões de exemplo**: Amazônia (piloto, também com dados reais do NISAR) e Sul do Brasil (enchentes e vendavais).
+
+Guia completo dos arquivos do projeto: `docs/DOCUMENTACAO.pdf`.

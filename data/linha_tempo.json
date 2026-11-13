@@ -1,0 +1,477 @@
+{
+ "passagens": [
+  {
+   "data": "2026-07-17",
+   "produto": "NISAR_L2_PR_GCOV_025_132_A_175_0505_SHSV_A_20260717T094548_20260717T094622_P05023_N_F_J_001",
+   "imagem": null,
+   "comparado_com": null,
+   "focos": [],
+   "resumo": {
+    "focos": 0,
+    "por_tipo": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    },
+    "area_km2": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    }
+   }
+  },
+  {
+   "data": "2026-08-10",
+   "produto": "NISAR_L2_PR_GCOV_027_132_A_175_2005_DHDH_M_20260810T094546_20260810T094621_P05023_N_F_J_001",
+   "imagem": "radar/2026-08-10.jpg",
+   "comparado_com": null,
+   "focos": [],
+   "resumo": {
+    "focos": 0,
+    "por_tipo": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    },
+    "area_km2": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    }
+   }
+  },
+  {
+   "data": "2026-09-03",
+   "produto": "NISAR_L2_PR_GCOV_029_132_A_175_2005_DHDH_M_20260903T094546_20260903T094620_P05023_N_F_J_001",
+   "imagem": "radar/2026-09-03.jpg",
+   "comparado_com": "2026-08-10",
+   "focos": [
+    {
+     "id": "2026-09-03-solo-1",
+     "tipo": "solo",
+     "lon": -60.8623,
+     "lat": -5.5101,
+     "area_km2": 0.61,
+     "grau": 57,
+     "delta_db": 5.2,
+     "local": "a 59 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-solo-2",
+     "tipo": "solo",
+     "lon": -60.0404,
+     "lat": -4.8959,
+     "area_km2": 0.28,
+     "grau": 100,
+     "delta_db": 14.7,
+     "local": "a 45 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-3",
+     "tipo": "arvore",
+     "lon": -60.8166,
+     "lat": -4.7152,
+     "area_km2": 3.6,
+     "grau": 41,
+     "delta_db": 3.8,
+     "local": "a 66 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-4",
+     "tipo": "arvore",
+     "lon": -61.1867,
+     "lat": -5.3788,
+     "area_km2": 1.11,
+     "grau": 34,
+     "delta_db": 3.1,
+     "local": "a 50 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-5",
+     "tipo": "arvore",
+     "lon": -60.7689,
+     "lat": -4.7519,
+     "area_km2": 0.93,
+     "grau": 36,
+     "delta_db": 3.3,
+     "local": "a 60 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-6",
+     "tipo": "arvore",
+     "lon": -61.2178,
+     "lat": -5.3652,
+     "area_km2": 0.88,
+     "grau": 34,
+     "delta_db": 3.1,
+     "local": "a 50 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-7",
+     "tipo": "arvore",
+     "lon": -60.7956,
+     "lat": -4.7332,
+     "area_km2": 0.83,
+     "grau": 38,
+     "delta_db": 3.4,
+     "local": "a 63 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-8",
+     "tipo": "arvore",
+     "lon": -60.7733,
+     "lat": -4.7346,
+     "area_km2": 0.76,
+     "grau": 39,
+     "delta_db": 3.5,
+     "local": "a 61 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-9",
+     "tipo": "arvore",
+     "lon": -60.7769,
+     "lat": -4.7237,
+     "area_km2": 0.56,
+     "grau": 37,
+     "delta_db": 3.4,
+     "local": "a 62 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-10",
+     "tipo": "arvore",
+     "lon": -60.8381,
+     "lat": -4.7391,
+     "area_km2": 0.53,
+     "grau": 38,
+     "delta_db": 3.5,
+     "local": "a 66 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-11",
+     "tipo": "arvore",
+     "lon": -61.4112,
+     "lat": -5.1198,
+     "area_km2": 0.44,
+     "grau": 31,
+     "delta_db": 2.9,
+     "local": "a 78 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-12",
+     "tipo": "arvore",
+     "lon": -61.2942,
+     "lat": -5.9101,
+     "area_km2": 0.44,
+     "grau": 35,
+     "delta_db": 3.2,
+     "local": "a 11 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-13",
+     "tipo": "arvore",
+     "lon": -60.7804,
+     "lat": -4.7592,
+     "area_km2": 0.4,
+     "grau": 37,
+     "delta_db": 3.4,
+     "local": "a 60 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-14",
+     "tipo": "arvore",
+     "lon": -61.3514,
+     "lat": -5.0755,
+     "area_km2": 0.36,
+     "grau": 31,
+     "delta_db": 2.9,
+     "local": "a 82 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-15",
+     "tipo": "arvore",
+     "lon": -61.1853,
+     "lat": -5.3911,
+     "area_km2": 0.35,
+     "grau": 34,
+     "delta_db": 3.1,
+     "local": "a 48 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-16",
+     "tipo": "arvore",
+     "lon": -60.769,
+     "lat": -4.7172,
+     "area_km2": 0.34,
+     "grau": 36,
+     "delta_db": 3.3,
+     "local": "a 62 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-17",
+     "tipo": "arvore",
+     "lon": -60.1959,
+     "lat": -5.5789,
+     "area_km2": 0.33,
+     "grau": 35,
+     "delta_db": 3.2,
+     "local": "a 55 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-18",
+     "tipo": "arvore",
+     "lon": -60.7532,
+     "lat": -4.6918,
+     "area_km2": 0.31,
+     "grau": 31,
+     "delta_db": 2.9,
+     "local": "a 63 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-19",
+     "tipo": "arvore",
+     "lon": -60.8086,
+     "lat": -4.7209,
+     "area_km2": 0.31,
+     "grau": 36,
+     "delta_db": 3.3,
+     "local": "a 65 km de Novo Aripuanã · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-20",
+     "tipo": "arvore",
+     "lon": -61.1946,
+     "lat": -5.397,
+     "area_km2": 0.3,
+     "grau": 32,
+     "delta_db": 2.9,
+     "local": "a 47 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-21",
+     "tipo": "arvore",
+     "lon": -61.1709,
+     "lat": -5.381,
+     "area_km2": 0.26,
+     "grau": 32,
+     "delta_db": 2.9,
+     "local": "a 50 km de Manicoré · AM",
+     "data": "2026-09-03"
+    },
+    {
+     "id": "2026-09-03-arvore-22",
+     "tipo": "arvore",
+     "lon": -60.1173,
+     "lat": -4.2146,
+     "area_km2": 0.26,
+     "grau": 35,
+     "delta_db": 3.2,
+     "local": "a 57 km de Careiro · AM",
+     "data": "2026-09-03"
+    }
+   ],
+   "resumo": {
+    "focos": 22,
+    "por_tipo": {
+     "agua": 0,
+     "solo": 2,
+     "arvore": 20
+    },
+    "area_km2": {
+     "agua": 0,
+     "solo": 0.89,
+     "arvore": 13.3
+    }
+   }
+  },
+  {
+   "data": "2026-09-15",
+   "produto": "NISAR_L2_PR_GCOV_030_132_A_175_2005_DHDH_M_20260915T094545_20260915T094620_P05023_N_F_J_001",
+   "imagem": "radar/2026-09-15.jpg",
+   "comparado_com": "2026-09-03",
+   "focos": [
+    {
+     "id": "2026-09-15-agua-1",
+     "tipo": "agua",
+     "lon": -60.0411,
+     "lat": -4.8966,
+     "area_km2": 0.74,
+     "grau": 100,
+     "delta_db": 10.7,
+     "local": "a 45 km de Novo Aripuanã · AM",
+     "data": "2026-09-15"
+    },
+    {
+     "id": "2026-09-15-arvore-2",
+     "tipo": "arvore",
+     "lon": -59.9793,
+     "lat": -5.8785,
+     "area_km2": 0.6,
+     "grau": 35,
+     "delta_db": 3.2,
+     "local": "a 95 km de Novo Aripuanã · AM",
+     "data": "2026-09-15"
+    },
+    {
+     "id": "2026-09-15-arvore-3",
+     "tipo": "arvore",
+     "lon": -59.9403,
+     "lat": -6.0243,
+     "area_km2": 0.26,
+     "grau": 35,
+     "delta_db": 3.2,
+     "local": "a 112 km de Novo Aripuanã · AM",
+     "data": "2026-09-15"
+    }
+   ],
+   "resumo": {
+    "focos": 3,
+    "por_tipo": {
+     "agua": 1,
+     "solo": 0,
+     "arvore": 2
+    },
+    "area_km2": {
+     "agua": 0.74,
+     "solo": 0,
+     "arvore": 0.86
+    }
+   }
+  },
+  {
+   "data": "2026-09-27",
+   "produto": "NISAR_L2_PR_GCOV_031_132_A_175_2005_DHDH_M_20260927T094545_20260927T094620_P05023_N_F_J_001",
+   "imagem": "radar/2026-09-27.jpg",
+   "comparado_com": "2026-09-15",
+   "focos": [],
+   "resumo": {
+    "focos": 0,
+    "por_tipo": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    },
+    "area_km2": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    }
+   }
+  },
+  {
+   "data": "2026-10-21",
+   "produto": "NISAR_L2_PR_GCOV_033_132_A_175_2005_DHDH_M_20261021T094546_20261021T094620_P05023_N_F_J_001",
+   "imagem": "radar/2026-10-21.jpg",
+   "comparado_com": "2026-09-27",
+   "focos": [
+    {
+     "id": "2026-10-21-arvore-1",
+     "tipo": "arvore",
+     "lon": -60.0232,
+     "lat": -3.9764,
+     "area_km2": 0.92,
+     "grau": 34,
+     "delta_db": 3.1,
+     "local": "a 45 km de Careiro · AM",
+     "data": "2026-10-21"
+    },
+    {
+     "id": "2026-10-21-arvore-2",
+     "tipo": "arvore",
+     "lon": -60.0863,
+     "lat": -5.2763,
+     "area_km2": 0.53,
+     "grau": 34,
+     "delta_db": 3.1,
+     "local": "a 37 km de Novo Aripuanã · AM",
+     "data": "2026-10-21"
+    },
+    {
+     "id": "2026-10-21-arvore-3",
+     "tipo": "arvore",
+     "lon": -60.9251,
+     "lat": -4.5853,
+     "area_km2": 0.48,
+     "grau": 39,
+     "delta_db": 3.5,
+     "local": "a 85 km de Novo Aripuanã · AM",
+     "data": "2026-10-21"
+    },
+    {
+     "id": "2026-10-21-arvore-4",
+     "tipo": "arvore",
+     "lon": -60.308,
+     "lat": -5.1891,
+     "area_km2": 0.42,
+     "grau": 36,
+     "delta_db": 3.3,
+     "local": "a 11 km de Novo Aripuanã · AM",
+     "data": "2026-10-21"
+    },
+    {
+     "id": "2026-10-21-arvore-5",
+     "tipo": "arvore",
+     "lon": -60.8093,
+     "lat": -4.517,
+     "area_km2": 0.27,
+     "grau": 32,
+     "delta_db": 2.9,
+     "local": "a 82 km de Novo Aripuanã · AM",
+     "data": "2026-10-21"
+    },
+    {
+     "id": "2026-10-21-arvore-6",
+     "tipo": "arvore",
+     "lon": -61.117,
+     "lat": -4.5085,
+     "area_km2": 0.27,
+     "grau": 36,
+     "delta_db": 3.3,
+     "local": "a 73 km de Beruri · AM",
+     "data": "2026-10-21"
+    }
+   ],
+   "resumo": {
+    "focos": 6,
+    "por_tipo": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 6
+    },
+    "area_km2": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 2.89
+    }
+   }
+  }
+ ],
+ "fonte": "NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC",
+ "orbita": "132_A_175",
+ "recorte": {
+  "oeste": -62.05,
+  "leste": -58.95,
+  "norte": -3.944,
+  "sul": -6.056
+ },
+ "atualizado_em": "2026-11-13T11:39:41Z"
+}

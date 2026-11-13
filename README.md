@@ -8,8 +8,9 @@ A.R.K.O turns NISAR satellite radar (NASA-ISRO) into simple alerts, maps and ans
 
 | Folder | What it holds |
 | --- | --- |
-| `app/` | The clickable prototype: one HTML file, no server. Open `app/index.html` in a browser. PT / EN switch and *Data: Example / Real NISAR* switch in the left menu. |
-| `pipeline/` | Python scripts that search, read and compare real NISAR data and write the detections file. |
+| `web/` | **App source (v2.0): React + TypeScript + Tailwind.** Run `npm install` and `npm run dev` inside `web/`. See `web/README.md`. |
+| `app/` | The published app (built from `web/` by GitHub Actions). Open it on GitHub Pages. PT / EN, *Example / Real NISAR*, region and world search in the left menu and header. |
+| `pipeline/` | Python scripts that search, read and compare real NISAR data and write the detections and timeline files. |
 | `data/` | Results from real NISAR data: `focos.json`, `focos.geojson` (open in QGIS or geojson.io) and the radar image. |
 | `docs/` | Links to the pitch, roadmap, design-thinking documents and Figma. |
 
@@ -60,7 +61,18 @@ Team A.R.K.O · NASA Space Apps Challenge 2026.
 
 1. It lists the NISAR passes of the pilot orbit (track 132, frame 175) on ASF DAAC.
 2. If there is a newer pass, it compares it with a pass at least 45 days earlier of the same orbit.
-3. It rewrites `data/` (`focos_app.json`, `radar.jpg`, `focos.geojson`, `historico.json`) and commits.
-4. The app reads `data/focos_app.json` when it opens, so the *Real NISAR* mode shows the newest data. The HTML file still carries the last data inside it, so it also works offline.
+3. It rewrites `data/` (`focos_app.json`, `radar.jpg`, `focos.geojson`, `historico.json`) and adds the new pass to the timeline (`linha_tempo.json` + `radar/YYYY-MM-DD.jpg`), then commits.
+4. The app reads `data/focos_app.json` and `data/linha_tempo.json` when it opens, so the *Real NISAR* mode and the animated timeline always show the newest passes, with no rebuild.
 
 Setup (once): add the repository secrets `EARTHDATA_USERNAME` and `EARTHDATA_PASSWORD` (Settings → Secrets and variables → Actions). To run it now: Actions → *Atualizar dados NISAR* → Run workflow.
+
+## v2.0 — what is new
+
+- **App rebuilt in React + TypeScript + Tailwind** (`web/`), Python stays as the data pipeline (`pipeline/`).
+- **Weather-broadcast style**: dark radar maps, illustrated 3D icons, main data panel and *Risk alert* panel.
+- **Animated timeline** under the map: one point per real NISAR pass, updated automatically every ~12 days. Pick a date, drag or press play.
+- **Compare periods** shows the icons on both sides and the number of detections by type.
+- **World search**: type any place (OpenStreetMap). Places inside a region with data open that region with a pin; others show which regions have data.
+- **Two example regions**: Amazon (pilot, also with real NISAR data) and Southern Brazil (floods and windstorms).
+
+Full guide to the project files: `docs/DOCUMENTACAO.pdf` (Portuguese).
