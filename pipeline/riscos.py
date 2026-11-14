@@ -138,6 +138,33 @@ def firms_linhas():
     return linhas, fontes
 
 
+DUP_GRAUS, DUP_MIN = 0.004, 120   # mesmo fogo visto pelos dois satélites: a menos de ~400 m e até 2 h de diferença
+
+
+def _minutos(d, h):
+    try:
+        return dt.datetime.strptime(f"{d}{h}", "%Y-%m-%d%H%M").timestamp() / 60
+    except ValueError:
+        return 0.0
+
+
+def sem_duplicados(pts):
+    """NOAA-20 e NOAA-21 passam com ~50 min de diferença e podem ver o MESMO fogo; o mesmo satélite também
+    pode ver o mesmo ponto em duas faixas seguidas (minutos de diferença). Um ponto com outro de OUTRA passagem
+    (outro satélite ou outro horário) a menos de ~400 m e até 2 h conta uma vez só
+    (fica a maior potência). Devolve (pontos, quantos duplicados foram removidos); o 6º campo vira o nº de satélites."""
+    out = []                                   # [lon, lat, frp, d, h, sat, n_sats]
+    for lon, lat, frp, d, h, sat in sorted(pts, key=lambda p: -p[2]):
+        t = _minutos(d, h)
+        par = next((o for o in out if (o[5] != sat or (o[3], o[4]) != (d, h)) and abs(o[0] - lon) < DUP_GRAUS and abs(o[1] - lat) < DUP_GRAUS
+                    and abs(_minutos(o[3], o[4]) - t) <= DUP_MIN), None)
+        if par:
+            par[6] = 2
+        else:
+            out.append([lon, lat, frp, d, h, sat, 1])
+    return [(o[0], o[1], o[2], o[3], o[4], o[6]) for o in out], len(pts) - len(out)
+
+
 def firms_regiao(linhas, b, reg):
     pts = []
     for x in linhas:
@@ -149,11 +176,13 @@ def firms_regiao(linhas, b, reg):
             continue
         if str(x.get("confidence", "")).lower() in ("l", "low"):      # baixa confiança fica de fora
             continue
-        pts.append((lon, lat, float(x.get("frp") or 0), x.get("acq_date", ""), x.get("acq_time", "").zfill(4)))
+        pts.append((lon, lat, float(x.get("frp") or 0), x.get("acq_date", ""), x.get("acq_time", "").zfill(4), x.get("_sat", "")))
+    pts, duplos = sem_duplicados(pts)
     grupos = {}
-    for lon, lat, frp, d, h in pts:
+    for lon, lat, frp, d, h, _sats in pts:
         k = (round(lon / GRUPO_GRAUS), round(lat / GRUPO_GRAUS))
-        g = grupos.setdefault(k, {"lons": [], "lats": [], "frp": 0.0, "ult": ""})
+        g = grupos.setdefault(k, {"lons": [], "lats": [], "frp": 0.0, "ult": "", "dois": 0})
+        g["dois"] += _sats > 1
         g["lons"].append(lon); g["lats"].append(lat); g["frp"] += frp
         g["ult"] = max(g["ult"], f"{d}T{h[:2]}:{h[2:]}Z")
     # junta grupos vizinhos que caíram em células diferentes da grade
@@ -164,7 +193,7 @@ def firms_regiao(linhas, b, reg):
             for j in range(i + 1, len(gl)):
                 a, c = gl[i], gl[j]
                 if math.hypot(np.mean(a["lons"]) - np.mean(c["lons"]), np.mean(a["lats"]) - np.mean(c["lats"])) < GRUPO_GRAUS:
-                    a["lons"] += c["lons"]; a["lats"] += c["lats"]; a["frp"] += c["frp"]; a["ult"] = max(a["ult"], c["ult"])
+                    a["lons"] += c["lons"]; a["lats"] += c["lats"]; a["frp"] += c["frp"]; a["ult"] = max(a["ult"], c["ult"]); a["dois"] += c["dois"]
                     gl.pop(j); unidos = True; break
             if unidos:
                 break
@@ -174,7 +203,8 @@ def firms_regiao(linhas, b, reg):
         pequena = n <= PEQ_N and g["frp"] < PEQ_FRP
         nivel = "Alto" if n >= 10 or g["frp"] >= 150 else "Médio" if n >= 3 or g["frp"] >= 30 else "Baixo"
         out.append({"lon": round(lon, 4), "lat": round(lat, 4), "n": n, "frp": round(g["frp"], 1),
-                    "ultimo": g["ult"], "nivel": nivel, "categoria": "pequena" if pequena else "risco"})
+                    "ultimo": g["ult"], "nivel": nivel, "categoria": "pequena" if pequena else "risco",
+                    "dois_satelites": g["dois"]})
     # primeiro as de risco (mais focos e mais calor), depois as pequenas
     out.sort(key=lambda g: (g["categoria"] == "pequena", -g["n"], -g["frp"]))
     risco = [g for g in out if g["categoria"] == "risco"][:MAX_GRUPOS]
@@ -182,7 +212,7 @@ def firms_regiao(linhas, b, reg):
     sel = risco + peq[:15]
     for g in sel:
         g["lugar"] = lugar(g["lon"], g["lat"], reg)
-    return {"focos": len(pts), "focos_risco": sum(g["n"] for g in out if g["categoria"] == "risco"),
+    return {"focos": len(pts), "duplicados_removidos": duplos, "focos_risco": sum(g["n"] for g in out if g["categoria"] == "risco"),
             "pequenas": len(peq), "grupos": sel}
 
 

@@ -70,7 +70,8 @@ export function fichaFogo(i: number, c: Ctx): Ficha | null {
     dados: [
       en ? `${f.n} hot pixels (375 m) from VIIRS on NOAA-20/21 in the last ${c.riscos!.fogo!.janela_h} h` : `${f.n} pixels quentes (375 m) do VIIRS nos satélites NOAA-20/21 nas últimas ${c.riscos!.fogo!.janela_h} h`,
       en ? `Fire radiative power: ${n1(f.frp, en)} MW in total (how much heat the fire releases)` : `Potência do fogo: ${n1(f.frp, en)} MW no total (quanto calor o fogo libera)`,
-      en ? 'Low-confidence detections were removed' : 'Detecções de baixa confiança foram descartadas',
+      en ? 'Low-confidence detections were removed; the same fire seen in two passes counts once' : 'Detecções de baixa confiança foram descartadas; o mesmo fogo visto em duas passagens conta uma vez só',
+      ...(f.dois_satelites ? [en ? `${f.dois_satelites} of these spots were confirmed in more than one satellite pass (more confidence)` : `${f.dois_satelites} ${f.dois_satelites === 1 ? 'destes focos foi confirmado' : 'destes focos foram confirmados'} em mais de uma passagem de satélite (mais confiança)`] : []),
       veg.length
         ? (en ? `NISAR radar: vegetation loss of ${n2(veg[0].e.a ?? 0, en)} km² ${n1(veg[0].d, en)} km away (${dia(veg[0].date, en)})` : `Radar NISAR: perda de vegetação de ${n2(veg[0].e.a ?? 0, en)} km² a ${n1(veg[0].d, en)} km (${dia(veg[0].date, en)})`)
         : (en ? `NISAR radar: no vegetation loss within 3 km${ult ? ` up to the ${dia(ult, en)} pass` : ''}` : `Radar NISAR: sem perda de vegetação a até 3 km${ult ? ` até a passagem de ${dia(ult, en)}` : ''}`),

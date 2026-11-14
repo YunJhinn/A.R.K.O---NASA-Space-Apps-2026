@@ -74,14 +74,16 @@ export interface Alert {
 
 export interface FogoGrupo { lon: number; lat: number; n: number; frp: number; ultimo: string; nivel: 'Alto' | 'Médio' | 'Baixo'; lugar: string
   /** pequena: 1-2 focos fracos (provável queima controlada); risco: fogo maior/mais forte (pode fugir do controle) */
-  categoria?: 'pequena' | 'risco' }
+  categoria?: 'pequena' | 'risco'
+  /** quantos focos do grupo foram vistos pelos dois satélites (NOAA-20 e NOAA-21) */
+  dois_satelites?: number }
 
 /** data[/regioes/<id>]/riscos.json · gravado pelo robô (pipeline/riscos.py) */
 export interface RiscosJson {
   atualizado: string
   deslizamento?: { fonte: string; url: string; data: string; max: number | null; limiares: { medio: number; alto: number }; desatualizado?: boolean
     areas: { lon: number; lat: number; p: number; km2: number; nivel: 'Alto' | 'Médio' | 'Baixo'; lugar: string }[] }
-  fogo?: { fonte: string; url: string; janela_h: number; focos: number; focos_risco?: number; pequenas?: number; desatualizado?: boolean
+  fogo?: { fonte: string; url: string; janela_h: number; focos: number; duplicados_removidos?: number; focos_risco?: number; pequenas?: number; desatualizado?: boolean
     grupos: FogoGrupo[] }
 }
 
