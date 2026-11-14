@@ -77,7 +77,7 @@ export function realAlerts(ev: Ev[], focos: FocoJson[], rd: RealDates): Alert[] 
     const m = n > 1
       ? { agua: `${n} focos próximos somam ${kmf(area)} de água nova.`, solo: `${n} focos próximos somam ${kmf(area)} de margem exposta.`, arvore: `${n} focos próximos somam ${kmf(area)} de floresta perdida.` }[k]
       : { agua: `${kmf(area)} de água parada onde não havia em ${rd.a}. O sinal caiu ${Math.round(rep.f.delta_db)} dB.`, solo: `Onde o radar via água em ${rd.a}, a água saiu.`, arvore: 'Queda no sinal da vegetação. Pode ser corte, queimada, colheita ou seca.' }[k]
-    return { id: rep.id, lvl, p: gm, t, l: rep.f.local, ty: k, m, pz: `Detectado em ${rd.b}`, src: 'NISAR', _x: rep.x, _y: rep.y }
+    return { id: rep.id, lvl, p: gm, t, l: rep.f.local, ty: k, m, pz: `Detectado em ${rd.b}`, src: 'NISAR', _x: rep.x, _y: rep.y, lon: rep.f.lon, lat: rep.f.lat }
   })
   const R = { Alto: 0, 'Médio': 1, Baixo: 2 }
   al.sort((a, b) => R[a.lvl] - R[b.lvl] || b.p - a.p)

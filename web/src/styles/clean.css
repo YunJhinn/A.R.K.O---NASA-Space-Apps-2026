@@ -94,3 +94,31 @@
 .pv-c1 .tile { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex: none; }
 .pv-ok { background: #ECFDF3; color: #05603A; border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 700; }
 .pv-bars small { white-space: nowrap; }
+.pv-acao { font-size: 12px; background: rgba(37, 99, 235, .07); border-left: 3px solid #2563EB; border-radius: 6px; padding: 5px 8px; color: #1E2A3A; }
+.pv-acao b { color: #1D4ED8; }
+.pop .acao { display: flex; flex-direction: column; gap: 2px; background: rgba(37, 99, 235, .1); border-left: 3px solid #60A5FA; border-radius: 8px; padding: 6px 9px; font-size: 12.5px; }
+.pop .acao b { font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: #93C5FD; }
+/* v5.5 · comparar períodos (dados reais) */
+.cr-sum { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 2px solid; border-radius: 14px; padding: 14px 18px; }
+.cr-sum .ic { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex: none; }
+.cr-sum .cap { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--mu); }
+.cr-sum .big { font-size: 18px; font-weight: 800; line-height: 1.35; color: #1E2A3A; margin-top: 2px; }
+.cr-sum .mut, .cr .mut { font-size: 12.5px; color: var(--mu); margin-top: 4px; }
+.cr .cap { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--mu); }
+.cr-tl { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 6px; }
+.cr-tl li { display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 8px; font-size: 12.5px; }
+.cr-tl .bar { height: 10px; background: #EEF0F3; border-radius: 99px; overflow: hidden; display: block; }
+.cr-tl .bar i { display: block; height: 100%; border-radius: 99px; }
+.cr-top { background: #F7F8FA; border-radius: 10px; padding: 8px 10px; font-size: 12.5px; }
+.cr-top .h { margin-top: 4px; color: #6B4E16; }
+.cr-ef { font-size: 13px; line-height: 1.5; color: #2B3440; }
+.status2 .tx .agora { display: block; margin-top: 4px; font-size: 13px; opacity: 1; }
+.status2 .tx .agora b { display: inline; font-size: 13px; }
+.alerts2 .mon span { display: block; line-height: 1.45; }
+.alerts2 .mon i { display: inline-block; margin-right: 6px; vertical-align: middle; }
+.status2 { padding: 10px 16px; }
+.status2 .tx b { font-size: 16px; }
+.status2 .tx > span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.status2 .tx .agora { margin-top: 1px; font-size: 12.5px; }
+.al.open .acao span { -webkit-line-clamp: unset; display: block; }
+.pv-h small a { color: #1D4ED8; }

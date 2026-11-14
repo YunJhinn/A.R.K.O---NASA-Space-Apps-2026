@@ -1,5 +1,6 @@
 // v5 · faixa de status: responde "preciso agir agora?" numa frase, na cor do maior risco.
 import { useApp } from '../../lib/store'
+import { recomendacao } from '../../lib/acao'
 
 export function StatusBanner() {
   const { s, set, t, ds, inRange } = useApp()
@@ -29,7 +30,7 @@ export function StatusBanner() {
   return (
     <div className={`status2 ${cls}`} role="status">
       <span className="ic" aria-hidden="true">{cls === 'ok' ? '✓' : '⚠'}</span>
-      <div className="tx"><b>{title}</b><span>{sub}</span></div>
+      <div className="tx"><b>{title}</b><span>{sub}</span>{top && top.lvl !== 'Baixo' && <span className="agora" title={recomendacao(top, s.lang)}><b>{en ? 'Suggestion' : 'Sugestão'}:</b> {recomendacao(top, s.lang)}</span>}</div>
       {al.length > 0 && <button onClick={ver}>{t('Ver no mapa')}</button>}
     </div>
   )

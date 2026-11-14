@@ -6,7 +6,6 @@ import { RISK } from '../../lib/demo'
 import type { Level } from '../../lib/types'
 import { cx } from '../../lib/util'
 import { Icon } from '../Icon'
-import { riskMonitor } from '../../lib/riscos'
 import { PrevisaoTab } from './PrevisaoTab'
 
 /** Painel lateral "Alerta de riscos" (âmbar translúcido) */
@@ -49,19 +48,6 @@ export function AlertPanel() {
           </button>
         ))}
       </div>
-      {real && (() => {
-        const mo = riskMonitor(ds.riscos, s.lang)
-        if (!mo) return null
-        const en = s.lang === 'en'
-        return (
-          <div className="mon" aria-label={en ? 'Monitored now' : 'Monitorando agora'}>
-            <b>{en ? 'MONITORING NOW' : 'MONITORANDO AGORA'}</b>
-            {mo.des && <span><i style={{ background: '#9A5B13' }} />{en ? 'Landslide' : 'Deslizamento'}: {mo.des.txt} <a href={mo.des.url} target="_blank" rel="noreferrer">{mo.des.src}</a>{mo.des.old && ' ⚠'}</span>}
-            {mo.fog && <span><i style={{ background: '#E2553A' }} />{en ? 'Fires' : 'Queimadas'}: {mo.fog.txt} <a href={mo.fog.url} target="_blank" rel="noreferrer">{mo.fog.src}</a>{mo.fog.old && ' ⚠'}</span>}
-            <span><i style={{ background: '#2563EB' }} />{en ? 'Water, forest, soil' : 'Água, floresta, solo'}: <a href="https://nisar.jpl.nasa.gov/" target="_blank" rel="noreferrer">NASA-ISRO NISAR</a></span>
-          </div>
-        )
-      })()}
       <div className="cap">{t(real ? (ds.riscos ? 'ALERTAS' : 'DETECTADO PELO RADAR') : 'PRÓXIMOS DIAS')}</div>
       <div id="alist" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {(() => {

@@ -11,6 +11,7 @@ import { SciButtons } from '../SciModal'
 import { SearchBox } from '../home/SearchBox'
 import { REGION_LIST } from '../../lib/regions'
 import { realShort } from '../../lib/real'
+import { CompareReal } from './CompareReal'
 
 /** Estatísticas reais de um tipo (focos, área e grau médio) — usado na versão celular */
 export function useRealStats() {
@@ -75,6 +76,11 @@ function Marks({ ev, focus }: { ev: Ev[]; focus: string }) {
 }
 
 export function Compare() {
+  const { s } = useApp()
+  return s.src === 'real' ? <CompareReal /> : <CompareDemo />
+}
+
+function CompareDemo() {
   const { s, set, t, ds, go, setRegion } = useApp()
   const real = s.src === 'real'
   const { k, a, b, swipe } = s.cmp

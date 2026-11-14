@@ -7,6 +7,7 @@ import { FASE } from '../lib/events'
 import type { Alert } from '../lib/types'
 import { rgba } from '../lib/util'
 import { Icon } from './Icon'
+import { coord, osm, recomendacao } from '../lib/acao'
 
 const abrir = (url: string) => window.open(url, '_blank', 'noopener')
 
@@ -16,12 +17,12 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
   const [open, setOpen] = useState(false)
   const c = a.ty === 'tornado' ? TORNADO_C : a.ty === 'colapso' ? COLAPSO_C : a.ty === 'deslizamento' ? DESLIZ_C : a.ty === 'geleira' ? GELO_C : ds.types[a.ty].c
   const [rb, rt] = RISK[a.lvl]
-  const nivel = a.badge ? t(a.badge) : a.fase ? `${t(a.lvl)} · ${FASE[a.fase][en ? 1 : 0]}` : t(`${a.lvl} · ${a.p}%`)
+  const nivel = a.id?.startsWith('p-') ? t(a.lvl) : a.badge ? t(a.badge) : a.fase ? `${t(a.lvl)} · ${FASE[a.fase][en ? 1 : 0]}` : t(`${a.lvl} · ${a.p}%`)
   return (
-    <div className="al" style={{ '--c': c, padding: big ? 14 : undefined, ...(a.lvl === 'Alto' ? { borderColor: rgba(rb, 0.35) } : {}) } as CSSProperties}>
+    <div className={open ? 'al open' : 'al'} style={{ '--c': c, padding: big ? 14 : undefined, ...(a.lvl === 'Alto' ? { borderColor: rgba(rb, 0.35) } : {}) } as CSSProperties}>
       <div className="r1">
         <span className="tile" style={{ background: rgba(c, 0.12), color: c, ...(big ? { width: 40, height: 40 } : {}) }}><Icon k={a.ty === 'tornado' || a.ty === 'colapso' || a.ty === 'deslizamento' || a.ty === 'geleira' ? a.ty : ds.types[a.ty].ic} size={big ? 20 : 17} /></span>
-        <div style={{ flex: 1, minWidth: 0 }}><h4>{t(a.t)}</h4><div className="loc">{t(a.l)}</div></div>
+        <div style={{ flex: 1, minWidth: 0 }}><h4>{t(a.t)}</h4><div className="loc">{a.id?.startsWith('p-') && <span className="kind">{en ? 'Forecast' : 'Previsão'}</span>}📍 {t(a.l)}</div></div>
         <span className="risk" style={{ background: rgba(rb, 0.14), color: rt }}>{nivel}</span>
       </div>
       {a.etapas && (
@@ -35,6 +36,19 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
         </div>
       )}
       <p className="one">{t(a.m)}</p>
+      {a.lvl !== 'Baixo' && (
+        <div className="acao"><b>{en ? 'Suggested response' : 'Sugestão de resposta'}</b><span>{recomendacao(a, s.lang)}</span></div>
+      )}
+      {open && (
+        <div className="det">
+          <div>
+            <b>{en ? 'Where' : 'Onde'}</b>
+            <span>{t(a.l)}</span>
+            {a.lon != null && a.lat != null && <span>{coord(a.lat, a.lon)} · <span role="link" tabIndex={0} className="lk" onClick={() => abrir(osm(a.lat!, a.lon!))} onKeyDown={e => e.key === 'Enter' && abrir(osm(a.lat!, a.lon!))}>{en ? 'open street map ↗' : 'abrir mapa de ruas ↗'}</span></span>}
+            <span className="src">{en ? 'Source' : 'Fonte'}: {t(a.pz)}</span>
+          </div>
+        </div>
+      )}
       {open && a.provas && (
         <div className="det">
           <div>
@@ -57,9 +71,7 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
         </div>
       )}
       <div className="ft">
-        {a.etapas || a.provas
-          ? <button type="button" className="lnk" aria-expanded={open} onClick={e => { e.stopPropagation(); setOpen(!open) }}>{open ? (en ? 'Hide details ▴' : 'Ocultar detalhes ▴') : (en ? 'Details ▾' : 'Detalhes ▾')}</button>
-          : <><Icon k="relogio" size={13} />{t(a.pz)}</>}
+        {<button type="button" className="lnk" aria-expanded={open} onClick={e => { e.stopPropagation(); setOpen(!open) }}>{open ? (en ? 'Hide details ▴' : 'Ocultar detalhes ▴') : (en ? 'Details ▾' : 'Detalhes ▾')}</button>}
         {onMap && (a.id || a.ty === 'colapso') && <a href="#inicio" onClick={e => { e.preventDefault(); e.stopPropagation(); onMap() }}>{t('Ver no mapa')}</a>}
       </div>
     </div>

@@ -16,6 +16,7 @@ import { L as LL, POL, worldviewUrl, type Lang } from '../../lib/science'
 import { RULE, factor, focusEvidence, physics } from '../../lib/evidence'
 import { focusHypothesis } from '../../lib/hypotheses'
 import { fogoResumo, pequena } from '../../lib/riscos'
+import { recomendacao } from '../../lib/acao'
 import { fichaFogo, fichaLhasa, fichaMontanha, fichaPrevisao, type Ficha } from '../../lib/detalhe'
 import '../../styles/map-extra.css'
 
@@ -442,6 +443,7 @@ function RiskPopup({ id, W, H, px, py }: { id: string; W: number; H: number; px:
       {tab === 'resumo' && (
         <>
           <div className="hyp"><b>🧪 {en ? 'Likely cause (hypothesis): ' : 'Causa provável (hipótese): '}</b>{f.causa}</div>
+          <div className="acao"><b>{en ? 'Suggested response' : 'Sugestão de resposta'}</b><span>{recomendacao(al ?? { ty: id.startsWith('r-f-') ? 'fogo' : id.startsWith('m-') && f.cor === '#0284C7' ? 'geleira' : 'deslizamento', lvl: f.grau >= 70 ? 'Alto' : f.grau >= 35 ? 'Médio' : 'Baixo' }, s.lang)}</span></div>
           <div className="why">{f.resumo}</div>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 5 }}>

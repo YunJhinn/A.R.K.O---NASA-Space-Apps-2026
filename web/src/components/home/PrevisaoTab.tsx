@@ -7,6 +7,7 @@ import { RISK } from '../../lib/demo'
 import { dia, fogoResumo } from '../../lib/riscos'
 import { rgba } from '../../lib/util'
 import { Icon } from '../Icon'
+import { recomendacao } from '../../lib/acao'
 
 const ORD: Record<Level, number> = { Alto: 0, 'Médio': 1, Baixo: 2 }
 const pior = (xs: (Level | undefined)[]): Level => (xs.filter(Boolean) as Level[]).sort((a, b) => ORD[a] - ORD[b])[0] ?? 'Baixo'
@@ -117,7 +118,7 @@ export function PrevisaoTab({ onMap }: { onMap: (id: string | null) => void }) {
     <div className="pv">
       <div className="pv-h">
         <b>{en ? 'Forecast for' : 'Previsão para'} {t(ds.realMeta.nome.split(' · ')[0])}</b>
-        <small>{en ? 'Updated' : 'Atualizado'}: {fontes}</small>
+        <small>{en ? 'Updated' : 'Atualizado'}: {fontes} · <a href="https://nisar.jpl.nasa.gov/" target="_blank" rel="noreferrer">NISAR</a>, <a href="https://gpm.nasa.gov/landslides/projects.html" target="_blank" rel="noreferrer">LHASA</a>, <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">FIRMS</a> ↗</small>
       </div>
       {ativas.map(l => {
         const [rb, rt] = RISK[l.lvl]
@@ -130,6 +131,7 @@ export function PrevisaoTab({ onMap }: { onMap: (id: string | null) => void }) {
             </div>
             <p>{l.txt}</p>
             {l.provas.slice(0, 3).map(p => <div key={p} className="pv-pr">• {p}</div>)}
+            <div className="pv-acao"><b>{en ? 'Suggested response' : 'Sugestão'}:</b> {recomendacao({ ty: l.k, lvl: l.lvl } as Alert, s.lang)}</div>
             {l.serie && l.serie.filter(x => x.a > 0.05).length >= 2 && <Barras v={l.serie} cor={l.cor} en={en} />}
             {l.alvo && <button type="button" className="pv-btn" onClick={() => onMap(l.alvo!.id)}>{t('Ver no mapa')}</button>}
           </div>
@@ -148,8 +150,8 @@ export function PrevisaoTab({ onMap }: { onMap: (id: string | null) => void }) {
         </div>
       )}
       <div className="pv-nota">
-        {en ? 'Forecasts cross NISAR radar, NASA LHASA and NASA FIRMS in the same area and compare with earlier periods. They are hypotheses to confirm on the ground, recalculated at every update.'
-            : 'As previsões cruzam o radar NISAR, o NASA LHASA e o NASA FIRMS na mesma área e comparam com os períodos anteriores. São hipóteses a confirmar em campo, recalculadas a cada atualização.'}
+        {en ? 'Forecasts cross NISAR radar, NASA LHASA and NASA FIRMS in the same area and compare with earlier periods. They are hypotheses to confirm on the ground, recalculated at every update. Suggested responses are general guidance: decisions belong to local authorities (civil defense, firefighters).'
+            : 'As previsões cruzam o radar NISAR, o NASA LHASA e o NASA FIRMS na mesma área e comparam com os períodos anteriores. São hipóteses a confirmar em campo, recalculadas a cada atualização. As sugestões de resposta são orientações gerais: a decisão é das autoridades locais (Defesa Civil, bombeiros).'}
       </div>
     </div>
   )
