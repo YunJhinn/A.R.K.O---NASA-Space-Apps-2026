@@ -6,3 +6,4 @@ scipy
 pyproj
 matplotlib
 pillow
+rasterio>=1.3

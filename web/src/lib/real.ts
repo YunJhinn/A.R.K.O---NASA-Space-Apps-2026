@@ -92,7 +92,12 @@ export function realAlerts(ev: Ev[], focos: FocoJson[], rd: RealDates): Alert[] 
   return out
 }
 
-export function buildReal(d: FocosAppJson, img: string, cidadesLL: Record<string, [number, number]> = CID_LL): RealSet {
+/** só o que cai dentro do mapa (dados antigos do Nepal tinham focos no Tibete, fora da imagem) */
+export const noMapa = (b: { oeste: number; leste: number; norte: number; sul: number }) => (f: { lon: number; lat: number }) =>
+  f.lon >= b.oeste && f.lon <= b.leste && f.lat >= b.sul && f.lat <= b.norte
+
+export function buildReal(d0: FocosAppJson, img: string, cidadesLL: Record<string, [number, number]> = CID_LL): RealSet {
+  const d = { ...d0, focos: d0.focos.filter(noMapa(d0.imagem)), montanha: d0.montanha?.filter(noMapa(d0.imagem)) }
   const rd = realDates(d.antes.data, d.depois.data, d.focos.length)
   const { X, Y } = projector(d.imagem)
   const dd = Math.max(0, ago(fmtD(d.depois.data).date))
@@ -119,7 +124,13 @@ export interface TimelinePoint {
 
 export function buildTimeline(lt: LinhaTempoJson, base: string): TimelinePoint[] {
   const { X, Y } = projector(lt.recorte)
-  return lt.passagens.map(p => {
+  const dentro = noMapa(lt.recorte)
+  return lt.passagens.map(p0 => {
+    const fo = p0.focos.filter(dentro)
+    const p = fo.length === p0.focos.length ? p0 : { ...p0, focos: fo, resumo: {
+      focos: fo.length,
+      por_tipo: Object.fromEntries(['agua', 'solo', 'arvore'].map(k => [k, fo.filter(f => f.tipo === k).length])),
+      area_km2: Object.fromEntries(['agua', 'solo', 'arvore'].map(k => [k, +fo.filter(f => f.tipo === k).reduce((t, f) => t + f.area_km2, 0).toFixed(2)])) } }
     const rd = p.comparado_com ? realDates(p.comparado_com, p.data, p.focos.length) : null
     const dd = Math.max(0, ago(fmtD(p.data).date))
     const ev: Ev[] = p.focos.map(f => ({ id: f.id, k: f.tipo, x: +X(f.lon).toFixed(1), y: +Y(f.lat).toFixed(1), n: 1, d: dd, st: 'obs', pl: f.local, a: f.area_km2, date: p.data, ...(p.comparado_com ? extra(f, p.comparado_com) : {}) }))

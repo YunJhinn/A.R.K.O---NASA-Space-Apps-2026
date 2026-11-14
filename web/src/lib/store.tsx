@@ -7,9 +7,14 @@ import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type 
 import { setI18n, tr } from './i18n'
 import { ago } from './util'
 import { eventAlerts } from './events'
+import { mountainAlerts, riskAlerts } from './riscos'
+
+/** colapso primeiro, depois do maior risco para o menor (mantém a ordem dentro de cada nível) */
+const ORD = { Alto: 0, 'Médio': 1, Baixo: 2 } as const
+const ordenar = (a: Alert[]) => a.map((x, i) => [x, i] as const).sort((p, q) => (p[0].ty === 'colapso' ? -1 : 0) - (q[0].ty === 'colapso' ? -1 : 0) || ORD[p[0].lvl] - ORD[q[0].lvl] || p[1] - q[1]).map(p => p[0])
 import fallbackJson from '../data/focos-fallback.json'
 import fallbackImg from '../assets/radar-fallback.jpg'
-import type { FocosAppJson } from './types'
+import type { FocosAppJson, RiscosJson } from './types'
 
 /** Onde ficam os arquivos gerados pelo pipeline (data/ na raiz do repositório). */
 export const DATA_BASE: string = import.meta.env.VITE_DATA_BASE ?? (import.meta.env.DEV ? './data/' : '../data/')
@@ -72,6 +77,7 @@ function reducer(s: State, p: Patch): State {
 export interface DataSet {
   ev: Ev[]
   alerts: Alert[]
+  riscos?: RiscosJson
   cities: Record<string, [number, number]>
   cmp: Record<string, CmpEntry>
   info: Record<string, Info>
@@ -124,6 +130,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   })
   // dados reais: índice das regiões e os dados de cada uma (carregados quando a região é aberta)
   const [realIndex, setRealIndex] = useState<RealMeta[]>([REAL_DEFAULT])
+  const [riscos, setRiscos] = useState<Record<string, RiscosJson>>({})
   const [sets, setSets] = useState<Record<string, { real: RealSet; timeline: TimelinePoint[] }>>(() => ({
     amazonia: { real: buildReal(fallbackJson as FocosAppJson, fallbackImg), timeline: [] },
   }))
@@ -148,6 +155,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setSets(x => ({ ...x, [m.id]: { real, timeline: x[m.id]?.timeline ?? [] } }))
       })
       .catch(() => {})
+    fetch(base + 'riscos.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then((d: RiscosJson | null) => { if (d?.atualizado) setRiscos(x => ({ ...x, [m.id]: d })) })
+      .catch(() => {})
     fetch(base + 'linha_tempo.json', { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : null))
       .then((d: LinhaTempoJson | null) => {
@@ -168,14 +179,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (isReal) (Object.keys(TYPES_REAL) as EvType[]).forEach(k => { types[k] = { ...types[k], ...TYPES_REAL[k] } })
     return {
       ev: isReal ? real.ev : region.ev,
-      alerts: isReal ? [...eventAlerts(realMeta.id, s.lang), ...real.alerts] : region.alerts,
+      alerts: isReal ? ordenar([...eventAlerts(realMeta.id, s.lang), ...riskAlerts(riscos[realMeta.id], s.lang), ...mountainAlerts(real.meta.montanha, real.meta.antes.data, real.meta.depois.data, s.lang), ...real.alerts]) : region.alerts,
+      riscos: isReal ? riscos[realMeta.id] : undefined,
       cities: isReal ? real.cities : region.cities,
       cmp: isReal ? real.cmp : region.cmp,
       info: { ...INFO_DEMO, ...region.info, ...real.info, ...Object.assign({}, ...timeline.map(p => p.info)) },
       img: isReal ? real.img : region.img,
       types, rd: real.rd, real, timeline, region, realMeta, realIndex,
     }
-  }, [s.src, s.region, s.lang, real, timeline, realMeta, realIndex])
+  }, [s.src, s.region, s.lang, real, timeline, realMeta, realIndex, riscos])
 
   // idioma: precisa estar pronto antes dos filhos renderizarem
   setI18n(s.lang, ds.rd)

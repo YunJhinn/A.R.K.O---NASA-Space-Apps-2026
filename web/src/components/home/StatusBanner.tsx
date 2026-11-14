@@ -17,7 +17,7 @@ export function StatusBanner() {
   else if (mid.length) title = en ? `No high alert · ${mid.length} medium` : `Nenhum alerta alto · ${mid.length} ${mid.length === 1 ? 'médio' : 'médios'}`
   else title = en ? 'No high or medium alerts' : 'Nenhum alerta alto ou médio'
   const sub = real
-    ? `${col ? t(col.m) + ' · ' : ''}${al.length} ${en ? 'alerts' : 'alertas'} · ${nv} ${en ? 'radar detections' : 'detecções do radar'} (${en ? ds.rd.aEN : ds.rd.a} → ${en ? ds.rd.bEN : ds.rd.b})`
+    ? `${col ? t(col.m) + ' · ' : ''}${al.length} ${en ? 'alerts' : 'alertas'} · ${nv} ${en ? (nv === 1 ? 'radar detection' : 'radar detections') : (nv === 1 ? 'detecção do radar' : 'detecções do radar')} (${en ? ds.rd.aEN : ds.rd.a} → ${en ? ds.rd.bEN : ds.rd.b})`
     : `${al.length} ${en ? 'alerts for the coming days · example data' : 'alertas para os próximos dias · dados de exemplo'}`
   const ver = () => {
     set({ type: 'todos', prev: true, tl: null, ...(top?.id ? { sel: top.id } : {}) })

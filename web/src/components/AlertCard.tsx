@@ -2,7 +2,7 @@
 // Alertas de colapso mostram as etapas do mesmo evento numa linha (sinal prévio → ocorrido → previsão).
 import { Fragment, useState, type CSSProperties } from 'react'
 import { useApp } from '../lib/store'
-import { COLAPSO_C, RISK, TORNADO_C } from '../lib/demo'
+import { COLAPSO_C, DESLIZ_C, GELO_C, RISK, TORNADO_C } from '../lib/demo'
 import { FASE } from '../lib/events'
 import type { Alert } from '../lib/types'
 import { rgba } from '../lib/util'
@@ -14,13 +14,13 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
   const { s, t, ds } = useApp()
   const en = s.lang === 'en'
   const [open, setOpen] = useState(false)
-  const c = a.ty === 'tornado' ? TORNADO_C : a.ty === 'colapso' ? COLAPSO_C : ds.types[a.ty].c
+  const c = a.ty === 'tornado' ? TORNADO_C : a.ty === 'colapso' ? COLAPSO_C : a.ty === 'deslizamento' ? DESLIZ_C : a.ty === 'geleira' ? GELO_C : ds.types[a.ty].c
   const [rb, rt] = RISK[a.lvl]
-  const nivel = a.fase ? `${t(a.lvl)} · ${FASE[a.fase][en ? 1 : 0]}` : t(`${a.lvl} · ${a.p}%`)
+  const nivel = a.badge ? t(a.badge) : a.fase ? `${t(a.lvl)} · ${FASE[a.fase][en ? 1 : 0]}` : t(`${a.lvl} · ${a.p}%`)
   return (
     <div className="al" style={{ '--c': c, padding: big ? 14 : undefined, ...(a.lvl === 'Alto' ? { borderColor: rgba(rb, 0.35) } : {}) } as CSSProperties}>
       <div className="r1">
-        <span className="tile" style={{ background: rgba(c, 0.12), color: c, ...(big ? { width: 40, height: 40 } : {}) }}><Icon k={a.ty === 'tornado' || a.ty === 'colapso' ? a.ty : ds.types[a.ty].ic} size={big ? 20 : 17} /></span>
+        <span className="tile" style={{ background: rgba(c, 0.12), color: c, ...(big ? { width: 40, height: 40 } : {}) }}><Icon k={a.ty === 'tornado' || a.ty === 'colapso' || a.ty === 'deslizamento' || a.ty === 'geleira' ? a.ty : ds.types[a.ty].ic} size={big ? 20 : 17} /></span>
         <div style={{ flex: 1, minWidth: 0 }}><h4>{t(a.t)}</h4><div className="loc">{t(a.l)}</div></div>
         <span className="risk" style={{ background: rgba(rb, 0.14), color: rt }}>{nivel}</span>
       </div>

@@ -6,6 +6,7 @@ import { RISK } from '../../lib/demo'
 import type { Level } from '../../lib/types'
 import { cx } from '../../lib/util'
 import { Icon } from '../Icon'
+import { riskMonitor } from '../../lib/riscos'
 
 /** Painel lateral "Alerta de riscos" (âmbar translúcido) */
 export function AlertPanel() {
@@ -36,7 +37,20 @@ export function AlertPanel() {
           </button>
         ))}
       </div>
-      <div className="cap">{t(real ? 'DETECTADO PELO RADAR' : 'PRÓXIMOS DIAS')}</div>
+      {real && (() => {
+        const mo = riskMonitor(ds.riscos, s.lang)
+        if (!mo) return null
+        const en = s.lang === 'en'
+        return (
+          <div className="mon" aria-label={en ? 'Monitored now' : 'Monitorando agora'}>
+            <b>{en ? 'MONITORING NOW' : 'MONITORANDO AGORA'}</b>
+            {mo.des && <span><i style={{ background: '#9A5B13' }} />{en ? 'Landslide' : 'Deslizamento'}: {mo.des.txt} <a href={mo.des.url} target="_blank" rel="noreferrer">{mo.des.src}</a>{mo.des.old && ' ⚠'}</span>}
+            {mo.fog && <span><i style={{ background: '#E2553A' }} />{en ? 'Fires' : 'Queimadas'}: {mo.fog.txt} <a href={mo.fog.url} target="_blank" rel="noreferrer">{mo.fog.src}</a>{mo.fog.old && ' ⚠'}</span>}
+            <span><i style={{ background: '#2563EB' }} />{en ? 'Water, forest, soil' : 'Água, floresta, solo'}: <a href="https://nisar.jpl.nasa.gov/" target="_blank" rel="noreferrer">NASA-ISRO NISAR</a></span>
+          </div>
+        )
+      })()}
+      <div className="cap">{t(real ? (ds.riscos ? 'ALERTAS' : 'DETECTADO PELO RADAR') : 'PRÓXIMOS DIAS')}</div>
       <div id="alist" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {(() => {
           const lista = ds.alerts.filter(a => !s.risk || a.lvl === s.risk)
@@ -56,7 +70,7 @@ export function AlertPanel() {
       <div className="note note2">
         <Icon k="info" size={14} className="text-acc" />
         <span>{real
-          ? <>{t(`Dados reais do NISAR: duas passagens (${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) sobre`)} {t(ds.realMeta.nome)}. {t('Fogo e previsões do tempo ainda não entram nesta versão.')}{ds.realMeta.evento ? <> {t('Esta região mostra o antes e o depois do colapso de rocha e gelo do Langtang Lirung (26 ago 2026); o ponto vermelho no mapa marca onde ele começou.')}</> : ds.realMeta.id !== 'amazonia' && <> {t('Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.')}</>}</>
+          ? <>{t(`Dados reais do NISAR: duas passagens (${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) sobre`)} {t(ds.realMeta.nome)}. {t(ds.riscos ? 'Deslizamento e queimadas são atualizados todo dia pelo robô, com dados públicos da NASA.' : 'Fogo e previsões do tempo ainda não entram nesta versão.')}{ds.realMeta.evento ? <> {t('Esta região mostra o antes e o depois do colapso de rocha e gelo do Langtang Lirung (26 ago 2026); o ponto vermelho no mapa marca onde ele começou.')}</> : ds.realMeta.id !== 'amazonia' && <> {t('Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.')}</>}</>
           : <>{t('Água, fogo, vegetação e solo vêm do radar NISAR. Ventos e tornados vêm de modelos do tempo (')}<b style={{ color: 'var(--amb2)', fontWeight: 500 }}>{t('fonte externa')}</b>).</>}</span>
       </div>
     </div>

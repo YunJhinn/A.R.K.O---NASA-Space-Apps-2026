@@ -59,3 +59,8 @@
 .home2 .chiprow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .home2 .chiprow .chips { flex: 0 1 auto; }
 .home2 .chiprow .cmode { margin-left: auto; }
+.alerts2 .mon { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #5C4413; background: rgba(255, 255, 255, .6); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+.alerts2 .mon b { font-size: 10.5px; letter-spacing: .08em; color: #7A5A20; }
+.alerts2 .mon span { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.alerts2 .mon i { width: 8px; height: 8px; border-radius: 99px; flex: none; }
+.alerts2 .mon a { color: #1D4ED8; text-decoration: underline; font-weight: 600; }

@@ -32,7 +32,8 @@ COLECAO = "NISAR_L2_GCOV_PROVISIONAL_V1"
 INICIO = "2026-06-17"                  # primeiras observações públicas calibradas
 DIAS_MIN = 45                          # "antes" precisa ser pelo menos 45 dias antes do "depois"
 FREQ = "frequencyB"                    # grade de ~80 m
-MIN_PX, MAX_POR_TIPO = 40, 25
+MIN_PX = 40                            # menor foco: 40 pixels (~0,26 km²)
+MAX_FOCOS = 25                         # no máximo 25 focos por passagem, sempre os de maior risco
 MAX_LT = 8                             # linha do tempo de uma região nova começa pelas 8 passagens mais recentes
 W_IMG, H_IMG = 1492, 1016              # tamanho da imagem de radar do app (proporção do mapa 746 × 508)
 
@@ -71,6 +72,10 @@ REGIOES = [
          par=("2026-08-19", "2026-08-31"), max_lt=12,
          evento=dict(data="2026-08-26", lon=85.527, lat=28.287,
                      nome="Colapso de rocha e gelo do Langtang Lirung"),
+         # v7: montanha = encostas de Rasuwa/Langtang/Helambu (procura material novo na encosta);
+         # zona_gelo = Himalaia alto do vale do Langtang, onde ficam as geleiras (procura gelo/neve mudando)
+         montanha=dict(oeste=85.1, leste=86.0, sul=27.9, norte=28.478),
+         zona_gelo=dict(oeste=85.3, leste=86.0, sul=28.12, norte=28.478), refazer_lt=True,
          cidades={"Katmandu": (85.32, 27.71), "Syabrubesi": (85.35, 28.16), "Dhunche": (85.30, 28.11),
                   "Rasuwagadhi": (85.38, 28.28), "Timure": (85.37, 28.25), "Langtang": (85.51, 28.22),
                   "Kyanjin Gompa": (85.57, 28.21), "Thulo Bharkhu": (85.31, 28.13), "Chilime": (85.30, 28.18),
@@ -78,7 +83,8 @@ REGIOES = [
                   "Dhading Besi": (84.89, 27.91), "Melamchi": (85.58, 27.83), "Gyirong (China)": (85.33, 28.39)}),
 ]
 # valores da região em uso (trocados por usar_regiao)
-ORBITA = BBOX_BUSCA = IMG = CIDADES = SUFIXO = None
+ORBITA = BBOX_BUSCA = IMG = CIDADES = SUFIXO = MONTANHA = ZONA_GELO = None
+MAX_MONTANHA = 10                      # no máximo 10 focos de gelo e 10 de material na encosta por passagem
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DADOS_RAIZ = os.path.join(RAIZ, "data")
@@ -181,13 +187,29 @@ def comparar(a, d):
     ok = np.isfinite(HH1) & np.isfinite(HH2) & np.isfinite(HV1) & np.isfinite(HV2)
     ok &= (HH1 > -35) & (HH2 > -35) & (HV1 > -40) & (HV2 > -40)
     ok = ndimage.binary_erosion(ok, iterations=20)
+    tr = Transformer.from_crs(a["epsg"], 4326, always_xy=True)
+    # v7: só procura mudanças dentro da área do mapa do app (antes o quadro inteiro do satélite entrava e,
+    # no Nepal, quase todos os focos caíam no Tibete, fora do mapa)
+    LON, LAT = tr.transform(*np.meshgrid(X, Y))
+    dentro = lambda b: (LON >= b["oeste"]) & (LON <= b["leste"]) & (LAT >= b["sul"]) & (LAT <= b["norte"])
+    if IMG:
+        ok &= dentro(IMG)
     regras = {
         "agua": (ok & (HH2 < -16) & (HH2 - HH1 < -4), np.abs(HH2 - HH1)),
         "solo": (ok & (HH1 < -16) & (HH2 - HH1 > 4), np.abs(HH2 - HH1)),
         "arvore": (ok & (HV1 > -16) & (HV2 - HV1 < -2.5), np.abs(HV2 - HV1)),
     }
-    tr = Transformer.from_crs(a["epsg"], 4326, always_xy=True)
-    focos = []
+    # v7 · montanha (hipóteses, só nas áreas configuradas da região):
+    #  gelo: HH e HV caem juntos 3 dB ou mais onde a superfície era clara -> neve/gelo molhado, derretendo ou removido
+    #  detritos: HH sobe 4 dB e HV sobe 2 dB -> superfície ficou mais áspera: material novo (avalanche, deslizamento)
+    if ZONA_GELO:
+        regras["gelo"] = (ok & dentro(ZONA_GELO) & (HH1 > -18) & (HH2 - HH1 < -3) & (HV2 - HV1 < -3) & ~regras["agua"][0], np.abs(HH2 - HH1))
+    if MONTANHA:
+        regras["detritos"] = (ok & dentro(MONTANHA) & (HH2 - HH1 > 4) & (HV2 - HV1 > 2), np.abs(HH2 - HH1))
+    # v7.1: junta os candidatos de todos os tipos e fica com os de MAIOR RISCO (no máximo MAX_FOCOS no total).
+    # risco = força da mudança (grau, 0-100, vem do Δ em dB) × tamanho (cresce com o log da área):
+    # uma mudança forte e grande vem antes de uma fraca ou pequena.
+    cand = []
     for tipo, (mask, delta) in regras.items():
         mask = ndimage.binary_opening(mask, iterations=1)
         lab, nlab = ndimage.label(mask)
@@ -199,15 +221,25 @@ def comparar(a, d):
         med = {n: ndimage.mean(np.nan_to_num(v), lab, idx) for n, v in
                (("hh_antes", HH1), ("hh_depois", HH2), ("hv_antes", HV1), ("hv_depois", HV2))}
         cy, cx = np.array(ndimage.center_of_mass(mask, lab, idx)).T
-        for i in np.argsort(-cnt)[:MAX_POR_TIPO]:
-            if cnt[i] < MIN_PX:
-                break
-            lon, lat = tr.transform(X[int(cx[i])], Y[int(cy[i])])
-            focos.append({"id": f"{tipo}-{len(focos)+1}", "tipo": tipo, "lon": round(lon, 4), "lat": round(lat, 4),
-                          "area_km2": round(float(cnt[i] * area_px), 2), "grau": int(min(100, round(dm[i] * 11))),
-                          "delta_db": round(float(dm[i]), 1), "local": lugar(lon, lat),
-                          **{n: round(float(v[i]), 1) for n, v in med.items()}})
-        print(f"  {tipo}: {sum(f['tipo'] == tipo for f in focos)} focos")
+        for i in np.nonzero(cnt >= MIN_PX)[0]:
+            area_km2 = float(cnt[i] * area_px)
+            grau = int(min(100, round(dm[i] * 11)))
+            cand.append(dict(tipo=tipo, i=i, cx=cx[i], cy=cy[i], area=area_km2, grau=grau, dm=float(dm[i]),
+                             med={n: float(v[i]) for n, v in med.items()},
+                             score=grau * (1 + math.log2(1 + area_km2))))
+    cand.sort(key=lambda c: -c["score"])
+    smax = cand[0]["score"] if cand else 1
+    normais = [c for c in cand if c["tipo"] not in ("gelo", "detritos")][:MAX_FOCOS]
+    montanha = [c for c in cand if c["tipo"] in ("gelo", "detritos")][:MAX_MONTANHA * 2]
+    focos = []
+    for c in normais + montanha:
+        lon, lat = tr.transform(X[int(c["cx"])], Y[int(c["cy"])])
+        focos.append({"id": f"{c['tipo']}-{len(focos)+1}", "tipo": c["tipo"], "lon": round(lon, 4), "lat": round(lat, 4),
+                      "area_km2": round(c["area"], 2), "grau": c["grau"], "delta_db": round(c["dm"], 1),
+                      "risco": int(round(100 * c["score"] / smax)), "local": lugar(lon, lat),
+                      **{n: round(v, 1) for n, v in c["med"].items()}})
+    for tipo in regras:
+        print(f"  {tipo}: {sum(f['tipo'] == tipo for f in focos)} focos (de {sum(c['tipo'] == tipo for c in cand)} candidatos)")
     lon0, lat0 = tr.transform(X[0], Y[-1]); lon1, lat1 = tr.transform(X[-1], Y[0])
     area = {"oeste": round(lon0, 3), "sul": round(lat0, 3), "leste": round(lon1, 3), "norte": round(lat1, 3)}
     return focos, area
@@ -286,7 +318,11 @@ def linha_tempo(lista):
                 focos, _ = comparar(ant, dado)
                 for f in focos:
                     f["id"] = f"{data_de(nome)}-{f['id']}"; f["data"] = ponto["data"]
+                mont = [f for f in focos if f["tipo"] in ("gelo", "detritos")]
+                focos = [f for f in focos if f["tipo"] not in ("gelo", "detritos")]
                 ponto.update(comparado_com=str(data_de(nome_ant)), focos=focos, resumo=resumo(focos))
+                if mont:
+                    ponto["montanha"] = mont
         lt["passagens"].append(ponto)
     lt["passagens"].sort(key=lambda p: p["data"])
     lt.update(fonte="NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC", orbita=ORBITA.strip("_"),
@@ -311,8 +347,9 @@ def recorte_auto(d):
 
 def usar_regiao(reg):
     """Troca a configuração em uso para a região reg."""
-    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS, MAX_LT
+    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS, MAX_LT, MONTANHA, ZONA_GELO
     ORBITA, BBOX_BUSCA, CIDADES, SUFIXO = reg["orbita"], reg["bbox"], reg["cidades"], reg["sufixo"]
+    MONTANHA, ZONA_GELO = reg.get("montanha"), reg.get("zona_gelo")
     MAX_LT = reg.get("max_lt", 8)
     DADOS = os.path.join(DADOS_RAIZ, reg["pasta"]) if reg["pasta"] else DADOS_RAIZ
     os.makedirs(DADOS, exist_ok=True)
@@ -346,6 +383,10 @@ def processar_regiao(reg, args, forcar):
                 d0 = ler(n)
                 if d0 is not None:
                     IMG = recorte_auto(d0); gravar("recorte.json", IMG); print("recorte do mapa:", IMG); break
+        if forcar and reg.get("refazer_lt"):   # v7: refaz a linha do tempo com o recorte do mapa e as regras de montanha
+            arq_lt = os.path.join(DADOS, "linha_tempo.json")
+            if os.path.exists(arq_lt):
+                os.remove(arq_lt); print("Linha do tempo será refeita do zero")
         lt_novo = linha_tempo(lista)
         if lt_novo:
             print("Linha do tempo atualizada:", len(lista), "passagens")
@@ -368,10 +409,12 @@ def processar_regiao(reg, args, forcar):
     if a is None or d is None:
         print("Par sem HH/HV, pulando."); return lt_novo, ""
     focos, area = comparar(a, d)
+    montanha = [f for f in focos if f["tipo"] in ("gelo", "detritos")]
+    focos = [f for f in focos if f["tipo"] not in ("gelo", "detritos")]
     da, dd = str(data_de(antes)), str(data_de(depois))
     out = {"fonte": "NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC",
            "antes": {"data": da, "produto": antes}, "depois": {"data": dd, "produto": depois},
-           "area": area, "focos": focos}
+           "area": area, "focos": focos} | ({"montanha": montanha} if MONTANHA or ZONA_GELO else {})
     gravar("focos.json", out)
     imagem(d, os.path.join(DADOS, "radar.jpg"))
     gravar("focos_app.json", out | {"imagem": {"arquivo": "radar.jpg", "oeste": IMG["oeste"], "leste": IMG["leste"],
@@ -446,6 +489,15 @@ def main():
         if per:
             periodos.append(f"{reg['id']} {per}")
     gravar_indice()
+    # v6: deslizamento (NASA LHASA) e queimadas (NASA FIRMS) todo dia, mesmo sem passagem nova do NISAR
+    if not args.regiao:
+        try:
+            from riscos import atualizar_riscos
+            if atualizar_riscos(REGIOES, DADOS_RAIZ):
+                novo = True
+                periodos.append("riscos " + dt.date.today().isoformat())
+        except Exception as e:
+            print("ERRO nos riscos (LHASA/FIRMS):", e)
     saida("novo", str(novo).lower())
     if periodos:
         saida("periodo", "; ".join(periodos))

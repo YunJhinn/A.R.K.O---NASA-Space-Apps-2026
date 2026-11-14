@@ -171,6 +171,8 @@ Object.assign(EN, {
   'Arraste para escolher a data': 'Drag to choose the date', 'Ver tudo': 'Show all', 'Escolher data na linha do tempo': 'Choose a date on the timeline',
   'Mostra só os focos da data escolhida': 'Shows only the detections from the chosen date',
   'Minhas regiões': 'My regions', 'Dados de exemplo': 'Example data', 'Telas': 'Screens', 'Radar Mundial': 'World Radar', 'Médio': 'Medium', 'Alto': 'High', 'Baixo': 'Low',
+  'Deslizamento e queimadas são atualizados todo dia pelo robô, com dados públicos da NASA.': 'Landslide and fire data are refreshed every day by the robot, from public NASA data.', 'Perigo de deslizamento': 'Landslide danger', 'Queimada ativa': 'Active fire',
+  'ALERTAS': 'ALERTS',
   'Semanas de exemplo': 'Example weeks', 'Passagens reais do NISAR': 'Real NISAR passes',
 })
 

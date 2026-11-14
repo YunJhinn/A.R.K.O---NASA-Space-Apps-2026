@@ -4,7 +4,7 @@ export type Src = 'demo' | 'real'
 export type Lang = 'pt' | 'en'
 export type View = 'inicio' | 'comparar' | 'celular' | 'tutoriais' | 'futuro'
 export type EvType = 'fogo' | 'agua' | 'arvore' | 'solo' | 'vento'
-export type AlertType = EvType | 'tornado' | 'colapso'
+export type AlertType = EvType | 'tornado' | 'colapso' | 'deslizamento' | 'geleira'
 export type TypeFilter = 'todos' | EvType
 export type Level = 'Alto' | 'Médio' | 'Baixo'
 export type PresetKey = '7d' | '30d' | '3m' | '6m' | '1a'
@@ -63,6 +63,20 @@ export interface Alert {
   etapas?: { fase: 'ocorrido' | 'sinal' | 'previsao'; quando: string; t: string; m: string; fontes: { src: string; url: string }[] }[]
   _x?: number
   _y?: number
+  /** texto do selo de risco no lugar de "nível · %" (ex.: "Alto · 14 focos") */
+  badge?: string
+  /** posição no mapa (alertas de fontes externas: LHASA, FIRMS) */
+  lon?: number
+  lat?: number
+}
+
+/** data[/regioes/<id>]/riscos.json · gravado pelo robô (pipeline/riscos.py) */
+export interface RiscosJson {
+  atualizado: string
+  deslizamento?: { fonte: string; url: string; data: string; max: number | null; limiares: { medio: number; alto: number }; desatualizado?: boolean
+    areas: { lon: number; lat: number; p: number; km2: number; nivel: 'Alto' | 'Médio'; lugar: string }[] }
+  fogo?: { fonte: string; url: string; janela_h: number; focos: number; desatualizado?: boolean
+    grupos: { lon: number; lat: number; n: number; frp: number; ultimo: string; nivel: 'Alto' | 'Médio' | 'Baixo'; lugar: string }[] }
 }
 
 export interface CmpEntry {
@@ -110,12 +124,17 @@ export interface FocoJson {
   hv_depois?: number
 }
 
+/** foco de montanha gravado pelo robô: tipo gelo (gelo/neve mudou) ou detritos (material novo na encosta) */
+export type FocoMontanha = Omit<FocoJson, 'tipo'> & { tipo: 'gelo' | 'detritos' }
+
 export interface FocosAppJson {
   fonte: string
   antes: { data: string; produto: string }
   depois: { data: string; produto: string }
   area: { oeste: number; sul: number; leste: number; norte: number }
   focos: FocoJson[]
+  /** v7 · regiões de montanha: gelo/neve mudando e material novo na encosta (hipóteses) */
+  montanha?: FocoMontanha[]
   imagem: { arquivo: string; oeste: number; leste: number; norte: number; sul: number; data: string }
 }
 

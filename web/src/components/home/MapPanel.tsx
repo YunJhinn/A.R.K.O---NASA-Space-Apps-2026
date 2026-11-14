@@ -52,9 +52,9 @@ export function MapPanel() {
       </div>
       <div className="chiprow">
         <div className="chips chips2" role="group" aria-label={t('Filtrar por tipo de evento')}>
-          {(['todos', 'fogo', 'agua', 'arvore', 'solo'] as const).filter(k => !(real && k === 'fogo')).map(k => {
+          {(['todos', 'fogo', 'agua', 'arvore', 'solo'] as const).filter(k => !(real && k === 'fogo' && !ds.riscos?.fogo)).map(k => {
             const on = s.type === k, col = k === 'todos' ? '#5F6670' : ds.types[k].c
-            const kv = k === 'todos' ? null : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
+            const kv = k === 'todos' ? null : real && k === 'fogo' ? { v: `${ds.riscos!.fogo!.focos} ${s.lang === 'en' ? 'spots/48h' : 'focos/48h'}`, d: '' } : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
             return (
               <button key={k} className={cx('chip', on && 'on', k === 'todos' && 'all')} aria-pressed={on} style={{ '--c': col } as CSSProperties} onClick={() => set({ type: k })}
                 title={k === 'todos' ? undefined : t(`${counts[k] ?? 0} focos`)}>
@@ -189,6 +189,27 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
               </div>
             </div>
           )
+        })()}
+        {real && (() => {
+          const pj = projector(ds.realMeta.imagem), r = ds.riscos, mt = ds.real.meta.montanha ?? []
+          const mk: { id: string; lon: number; lat: number; ic: 'fogo' | 'deslizamento' | 'geleira'; col: string; lbl: string }[] = []
+          const todos = s.type === 'todos'
+          if (todos) mt.forEach((f, i) => mk.push({ id: `m-${i}`, lon: f.lon, lat: f.lat, ic: f.tipo === 'gelo' ? 'geleira' : 'deslizamento', col: f.tipo === 'gelo' ? '#0284C7' : '#9A5B13',
+            lbl: f.tipo === 'gelo' ? (en ? 'Ice/snow changing' : 'Gelo/neve mudando') : (en ? 'New material on slope' : 'Material novo na encosta') }))
+          if (todos) r?.deslizamento?.areas.forEach((a, i) => mk.push({ id: `r-d-${i}`, lon: a.lon, lat: a.lat, ic: 'deslizamento', col: '#9A5B13', lbl: `${en ? 'Landslide danger' : 'Perigo de deslizamento'} · ${(a.p * 100).toFixed(0)}%` }))
+          if (todos || s.type === 'fogo') r?.fogo?.grupos.forEach((g, i) => mk.push({ id: `r-f-${i}`, lon: g.lon, lat: g.lat, ic: 'fogo', col: '#E2553A', lbl: `${en ? 'Fire' : 'Fogo'} · ${g.n} ${en ? 'spots' : g.n === 1 ? 'foco' : 'focos'}` }))
+          return mk.filter(m => { const x = pj.X(m.lon), y = pj.Y(m.lat); return x >= 0 && x <= MAP_W && y >= 0 && y <= MAP_H }).map(m => {
+            const on = s.sel === m.id
+            return (
+              <button key={m.id} type="button" className="absolute z-[4]" aria-label={m.lbl} title={m.lbl}
+                style={{ ...pos(pj.X(m.lon), pj.Y(m.lat)), transform: 'translate(-50%,-50%) scale(var(--iz))', width: 34, height: 34, borderRadius: 99, padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  border: `2px solid ${m.col}`, background: 'rgba(255,255,255,.92)', boxShadow: on ? `0 0 0 6px ${m.col}66` : `0 0 12px ${m.col}88`, cursor: 'pointer' }}
+                onClick={e => { e.stopPropagation(); set({ sel: on ? null : m.id }) }}>
+                <Icon k={m.ic} size={17} />
+                {on && <span style={{ position: 'absolute', ...(pj.X(m.lon) > MAP_W * 0.7 ? { right: 40 } : { left: 40 }), top: '50%', transform: 'translateY(-50%)', whiteSpace: 'nowrap', background: m.col, color: '#fff', fontSize: 11.5, fontWeight: 800, borderRadius: 6, padding: '2px 7px' }}>{m.lbl}</span>}
+              </button>
+            )
+          })
         })()}
         <Pin />
       </div>
