@@ -1,0 +1,297 @@
+{
+ "atualizado": "2026-11-14T13:43Z",
+ "deslizamento": {
+  "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
+  "url": "https://gpm.nasa.gov/landslides/projects.html",
+  "data": "2026-11-13",
+  "limiares": {
+   "medio": 0.05,
+   "alto": 0.1
+  },
+  "max": 0.1452,
+  "p90": 0.0232,
+  "areas": [
+   {
+    "lon": 92.0042,
+    "lat": 25.6042,
+    "p": 0.1452,
+    "km2": 142.6,
+    "nivel": "Alto",
+    "lugar": "Mawryngkneng · Meghalaya · Índia"
+   },
+   {
+    "lon": 92.2208,
+    "lat": 25.7959,
+    "p": 0.1056,
+    "km2": 40.0,
+    "nivel": "Alto",
+    "lugar": "Donka · Assam · Índia"
+   },
+   {
+    "lon": 91.9042,
+    "lat": 25.6876,
+    "p": 0.0885,
+    "km2": 6.2,
+    "nivel": "Médio",
+    "lugar": "Umsning · Meghalaya · Índia"
+   },
+   {
+    "lon": 92.2792,
+    "lat": 25.7626,
+    "p": 0.0795,
+    "km2": 0.8,
+    "nivel": "Médio",
+    "lugar": "Donka · Assam · Índia"
+   },
+   {
+    "lon": 91.9625,
+    "lat": 25.6626,
+    "p": 0.0785,
+    "km2": 1.5,
+    "nivel": "Médio",
+    "lugar": "Umsning · Meghalaya · Índia"
+   },
+   {
+    "lon": 92.2958,
+    "lat": 25.7126,
+    "p": 0.0777,
+    "km2": 3.1,
+    "nivel": "Médio",
+    "lugar": "Thadlaskein · Meghalaya · Índia"
+   }
+  ]
+ },
+ "fogo": {
+  "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
+  "url": "https://firms.modaps.eosdis.nasa.gov/",
+  "janela_h": 48,
+  "focos": 74,
+  "grupos": [
+   {
+    "lon": 91.1353,
+    "lat": 25.26,
+    "n": 6,
+    "frp": 29.2,
+    "ultimo": "2026-11-14T07:30Z",
+    "nivel": "Médio",
+    "lugar": "Ranikor · Meghalaya · Índia"
+   },
+   {
+    "lon": 91.3807,
+    "lat": 24.2691,
+    "n": 4,
+    "frp": 3.2,
+    "ultimo": "2026-11-12T19:49Z",
+    "nivel": "Médio",
+    "lugar": "হবিগঞ্জ · সিলেট বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 91.6451,
+    "lat": 26.2356,
+    "n": 3,
+    "frp": 17.0,
+    "ultimo": "2026-11-13T07:48Z",
+    "nivel": "Médio",
+    "lugar": "Hajo · Assam · Índia"
+   },
+   {
+    "lon": 91.5062,
+    "lat": 26.233,
+    "n": 3,
+    "frp": 13.8,
+    "ultimo": "2026-11-14T07:30Z",
+    "nivel": "Médio",
+    "lugar": "Hajo · Assam · Índia"
+   },
+   {
+    "lon": 87.9821,
+    "lat": 25.9077,
+    "n": 3,
+    "frp": 10.7,
+    "ultimo": "2026-11-12T07:24Z",
+    "nivel": "Médio",
+    "lugar": "Karandighi · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 91.2356,
+    "lat": 25.5412,
+    "n": 3,
+    "frp": 2.9,
+    "ultimo": "2026-11-12T19:49Z",
+    "nivel": "Médio",
+    "lugar": "Nongstoin · Meghalaya · Índia"
+   },
+   {
+    "lon": 87.936,
+    "lat": 25.9317,
+    "n": 2,
+    "frp": 13.4,
+    "ultimo": "2026-11-12T06:29Z",
+    "nivel": "Baixo",
+    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 92.352,
+    "lat": 25.2761,
+    "n": 2,
+    "frp": 10.5,
+    "ultimo": "2026-11-14T07:30Z",
+    "nivel": "Baixo",
+    "lugar": "Khliehriat · Meghalaya · Índia"
+   },
+   {
+    "lon": 88.1762,
+    "lat": 25.7428,
+    "n": 2,
+    "frp": 10.5,
+    "ultimo": "2026-11-14T06:46Z",
+    "nivel": "Baixo",
+    "lugar": "Raiganj · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 90.0433,
+    "lat": 24.3166,
+    "n": 2,
+    "frp": 6.6,
+    "ultimo": "2026-11-13T07:48Z",
+    "nivel": "Baixo",
+    "lugar": "a 15 km de Tangail · Bangladesh"
+   },
+   {
+    "lon": 89.8838,
+    "lat": 23.6174,
+    "n": 2,
+    "frp": 6.0,
+    "ultimo": "2026-11-13T07:05Z",
+    "nivel": "Baixo",
+    "lugar": "Faridpur · Bangladesh"
+   },
+   {
+    "lon": 88.2254,
+    "lat": 23.2824,
+    "n": 2,
+    "frp": 5.9,
+    "ultimo": "2026-11-14T06:46Z",
+    "nivel": "Baixo",
+    "lugar": "Kalna - I · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 90.4758,
+    "lat": 23.42,
+    "n": 1,
+    "frp": 9.6,
+    "ultimo": "2026-11-14T07:28Z",
+    "nivel": "Baixo",
+    "lugar": "a 14 km de Munshiganj · Bangladesh"
+   },
+   {
+    "lon": 91.8929,
+    "lat": 26.2693,
+    "n": 1,
+    "frp": 9.4,
+    "ultimo": "2026-11-13T07:07Z",
+    "nivel": "Baixo",
+    "lugar": "Sipajhar · Assam · Índia"
+   },
+   {
+    "lon": 92.3216,
+    "lat": 25.2625,
+    "n": 1,
+    "frp": 8.2,
+    "ultimo": "2026-11-14T07:30Z",
+    "nivel": "Baixo",
+    "lugar": "Khliehriat · Meghalaya · Índia"
+   },
+   {
+    "lon": 90.7798,
+    "lat": 23.6594,
+    "n": 1,
+    "frp": 6.9,
+    "ultimo": "2026-11-14T07:28Z",
+    "nivel": "Baixo",
+    "lugar": "a 29 km de Munshiganj · Bangladesh"
+   },
+   {
+    "lon": 89.8656,
+    "lat": 23.6883,
+    "n": 1,
+    "frp": 5.7,
+    "ultimo": "2026-11-13T07:48Z",
+    "nivel": "Baixo",
+    "lugar": "a 9 km de Faridpur · Bangladesh"
+   },
+   {
+    "lon": 91.6863,
+    "lat": 25.7467,
+    "n": 1,
+    "frp": 5.6,
+    "ultimo": "2026-11-13T07:05Z",
+    "nivel": "Baixo",
+    "lugar": "Mairang · Meghalaya · Índia"
+   },
+   {
+    "lon": 92.3194,
+    "lat": 25.2272,
+    "n": 1,
+    "frp": 5.5,
+    "ultimo": "2026-11-13T07:05Z",
+    "nivel": "Baixo",
+    "lugar": "Khliehriat · Meghalaya · Índia"
+   },
+   {
+    "lon": 92.3497,
+    "lat": 23.7907,
+    "n": 1,
+    "frp": 5.2,
+    "ultimo": "2026-11-14T07:28Z",
+    "nivel": "Baixo",
+    "lugar": "Zawlnuam · Mizoram · Índia"
+   },
+   {
+    "lon": 91.5438,
+    "lat": 24.9285,
+    "n": 1,
+    "frp": 5.0,
+    "ultimo": "2026-11-14T07:30Z",
+    "nivel": "Baixo",
+    "lugar": "ছাতক উপজেলা · সিলেট বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 90.1377,
+    "lat": 23.4943,
+    "n": 1,
+    "frp": 4.7,
+    "ultimo": "2026-11-13T07:05Z",
+    "nivel": "Baixo",
+    "lugar": "সদরপুর উপজেলা · Daca · Bangladeche"
+   },
+   {
+    "lon": 90.0231,
+    "lat": 23.7183,
+    "n": 1,
+    "frp": 4.5,
+    "ultimo": "2026-11-13T07:05Z",
+    "nivel": "Baixo",
+    "lugar": "a 16 km de Manikganj · Bangladesh"
+   },
+   {
+    "lon": 91.6574,
+    "lat": 26.1226,
+    "n": 1,
+    "frp": 4.3,
+    "ultimo": "2026-11-13T07:48Z",
+    "nivel": "Baixo",
+    "lugar": "Azara · Assam · Índia"
+   },
+   {
+    "lon": 90.5397,
+    "lat": 23.3786,
+    "n": 1,
+    "frp": 4.2,
+    "ultimo": "2026-11-14T07:28Z",
+    "nivel": "Baixo",
+    "lugar": "a 18 km de Munshiganj · Bangladesh"
+   }
+  ]
+ }
+}

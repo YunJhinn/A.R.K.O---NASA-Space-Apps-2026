@@ -1,0 +1,248 @@
+{
+ "atualizado": "2026-11-14T13:43Z",
+ "deslizamento": {
+  "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
+  "url": "https://gpm.nasa.gov/landslides/projects.html",
+  "data": "2026-11-13",
+  "limiares": {
+   "medio": 0.05,
+   "alto": 0.1
+  },
+  "max": 0.0053,
+  "p90": 0.0026,
+  "areas": []
+ },
+ "fogo": {
+  "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
+  "url": "https://firms.modaps.eosdis.nasa.gov/",
+  "janela_h": 48,
+  "focos": 100,
+  "grupos": [
+   {
+    "lon": -59.2174,
+    "lat": -3.978,
+    "n": 27,
+    "frp": 301.7,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Alto",
+    "lugar": "a 17 km de Nova Olinda do Norte · AM"
+   },
+   {
+    "lon": -60.2696,
+    "lat": -5.5059,
+    "n": 16,
+    "frp": 76.4,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Alto",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.9888,
+    "lat": -4.2557,
+    "n": 12,
+    "frp": 1307.9,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Alto",
+    "lugar": "Autazes · Amazonas · Brasil"
+   },
+   {
+    "lon": -59.1551,
+    "lat": -3.9856,
+    "n": 7,
+    "frp": 60.5,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Médio",
+    "lugar": "a 13 km de Nova Olinda do Norte · AM"
+   },
+   {
+    "lon": -59.9656,
+    "lat": -4.2169,
+    "n": 5,
+    "frp": 78.5,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Médio",
+    "lugar": "Autazes · Amazonas · Brasil"
+   },
+   {
+    "lon": -59.9541,
+    "lat": -4.4528,
+    "n": 4,
+    "frp": 26.5,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Médio",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.1826,
+    "lat": -5.339,
+    "n": 4,
+    "frp": 25.1,
+    "ultimo": "2026-11-13T05:10Z",
+    "nivel": "Médio",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.1257,
+    "lat": -5.3098,
+    "n": 3,
+    "frp": 27.5,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Médio",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.8416,
+    "lat": -5.0905,
+    "n": 3,
+    "frp": 23.5,
+    "ultimo": "2026-11-13T17:47Z",
+    "nivel": "Médio",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.1166,
+    "lat": -3.9858,
+    "n": 2,
+    "frp": 38.4,
+    "ultimo": "2026-11-12T17:24Z",
+    "nivel": "Médio",
+    "lugar": "a 11 km de Nova Olinda do Norte · AM"
+   },
+   {
+    "lon": -59.529,
+    "lat": -4.3114,
+    "n": 2,
+    "frp": 30.8,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Médio",
+    "lugar": "a 11 km de Borba · AM"
+   },
+   {
+    "lon": -60.1602,
+    "lat": -5.2893,
+    "n": 2,
+    "frp": 1.1,
+    "ultimo": "2026-11-12T05:31Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.9337,
+    "lat": -4.6104,
+    "n": 1,
+    "frp": 90.0,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Médio",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.0726,
+    "lat": -5.2068,
+    "n": 1,
+    "frp": 23.1,
+    "ultimo": "2026-11-13T17:47Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.336,
+    "lat": -4.0752,
+    "n": 1,
+    "frp": 14.8,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.9207,
+    "lat": -4.5779,
+    "n": 1,
+    "frp": 9.8,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.2498,
+    "lat": -5.1118,
+    "n": 1,
+    "frp": 9.6,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Baixo",
+    "lugar": "a 14 km de Novo Aripuanã · AM"
+   },
+   {
+    "lon": -59.9041,
+    "lat": -4.6171,
+    "n": 1,
+    "frp": 8.0,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.0171,
+    "lat": -5.5932,
+    "n": 1,
+    "frp": 7.4,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.0329,
+    "lat": -3.9505,
+    "n": 1,
+    "frp": 6.5,
+    "ultimo": "2026-11-12T17:24Z",
+    "nivel": "Baixo",
+    "lugar": "a 9 km de Nova Olinda do Norte · AM"
+   },
+   {
+    "lon": -59.3884,
+    "lat": -4.0316,
+    "n": 1,
+    "frp": 6.5,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.5485,
+    "lat": -4.4616,
+    "n": 1,
+    "frp": 5.4,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Baixo",
+    "lugar": "a 9 km de Borba · AM"
+   },
+   {
+    "lon": -59.911,
+    "lat": -4.4223,
+    "n": 1,
+    "frp": 5.1,
+    "ultimo": "2026-11-12T18:08Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.9815,
+    "lat": -5.1457,
+    "n": 1,
+    "frp": 5.1,
+    "ultimo": "2026-11-13T17:47Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.0146,
+    "lat": -5.1886,
+    "n": 1,
+    "frp": 1.2,
+    "ultimo": "2026-11-13T05:10Z",
+    "nivel": "Baixo",
+    "lugar": "Amazonas · Brasil"
+   }
+  ]
+ }
+}

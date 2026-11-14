@@ -16,6 +16,7 @@
     "area_km2": 0.56,
     "grau": 100,
     "delta_db": 12.0,
+    "risco": 100,
     "local": "a 45 km de Novo Aripuanã · AM",
     "hh_antes": -5.2,
     "hh_depois": -17.1,
@@ -30,40 +31,17 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -60.687,
-     -5.2795
+     -60.3862,
+     -5.1142
     ]
    },
    "properties": {
     "id": "solo-2",
     "tipo": "solo",
     "area_km2": 0.26,
-    "grau": 54,
-    "delta_db": 4.9,
-    "local": "a 38 km de Novo Aripuanã · AM",
-    "hh_antes": -16.9,
-    "hh_depois": -12.0,
-    "hv_antes": -21.0,
-    "hv_depois": -19.7,
-    "antes": "2026-09-03",
-    "depois": "2026-10-21"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -60.3862,
-     -5.1142
-    ]
-   },
-   "properties": {
-    "id": "solo-3",
-    "tipo": "solo",
-    "area_km2": 0.26,
     "grau": 65,
     "delta_db": 5.9,
+    "risco": 53,
     "local": "Novo Aripuanã · AM",
     "hh_antes": -17.8,
     "hh_depois": -12.0,
@@ -83,16 +61,42 @@
     ]
    },
    "properties": {
-    "id": "arvore-4",
+    "id": "arvore-3",
     "tipo": "arvore",
     "area_km2": 1.48,
     "grau": 34,
     "delta_db": 3.1,
+    "risco": 48,
     "local": "a 95 km de Novo Aripuanã · AM",
     "hh_antes": -7.5,
     "hh_depois": -9.1,
     "hv_antes": -14.2,
     "hv_depois": -17.2,
+    "antes": "2026-09-03",
+    "depois": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.0218,
+     -3.9772
+    ]
+   },
+   "properties": {
+    "id": "arvore-4",
+    "tipo": "arvore",
+    "area_km2": 0.84,
+    "grau": 41,
+    "delta_db": 3.7,
+    "risco": 47,
+    "local": "a 45 km de Careiro · AM",
+    "hh_antes": -7.5,
+    "hh_depois": -9.8,
+    "hv_antes": -13.9,
+    "hv_depois": -17.6,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -112,6 +116,7 @@
     "area_km2": 1.11,
     "grau": 37,
     "delta_db": 3.3,
+    "risco": 47,
     "local": "a 101 km de Novo Aripuanã · AM",
     "hh_antes": -7.6,
     "hh_depois": -9.4,
@@ -126,45 +131,22 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -60.0218,
-     -3.9772
+     -60.687,
+     -5.2795
     ]
    },
    "properties": {
-    "id": "arvore-6",
-    "tipo": "arvore",
-    "area_km2": 0.84,
-    "grau": 41,
-    "delta_db": 3.7,
-    "local": "a 45 km de Careiro · AM",
-    "hh_antes": -7.5,
-    "hh_depois": -9.8,
-    "hv_antes": -13.9,
-    "hv_depois": -17.6,
-    "antes": "2026-09-03",
-    "depois": "2026-10-21"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -60.308,
-     -5.1891
-    ]
-   },
-   "properties": {
-    "id": "arvore-7",
-    "tipo": "arvore",
-    "area_km2": 0.29,
-    "grau": 33,
-    "delta_db": 3.0,
-    "local": "a 11 km de Novo Aripuanã · AM",
-    "hh_antes": -5.2,
-    "hh_depois": -7.2,
-    "hv_antes": -13.3,
-    "hv_depois": -16.3,
+    "id": "solo-6",
+    "tipo": "solo",
+    "area_km2": 0.26,
+    "grau": 54,
+    "delta_db": 4.9,
+    "risco": 44,
+    "local": "a 38 km de Novo Aripuanã · AM",
+    "hh_antes": -16.9,
+    "hh_depois": -12.0,
+    "hv_antes": -21.0,
+    "hv_depois": -19.7,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -179,11 +161,12 @@
     ]
    },
    "properties": {
-    "id": "arvore-8",
+    "id": "arvore-7",
     "tipo": "arvore",
     "area_km2": 0.28,
     "grau": 36,
     "delta_db": 3.3,
+    "risco": 30,
     "local": "a 112 km de Novo Aripuanã · AM",
     "hh_antes": -7.4,
     "hh_depois": -7.2,
@@ -203,16 +186,42 @@
     ]
    },
    "properties": {
-    "id": "arvore-9",
+    "id": "arvore-8",
     "tipo": "arvore",
     "area_km2": 0.28,
     "grau": 34,
     "delta_db": 3.1,
+    "risco": 28,
     "local": "a 96 km de Novo Aripuanã · AM",
     "hh_antes": -8.0,
     "hh_depois": -8.6,
     "hv_antes": -13.6,
     "hv_depois": -16.7,
+    "antes": "2026-09-03",
+    "depois": "2026-10-21"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -60.308,
+     -5.1891
+    ]
+   },
+   "properties": {
+    "id": "arvore-9",
+    "tipo": "arvore",
+    "area_km2": 0.29,
+    "grau": 33,
+    "delta_db": 3.0,
+    "risco": 27,
+    "local": "a 11 km de Novo Aripuanã · AM",
+    "hh_antes": -5.2,
+    "hh_depois": -7.2,
+    "hv_antes": -13.3,
+    "hv_depois": -16.3,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -232,6 +241,7 @@
     "area_km2": 0.26,
     "grau": 32,
     "delta_db": 3.0,
+    "risco": 26,
     "local": "a 101 km de Novo Aripuanã · AM",
     "hh_antes": -8.0,
     "hh_depois": -9.4,

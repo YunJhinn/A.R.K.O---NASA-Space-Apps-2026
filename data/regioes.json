@@ -66,7 +66,7 @@
   },
   "antes": "2026-08-28",
   "depois": "2026-10-15",
-  "focos": 34,
+  "focos": 25,
   "linha_tempo": true,
   "cidades": {
    "Porto Alegre": [
@@ -156,7 +156,7 @@
   },
   "antes": "2026-08-29",
   "depois": "2026-10-16",
-  "focos": 43,
+  "focos": 25,
   "linha_tempo": true,
   "cidades": {
    "Daca": [
@@ -238,7 +238,7 @@
   },
   "antes": "2026-08-19",
   "depois": "2026-08-31",
-  "focos": 40,
+  "focos": 1,
   "linha_tempo": true,
   "cidades": {
    "Katmandu": [

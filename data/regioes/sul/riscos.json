@@ -1,0 +1,248 @@
+{
+ "atualizado": "2026-11-14T13:43Z",
+ "deslizamento": {
+  "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
+  "url": "https://gpm.nasa.gov/landslides/projects.html",
+  "data": "2026-11-13",
+  "limiares": {
+   "medio": 0.05,
+   "alto": 0.1
+  },
+  "max": 0.0202,
+  "p90": 0.0082,
+  "areas": []
+ },
+ "fogo": {
+  "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
+  "url": "https://firms.modaps.eosdis.nasa.gov/",
+  "janela_h": 48,
+  "focos": 98,
+  "grupos": [
+   {
+    "lon": -51.526,
+    "lat": -30.1369,
+    "n": 22,
+    "frp": 359.2,
+    "ultimo": "2026-11-13T05:18Z",
+    "nivel": "Alto",
+    "lugar": "a 11 km de Eldorado do Sul · RS"
+   },
+   {
+    "lon": -51.1763,
+    "lat": -29.814,
+    "n": 9,
+    "frp": 14.9,
+    "ultimo": "2026-11-14T04:57Z",
+    "nivel": "Médio",
+    "lugar": "São Leopoldo · RS"
+   },
+   {
+    "lon": -51.066,
+    "lat": -29.5089,
+    "n": 6,
+    "frp": 111.7,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Médio",
+    "lugar": "a 20 km de Novo Hamburgo · RS"
+   },
+   {
+    "lon": -50.1186,
+    "lat": -28.7721,
+    "n": 4,
+    "frp": 21.1,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Médio",
+    "lugar": "São José dos Ausentes · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.6267,
+    "lat": -27.5688,
+    "n": 3,
+    "frp": 26.0,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Médio",
+    "lugar": "Santa Catarina · Brasil"
+   },
+   {
+    "lon": -50.1304,
+    "lat": -28.8765,
+    "n": 2,
+    "frp": 28.3,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.468,
+    "lat": -29.5306,
+    "n": 2,
+    "frp": 28.1,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Baixo",
+    "lugar": "São Francisco de Paula · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.9491,
+    "lat": -29.5381,
+    "n": 2,
+    "frp": 25.3,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Baixo",
+    "lugar": "a 21 km de Taquara · RS"
+   },
+   {
+    "lon": -50.028,
+    "lat": -29.7513,
+    "n": 2,
+    "frp": 19.1,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Baixo",
+    "lugar": "Capão da Canoa · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.9137,
+    "lat": -28.3128,
+    "n": 2,
+    "frp": 14.4,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Baixo",
+    "lugar": "Vacaria · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.6037,
+    "lat": -29.566,
+    "n": 2,
+    "frp": 12.9,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "lugar": "a 19 km de Taquara · RS"
+   },
+   {
+    "lon": -51.9555,
+    "lat": -29.4879,
+    "n": 2,
+    "frp": 7.7,
+    "ultimo": "2026-11-12T17:17Z",
+    "nivel": "Baixo",
+    "lugar": "Estrela · RS"
+   },
+   {
+    "lon": -51.1771,
+    "lat": -29.777,
+    "n": 2,
+    "frp": 5.8,
+    "ultimo": "2026-11-14T04:57Z",
+    "nivel": "Baixo",
+    "lugar": "São Leopoldo · RS"
+   },
+   {
+    "lon": -51.7424,
+    "lat": -30.4541,
+    "n": 2,
+    "frp": 5.4,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.0783,
+    "lat": -29.2448,
+    "n": 1,
+    "frp": 16.9,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "lugar": "a 27 km de Lajeado · RS"
+   },
+   {
+    "lon": -51.6905,
+    "lat": -29.6616,
+    "n": 1,
+    "frp": 15.5,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "lugar": "a 23 km de Montenegro · RS"
+   },
+   {
+    "lon": -51.5279,
+    "lat": -29.4322,
+    "n": 1,
+    "frp": 10.4,
+    "ultimo": "2026-11-12T17:17Z",
+    "nivel": "Baixo",
+    "lugar": "a 29 km de Montenegro · RS"
+   },
+   {
+    "lon": -50.3049,
+    "lat": -28.8272,
+    "n": 1,
+    "frp": 10.3,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Baixo",
+    "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.8634,
+    "lat": -29.6596,
+    "n": 1,
+    "frp": 10.0,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Baixo",
+    "lugar": "a 20 km de Estrela · RS"
+   },
+   {
+    "lon": -52.1927,
+    "lat": -29.6279,
+    "n": 1,
+    "frp": 9.8,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Baixo",
+    "lugar": "Venâncio Aires · RS"
+   },
+   {
+    "lon": -51.6483,
+    "lat": -29.487,
+    "n": 1,
+    "frp": 9.6,
+    "ultimo": "2026-11-12T17:17Z",
+    "nivel": "Baixo",
+    "lugar": "a 29 km de Montenegro · RS"
+   },
+   {
+    "lon": -50.6247,
+    "lat": -29.6961,
+    "n": 1,
+    "frp": 8.3,
+    "ultimo": "2026-11-13T17:43Z",
+    "nivel": "Baixo",
+    "lugar": "a 16 km de Taquara · RS"
+   },
+   {
+    "lon": -50.5301,
+    "lat": -28.8143,
+    "n": 1,
+    "frp": 8.3,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.4962,
+    "lat": -29.4274,
+    "n": 1,
+    "frp": 7.9,
+    "ultimo": "2026-11-12T17:17Z",
+    "nivel": "Baixo",
+    "lugar": "a 29 km de Montenegro · RS"
+   },
+   {
+    "lon": -50.9562,
+    "lat": -28.8128,
+    "n": 1,
+    "frp": 6.5,
+    "ultimo": "2026-11-13T16:58Z",
+    "nivel": "Baixo",
+    "lugar": "Caxias do Sul · Rio Grande do Sul · Brasil"
+   }
+  ]
+ }
+}
