@@ -54,7 +54,7 @@ export const SCI = {
     ['Dados provisórios: os dados calibrados do NISAR foram liberados em 20 de julho de 2026, para observações a partir de 17 de junho de 2026 (coleção “PROVISIONAL”, ainda em validação).', 'Provisional data: calibrated NISAR data were released on 20 July 2026, for observations from 17 June 2026 (“PROVISIONAL” collection, still being validated).'],
     ['Usamos a grade de 80 m por pixel (frequência B do GCOV) e só contamos focos com pelo menos 40 pixels (≈ 0,26 km²): mudanças menores não aparecem.', 'We use the 80 m grid (GCOV frequency B) and only count detections of at least 40 pixels (≈ 0.26 km²): smaller changes do not show.'],
     ['Chuva, vento e orvalho mudam o sinal por algumas horas e podem gerar falsos focos.', 'Rain, wind and dew change the signal for a few hours and can create false detections.'],
-    ['Mostramos no máximo 25 focos por tipo e por passagem, os maiores.', 'We show at most 25 detections per type and per pass, the largest ones.'],
+    ['Guardamos no máximo 25 focos por passagem, sempre os de maior risco (mudança mais forte e área maior).', 'We keep at most 25 detections per pass, always the riskiest ones (strongest change and largest area).'],
     ['O radar mede a mudança da superfície, não a causa: as possíveis causas vêm da física do sinal e devem ser confirmadas com imagem óptica (botão Worldview) ou com quem está no local.', 'Radar measures the surface change, not its cause: possible causes come from the physics of the signal and must be confirmed with an optical image (Worldview button) or people on site.'],
   ] as Bi[],
   future: [

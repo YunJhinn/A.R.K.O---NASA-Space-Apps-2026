@@ -18,7 +18,7 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
     ['grafico', 'Comparar períodos', () => go('comparar'), s.view === 'comparar'],
     ['celular', 'Versão celular', () => go('celular'), s.view === 'celular'],
     ['radar', 'Aplicações futuras', () => go('futuro'), s.view === 'futuro'],
-    ['play', 'Tutoriais', () => go('tutoriais'), s.view === 'tutoriais'],
+    ['play', 'Como usar', () => set({ ob: true, obStep: 0 }), false],
   ]
   return (
     <aside className={cx('side side2', open && 'open')} aria-label={t('Menu principal')}>

@@ -2,18 +2,19 @@ import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 import { useApp } from '../lib/store'
 import { cx } from '../lib/util'
 import { Icon } from './Icon'
+import { USOS } from '../lib/usos'
 import hero from '../assets/hero.webp'
 import demoMap from '../assets/map-demo.jpg'
 
-type Art = 'radar' | 'dados' | 'regiao' | 'periodo' | 'mapa' | 'linha' | 'alertas' | 'comparar' | 'favoritos' | 'perfil'
+type Art = 'radar' | 'dados' | 'exemplo' | 'quem' | 'regiao' | 'periodo' | 'mapa' | 'linha' | 'alertas' | 'comparar' | 'favoritos' | 'perfil'
 interface Step { art: Art; pt: [string, string, string[]]; en: [string, string, string[]] }
 
 // Primeiro acesso: um passo por parte importante do sistema (título, texto, dicas rápidas)
 const OB: Step[] = [
   {
     art: 'radar',
-    pt: ['Bem-vindo ao A.R.K.O', 'Usamos o radar do satélite NISAR, da NASA e da ISRO, que enxerga o chão de dia, de noite e através das nuvens, e transformamos esse sinal em alertas, mapas e comparações simples.', ['Em 1 minuto você conhece cada parte da tela.', 'Pode pular quando quiser: tudo fica explicado na aba Tutoriais, no menu.']],
-    en: ['Welcome to A.R.K.O', 'We use the radar of the NISAR satellite, from NASA and ISRO, which sees the ground by day, by night and through clouds, and turn that signal into simple alerts, maps and comparisons.', ['In 1 minute you will know every part of the screen.', 'Skip any time: everything is explained in the Tutorials tab, in the menu.']],
+    pt: ['Bem-vindo ao A.R.K.O', 'Usamos o radar do satélite NISAR, da NASA e da ISRO, que enxerga o chão de dia, de noite e através das nuvens, e transformamos esse sinal em alertas, mapas e comparações simples.', ['Em 1 minuto você conhece cada parte da tela.', 'Pode pular quando quiser e rever depois em “Como usar”, no menu.']],
+    en: ['Welcome to A.R.K.O', 'We use the radar of the NISAR satellite, from NASA and ISRO, which sees the ground by day, by night and through clouds, and turn that signal into simple alerts, maps and comparisons.', ['In 1 minute you will know every part of the screen.', 'Skip any time and see it again under “How to use”, in the menu.']],
   },
   {
     art: 'dados',
@@ -21,24 +22,24 @@ const OB: Step[] = [
     en: ['Real data only', 'Everything you see comes from NASA satellites: the NISAR radar (water, vegetation, soil, ice), NASA LHASA (rain-triggered landslide danger) and NASA FIRMS (heat spots).', ['Data updates by itself every day, with a robot.', 'Anything that is a hypothesis is marked as one.']],
   },
   {
+    art: 'exemplo',
+    pt: ['Um exemplo de uso, em 4 passos', 'Imagine que você é da Defesa Civil no Sul do Brasil:', ['1. A faixa do topo responde: há perigo agora? Onde? E traz uma sugestão de resposta.', '2. Em “Ver no mapa”, a ficha do ponto mostra a causa provável, os dados e o sinal do radar.', '3. A aba Previsão cruza radar, chuva e fogo e mostra o que pode acontecer.', '4. Em “Comparar períodos”, você vê o que mudou ao longo do tempo e por quê.']],
+    en: ['A usage example, in 4 steps', 'Imagine you work for civil defense in Southern Brazil:', ['1. The top banner answers: is there danger now? Where? And it gives a suggested response.', '2. In “See on map”, the point card shows the likely cause, the data and the radar signal.', '3. The Forecast tab crosses radar, rain and fire and shows what may happen.', '4. In “Compare periods”, you see what changed over time and why.']],
+  },
+  {
+    art: 'quem',
+    pt: ['Quem pode usar, e como', 'O A.R.K.O é aberto e serve a quem precisa decidir, ensinar ou se proteger:', []],
+    en: ['Who can use it, and how', 'A.R.K.O is open and serves anyone who needs to decide, teach or stay safe:', []],
+  },
+  {
     art: 'regiao',
     pt: ['Escolha a região ou busque um lugar', 'Os dados reais cobrem o rio Madeira (AM), Porto Alegre e o vale do Taquari (RS), Daca e o rio Jamuna, em Bangladesh, e o vale do Langtang, no Nepal, onde houve o colapso de 26 de agosto.', ['Troque de região em REGIÃO, no menu lateral.', 'Ou use a lupa no topo da tela para buscar qualquer cidade ou rio do mundo: se houver dados ali, o app abre a região e marca o lugar no mapa.']],
     en: ['Pick a region or search a place', 'Real data covers the Madeira River (AM), Porto Alegre and the Taquari valley (RS), Dhaka and the Jamuna river in Bangladesh, and the Langtang valley in Nepal, site of the 26 August collapse.', ['Switch regions under REGION, in the side menu.', 'Or use the magnifier at the top to search any city or river in the world: if there is data there, the app opens the region and marks the place on the map.']],
   },
   {
-    art: 'periodo',
-    pt: ['Escolha o período', 'Painel, mapa e alertas mostram só o que aconteceu no intervalo escolhido.', ['Use 7 dias, 30 dias, 3 meses, 6 meses ou 1 ano, ou escolha datas exatas no botão de calendário.', 'Para dados reais, 30 dias ou mais funciona melhor: o NISAR passa a cada ~12 dias.']],
-    en: ['Pick the period', 'Panel, map and alerts show only what happened in the chosen span.', ['Use 7 days, 30 days, 3 months, 6 months or 1 year, or pick exact dates with the calendar button.', 'For real data, 30 days or more works best: NISAR passes about every 12 days.']],
-  },
-  {
     art: 'mapa',
     pt: ['Leia o mapa de mudanças', 'Cada ícone é um foco: um lugar onde o radar viu o chão mudar.', ['Filtre por tipo nos botões acima do mapa.', 'Clique em um foco para ver o que mudou, quando e o tamanho da área.', 'O botão LEGENDA, no canto do mapa, explica cada ícone.']],
     en: ['Read the change map', 'Each icon is a detection: a place where the radar saw the ground change.', ['Filter by type with the buttons above the map.', 'Click a detection to see what changed, when and the area size.', 'The LEGEND button in the map corner explains each icon.']],
-  },
-  {
-    art: 'linha',
-    pt: ['Navegue pela linha do tempo', 'Embaixo do mapa, cada barra é uma passagem do satélite. A altura mostra quantos focos ela encontrou.', ['“Uma data”: clique numa barra para ver só aquela passagem.', '“Período”: clique no início e no fim (ou arraste) para juntar várias.', 'Aperte ▶ para animar as mudanças ao longo do tempo.']],
-    en: ['Move through the timeline', 'Below the map, each bar is a satellite pass. Its height shows how many detections it found.', ['“One date”: click a bar to see only that pass.', '“Period”: click the start and the end (or drag) to join several.', 'Press ▶ to animate the changes over time.']],
   },
   {
     art: 'alertas',
@@ -49,11 +50,6 @@ const OB: Step[] = [
     art: 'comparar',
     pt: ['Compare dois momentos', 'Em “Comparar períodos”, o mesmo mapa mostra o antes (A) e o depois (B).', ['Escolha o tipo de mudança, as duas datas e a região (ou busque pela lupa).', 'Arraste a barra azul sobre o mapa para revelar a diferença.', 'O resumo ao lado explica a mudança em uma frase.']],
     en: ['Compare two moments', 'In “Compare periods”, the same map shows before (A) and after (B).', ['Pick the type of change, the two dates and the region (or search with the magnifier).', 'Drag the blue bar over the map to reveal the difference.', 'The summary beside it explains the change in one sentence.']],
-  },
-  {
-    art: 'favoritos',
-    pt: ['Guarde suas regiões', 'Clique em “☆ Favoritar região” no painel azul. Ela aparece em MINHAS REGIÕES, no menu lateral.', ['★ Favoritas: o que você guardou.', '🕘 Recentes: o que você abriu ou buscou por último.', 'Dúvidas? Abra a aba Tutoriais no menu: lá tem um passo a passo de cada parte.']],
-    en: ['Save your regions', 'Click “☆ Save region” on the blue panel. It shows up under MY REGIONS, in the side menu.', ['★ Favorites: what you saved.', '🕘 Recent: what you opened or searched last.', 'Questions? Open the Tutorials tab in the menu: it has a step-by-step for every part.']],
   },
   {
     art: 'perfil',
@@ -89,12 +85,19 @@ export function Onboarding() {
     document.addEventListener('keydown', key, true); return () => document.removeEventListener('keydown', key, true)
   }, [])
   if (!s.ob) return null
-  const real = s.src === 'real'
-  const img = st.art === 'radar' ? hero : st.art === 'dados' || st.art === 'regiao' || st.art === 'comparar' ? ds.real.img : demoMap
+  const img = st.art === 'radar' ? hero : st.art === 'dados' || st.art === 'regiao' || st.art === 'comparar' || st.art === 'exemplo' || st.art === 'quem' ? ds.real.img : demoMap
 
   // Desenho de cada passo (por cima da imagem)
   const overlays: Partial<Record<Art, ReactNode>> = {
-    dados: <div style={center} className="seg"><button className={cx(!real && 'on')}>{t('Exemplo')}</button><button className={cx(real && 'on')}>{t('NISAR real')}</button></div>,
+    dados: <div style={center} className="flex flex-wrap justify-center gap-1.5">{[chip('radar', 'NASA-ISRO NISAR', '#2563EB'), chip('deslizamento', 'NASA LHASA', '#9A5B13'), chip('fogo', 'NASA FIRMS', '#E2553A')]}</div>,
+    exemplo: (
+      <div style={{ ...center, width: 340 }} className="flex flex-col gap-1.5">
+        {[['sino', en ? 'Danger now · suggested response' : 'Perigo agora · sugestão de resposta', '#D92D20'], ['alvo', en ? 'Point card: cause, data, radar' : 'Ficha: causa, dados, radar', '#2563EB'], ['radar', en ? 'Forecast: crossed sources' : 'Previsão: fontes cruzadas', '#7C3AED'], ['grafico', en ? 'Compare: what changed and why' : 'Comparar: o que mudou e por quê', '#2E9E5B']].map(([ic, l, c], n) => (
+          <div key={l} className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-[13px] font-bold shadow" style={{ color: '#1A1D23', borderLeft: `4px solid ${c}` }}><span style={{ color: c }}>{n + 1}</span><Icon k={ic} size={15} />{l}</div>
+        ))}
+      </div>
+    ),
+    quem: <div style={{ ...center, width: 360 }} className="grid grid-cols-2 gap-1.5">{USOS.map(u => chip(u.ic, u.quem[en ? 1 : 0], '#1E2A3A'))}</div>,
     periodo: <div style={{ ...center, whiteSpace: 'nowrap' }} className="seg">{['7 dias', '30 dias', '3 meses', '6 meses'].map(x => <button key={x} className={cx(x === '30 dias' && 'on')}>{t(x)}</button>)}</div>,
     regiao: (
       <div style={{ ...center, width: 330 }} className="flex flex-col gap-2">
@@ -154,6 +157,11 @@ export function Onboarding() {
             </ul>
           )}
           <div>
+            {st.art === 'quem' && (
+              <div className="flex max-h-[190px] flex-col gap-1.5 overflow-y-auto pr-1">
+                {USOS.map(u => <div key={u.quem[0]} className="text-[12.5px] leading-snug"><b>{u.quem[en ? 1 : 0]}:</b> {u.exemplo[en ? 1 : 0]}</div>)}
+              </div>
+            )}
             {st.art === 'perfil' && (
               <div className="prof">
                 {[['gestor', 'Gestão e Defesa Civil', 'Alertas e riscos primeiro'], ['prof', 'Educação', 'Comparar períodos e explicar'], ['pub', 'Curiosidade', 'Explorar o mapa']].map(([k, h, d]) => (
@@ -165,7 +173,6 @@ export function Onboarding() {
         </div>
         <div className="obf">
           <button className="skip" onClick={close}>{t('Pular')}</button>
-          {i === OB.length - 1 && <button className="skip" onClick={() => { set({ ob: false }); go('tutoriais') }}>{en ? 'Open tutorials' : 'Abrir tutoriais'}</button>}
           <span style={{ flex: 1 }} />
           <button className="btn" style={{ visibility: i ? 'visible' : 'hidden' }} onClick={() => set({ obStep: Math.max(0, i - 1) })}>{t('Voltar')}</button>
           <button className="btn pri" ref={next} onClick={() => (i < OB.length - 1 ? set({ obStep: i + 1 }) : close())}>{t(i === OB.length - 1 ? 'Começar' : 'Próximo')}</button>

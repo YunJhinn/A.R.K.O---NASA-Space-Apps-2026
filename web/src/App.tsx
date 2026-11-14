@@ -8,7 +8,6 @@ import { Home } from './components/home/Home'
 import { Compare } from './components/compare/Compare'
 import { PhoneView } from './components/phone/Phone'
 import { Onboarding } from './components/Onboarding'
-import { Tutorials } from './components/Tutorials'
 import { Future } from './components/Future'
 
 function Screens() {
@@ -29,7 +28,6 @@ function Screens() {
           {s.view === 'inicio' && <Home />}
           {s.view === 'comparar' && <Compare />}
           {s.view === 'celular' && <PhoneView />}
-          {s.view === 'tutoriais' && <Tutorials />}
           {s.view === 'futuro' && <Future />}
         </main>
       </div>

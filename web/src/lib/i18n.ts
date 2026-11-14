@@ -177,6 +177,7 @@ Object.assign(EN, {
   'início': 'start',
   'Porto Alegre e vale do Taquari': 'Porto Alegre and Taquari valley', 'Daca e rio Jamuna': 'Dhaka and Jamuna river', 'Langtang e rio Trishuli': 'Langtang and Trishuli river',
   'Abrir menu': 'Open menu',
+  'Como usar': 'How to use',
   'Semanas de exemplo': 'Example weeks', 'Passagens reais do NISAR': 'Real NISAR passes',
 })
 
