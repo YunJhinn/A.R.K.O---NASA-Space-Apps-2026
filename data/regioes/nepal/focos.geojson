@@ -1,0 +1,965 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.5579,
+     28.9639
+    ]
+   },
+   "properties": {
+    "id": "agua-1",
+    "tipo": "agua",
+    "area_km2": 8.07,
+    "grau": 54,
+    "delta_db": 4.9,
+    "local": "a 68 km de Gyirong (China) · Nepal",
+    "hh_antes": -16.4,
+    "hh_depois": -21.3,
+    "hv_antes": -24.8,
+    "hv_depois": -25.7,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.7408,
+     29.6472
+    ]
+   },
+   "properties": {
+    "id": "agua-2",
+    "tipo": "agua",
+    "area_km2": 0.45,
+    "grau": 52,
+    "delta_db": 4.7,
+    "local": "a 145 km de Gyirong (China) · Nepal",
+    "hh_antes": -15.2,
+    "hh_depois": -19.9,
+    "hv_antes": -25.9,
+    "hv_depois": -26.5,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.527,
+     28.8242
+    ]
+   },
+   "properties": {
+    "id": "agua-3",
+    "tipo": "agua",
+    "area_km2": 0.39,
+    "grau": 51,
+    "delta_db": 4.6,
+    "local": "a 52 km de Gyirong (China) · Nepal",
+    "hh_antes": -15.7,
+    "hh_depois": -20.3,
+    "hv_antes": -24.4,
+    "hv_depois": -25.4,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.7293,
+     29.8363
+    ]
+   },
+   "properties": {
+    "id": "solo-4",
+    "tipo": "solo",
+    "area_km2": 28.72,
+    "grau": 65,
+    "delta_db": 5.9,
+    "local": "a 166 km de Gyirong (China) · Nepal",
+    "hh_antes": -21.9,
+    "hh_depois": -16.0,
+    "hv_antes": -26.7,
+    "hv_depois": -25.9,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.5816,
+     28.9093
+    ]
+   },
+   "properties": {
+    "id": "solo-5",
+    "tipo": "solo",
+    "area_km2": 4.56,
+    "grau": 55,
+    "delta_db": 5.0,
+    "local": "a 63 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.9,
+    "hh_depois": -16.0,
+    "hv_antes": -25.5,
+    "hv_depois": -25.3,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.6948,
+     29.9406
+    ]
+   },
+   "properties": {
+    "id": "solo-6",
+    "tipo": "solo",
+    "area_km2": 3.85,
+    "grau": 61,
+    "delta_db": 5.5,
+    "local": "a 176 km de Gyirong (China) · Nepal",
+    "hh_antes": -22.8,
+    "hh_depois": -17.2,
+    "hv_antes": -26.7,
+    "hv_depois": -26.3,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.6551,
+     28.8097
+    ]
+   },
+   "properties": {
+    "id": "solo-7",
+    "tipo": "solo",
+    "area_km2": 1.92,
+    "grau": 58,
+    "delta_db": 5.3,
+    "local": "a 56 km de Gyirong (China) · Nepal",
+    "hh_antes": -21.4,
+    "hh_depois": -16.1,
+    "hv_antes": -25.8,
+    "hv_depois": -25.2,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.6596,
+     28.8429
+    ]
+   },
+   "properties": {
+    "id": "solo-8",
+    "tipo": "solo",
+    "area_km2": 1.29,
+    "grau": 53,
+    "delta_db": 4.8,
+    "local": "a 60 km de Gyirong (China) · Nepal",
+    "hh_antes": -21.2,
+    "hh_depois": -16.4,
+    "hv_antes": -25.7,
+    "hv_depois": -25.1,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.5948,
+     28.8401
+    ]
+   },
+   "properties": {
+    "id": "solo-9",
+    "tipo": "solo",
+    "area_km2": 1.1,
+    "grau": 52,
+    "delta_db": 4.7,
+    "local": "a 56 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.5,
+    "hh_depois": -15.8,
+    "hv_antes": -25.4,
+    "hv_depois": -25.2,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.7019,
+     29.7775
+    ]
+   },
+   "properties": {
+    "id": "solo-10",
+    "tipo": "solo",
+    "area_km2": 0.6,
+    "grau": 49,
+    "delta_db": 4.4,
+    "local": "a 159 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.6,
+    "hh_depois": -16.2,
+    "hv_antes": -26.8,
+    "hv_depois": -26.1,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.701,
+     29.7847
+    ]
+   },
+   "properties": {
+    "id": "solo-11",
+    "tipo": "solo",
+    "area_km2": 0.6,
+    "grau": 53,
+    "delta_db": 4.8,
+    "local": "a 159 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.7,
+    "hh_depois": -15.9,
+    "hv_antes": -26.6,
+    "hv_depois": -26.0,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.6934,
+     29.7969
+    ]
+   },
+   "properties": {
+    "id": "solo-12",
+    "tipo": "solo",
+    "area_km2": 0.59,
+    "grau": 52,
+    "delta_db": 4.8,
+    "local": "a 161 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.8,
+    "hh_depois": -16.0,
+    "hv_antes": -26.6,
+    "hv_depois": -26.0,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.639,
+     28.8506
+    ]
+   },
+   "properties": {
+    "id": "solo-13",
+    "tipo": "solo",
+    "area_km2": 0.44,
+    "grau": 49,
+    "delta_db": 4.5,
+    "local": "a 59 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.2,
+    "hh_depois": -15.7,
+    "hv_antes": -25.6,
+    "hv_depois": -25.4,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.7091,
+     29.9256
+    ]
+   },
+   "properties": {
+    "id": "solo-14",
+    "tipo": "solo",
+    "area_km2": 0.38,
+    "grau": 55,
+    "delta_db": 5.0,
+    "local": "a 175 km de Gyirong (China) · Nepal",
+    "hh_antes": -22.8,
+    "hh_depois": -17.8,
+    "hv_antes": -26.8,
+    "hv_depois": -26.2,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.6598,
+     28.822
+    ]
+   },
+   "properties": {
+    "id": "solo-15",
+    "tipo": "solo",
+    "area_km2": 0.3,
+    "grau": 52,
+    "delta_db": 4.7,
+    "local": "a 58 km de Gyirong (China) · Nepal",
+    "hh_antes": -20.7,
+    "hh_depois": -16.0,
+    "hv_antes": -25.6,
+    "hv_depois": -25.2,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9687,
+     29.1113
+    ]
+   },
+   "properties": {
+    "id": "arvore-16",
+    "tipo": "arvore",
+    "area_km2": 6.26,
+    "grau": 37,
+    "delta_db": 3.4,
+    "local": "a 155 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.2,
+    "hh_depois": -5.3,
+    "hv_antes": -13.4,
+    "hv_depois": -16.8,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0351,
+     29.1763
+    ]
+   },
+   "properties": {
+    "id": "arvore-17",
+    "tipo": "arvore",
+    "area_km2": 3.08,
+    "grau": 34,
+    "delta_db": 3.1,
+    "local": "a 153 km de Gyirong (China) · Nepal",
+    "hh_antes": -0.7,
+    "hh_depois": -3.0,
+    "hv_antes": -10.3,
+    "hv_depois": -13.4,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9964,
+     29.2043
+    ]
+   },
+   "properties": {
+    "id": "arvore-18",
+    "tipo": "arvore",
+    "area_km2": 2.65,
+    "grau": 37,
+    "delta_db": 3.4,
+    "local": "a 158 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.6,
+    "hh_depois": -5.0,
+    "hv_antes": -13.2,
+    "hv_depois": -16.6,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9869,
+     29.0793
+    ]
+   },
+   "properties": {
+    "id": "arvore-19",
+    "tipo": "arvore",
+    "area_km2": 2.5,
+    "grau": 42,
+    "delta_db": 3.8,
+    "local": "a 152 km de Gyirong (China) · Nepal",
+    "hh_antes": -3.2,
+    "hh_depois": -6.4,
+    "hv_antes": -13.7,
+    "hv_depois": -17.5,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0245,
+     29.228
+    ]
+   },
+   "properties": {
+    "id": "arvore-20",
+    "tipo": "arvore",
+    "area_km2": 1.41,
+    "grau": 32,
+    "delta_db": 2.9,
+    "local": "a 157 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.5,
+    "hh_depois": -4.4,
+    "hv_antes": -12.6,
+    "hv_depois": -15.5,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9974,
+     29.2274
+    ]
+   },
+   "properties": {
+    "id": "arvore-21",
+    "tipo": "arvore",
+    "area_km2": 1.34,
+    "grau": 34,
+    "delta_db": 3.1,
+    "local": "a 160 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.9,
+    "hh_depois": -5.1,
+    "hv_antes": -13.2,
+    "hv_depois": -16.3,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0523,
+     29.1493
+    ]
+   },
+   "properties": {
+    "id": "arvore-22",
+    "tipo": "arvore",
+    "area_km2": 1.27,
+    "grau": 37,
+    "delta_db": 3.3,
+    "local": "a 150 km de Gyirong (China) · Nepal",
+    "hh_antes": -0.7,
+    "hh_depois": -3.2,
+    "hv_antes": -12.4,
+    "hv_depois": -15.7,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9283,
+     29.0628
+    ]
+   },
+   "properties": {
+    "id": "arvore-23",
+    "tipo": "arvore",
+    "area_km2": 1.09,
+    "grau": 37,
+    "delta_db": 3.4,
+    "local": "a 156 km de Gyirong (China) · Nepal",
+    "hh_antes": -1.9,
+    "hh_depois": -5.4,
+    "hv_antes": -13.7,
+    "hv_depois": -17.1,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9788,
+     29.2436
+    ]
+   },
+   "properties": {
+    "id": "arvore-24",
+    "tipo": "arvore",
+    "area_km2": 1.01,
+    "grau": 33,
+    "delta_db": 3.0,
+    "local": "a 162 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.4,
+    "hh_depois": -4.8,
+    "hv_antes": -12.9,
+    "hv_depois": -15.9,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0479,
+     29.1896
+    ]
+   },
+   "properties": {
+    "id": "arvore-25",
+    "tipo": "arvore",
+    "area_km2": 0.99,
+    "grau": 32,
+    "delta_db": 2.9,
+    "local": "a 153 km de Gyirong (China) · Nepal",
+    "hh_antes": -0.3,
+    "hh_depois": -2.2,
+    "hv_antes": -10.7,
+    "hv_depois": -13.6,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9659,
+     29.1538
+    ]
+   },
+   "properties": {
+    "id": "arvore-26",
+    "tipo": "arvore",
+    "area_km2": 0.68,
+    "grau": 36,
+    "delta_db": 3.2,
+    "local": "a 158 km de Gyirong (China) · Nepal",
+    "hh_antes": -3.2,
+    "hh_depois": -5.9,
+    "hv_antes": -14.8,
+    "hv_depois": -18.1,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9849,
+     29.2344
+    ]
+   },
+   "properties": {
+    "id": "arvore-27",
+    "tipo": "arvore",
+    "area_km2": 0.68,
+    "grau": 37,
+    "delta_db": 3.3,
+    "local": "a 161 km de Gyirong (China) · Nepal",
+    "hh_antes": -3.9,
+    "hh_depois": -6.6,
+    "hv_antes": -13.3,
+    "hv_depois": -16.6,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9397,
+     28.9815
+    ]
+   },
+   "properties": {
+    "id": "arvore-28",
+    "tipo": "arvore",
+    "area_km2": 0.68,
+    "grau": 34,
+    "delta_db": 3.1,
+    "local": "a 151 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.5,
+    "hh_depois": -5.1,
+    "hv_antes": -13.5,
+    "hv_depois": -16.6,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0329,
+     29.2217
+    ]
+   },
+   "properties": {
+    "id": "arvore-29",
+    "tipo": "arvore",
+    "area_km2": 0.66,
+    "grau": 31,
+    "delta_db": 2.9,
+    "local": "a 156 km de Gyirong (China) · Nepal",
+    "hh_antes": -0.1,
+    "hh_depois": -2.0,
+    "hv_antes": -11.3,
+    "hv_depois": -14.2,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0352,
+     29.2564
+    ]
+   },
+   "properties": {
+    "id": "arvore-30",
+    "tipo": "arvore",
+    "area_km2": 0.61,
+    "grau": 33,
+    "delta_db": 3.0,
+    "local": "a 158 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.9,
+    "hh_depois": -5.1,
+    "hv_antes": -13.7,
+    "hv_depois": -16.7,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.8906,
+     29.0598
+    ]
+   },
+   "properties": {
+    "id": "arvore-31",
+    "tipo": "arvore",
+    "area_km2": 0.51,
+    "grau": 41,
+    "delta_db": 3.7,
+    "local": "a 159 km de Gyirong (China) · Nepal",
+    "hh_antes": -3.3,
+    "hh_depois": -6.4,
+    "hv_antes": -12.0,
+    "hv_depois": -15.8,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9969,
+     29.1033
+    ]
+   },
+   "properties": {
+    "id": "arvore-32",
+    "tipo": "arvore",
+    "area_km2": 0.47,
+    "grau": 34,
+    "delta_db": 3.1,
+    "local": "a 152 km de Gyirong (China) · Nepal",
+    "hh_antes": -6.1,
+    "hh_depois": -9.0,
+    "hv_antes": -14.9,
+    "hv_depois": -18.0,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.885,
+     29.0834
+    ]
+   },
+   "properties": {
+    "id": "arvore-33",
+    "tipo": "arvore",
+    "area_km2": 0.45,
+    "grau": 39,
+    "delta_db": 3.5,
+    "local": "a 160 km de Gyirong (China) · Nepal",
+    "hh_antes": -3.1,
+    "hh_depois": -5.5,
+    "hv_antes": -9.9,
+    "hv_depois": -13.5,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9982,
+     29.1171
+    ]
+   },
+   "properties": {
+    "id": "arvore-34",
+    "tipo": "arvore",
+    "area_km2": 0.45,
+    "grau": 35,
+    "delta_db": 3.2,
+    "local": "a 153 km de Gyirong (China) · Nepal",
+    "hh_antes": -3.1,
+    "hh_depois": -5.4,
+    "hv_antes": -12.6,
+    "hv_depois": -15.8,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0485,
+     29.2531
+    ]
+   },
+   "properties": {
+    "id": "arvore-35",
+    "tipo": "arvore",
+    "area_km2": 0.44,
+    "grau": 33,
+    "delta_db": 3.0,
+    "local": "a 157 km de Gyirong (China) · Nepal",
+    "hh_antes": -1.9,
+    "hh_depois": -4.2,
+    "hv_antes": -13.0,
+    "hv_depois": -16.0,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9869,
+     29.2207
+    ]
+   },
+   "properties": {
+    "id": "arvore-36",
+    "tipo": "arvore",
+    "area_km2": 0.41,
+    "grau": 35,
+    "delta_db": 3.2,
+    "local": "a 160 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.9,
+    "hh_depois": -5.5,
+    "hv_antes": -13.7,
+    "hv_depois": -16.9,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0033,
+     29.1374
+    ]
+   },
+   "properties": {
+    "id": "arvore-37",
+    "tipo": "arvore",
+    "area_km2": 0.39,
+    "grau": 33,
+    "delta_db": 3.0,
+    "local": "a 153 km de Gyirong (China) · Nepal",
+    "hh_antes": -0.3,
+    "hh_depois": -2.8,
+    "hv_antes": -10.6,
+    "hv_depois": -13.6,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     83.9305,
+     28.9878
+    ]
+   },
+   "properties": {
+    "id": "arvore-38",
+    "tipo": "arvore",
+    "area_km2": 0.39,
+    "grau": 34,
+    "delta_db": 3.1,
+    "local": "a 152 km de Gyirong (China) · Nepal",
+    "hh_antes": -2.8,
+    "hh_depois": -5.5,
+    "hv_antes": -14.2,
+    "hv_depois": -17.3,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     84.0624,
+     29.1712
+    ]
+   },
+   "properties": {
+    "id": "arvore-39",
+    "tipo": "arvore",
+    "area_km2": 0.38,
+    "grau": 33,
+    "delta_db": 3.0,
+    "local": "a 151 km de Gyirong (China) · Nepal",
+    "hh_antes": -0.4,
+    "hh_depois": -2.1,
+    "hv_antes": -10.0,
+    "hv_depois": -13.0,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     85.7711,
+     28.4187
+    ]
+   },
+   "properties": {
+    "id": "arvore-40",
+    "tipo": "arvore",
+    "area_km2": 0.38,
+    "grau": 34,
+    "delta_db": 3.1,
+    "local": "a 30 km de Kyanjin Gompa · Nepal",
+    "hh_antes": -5.9,
+    "hh_depois": -8.5,
+    "hv_antes": -14.2,
+    "hv_depois": -17.3,
+    "antes": "2026-08-19",
+    "depois": "2026-08-31"
+   }
+  }
+ ]
+}

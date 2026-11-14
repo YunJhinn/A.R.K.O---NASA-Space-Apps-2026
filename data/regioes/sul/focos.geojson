@@ -17,6 +17,10 @@
     "grau": 82,
     "delta_db": 7.5,
     "local": "a 71 km de Santa Cruz do Sul · RS",
+    "hh_antes": -9.6,
+    "hh_depois": -17.0,
+    "hv_antes": -17.2,
+    "hv_depois": -22.7,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -37,6 +41,10 @@
     "grau": 70,
     "delta_db": 6.3,
     "local": "a 71 km de Santa Cruz do Sul · RS",
+    "hh_antes": -10.9,
+    "hh_depois": -17.2,
+    "hv_antes": -18.5,
+    "hv_depois": -22.8,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -57,6 +65,10 @@
     "grau": 100,
     "delta_db": 10.0,
     "local": "a 35 km de Venâncio Aires · RS",
+    "hh_antes": -7.9,
+    "hh_depois": -18.0,
+    "hv_antes": -19.6,
+    "hv_depois": -22.3,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -77,6 +89,10 @@
     "grau": 73,
     "delta_db": 6.7,
     "local": "a 72 km de Santa Cruz do Sul · RS",
+    "hh_antes": -10.4,
+    "hh_depois": -17.0,
+    "hv_antes": -16.7,
+    "hv_depois": -22.6,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -97,6 +113,10 @@
     "grau": 76,
     "delta_db": 6.9,
     "local": "a 87 km de Santa Cruz do Sul · RS",
+    "hh_antes": -10.0,
+    "hh_depois": -16.9,
+    "hv_antes": -17.4,
+    "hv_depois": -21.5,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -117,6 +137,10 @@
     "grau": 62,
     "delta_db": 5.6,
     "local": "a 11 km de Guaíba · RS",
+    "hh_antes": -11.2,
+    "hh_depois": -16.8,
+    "hv_antes": -17.1,
+    "hv_depois": -20.9,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -137,6 +161,10 @@
     "grau": 63,
     "delta_db": 5.7,
     "local": "a 13 km de Guaíba · RS",
+    "hh_antes": -11.3,
+    "hh_depois": -17.0,
+    "hv_antes": -17.8,
+    "hv_depois": -21.0,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -157,6 +185,10 @@
     "grau": 82,
     "delta_db": 7.4,
     "local": "a 14 km de Triunfo · RS",
+    "hh_antes": -9.0,
+    "hh_depois": -16.4,
+    "hv_antes": -15.5,
+    "hv_depois": -20.7,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -177,6 +209,10 @@
     "grau": 74,
     "delta_db": 6.7,
     "local": "a 37 km de Triunfo · RS",
+    "hh_antes": -10.5,
+    "hh_depois": -17.2,
+    "hv_antes": -18.4,
+    "hv_depois": -21.7,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -197,6 +233,10 @@
     "grau": 44,
     "delta_db": 4.0,
     "local": "a 25 km de Santa Cruz do Sul · RS",
+    "hh_antes": -6.1,
+    "hh_depois": -8.2,
+    "hv_antes": -12.9,
+    "hv_depois": -16.8,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -217,6 +257,10 @@
     "grau": 62,
     "delta_db": 5.7,
     "local": "a 24 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.8,
+    "hh_depois": -11.9,
+    "hv_antes": -14.2,
+    "hv_depois": -19.9,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -237,6 +281,10 @@
     "grau": 56,
     "delta_db": 5.1,
     "local": "a 16 km de Santa Cruz do Sul · RS",
+    "hh_antes": -6.1,
+    "hh_depois": -11.9,
+    "hv_antes": -13.7,
+    "hv_depois": -18.8,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -257,6 +305,10 @@
     "grau": 40,
     "delta_db": 3.7,
     "local": "a 53 km de Santa Cruz do Sul · RS",
+    "hh_antes": -6.8,
+    "hh_depois": -9.1,
+    "hv_antes": -13.2,
+    "hv_depois": -16.8,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -277,6 +329,10 @@
     "grau": 59,
     "delta_db": 5.4,
     "local": "a 17 km de Canoas · RS",
+    "hh_antes": -6.8,
+    "hh_depois": -12.7,
+    "hv_antes": -14.0,
+    "hv_depois": -19.3,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -297,6 +353,10 @@
     "grau": 44,
     "delta_db": 4.0,
     "local": "a 89 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.8,
+    "hh_depois": -11.1,
+    "hv_antes": -13.9,
+    "hv_depois": -17.9,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -317,6 +377,10 @@
     "grau": 43,
     "delta_db": 3.9,
     "local": "a 14 km de Montenegro · RS",
+    "hh_antes": -7.9,
+    "hh_depois": -12.8,
+    "hv_antes": -14.8,
+    "hv_depois": -18.7,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -337,6 +401,10 @@
     "grau": 48,
     "delta_db": 4.4,
     "local": "a 21 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.5,
+    "hh_depois": -9.0,
+    "hv_antes": -12.6,
+    "hv_depois": -17.0,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -357,6 +425,10 @@
     "grau": 48,
     "delta_db": 4.3,
     "local": "a 187 km de Lajeado · RS",
+    "hh_antes": -8.2,
+    "hh_depois": -11.1,
+    "hv_antes": -14.7,
+    "hv_depois": -19.0,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -377,6 +449,10 @@
     "grau": 84,
     "delta_db": 7.7,
     "local": "a 153 km de Lajeado · RS",
+    "hh_antes": -5.5,
+    "hh_depois": -12.4,
+    "hv_antes": -11.8,
+    "hv_depois": -19.4,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -397,26 +473,10 @@
     "grau": 47,
     "delta_db": 4.3,
     "local": "a 9 km de Montenegro · RS",
-    "antes": "2026-08-28",
-    "depois": "2026-10-15"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -51.6815,
-     -28.0174
-    ]
-   },
-   "properties": {
-    "id": "arvore-21",
-    "tipo": "arvore",
-    "area_km2": 1.32,
-    "grau": 62,
-    "delta_db": 5.7,
-    "local": "a 137 km de Caxias do Sul · RS",
+    "hh_antes": -7.8,
+    "hh_depois": -13.5,
+    "hv_antes": -14.6,
+    "hv_depois": -19.0,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -431,12 +491,40 @@
     ]
    },
    "properties": {
-    "id": "arvore-22",
+    "id": "arvore-21",
     "tipo": "arvore",
     "area_km2": 1.32,
     "grau": 52,
     "delta_db": 4.7,
     "local": "a 18 km de Triunfo · RS",
+    "hh_antes": -5.6,
+    "hh_depois": -9.9,
+    "hv_antes": -11.3,
+    "hv_depois": -16.0,
+    "antes": "2026-08-28",
+    "depois": "2026-10-15"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -51.6815,
+     -28.0174
+    ]
+   },
+   "properties": {
+    "id": "arvore-22",
+    "tipo": "arvore",
+    "area_km2": 1.32,
+    "grau": 62,
+    "delta_db": 5.7,
+    "local": "a 137 km de Caxias do Sul · RS",
+    "hh_antes": -7.3,
+    "hh_depois": -10.3,
+    "hv_antes": -12.3,
+    "hv_depois": -17.9,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -457,6 +545,10 @@
     "grau": 43,
     "delta_db": 3.9,
     "local": "a 81 km de Caxias do Sul · RS",
+    "hh_antes": -7.7,
+    "hh_depois": -11.1,
+    "hv_antes": -12.8,
+    "hv_depois": -16.6,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -477,6 +569,10 @@
     "grau": 56,
     "delta_db": 5.0,
     "local": "a 87 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.2,
+    "hh_depois": -12.5,
+    "hv_antes": -14.0,
+    "hv_depois": -19.0,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -497,6 +593,10 @@
     "grau": 48,
     "delta_db": 4.4,
     "local": "a 129 km de Caxias do Sul · RS",
+    "hh_antes": -8.1,
+    "hh_depois": -9.9,
+    "hv_antes": -12.6,
+    "hv_depois": -17.0,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -517,6 +617,10 @@
     "grau": 76,
     "delta_db": 6.9,
     "local": "a 156 km de Lajeado · RS",
+    "hh_antes": -7.0,
+    "hh_depois": -12.8,
+    "hv_antes": -13.3,
+    "hv_depois": -20.2,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -537,6 +641,10 @@
     "grau": 51,
     "delta_db": 4.6,
     "local": "a 158 km de Lajeado · RS",
+    "hh_antes": -7.2,
+    "hh_depois": -10.0,
+    "hv_antes": -12.7,
+    "hv_depois": -17.3,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -557,6 +665,10 @@
     "grau": 54,
     "delta_db": 4.9,
     "local": "a 84 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.9,
+    "hh_depois": -11.7,
+    "hv_antes": -13.7,
+    "hv_depois": -18.6,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -577,6 +689,10 @@
     "grau": 45,
     "delta_db": 4.1,
     "local": "a 88 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.4,
+    "hh_depois": -10.7,
+    "hv_antes": -13.1,
+    "hv_depois": -17.3,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -597,6 +713,10 @@
     "grau": 50,
     "delta_db": 4.6,
     "local": "a 187 km de Lajeado · RS",
+    "hh_antes": -7.8,
+    "hh_depois": -11.1,
+    "hv_antes": -14.0,
+    "hv_depois": -18.6,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -617,6 +737,10 @@
     "grau": 56,
     "delta_db": 5.1,
     "local": "a 18 km de Santa Cruz do Sul · RS",
+    "hh_antes": -5.6,
+    "hh_depois": -11.7,
+    "hv_antes": -13.8,
+    "hv_depois": -18.9,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -637,6 +761,10 @@
     "grau": 56,
     "delta_db": 5.1,
     "local": "a 23 km de Santa Cruz do Sul · RS",
+    "hh_antes": -6.3,
+    "hh_depois": -12.0,
+    "hv_antes": -14.4,
+    "hv_depois": -19.6,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -657,6 +785,10 @@
     "grau": 38,
     "delta_db": 3.4,
     "local": "a 14 km de Santa Cruz do Sul · RS",
+    "hh_antes": -8.3,
+    "hh_depois": -10.4,
+    "hv_antes": -13.8,
+    "hv_depois": -17.3,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }
@@ -677,6 +809,10 @@
     "grau": 61,
     "delta_db": 5.6,
     "local": "a 21 km de Santa Cruz do Sul · RS",
+    "hh_antes": -6.1,
+    "hh_depois": -12.3,
+    "hv_antes": -14.1,
+    "hv_depois": -19.6,
     "antes": "2026-08-28",
     "depois": "2026-10-15"
    }

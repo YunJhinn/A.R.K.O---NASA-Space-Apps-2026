@@ -17,6 +17,10 @@
     "grau": 51,
     "delta_db": 4.6,
     "local": "a 86 km de Mymensingh · Bangladesh",
+    "hh_antes": -16.7,
+    "hh_depois": -21.3,
+    "hv_antes": -24.9,
+    "hv_depois": -25.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -37,6 +41,10 @@
     "grau": 50,
     "delta_db": 4.5,
     "local": "a 83 km de Mymensingh · Bangladesh",
+    "hh_antes": -16.6,
+    "hh_depois": -21.1,
+    "hv_antes": -24.9,
+    "hv_depois": -25.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -57,6 +65,10 @@
     "grau": 58,
     "delta_db": 5.3,
     "local": "a 66 km de Kishoreganj · Bangladesh",
+    "hh_antes": -17.1,
+    "hh_depois": -22.4,
+    "hv_antes": -26.7,
+    "hv_depois": -26.9,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -77,6 +89,10 @@
     "grau": 49,
     "delta_db": 4.5,
     "local": "a 80 km de Mymensingh · Bangladesh",
+    "hh_antes": -15.3,
+    "hh_depois": -19.8,
+    "hv_antes": -23.5,
+    "hv_depois": -24.1,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -97,6 +113,10 @@
     "grau": 53,
     "delta_db": 4.8,
     "local": "a 82 km de Kishoreganj · Bangladesh",
+    "hh_antes": -16.8,
+    "hh_depois": -21.6,
+    "hv_antes": -25.4,
+    "hv_depois": -25.8,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -117,6 +137,10 @@
     "grau": 78,
     "delta_db": 7.1,
     "local": "a 58 km de Kishoreganj · Bangladesh",
+    "hh_antes": -10.4,
+    "hh_depois": -17.5,
+    "hv_antes": -18.1,
+    "hv_depois": -24.5,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -137,6 +161,10 @@
     "grau": 52,
     "delta_db": 4.7,
     "local": "a 76 km de Mymensingh · Bangladesh",
+    "hh_antes": -16.2,
+    "hh_depois": -20.9,
+    "hv_antes": -25.1,
+    "hv_depois": -25.2,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -157,6 +185,10 @@
     "grau": 54,
     "delta_db": 4.9,
     "local": "a 32 km de Bhairab · Bangladesh",
+    "hh_antes": -14.4,
+    "hh_depois": -19.3,
+    "hv_antes": -23.2,
+    "hv_depois": -24.6,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -177,6 +209,10 @@
     "grau": 80,
     "delta_db": 7.2,
     "local": "a 60 km de Kishoreganj · Bangladesh",
+    "hh_antes": -19.4,
+    "hh_depois": -12.1,
+    "hv_antes": -25.4,
+    "hv_depois": -21.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -197,6 +233,10 @@
     "grau": 87,
     "delta_db": 7.9,
     "local": "a 34 km de Kishoreganj · Bangladesh",
+    "hh_antes": -17.6,
+    "hh_depois": -9.7,
+    "hv_antes": -24.6,
+    "hv_depois": -20.1,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -217,6 +257,10 @@
     "grau": 70,
     "delta_db": 6.3,
     "local": "a 33 km de Sirajganj · Bangladesh",
+    "hh_antes": -17.0,
+    "hh_depois": -10.7,
+    "hv_antes": -21.7,
+    "hv_depois": -17.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -237,6 +281,10 @@
     "grau": 78,
     "delta_db": 7.1,
     "local": "a 97 km de Kishoreganj · Bangladesh",
+    "hh_antes": -17.4,
+    "hh_depois": -10.3,
+    "hv_antes": -22.8,
+    "hv_depois": -19.5,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -257,6 +305,10 @@
     "grau": 100,
     "delta_db": 12.5,
     "local": "a 45 km de Bhairab · Bangladesh",
+    "hh_antes": -17.1,
+    "hh_depois": -4.5,
+    "hv_antes": -24.2,
+    "hv_depois": -17.9,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -277,6 +329,10 @@
     "grau": 61,
     "delta_db": 5.6,
     "local": "a 34 km de Sirajganj · Bangladesh",
+    "hh_antes": -17.1,
+    "hh_depois": -11.6,
+    "hv_antes": -21.8,
+    "hv_depois": -18.0,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -297,6 +353,10 @@
     "grau": 98,
     "delta_db": 8.9,
     "local": "a 32 km de Bogra · Bangladesh",
+    "hh_antes": -17.0,
+    "hh_depois": -8.1,
+    "hv_antes": -21.9,
+    "hv_depois": -16.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -317,6 +377,10 @@
     "grau": 65,
     "delta_db": 5.9,
     "local": "a 30 km de Sirajganj · Bangladesh",
+    "hh_antes": -17.5,
+    "hh_depois": -11.6,
+    "hv_antes": -21.9,
+    "hv_depois": -18.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -337,6 +401,10 @@
     "grau": 100,
     "delta_db": 12.2,
     "local": "a 44 km de Bhairab · Bangladesh",
+    "hh_antes": -16.7,
+    "hh_depois": -4.5,
+    "hv_antes": -23.9,
+    "hv_depois": -17.1,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -357,6 +425,10 @@
     "grau": 61,
     "delta_db": 5.6,
     "local": "a 37 km de Sirajganj · Bangladesh",
+    "hh_antes": -16.9,
+    "hh_depois": -11.3,
+    "hv_antes": -21.6,
+    "hv_depois": -18.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -377,6 +449,10 @@
     "grau": 59,
     "delta_db": 5.4,
     "local": "a 70 km de Kishoreganj · Bangladesh",
+    "hh_antes": -20.5,
+    "hh_depois": -15.1,
+    "hv_antes": -25.7,
+    "hv_depois": -23.9,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -397,6 +473,10 @@
     "grau": 56,
     "delta_db": 5.1,
     "local": "a 64 km de Kishoreganj · Bangladesh",
+    "hh_antes": -19.2,
+    "hh_depois": -14.1,
+    "hv_antes": -24.9,
+    "hv_depois": -21.8,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -417,6 +497,10 @@
     "grau": 100,
     "delta_db": 12.9,
     "local": "a 47 km de Bhairab · Bangladesh",
+    "hh_antes": -17.0,
+    "hh_depois": -4.2,
+    "hv_antes": -24.1,
+    "hv_depois": -17.5,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -437,6 +521,10 @@
     "grau": 65,
     "delta_db": 5.9,
     "local": "a 62 km de Kishoreganj · Bangladesh",
+    "hh_antes": -19.9,
+    "hh_depois": -14.0,
+    "hv_antes": -25.4,
+    "hv_depois": -24.0,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -457,6 +545,10 @@
     "grau": 89,
     "delta_db": 8.1,
     "local": "a 58 km de Kishoreganj · Bangladesh",
+    "hh_antes": -18.7,
+    "hh_depois": -10.6,
+    "hv_antes": -25.1,
+    "hv_depois": -18.2,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -477,6 +569,10 @@
     "grau": 100,
     "delta_db": 13.6,
     "local": "a 44 km de Bhairab · Bangladesh",
+    "hh_antes": -17.2,
+    "hh_depois": -3.5,
+    "hv_antes": -24.2,
+    "hv_depois": -16.8,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -497,6 +593,10 @@
     "grau": 64,
     "delta_db": 5.8,
     "local": "a 32 km de Sirajganj · Bangladesh",
+    "hh_antes": -17.1,
+    "hh_depois": -11.3,
+    "hv_antes": -21.6,
+    "hv_depois": -18.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -517,6 +617,10 @@
     "grau": 54,
     "delta_db": 4.9,
     "local": "a 65 km de Bhairab · Bangladesh",
+    "hh_antes": -18.1,
+    "hh_depois": -13.3,
+    "hv_antes": -24.1,
+    "hv_depois": -21.6,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -537,6 +641,10 @@
     "grau": 64,
     "delta_db": 5.8,
     "local": "a 68 km de Kishoreganj · Bangladesh",
+    "hh_antes": -20.9,
+    "hh_depois": -15.1,
+    "hv_antes": -26.2,
+    "hv_depois": -23.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -557,26 +665,10 @@
     "grau": 61,
     "delta_db": 5.5,
     "local": "a 57 km de Kishoreganj · Bangladesh",
-    "antes": "2026-08-29",
-    "depois": "2026-10-16"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     91.4006,
-     24.5122
-    ]
-   },
-   "properties": {
-    "id": "solo-29",
-    "tipo": "solo",
-    "area_km2": 1.32,
-    "grau": 100,
-    "delta_db": 11.6,
-    "local": "a 64 km de Kishoreganj · Bangladesh",
+    "hh_antes": -16.9,
+    "hh_depois": -11.4,
+    "hv_antes": -24.7,
+    "hv_depois": -19.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -591,12 +683,40 @@
     ]
    },
    "properties": {
-    "id": "solo-30",
+    "id": "solo-29",
     "tipo": "solo",
     "area_km2": 1.32,
     "grau": 71,
     "delta_db": 6.5,
     "local": "a 38 km de Kishoreganj · Bangladesh",
+    "hh_antes": -17.8,
+    "hh_depois": -11.4,
+    "hv_antes": -24.3,
+    "hv_depois": -20.5,
+    "antes": "2026-08-29",
+    "depois": "2026-10-16"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.4006,
+     24.5122
+    ]
+   },
+   "properties": {
+    "id": "solo-30",
+    "tipo": "solo",
+    "area_km2": 1.32,
+    "grau": 100,
+    "delta_db": 11.6,
+    "local": "a 64 km de Kishoreganj · Bangladesh",
+    "hh_antes": -17.0,
+    "hh_depois": -5.3,
+    "hv_antes": -24.2,
+    "hv_depois": -16.9,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -617,6 +737,10 @@
     "grau": 59,
     "delta_db": 5.4,
     "local": "a 28 km de Kishoreganj · Bangladesh",
+    "hh_antes": -16.8,
+    "hh_depois": -11.4,
+    "hv_antes": -24.7,
+    "hv_depois": -21.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -637,6 +761,10 @@
     "grau": 66,
     "delta_db": 6.0,
     "local": "a 30 km de Sirajganj · Bangladesh",
+    "hh_antes": -17.4,
+    "hh_depois": -11.3,
+    "hv_antes": -21.5,
+    "hv_depois": -18.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -657,6 +785,10 @@
     "grau": 70,
     "delta_db": 6.3,
     "local": "a 36 km de Sirajganj · Bangladesh",
+    "hh_antes": -17.5,
+    "hh_depois": -11.2,
+    "hv_antes": -21.6,
+    "hv_depois": -18.1,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -677,6 +809,10 @@
     "grau": 58,
     "delta_db": 5.3,
     "local": "a 47 km de Sirajganj · Bangladesh",
+    "hh_antes": -7.4,
+    "hh_depois": -14.1,
+    "hv_antes": -14.2,
+    "hv_depois": -19.5,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -697,6 +833,10 @@
     "grau": 48,
     "delta_db": 4.4,
     "local": "a 11 km de Daca · Bangladesh",
+    "hh_antes": -6.2,
+    "hh_depois": -10.3,
+    "hv_antes": -13.8,
+    "hv_depois": -18.2,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -717,6 +857,10 @@
     "grau": 44,
     "delta_db": 4.0,
     "local": "a 52 km de Kishoreganj · Bangladesh",
+    "hh_antes": -7.7,
+    "hh_depois": -8.6,
+    "hv_antes": -14.5,
+    "hv_depois": -18.4,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -737,6 +881,10 @@
     "grau": 40,
     "delta_db": 3.6,
     "local": "a 33 km de Bogra · Bangladesh",
+    "hh_antes": -7.1,
+    "hh_depois": -8.9,
+    "hv_antes": -15.0,
+    "hv_depois": -18.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -757,6 +905,10 @@
     "grau": 38,
     "delta_db": 3.5,
     "local": "a 35 km de Bogra · Bangladesh",
+    "hh_antes": -7.3,
+    "hh_depois": -8.7,
+    "hv_antes": -14.9,
+    "hv_depois": -18.3,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -777,6 +929,10 @@
     "grau": 66,
     "delta_db": 6.0,
     "local": "a 10 km de Faridpur · Bangladesh",
+    "hh_antes": -8.4,
+    "hh_depois": -15.1,
+    "hv_antes": -14.4,
+    "hv_depois": -20.5,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -797,6 +953,10 @@
     "grau": 42,
     "delta_db": 3.8,
     "local": "a 38 km de Mymensingh · Bangladesh",
+    "hh_antes": -7.6,
+    "hh_depois": -10.2,
+    "hv_antes": -14.9,
+    "hv_depois": -18.7,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -817,6 +977,10 @@
     "grau": 37,
     "delta_db": 3.4,
     "local": "a 34 km de Bogra · Bangladesh",
+    "hh_antes": -6.9,
+    "hh_depois": -9.6,
+    "hv_antes": -14.7,
+    "hv_depois": -18.1,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -837,6 +1001,10 @@
     "grau": 41,
     "delta_db": 3.7,
     "local": "a 37 km de Kishoreganj · Bangladesh",
+    "hh_antes": -5.8,
+    "hh_depois": -6.7,
+    "hv_antes": -13.2,
+    "hv_depois": -16.9,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }
@@ -857,6 +1025,10 @@
     "grau": 42,
     "delta_db": 3.8,
     "local": "a 33 km de Bogra · Bangladesh",
+    "hh_antes": -6.1,
+    "hh_depois": -9.9,
+    "hv_antes": -14.8,
+    "hv_depois": -18.6,
     "antes": "2026-08-29",
     "depois": "2026-10-16"
    }

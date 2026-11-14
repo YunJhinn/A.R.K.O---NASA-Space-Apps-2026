@@ -224,5 +224,89 @@
     24.85
    ]
   }
+ },
+ {
+  "id": "nepal",
+  "nome": "Langtang e rio Trishuli · Nepal",
+  "pais": "Nepal",
+  "pasta": "regioes/nepal/",
+  "imagem": {
+   "oeste": 84.8,
+   "leste": 86.0,
+   "norte": 28.478,
+   "sul": 27.661
+  },
+  "antes": "2026-08-19",
+  "depois": "2026-08-31",
+  "focos": 40,
+  "linha_tempo": true,
+  "cidades": {
+   "Katmandu": [
+    85.32,
+    27.71
+   ],
+   "Syabrubesi": [
+    85.35,
+    28.16
+   ],
+   "Dhunche": [
+    85.3,
+    28.11
+   ],
+   "Rasuwagadhi": [
+    85.38,
+    28.28
+   ],
+   "Timure": [
+    85.37,
+    28.25
+   ],
+   "Langtang": [
+    85.51,
+    28.22
+   ],
+   "Kyanjin Gompa": [
+    85.57,
+    28.21
+   ],
+   "Thulo Bharkhu": [
+    85.31,
+    28.13
+   ],
+   "Chilime": [
+    85.3,
+    28.18
+   ],
+   "Betrawati": [
+    85.19,
+    27.97
+   ],
+   "Trishuli (Bidur)": [
+    85.15,
+    27.9
+   ],
+   "Devighat": [
+    85.11,
+    27.86
+   ],
+   "Dhading Besi": [
+    84.89,
+    27.91
+   ],
+   "Melamchi": [
+    85.58,
+    27.83
+   ],
+   "Gyirong (China)": [
+    85.33,
+    28.39
+   ]
+  },
+  "evento": {
+   "data": "2026-08-26",
+   "lon": 85.527,
+   "lat": 28.287,
+   "nome": "Colapso de rocha e gelo do Langtang Lirung"
+  }
  }
 ]

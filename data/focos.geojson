@@ -17,6 +17,10 @@
     "grau": 100,
     "delta_db": 12.0,
     "local": "a 45 km de Novo Aripuanã · AM",
+    "hh_antes": -5.2,
+    "hh_depois": -17.1,
+    "hv_antes": -19.0,
+    "hv_depois": -21.6,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -37,6 +41,10 @@
     "grau": 54,
     "delta_db": 4.9,
     "local": "a 38 km de Novo Aripuanã · AM",
+    "hh_antes": -16.9,
+    "hh_depois": -12.0,
+    "hv_antes": -21.0,
+    "hv_depois": -19.7,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -57,6 +65,10 @@
     "grau": 65,
     "delta_db": 5.9,
     "local": "Novo Aripuanã · AM",
+    "hh_antes": -17.8,
+    "hh_depois": -12.0,
+    "hv_antes": -22.7,
+    "hv_depois": -22.5,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -77,6 +89,10 @@
     "grau": 34,
     "delta_db": 3.1,
     "local": "a 95 km de Novo Aripuanã · AM",
+    "hh_antes": -7.5,
+    "hh_depois": -9.1,
+    "hv_antes": -14.2,
+    "hv_depois": -17.2,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -97,6 +113,10 @@
     "grau": 37,
     "delta_db": 3.3,
     "local": "a 101 km de Novo Aripuanã · AM",
+    "hh_antes": -7.6,
+    "hh_depois": -9.4,
+    "hv_antes": -14.8,
+    "hv_depois": -18.2,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -117,6 +137,10 @@
     "grau": 41,
     "delta_db": 3.7,
     "local": "a 45 km de Careiro · AM",
+    "hh_antes": -7.5,
+    "hh_depois": -9.8,
+    "hv_antes": -13.9,
+    "hv_depois": -17.6,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -137,6 +161,10 @@
     "grau": 33,
     "delta_db": 3.0,
     "local": "a 11 km de Novo Aripuanã · AM",
+    "hh_antes": -5.2,
+    "hh_depois": -7.2,
+    "hv_antes": -13.3,
+    "hv_depois": -16.3,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -157,6 +185,10 @@
     "grau": 36,
     "delta_db": 3.3,
     "local": "a 112 km de Novo Aripuanã · AM",
+    "hh_antes": -7.4,
+    "hh_depois": -7.2,
+    "hv_antes": -13.1,
+    "hv_depois": -16.3,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -177,6 +209,10 @@
     "grau": 34,
     "delta_db": 3.1,
     "local": "a 96 km de Novo Aripuanã · AM",
+    "hh_antes": -8.0,
+    "hh_depois": -8.6,
+    "hv_antes": -13.6,
+    "hv_depois": -16.7,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
@@ -197,6 +233,10 @@
     "grau": 32,
     "delta_db": 3.0,
     "local": "a 101 km de Novo Aripuanã · AM",
+    "hh_antes": -8.0,
+    "hh_depois": -9.4,
+    "hv_antes": -14.6,
+    "hv_depois": -17.6,
     "antes": "2026-09-03",
     "depois": "2026-10-21"
    }
