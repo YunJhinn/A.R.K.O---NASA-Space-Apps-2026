@@ -46,6 +46,9 @@ export function MapPanel() {
         <div className="ttl"><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p></div>
         <div className="act">
           <SciButtons kind={s.type} compact />
+          <div className="seg" role="group" aria-label={t('Colorir focos por')} title={t('Colorir por')}>
+            {(['tipo', 'mes'] as const).map(c => <button key={c} className={cx(s.colorBy === c && 'on')} aria-pressed={s.colorBy === c} onClick={() => set({ colorBy: c })}>{t(c === 'tipo' ? 'Tipo' : 'Mês')}</button>)}
+          </div>
           <div className="seg" role="group" aria-label={t('Camada')}>
             {s.src === 'real' && realBase(ds.realMeta.id)
               ? <><button className={cx(!s.radar && 'on')} aria-pressed={!s.radar} onClick={() => set({ radar: false })}>{t('Mapa')}</button><button className={cx(s.radar && 'on')} aria-pressed={s.radar} onClick={() => set({ radar: true })}>{t('Radar')}</button></>
@@ -67,11 +70,6 @@ export function MapPanel() {
               </button>
             )
           })}
-        </div>
-        <div className="cmode">{t('Colorir por')}
-          <div className="seg" role="group" aria-label={t('Colorir focos por')}>
-            {(['tipo', 'mes'] as const).map(c => <button key={c} className={cx(s.colorBy === c && 'on')} aria-pressed={s.colorBy === c} onClick={() => set({ colorBy: c })}>{t(c === 'tipo' ? 'Tipo' : 'Mês')}</button>)}
-          </div>
         </div>
       </div>
       <ChangeMap ev={vis} />

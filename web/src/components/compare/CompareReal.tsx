@@ -139,7 +139,10 @@ export function CompareReal() {
           <div className="map swipe">
             <MapBase className="layer" img={PA?.img ?? ds.img} />
             <div className="clip" style={{ clipPath: `inset(0 0 0 ${s.cmp.swipe}%)`, borderRight: 0, borderLeft: '2px solid var(--acc)' }}>
-              <MapBase className="layer" img={PB?.img ?? ds.img}>
+              <MapBase className="layer" img={PB?.img ?? ds.img} />
+            </div>
+            {/* os ícones ficam por cima dos dois lados: aparecem em qualquer posição da barra */}
+            <MapBase className="layer cr-marks" bg={false}>
                 {ev.filter(e => e.k === k).map(e => {
                   const c = ds.types[e.k].c, idade = dentro.length > 1 ? dentro.findIndex(p => p.date === e.date) / (dentro.length - 1) : 1
                   return (
@@ -149,8 +152,7 @@ export function CompareReal() {
                     </span>
                   )
                 })}
-              </MapBase>
-            </div>
+            </MapBase>
             <span className="float swl" style={{ left: 12 }}>{en ? 'Start' : 'Começo'} · {a ? d(a) : '—'}</span><span className="float swl" style={{ right: 12 }}>{en ? 'End' : 'Fim'} · {b ? d(b) : '—'}</span>
             <input type="range" min={0} max={100} value={s.cmp.swipe} onChange={e => setC({ swipe: +e.target.value })} aria-label={t('Posição da comparação')} />
           </div>

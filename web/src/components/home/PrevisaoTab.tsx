@@ -118,7 +118,7 @@ export function PrevisaoTab({ onMap }: { onMap: (id: string | null) => void }) {
     <div className="pv">
       <div className="pv-h">
         <b>{en ? 'Forecast for' : 'Previsão para'} {t(ds.realMeta.nome.split(' · ')[0])}</b>
-        <small>{en ? 'Updated' : 'Atualizado'}: {fontes} · <a href="https://nisar.jpl.nasa.gov/" target="_blank" rel="noreferrer">NISAR</a>, <a href="https://gpm.nasa.gov/landslides/projects.html" target="_blank" rel="noreferrer">LHASA</a>, <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">FIRMS</a> ↗</small>
+        <small>{en ? 'Updated' : 'Atualizado'}: {fontes}</small>
       </div>
       {ativas.map(l => {
         const [rb, rt] = RISK[l.lvl]
@@ -149,9 +149,16 @@ export function PrevisaoTab({ onMap }: { onMap: (id: string | null) => void }) {
           ))}
         </div>
       )}
+      <div className="pv-src">
+        <b>{en ? 'What each data source delivers' : 'O que cada fonte de dados entrega'}</b>
+        <div><span className="d" style={{ background: '#2563EB' }} /><span><a href="https://nisar.jpl.nasa.gov/" target="_blank" rel="noreferrer">NASA-ISRO NISAR</a> · {en ? 'radar, every ~12 days' : 'radar, a cada ~12 dias'}{ult ? ` (${en ? 'last' : 'última'}: ${dia(ult.date, en)})` : ''}: {en ? 'new water, receding water, vegetation loss and, in mountains, ice and slope changes. Sees through clouds, day and night.' : 'água nova, água que recuou, perda de vegetação e, em montanhas, mudanças no gelo e nas encostas. Enxerga através das nuvens, de dia e de noite.'}</span></div>
+        {lh && <div><span className="d" style={{ background: '#9A5B13' }} /><span><a href="https://gpm.nasa.gov/landslides/projects.html" target="_blank" rel="noreferrer">NASA LHASA</a> · {en ? 'daily' : 'diário'} ({dia(lh.data, en)}): {en ? 'chance of a rain-triggered landslide, on a 1 km grid (satellite rain, soil, slope).' : 'chance de deslizamento por chuva, em grade de 1 km (chuva por satélite, solo, relevo).'}</span></div>}
+        {fo && <div><span className="d" style={{ background: '#E2553A' }} /><span><a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer">NASA FIRMS</a> · {en ? 'last 48 h' : 'últimas 48 h'} ({dia(r!.atualizado, en)}): {en ? 'heat spots seen by the VIIRS satellites (375 m), split into risky fires and small burns.' : 'focos de calor vistos pelos satélites VIIRS (375 m), separados em queimadas de risco e pequenas queimas.'}</span></div>}
+        {ds.realMeta.id !== 'amazonia' && ds.realMeta.id !== 'nepal' && <div className="mut">{en ? 'Lots of farmland here: part of the vegetation loss can be harvest, not clearing.' : 'Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.'}</div>}
+      </div>
       <div className="pv-nota">
-        {en ? 'Forecasts cross NISAR radar, NASA LHASA and NASA FIRMS in the same area and compare with earlier periods. They are hypotheses to confirm on the ground, recalculated at every update. Suggested responses are general guidance: decisions belong to local authorities (civil defense, firefighters).'
-            : 'As previsões cruzam o radar NISAR, o NASA LHASA e o NASA FIRMS na mesma área e comparam com os períodos anteriores. São hipóteses a confirmar em campo, recalculadas a cada atualização. As sugestões de resposta são orientações gerais: a decisão é das autoridades locais (Defesa Civil, bombeiros).'}
+        {en ? 'Forecasts cross these sources in the same area and over time. They are hypotheses to confirm on the ground; suggested responses are general guidance, and decisions belong to local authorities.'
+            : 'As previsões cruzam essas fontes na mesma área e ao longo do tempo. São hipóteses a confirmar em campo; as sugestões de resposta são orientações gerais e a decisão é das autoridades locais.'}
       </div>
     </div>
   )

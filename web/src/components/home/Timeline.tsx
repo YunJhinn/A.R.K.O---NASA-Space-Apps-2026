@@ -137,7 +137,7 @@ export function Timeline() {
               title={st.hasImg ? fmtDate(st.date) : t('Passagem sem canal de vegetação (modo SHSV)')}
               aria-pressed={inR} aria-label={fmtDate(st.date)}
               className={cx('group flex flex-1 flex-col items-center justify-end', real ? 'gap-1.5' : 'gap-0', pending === i && 'animate-pulse')}>
-              {real && <span className={cx('text-[11px] font-extrabold', inR ? 'text-white' : 'text-[#C8DEFA]/70')}>{st.value}</span>}
+              {real && <span className={cx('text-[11px] font-extrabold', inR ? 'text-white' : 'text-[#C8DEFA]/70')}>{st.value ? st.value : <span className="font-semibold opacity-70">{t(i === 0 ? 'início' : 'sem mudança')}</span>}</span>}
               <span className={cx('pointer-events-none w-full rounded-t-[3px] transition-all', !st.hasImg && 'border border-dashed border-white/40 bg-transparent')}
                 style={st.hasImg ? {
                   height: h,

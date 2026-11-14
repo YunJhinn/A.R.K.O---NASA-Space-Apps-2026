@@ -173,6 +173,8 @@ Object.assign(EN, {
   'Minhas regiões': 'My regions', 'Dados de exemplo': 'Example data', 'Telas': 'Screens', 'Radar Mundial': 'World Radar', 'Médio': 'Medium', 'Alto': 'High', 'Baixo': 'Low',
   'Deslizamento e queimadas são atualizados todo dia pelo robô, com dados públicos da NASA.': 'Landslide and fire data are refreshed every day by the robot, from public NASA data.', 'Perigo de deslizamento': 'Landslide danger', 'Queimada ativa': 'Active fire',
   'ALERTAS': 'ALERTS',
+  'sem mudança': 'no change',
+  'início': 'start',
   'Semanas de exemplo': 'Example weeks', 'Passagens reais do NISAR': 'Real NISAR passes',
 })
 
