@@ -22,7 +22,10 @@ FIRMS = [("NOAA-20", "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa
 # o visualizador oficial da NASA começa a colorir o mapa em 5%).
 LIM_BAIXO, LIM_MEDIO, LIM_ALTO = 0.02, 0.05, 0.10   # baixo: só aparece no mapa (monitoramento), sem alerta
 MAX_AREAS, MAX_GRUPOS = 8, 25
-GRUPO_GRAUS = 0.03                       # focos de fogo a menos de ~3 km viram um grupo só
+GRUPO_GRAUS = 0.03
+# Pequena queima: 1-2 focos fracos (< 15 MW no total) -> provável queima controlada (lixo, roçado, palha).
+# O resto é QUEIMADA DE RISCO: fogo maior ou mais forte, que pode fugir do controle (inclui incêndios acidentais).
+PEQ_N, PEQ_FRP = 2, 15.0                       # focos de fogo a menos de ~3 km viram um grupo só
 UA = {"User-Agent": "ARKO-NISAR/1.0 (NASA Space Apps 2026)"}
 
 
@@ -168,11 +171,19 @@ def firms_regiao(linhas, b, reg):
     out = []
     for g in gl:
         lon, lat, n = sum(g["lons"]) / len(g["lons"]), sum(g["lats"]) / len(g["lats"]), len(g["lons"])
+        pequena = n <= PEQ_N and g["frp"] < PEQ_FRP
         nivel = "Alto" if n >= 10 or g["frp"] >= 150 else "Médio" if n >= 3 or g["frp"] >= 30 else "Baixo"
         out.append({"lon": round(lon, 4), "lat": round(lat, 4), "n": n, "frp": round(g["frp"], 1),
-                    "ultimo": g["ult"], "nivel": nivel, "lugar": lugar(lon, lat, reg)})
-    out.sort(key=lambda g: (-g["n"], -g["frp"]))
-    return {"focos": len(pts), "grupos": out[:MAX_GRUPOS]}
+                    "ultimo": g["ult"], "nivel": nivel, "categoria": "pequena" if pequena else "risco"})
+    # primeiro as de risco (mais focos e mais calor), depois as pequenas
+    out.sort(key=lambda g: (g["categoria"] == "pequena", -g["n"], -g["frp"]))
+    risco = [g for g in out if g["categoria"] == "risco"][:MAX_GRUPOS]
+    peq = [g for g in out if g["categoria"] == "pequena"]
+    sel = risco + peq[:15]
+    for g in sel:
+        g["lugar"] = lugar(g["lon"], g["lat"], reg)
+    return {"focos": len(pts), "focos_risco": sum(g["n"] for g in out if g["categoria"] == "risco"),
+            "pequenas": len(peq), "grupos": sel}
 
 
 # ---------------- tudo junto ----------------

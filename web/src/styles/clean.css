@@ -88,3 +88,9 @@
 .pv-btn { all: unset; cursor: pointer; align-self: flex-end; font-size: 12px; font-weight: 800; color: #1D4ED8; }
 .pv-btn:focus-visible { outline: 2px solid #2563EB; }
 .pv-nota { font-size: 11px; color: #7A5A20; }
+.pv-calm { background: rgba(255, 255, 255, .6); border-radius: 12px; padding: 9px 12px; display: flex; flex-direction: column; gap: 6px; }
+.pv-calm > b { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #3F7F4F; }
+.pv-c1 { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: #3A424D; }
+.pv-c1 .tile { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex: none; }
+.pv-ok { background: #ECFDF3; color: #05603A; border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 700; }
+.pv-bars small { white-space: nowrap; }

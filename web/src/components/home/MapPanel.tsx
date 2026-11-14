@@ -15,6 +15,7 @@ import { SciButtons } from '../SciModal'
 import { L as LL, POL, worldviewUrl, type Lang } from '../../lib/science'
 import { RULE, factor, focusEvidence, physics } from '../../lib/evidence'
 import { focusHypothesis } from '../../lib/hypotheses'
+import { fogoResumo, pequena } from '../../lib/riscos'
 import { fichaFogo, fichaLhasa, fichaMontanha, fichaPrevisao, type Ficha } from '../../lib/detalhe'
 import '../../styles/map-extra.css'
 
@@ -55,9 +56,9 @@ export function MapPanel() {
         <div className="chips chips2" role="group" aria-label={t('Filtrar por tipo de evento')}>
           {(['todos', 'fogo', 'agua', 'arvore', 'solo'] as const).filter(k => !(real && k === 'fogo' && !ds.riscos?.fogo)).map(k => {
             const on = s.type === k, col = k === 'todos' ? '#5F6670' : ds.types[k].c
-            const kv = k === 'todos' ? null : real && k === 'fogo' ? { v: `${ds.riscos!.fogo!.focos} ${s.lang === 'en' ? 'spots/48h' : 'focos/48h'}`, d: '' } : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
+            const kv = k === 'todos' ? null : real && k === 'fogo' ? { v: `${fogoResumo(ds.riscos!.fogo).risco.length} ${s.lang === 'en' ? 'risky' : 'de risco'}`, d: '' } : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
             return (
-              <button key={k} className={cx('chip', on && 'on', k === 'todos' && 'all')} aria-pressed={on} style={{ '--c': col } as CSSProperties} onClick={() => set({ type: k })}
+              <button key={k} className={cx('chip', on && 'on', k === 'todos' && 'all')} aria-pressed={on} style={{ '--c': col, opacity: !on && kv && /^0([.,]0+)?( |$)/.test(kv.v) ? 0.5 : 1 } as CSSProperties} onClick={() => set({ type: k })}
                 title={k === 'todos' ? undefined : t(`${counts[k] ?? 0} focos`)}>
                 <span style={{ color: col, display: 'flex' }}><Icon k={k === 'todos' ? 'todos' : ds.types[k].ic} size={15} /></span>
                 {t(k === 'todos' ? 'Todos' : ds.types[k].n)}
@@ -160,7 +161,7 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
     if (todos) mt.forEach((f, i) => push({ id: `m-${i}`, lon: f.lon, lat: f.lat, ic: f.tipo === 'gelo' ? 'geleira' : 'deslizamento', col: f.tipo === 'gelo' ? '#0284C7' : '#9A5B13',
       lbl: f.tipo === 'gelo' ? (en ? 'Ice/snow changing' : 'Gelo/neve mudando') : (en ? 'New material on slope' : 'Material novo na encosta') }))
     if (todos) r?.deslizamento?.areas.forEach((a, i) => push({ id: `r-d-${i}`, lon: a.lon, lat: a.lat, ic: 'deslizamento', col: '#9A5B13', baixo: a.nivel === 'Baixo', lbl: `${en ? 'Landslide danger' : 'Perigo de deslizamento'} · ${(a.p * 100).toFixed(1)}%` }))
-    if (todos || s.type === 'fogo') r?.fogo?.grupos.forEach((g, i) => push({ id: `r-f-${i}`, lon: g.lon, lat: g.lat, ic: 'fogo', col: '#E2553A', baixo: g.nivel === 'Baixo', lbl: `${en ? 'Fire' : 'Fogo'} · ${g.n} ${en ? 'spots' : g.n === 1 ? 'foco' : 'focos'}` }))
+    if (todos || s.type === 'fogo') r?.fogo?.grupos.forEach((g, i) => { const pq = pequena(g); push({ id: `r-f-${i}`, lon: g.lon, lat: g.lat, ic: 'fogo', col: pq ? '#9AA0A8' : '#E2553A', baixo: pq, lbl: pq ? `${en ? 'Small burn' : 'Pequena queima'} · ${g.n} ${en ? 'spot(s)' : g.n === 1 ? 'foco' : 'focos'}` : `${en ? 'Risky fire' : 'Queimada de risco'} · ${g.n} ${en ? 'spots' : g.n === 1 ? 'foco' : 'focos'}` }) })
     return mk.filter(m => m.x >= 0 && m.x <= MAP_W && m.y >= 0 && m.y <= MAP_H)
   })()
   const selR = riskMk.find(m => m.id === s.sel)

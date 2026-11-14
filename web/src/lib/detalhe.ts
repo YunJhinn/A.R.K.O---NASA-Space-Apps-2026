@@ -3,7 +3,7 @@
 // Tudo montado a partir dos dados de cada fonte; as causas são hipóteses e aparecem como tal.
 import type { Alert, Ev, FocoMontanha, RiscosJson } from './types'
 import type { TimelinePoint } from './real'
-import { dia } from './riscos'
+import { dia, pequena } from './riscos'
 import { km } from './previsao'
 
 export interface Ficha {
@@ -50,16 +50,19 @@ export function fichaFogo(i: number, c: Ctx): Ficha | null {
   const ult = ultimaPassagem(c.timeline), prox = proxima(ult)
   const radarDepois = ult && ult >= f.ultimo.slice(0, 10)
   const intenso = f.n >= 10 || f.frp >= 150
+  const pq = pequena(f)
   let causa: string
-  if (veg.length) causa = en ? `Fire linked to vegetation removal: the radar had already seen vegetation loss here on ${dia(veg[0].date, en)}.` : `Fogo ligado à retirada de vegetação: o radar já tinha visto perda de vegetação aqui em ${dia(veg[0].date, en)}.`
+  if (pq) causa = en ? 'Probably a small controlled burn (trash, leaves, crop residue or a small field). Weak and isolated, so it does not raise an alert; it stays on the map in case it grows.'
+                     : 'Provável queima pequena e controlada (lixo, folhas, palha ou roçado). Fraca e isolada, por isso não vira alerta; fica no mapa caso cresça.'
+  else if (veg.length) causa = en ? `Fire linked to vegetation removal: the radar had already seen vegetation loss here on ${dia(veg[0].date, en)}.` : `Fogo ligado à retirada de vegetação: o radar já tinha visto perda de vegetação aqui em ${dia(veg[0].date, en)}.`
   else if (c.region === 'amazonia' && SECA_AMZ.includes(mes)) causa = en ? 'Dry-season burning, most likely set by people to clear land or renew pasture.' : 'Queima da estação seca, provavelmente colocada por pessoas para limpar área ou renovar pasto.'
   else if (c.region === 'bangladesh' || c.region === 'sul') causa = en ? 'Probably farm burning (crop residue or field clearing).' : 'Provavelmente queima agrícola (palha de colheita ou limpeza de lavoura).'
   else causa = en ? 'Active fire; the cause still needs to be checked.' : 'Fogo ativo; a causa ainda precisa ser checada.'
   return {
-    cor: '#E2553A', tag: en ? 'Fire' : 'Queimada', estado: en ? 'Seen by satellite' : 'Visto por satélite',
+    cor: pq ? '#6B7280' : '#E2553A', tag: pq ? (en ? 'Small burn' : 'Pequena queima') : (en ? 'Risky fire' : 'Queimada de risco'), estado: en ? 'Seen by satellite' : 'Visto por satélite',
     titulo: f.lugar, sub: `NASA FIRMS · VIIRS · ${en ? 'last' : 'último'} ${dia(f.ultimo, en)} ${f.ultimo.slice(11, 16)} UTC`,
     metrica: `${f.n} ${en ? 'heat spots' : f.n === 1 ? 'foco de calor' : 'focos de calor'}`, delta: `${n1(f.frp, en)} MW`,
-    grau: Math.min(100, Math.round(20 + f.n * 4 + f.frp / 5)),
+    grau: pq ? Math.min(25, Math.round(5 + f.n * 4 + f.frp)) : Math.min(100, Math.round(30 + f.n * 4 + f.frp / 5)),
     causa,
     resumo: intenso
       ? (en ? `A strong, spread-out fire: ${f.n} heat spots in ${c.riscos!.fogo!.janela_h} h within ~3 km. It may be advancing.` : `Fogo forte e espalhado: ${f.n} focos de calor em ${c.riscos!.fogo!.janela_h} h num raio de ~3 km. Pode estar avançando.`)
@@ -73,6 +76,7 @@ export function fichaFogo(i: number, c: Ctx): Ficha | null {
         : (en ? `NISAR radar: no vegetation loss within 3 km${ult ? ` up to the ${dia(ult, en)} pass` : ''}` : `Radar NISAR: sem perda de vegetação a até 3 km${ult ? ` até a passagem de ${dia(ult, en)}` : ''}`),
     ],
     porque: [
+      ...(pq ? [en ? `A.R.K.O rule: 1–2 heat spots with less than 15 MW in total = small burn. Larger or stronger fires are "risky fires" (they can get out of control, including accidental fires).` : `Regra do A.R.K.O: 1 ou 2 focos com menos de 15 MW no total = pequena queima. Fogo maior ou mais forte é "queimada de risco" (pode fugir do controle, inclusive incêndio acidental).`] : []),
       ...(c.region === 'amazonia' && SECA_AMZ.includes(mes) ? [en ? 'The date falls in the southern Amazon dry season (Jul–Nov), when most fires are set by people.' : 'A data cai na estação seca do sul da Amazônia (jul–nov), quando a maior parte do fogo é colocada por pessoas.'] : []),
       intenso ? (en ? 'Many spots close together and high power point to a fire front, not an isolated spark.' : 'Muitos focos juntos e potência alta indicam frente de fogo, não uma faísca isolada.') : (en ? 'Few spots and low power point to a small, controlled burn.' : 'Poucos focos e potência baixa indicam queima pequena e controlada.'),
     ],

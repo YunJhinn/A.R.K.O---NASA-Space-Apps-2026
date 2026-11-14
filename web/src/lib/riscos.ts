@@ -1,5 +1,13 @@
 // v6 · riscos em tempo quase real: deslizamento (NASA LHASA) e queimadas (NASA FIRMS), gravados pelo robô em riscos.json
-import type { Alert, FocoMontanha, RiscosJson } from './types'
+import type { Alert, FocoMontanha, FogoGrupo, RiscosJson } from './types'
+
+/** Pequena queima: 1-2 focos fracos (< 15 MW) -> provável queima controlada (lixo, roçado, palha). Não vira alerta. */
+export const pequena = (g: FogoGrupo) => (g.categoria ? g.categoria === 'pequena' : g.n <= 2 && g.frp < 15)
+export function fogoResumo(f: RiscosJson['fogo']) {
+  const gs = f?.grupos ?? []
+  const risco = gs.filter(g => !pequena(g)), peq = gs.filter(pequena)
+  return { risco, peq, focosRisco: f?.focos_risco ?? risco.reduce((t, g) => t + g.n, 0), nPeq: f?.pequenas ?? peq.length }
+}
 
 const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -24,9 +32,9 @@ export function riskAlerts(r: RiscosJson | undefined, lang: string): Alert[] {
     badge: `${en ? lvlEn[a.nivel] : a.nivel} · ${pct(a.p, en)}`,
   }) })
   const f = r.fogo
-  f?.grupos.map((g, i) => ({ g, i })).filter(x => x.g.nivel !== 'Baixo').slice(0, 5).forEach(({ g, i }) => out.push({
+  f?.grupos.map((g, i) => ({ g, i })).filter(x => !pequena(x.g) && x.g.nivel !== 'Baixo').slice(0, 5).forEach(({ g, i }) => out.push({
     id: `r-f-${i}`, lvl: g.nivel, p: 0, ty: 'fogo', src: 'ext', lon: g.lon, lat: g.lat,
-    t: en ? 'Active fire' : 'Queimada ativa', l: g.lugar,
+    t: en ? 'Risky fire' : 'Queimada de risco', l: g.lugar,
     m: en
       ? `${g.n} heat spots seen by satellite in the last ${f.janela_h} h (latest ${dia(g.ultimo, en)}, ${g.ultimo.slice(11, 16)} UTC).`
       : `${g.n} ${g.n === 1 ? 'foco de calor visto' : 'focos de calor vistos'} por satélite nas últimas ${f.janela_h} h (último em ${dia(g.ultimo, en)}, ${g.ultimo.slice(11, 16)} UTC).`,
@@ -45,7 +53,9 @@ export function riskMonitor(r: RiscosJson | undefined, lang: string) {
   const des = d && (dm.length
     ? (en ? `${dm.length} area(s) in danger` : `${dm.length} ${dm.length === 1 ? 'área em perigo' : 'áreas em perigo'}`)
     : (en ? `low danger (max ${pct(d.max ?? 0, en)})` : `perigo baixo (máx. ${pct(d.max ?? 0, en)})`))
-  const fog = f && (en ? `${f.focos} heat spot${f.focos === 1 ? '' : 's'} in ${f.janela_h} h` : `${f.focos} ${f.focos === 1 ? 'foco' : 'focos'} em ${f.janela_h} h`)
+  const fr = fogoResumo(f)
+  const fog = f && (en ? `${fr.risco.length} risky fire(s) · ${fr.nPeq} small burn(s) in ${f.janela_h} h`
+    : `${fr.risco.length} ${fr.risco.length === 1 ? 'queimada de risco' : 'queimadas de risco'} · ${fr.nPeq} ${fr.nPeq === 1 ? 'pequena queima' : 'pequenas queimas'} em ${f.janela_h} h`)
   return {
     des: d ? { txt: des!, src: `NASA LHASA · ${dia(d.data, en)}`, url: d.url, old: !!d.desatualizado } : null,
     fog: f ? { txt: fog!, src: 'NASA FIRMS', url: f.url, old: !!f.desatualizado } : null,

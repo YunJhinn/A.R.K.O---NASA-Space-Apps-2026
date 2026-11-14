@@ -5,7 +5,7 @@
 // São regras do A.R.K.O, não um modelo treinado: cada previsão é uma hipótese e mostra as provas que a sustentam.
 import type { Alert, Ev, FocoMontanha, Level, RiscosJson } from './types'
 import type { TimelinePoint } from './real'
-import { dia } from './riscos'
+import { dia, pequena } from './riscos'
 
 const R = 6371
 export const km = (a: { lon: number; lat: number }, b: { lon: number; lat: number }) => {
@@ -39,7 +39,7 @@ export function previsoes({ timeline, montanha, riscos, lang }: Ctx): Alert[] {
   const evU = (ult?.ev ?? []).filter(temLL), evA = (ant?.ev ?? []).filter(temLL)
   const dU = ult ? dia(ult.date, en) : '', dA = ant ? dia(ant.date, en) : ''
   const lhasa = riscos?.deslizamento?.areas ?? []
-  const fogo = riscos?.fogo?.grupos ?? []
+  const fogo = (riscos?.fogo?.grupos ?? []).filter(g => !pequena(g))
   const mt = montanha ?? []
   const areaPerto = (lista: (Ev & P)[], p: P, k: string) => lista.filter(e => e.k === k && km(e, p) < PERTO).reduce((t, e) => t + (e.a ?? 0), 0)
 
