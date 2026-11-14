@@ -7,6 +7,7 @@ import type { Level } from '../../lib/types'
 import { cx } from '../../lib/util'
 import { Icon } from '../Icon'
 import { riskMonitor } from '../../lib/riscos'
+import { PrevisaoTab } from './PrevisaoTab'
 
 /** Painel lateral "Alerta de riscos" (âmbar translúcido) */
 export function AlertPanel() {
@@ -17,6 +18,9 @@ export function AlertPanel() {
   const high = cnt.Alto
   const ref = useRef<HTMLDivElement>(null)
   const [all, setAll] = useState(false)
+  const [aba, setAba] = useState<'prev' | 'al'>('prev')
+  useEffect(() => { if (s.focus === 'alerts') setAba('al') }, [s.focus])
+  const prevOn = real && aba === 'prev'
   useEffect(() => { if (s.focus === 'alerts') ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }, [s.focus])
   const seeOnMap = (id: string | null) => {
     set({ prev: true, type: 'todos', sel: id, tl: null })
@@ -29,6 +33,14 @@ export function AlertPanel() {
         <b>{t('Alerta de riscos')}</b>
         <span className="alcount"><i />{ds.alerts.length} · {high} {s.lang === 'en' ? 'HIGH' : 'ALTO'}</span>
       </div>
+      {real && (
+        <div className="pv-tabs" role="tablist">
+          <button role="tab" aria-selected={aba === 'prev'} className={cx(aba === 'prev' && 'on')} onClick={() => setAba('prev')}>{s.lang === 'en' ? 'Forecast' : 'Previsão'}</button>
+          <button role="tab" aria-selected={aba === 'al'} className={cx(aba === 'al' && 'on')} onClick={() => setAba('al')}>{s.lang === 'en' ? 'Alerts' : 'Alertas'} <span>{ds.alerts.length}</span></button>
+        </div>
+      )}
+      {prevOn && <PrevisaoTab onMap={seeOnMap} />}
+      {!prevOn && <>
       <div className="rf" role="group" aria-label={t('Filtrar alertas por risco')}>
         <button className={cx(!s.risk && 'on')} aria-pressed={!s.risk} onClick={() => set({ risk: null })}>{t('Todos')} {ds.alerts.length}</button>
         {(Object.keys(cnt) as Level[]).filter(k => cnt[k] > 0).map(k => (
@@ -67,6 +79,7 @@ export function AlertPanel() {
           )
         })()}
       </div>
+      </>}
       <div className="note note2">
         <Icon k="info" size={14} className="text-acc" />
         <span>{real

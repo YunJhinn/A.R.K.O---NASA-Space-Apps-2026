@@ -65,6 +65,8 @@ export interface Alert {
   _y?: number
   /** texto do selo de risco no lugar de "nível · %" (ex.: "Alto · 14 focos") */
   badge?: string
+  /** previsões por cruzamento: as provas de cada fonte */
+  provas?: string[]
   /** posição no mapa (alertas de fontes externas: LHASA, FIRMS) */
   lon?: number
   lat?: number
@@ -74,7 +76,7 @@ export interface Alert {
 export interface RiscosJson {
   atualizado: string
   deslizamento?: { fonte: string; url: string; data: string; max: number | null; limiares: { medio: number; alto: number }; desatualizado?: boolean
-    areas: { lon: number; lat: number; p: number; km2: number; nivel: 'Alto' | 'Médio'; lugar: string }[] }
+    areas: { lon: number; lat: number; p: number; km2: number; nivel: 'Alto' | 'Médio' | 'Baixo'; lugar: string }[] }
   fogo?: { fonte: string; url: string; janela_h: number; focos: number; desatualizado?: boolean
     grupos: { lon: number; lat: number; n: number; frp: number; ultimo: string; nivel: 'Alto' | 'Médio' | 'Baixo'; lugar: string }[] }
 }

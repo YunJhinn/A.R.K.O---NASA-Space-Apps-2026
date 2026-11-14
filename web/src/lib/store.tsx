@@ -8,10 +8,12 @@ import { setI18n, tr } from './i18n'
 import { ago } from './util'
 import { eventAlerts } from './events'
 import { mountainAlerts, riskAlerts } from './riscos'
+import { previsoes } from './previsao'
 
-/** colapso primeiro, depois do maior risco para o menor (mantém a ordem dentro de cada nível) */
 const ORD = { Alto: 0, 'Médio': 1, Baixo: 2 } as const
-const ordenar = (a: Alert[]) => a.map((x, i) => [x, i] as const).sort((p, q) => (p[0].ty === 'colapso' ? -1 : 0) - (q[0].ty === 'colapso' ? -1 : 0) || ORD[p[0].lvl] - ORD[q[0].lvl] || p[1] - q[1]).map(p => p[0])
+/** colapso, depois as PREVISÕES por cruzamento (foco principal), depois o resto; dentro de cada grupo, do maior risco para o menor */
+const grupo = (x: Alert) => (x.ty === 'colapso' ? 0 : x.id?.startsWith('p-') ? 1 : 2)
+const ordenar = (a: Alert[]) => a.map((x, i) => [x, i] as const).sort((p, q) => grupo(p[0]) - grupo(q[0]) || ORD[p[0].lvl] - ORD[q[0].lvl] || p[1] - q[1]).map(p => p[0])
 import fallbackJson from '../data/focos-fallback.json'
 import fallbackImg from '../assets/radar-fallback.jpg'
 import type { FocosAppJson, RiscosJson } from './types'
@@ -179,7 +181,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (isReal) (Object.keys(TYPES_REAL) as EvType[]).forEach(k => { types[k] = { ...types[k], ...TYPES_REAL[k] } })
     return {
       ev: isReal ? real.ev : region.ev,
-      alerts: isReal ? ordenar([...eventAlerts(realMeta.id, s.lang), ...riskAlerts(riscos[realMeta.id], s.lang), ...mountainAlerts(real.meta.montanha, real.meta.antes.data, real.meta.depois.data, s.lang), ...real.alerts]) : region.alerts,
+      alerts: isReal ? ordenar([...eventAlerts(realMeta.id, s.lang), ...previsoes({ timeline, montanha: real.meta.montanha, riscos: riscos[realMeta.id], lang: s.lang }), ...riskAlerts(riscos[realMeta.id], s.lang), ...mountainAlerts(real.meta.montanha, real.meta.antes.data, real.meta.depois.data, s.lang), ...real.alerts]) : region.alerts,
       riscos: isReal ? riscos[realMeta.id] : undefined,
       cities: isReal ? real.cities : region.cities,
       cmp: isReal ? real.cmp : region.cmp,

@@ -20,8 +20,8 @@ FIRMS = [("NOAA-20", "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa
          ("NOAA-21", "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_Global_48h.csv")]
 # Limiares do A.R.K.O para a probabilidade do LHASA (a NASA deixa cada usuário escolher o seu;
 # o visualizador oficial da NASA começa a colorir o mapa em 5%).
-LIM_MEDIO, LIM_ALTO = 0.05, 0.10
-MAX_AREAS, MAX_GRUPOS = 6, 25
+LIM_BAIXO, LIM_MEDIO, LIM_ALTO = 0.02, 0.05, 0.10   # baixo: só aparece no mapa (monitoramento), sem alerta
+MAX_AREAS, MAX_GRUPOS = 8, 25
 GRUPO_GRAUS = 0.03                       # focos de fogo a menos de ~3 km viram um grupo só
 UA = {"User-Agent": "ARKO-NISAR/1.0 (NASA Space Apps 2026)"}
 
@@ -101,7 +101,7 @@ def lhasa_regiao(ds, b, reg):
     ok = ~np.isnan(a)
     if not ok.any():
         return {"max": None, "areas": []}
-    lab, n = ndimage.label(np.nan_to_num(a) >= LIM_MEDIO)
+    lab, n = ndimage.label(np.nan_to_num(a) >= LIM_BAIXO)
     areas = []
     km2_px = (abs(T.a) * 111.32) * (abs(T.e) * 110.57)
     for i in range(1, n + 1):
@@ -114,7 +114,7 @@ def lhasa_regiao(ds, b, reg):
         p = float(a[kr, kc])
         areas.append({"lon": round(lon, 4), "lat": round(lat, 4), "p": round(p, 4),
                       "km2": round(float(m.sum()) * km2_px * math.cos(math.radians(lat)), 1),
-                      "nivel": "Alto" if p >= LIM_ALTO else "Médio", "lugar": lugar(lon, lat, reg)})
+                      "nivel": "Alto" if p >= LIM_ALTO else "Médio" if p >= LIM_MEDIO else "Baixo", "lugar": lugar(lon, lat, reg)})
     areas.sort(key=lambda x: -x["p"])
     v = a[ok]
     return {"max": round(float(v.max()), 4), "p90": round(float(np.percentile(v, 90)), 4), "areas": areas[:MAX_AREAS]}
@@ -207,7 +207,7 @@ def atualizar_riscos(regioes, dados_raiz):
                 novo["deslizamento"] = {"fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
                                         "url": "https://gpm.nasa.gov/landslides/projects.html",
                                         "data": f"{lh_nome[:4]}-{lh_nome[4:6]}-{lh_nome[6:8]}",
-                                        "limiares": {"medio": LIM_MEDIO, "alto": LIM_ALTO}} | lhasa_regiao(lh_ds, b, reg)
+                                        "limiares": {"baixo": LIM_BAIXO, "medio": LIM_MEDIO, "alto": LIM_ALTO}} | lhasa_regiao(lh_ds, b, reg)
             except Exception as e:
                 print(f"  LHASA {reg['id']}: {e}")
         if "deslizamento" not in novo and antigo.get("deslizamento"):

@@ -14,7 +14,7 @@ export function riskAlerts(r: RiscosJson | undefined, lang: string): Alert[] {
   if (!r) return []
   const en = lang === 'en', out: Alert[] = []
   const d = r.deslizamento
-  d?.areas.forEach((a, i) => out.push({
+  d?.areas.forEach((a, i) => { if (a.nivel !== 'Baixo') out.push({
     id: `r-d-${i}`, lvl: a.nivel, p: Math.round(a.p * 100), ty: 'deslizamento', src: 'ext', lon: a.lon, lat: a.lat,
     t: en ? 'Landslide danger' : 'Perigo de deslizamento', l: a.lugar,
     m: en
@@ -22,7 +22,7 @@ export function riskAlerts(r: RiscosJson | undefined, lang: string): Alert[] {
       : `Chance de ${pct(a.p, en)} de deslizamento por chuva (modelo LHASA da NASA: chuva por satélite, solo e relevo), em ~${a.km2.toLocaleString('pt-BR')} km².`,
     pz: `NASA LHASA · ${dia(d.data, en)}`,
     badge: `${en ? lvlEn[a.nivel] : a.nivel} · ${pct(a.p, en)}`,
-  }))
+  }) })
   const f = r.fogo
   f?.grupos.map((g, i) => ({ g, i })).filter(x => x.g.nivel !== 'Baixo').slice(0, 5).forEach(({ g, i }) => out.push({
     id: `r-f-${i}`, lvl: g.nivel, p: 0, ty: 'fogo', src: 'ext', lon: g.lon, lat: g.lat,
@@ -41,8 +41,9 @@ export function riskMonitor(r: RiscosJson | undefined, lang: string) {
   if (!r) return null
   const en = lang === 'en'
   const d = r.deslizamento, f = r.fogo
-  const des = d && (d.areas.length
-    ? (en ? `${d.areas.length} area(s) in danger` : `${d.areas.length} ${d.areas.length === 1 ? 'área em perigo' : 'áreas em perigo'}`)
+  const dm = d?.areas.filter(a => a.nivel !== 'Baixo') ?? []
+  const des = d && (dm.length
+    ? (en ? `${dm.length} area(s) in danger` : `${dm.length} ${dm.length === 1 ? 'área em perigo' : 'áreas em perigo'}`)
     : (en ? `low danger (max ${pct(d.max ?? 0, en)})` : `perigo baixo (máx. ${pct(d.max ?? 0, en)})`))
   const fog = f && (en ? `${f.focos} heat spot${f.focos === 1 ? '' : 's'} in ${f.janela_h} h` : `${f.focos} ${f.focos === 1 ? 'foco' : 'focos'} em ${f.janela_h} h`)
   return {

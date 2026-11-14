@@ -35,6 +35,15 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
         </div>
       )}
       <p className="one">{t(a.m)}</p>
+      {open && a.provas && (
+        <div className="det">
+          <div>
+            <b>{en ? 'Why this forecast (data crossed in the same area)' : 'Por que esta previsão (dados cruzados na mesma área)'}</b>
+            {a.provas.map(pv => <span key={pv}>• {pv}</span>)}
+          </div>
+          <span className="nota">{en ? 'A.R.K.O rule that crosses the sources: a hypothesis to confirm on the ground, not a certainty.' : 'Regra do A.R.K.O que cruza as fontes: hipótese a confirmar em campo, não uma certeza.'}</span>
+        </div>
+      )}
       {open && a.etapas && (
         <div className="det">
           {a.etapas.slice().reverse().map(e => (
@@ -48,7 +57,7 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
         </div>
       )}
       <div className="ft">
-        {a.etapas
+        {a.etapas || a.provas
           ? <button type="button" className="lnk" aria-expanded={open} onClick={e => { e.stopPropagation(); setOpen(!open) }}>{open ? (en ? 'Hide details ▴' : 'Ocultar detalhes ▴') : (en ? 'Details ▾' : 'Detalhes ▾')}</button>
           : <><Icon k="relogio" size={13} />{t(a.pz)}</>}
         {onMap && (a.id || a.ty === 'colapso') && <a href="#inicio" onClick={e => { e.preventDefault(); e.stopPropagation(); onMap() }}>{t('Ver no mapa')}</a>}

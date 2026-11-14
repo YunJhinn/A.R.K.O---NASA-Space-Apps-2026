@@ -15,6 +15,7 @@ import { SciButtons } from '../SciModal'
 import { L as LL, POL, worldviewUrl, type Lang } from '../../lib/science'
 import { RULE, factor, focusEvidence, physics } from '../../lib/evidence'
 import { focusHypothesis } from '../../lib/hypotheses'
+import { fichaFogo, fichaLhasa, fichaMontanha, fichaPrevisao, type Ficha } from '../../lib/detalhe'
 import '../../styles/map-extra.css'
 
 /** Escala aproximada: a barra da escala tem ~1/10 da largura do mapa */
@@ -148,6 +149,21 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
 
   const mc = (e: Ev) => (s.colorBy === 'mes' && e.st !== 'prev' ? evMonth(e.d)[3] : ds.types[e.k].c)
   const sel = ev.find(e => e.id === s.sel)
+  // pontos de risco (previsões, montanha, LHASA, FIRMS): cada um abre uma ficha com Resumo, Dados e Polarização
+  const riskMk = (() => {
+    if (!real) return []
+    const pj = projector(ds.realMeta.imagem), r = ds.riscos, mt = ds.real.meta.montanha ?? []
+    const mk: { id: string; lon: number; lat: number; ic: string; col: string; lbl: string; prev?: boolean; baixo?: boolean; x: number; y: number }[] = []
+    const todos = s.type === 'todos'
+    const push = (m: Omit<(typeof mk)[number], 'x' | 'y'>) => mk.push({ ...m, x: pj.X(m.lon), y: pj.Y(m.lat) })
+    ds.alerts.filter(al => al.id?.startsWith('p-') && al.lon != null && (todos || al.ty === s.type)).forEach(al => push({ id: al.id!, lon: al.lon!, lat: al.lat!, ic: al.ty, col: al.lvl === 'Alto' ? '#D92D20' : '#DC6803', lbl: `${en ? 'Forecast' : 'Previsão'}: ${t(al.t)}`, prev: true }))
+    if (todos) mt.forEach((f, i) => push({ id: `m-${i}`, lon: f.lon, lat: f.lat, ic: f.tipo === 'gelo' ? 'geleira' : 'deslizamento', col: f.tipo === 'gelo' ? '#0284C7' : '#9A5B13',
+      lbl: f.tipo === 'gelo' ? (en ? 'Ice/snow changing' : 'Gelo/neve mudando') : (en ? 'New material on slope' : 'Material novo na encosta') }))
+    if (todos) r?.deslizamento?.areas.forEach((a, i) => push({ id: `r-d-${i}`, lon: a.lon, lat: a.lat, ic: 'deslizamento', col: '#9A5B13', baixo: a.nivel === 'Baixo', lbl: `${en ? 'Landslide danger' : 'Perigo de deslizamento'} · ${(a.p * 100).toFixed(1)}%` }))
+    if (todos || s.type === 'fogo') r?.fogo?.grupos.forEach((g, i) => push({ id: `r-f-${i}`, lon: g.lon, lat: g.lat, ic: 'fogo', col: '#E2553A', baixo: g.nivel === 'Baixo', lbl: `${en ? 'Fire' : 'Fogo'} · ${g.n} ${en ? 'spots' : g.n === 1 ? 'foco' : 'focos'}` }))
+    return mk.filter(m => m.x >= 0 && m.x <= MAP_W && m.y >= 0 && m.y <= MAP_H)
+  })()
+  const selR = riskMk.find(m => m.id === s.sel)
   const heats = !real && s.colorBy !== 'mes' && !step
     ? (Object.entries(ds.region.heat) as [EvType, [number, number, number]][]).filter(([k]) => s.type === 'todos' || s.type === k)
       .map(([k, [x, y, r]]) => { const n = ev.filter(e => e.k === k && e.st !== 'prev').length; return n ? <Heat key={k} x={x} y={y} r={r} color={rgba(ds.types[k].c, 0.18 + n * 0.05)} /> : null })
@@ -190,27 +206,17 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
             </div>
           )
         })()}
-        {real && (() => {
-          const pj = projector(ds.realMeta.imagem), r = ds.riscos, mt = ds.real.meta.montanha ?? []
-          const mk: { id: string; lon: number; lat: number; ic: 'fogo' | 'deslizamento' | 'geleira'; col: string; lbl: string }[] = []
-          const todos = s.type === 'todos'
-          if (todos) mt.forEach((f, i) => mk.push({ id: `m-${i}`, lon: f.lon, lat: f.lat, ic: f.tipo === 'gelo' ? 'geleira' : 'deslizamento', col: f.tipo === 'gelo' ? '#0284C7' : '#9A5B13',
-            lbl: f.tipo === 'gelo' ? (en ? 'Ice/snow changing' : 'Gelo/neve mudando') : (en ? 'New material on slope' : 'Material novo na encosta') }))
-          if (todos) r?.deslizamento?.areas.forEach((a, i) => mk.push({ id: `r-d-${i}`, lon: a.lon, lat: a.lat, ic: 'deslizamento', col: '#9A5B13', lbl: `${en ? 'Landslide danger' : 'Perigo de deslizamento'} · ${(a.p * 100).toFixed(0)}%` }))
-          if (todos || s.type === 'fogo') r?.fogo?.grupos.forEach((g, i) => mk.push({ id: `r-f-${i}`, lon: g.lon, lat: g.lat, ic: 'fogo', col: '#E2553A', lbl: `${en ? 'Fire' : 'Fogo'} · ${g.n} ${en ? 'spots' : g.n === 1 ? 'foco' : 'focos'}` }))
-          return mk.filter(m => { const x = pj.X(m.lon), y = pj.Y(m.lat); return x >= 0 && x <= MAP_W && y >= 0 && y <= MAP_H }).map(m => {
-            const on = s.sel === m.id
-            return (
-              <button key={m.id} type="button" className="absolute z-[4]" aria-label={m.lbl} title={m.lbl}
-                style={{ ...pos(pj.X(m.lon), pj.Y(m.lat)), transform: 'translate(-50%,-50%) scale(var(--iz))', width: 34, height: 34, borderRadius: 99, padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  border: `2px solid ${m.col}`, background: 'rgba(255,255,255,.92)', boxShadow: on ? `0 0 0 6px ${m.col}66` : `0 0 12px ${m.col}88`, cursor: 'pointer' }}
-                onClick={e => { e.stopPropagation(); set({ sel: on ? null : m.id }) }}>
-                <Icon k={m.ic} size={17} />
-                {on && <span style={{ position: 'absolute', ...(pj.X(m.lon) > MAP_W * 0.7 ? { right: 40 } : { left: 40 }), top: '50%', transform: 'translateY(-50%)', whiteSpace: 'nowrap', background: m.col, color: '#fff', fontSize: 11.5, fontWeight: 800, borderRadius: 6, padding: '2px 7px' }}>{m.lbl}</span>}
-              </button>
-            )
-          })
-        })()}
+        {riskMk.map(m => {
+          const on = s.sel === m.id
+          return (
+            <button key={m.id} type="button" className="absolute z-[4]" aria-label={m.lbl} title={m.lbl}
+              style={{ ...pos(m.x, m.y), transform: 'translate(-50%,-50%) scale(var(--iz))', width: m.prev ? 40 : m.baixo ? 26 : 34, height: m.prev ? 40 : m.baixo ? 26 : 34, zIndex: m.prev ? 6 : undefined, borderRadius: 99, padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                border: `${m.prev ? 3 : 2}px ${m.prev ? 'dashed' : 'solid'} ${m.col}`, background: 'rgba(255,255,255,.92)', opacity: m.baixo && !on ? 0.85 : 1, boxShadow: on ? `0 0 0 6px ${m.col}66` : `0 0 12px ${m.col}88`, cursor: 'pointer' }}
+              onClick={e => { e.stopPropagation(); set({ sel: on ? null : m.id }) }}>
+              <Icon k={m.ic} size={m.baixo ? 13 : 17} />
+            </button>
+          )
+        })}
         <Pin />
       </div>
       {full && (
@@ -241,8 +247,9 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
       <Legend />
       <div className="scale">{real ? scaleKm(ds.realMeta.imagem) : '350 km'}<i /></div>
       <div className="attr">{t(real ? `Radar NISAR GCOV banda L · ${step ? fmtDate(step.date) : `${ds.rd.b} ${ds.rd.y}`} · NASA-ISRO / ASF DAAC` : 'Dados ilustrativos · base Natural Earth · radar NISAR')}</div>
-      <div className="empty" style={{ display: ev.length ? 'none' : 'flex' }}><div>{t('Nenhum foco desse tipo no período.')}<br />{t('Tente um período maior.')}</div></div>
+      <div className="empty" style={{ display: ev.length || riskMk.length ? 'none' : 'flex' }}><div>{t('Nenhum foco desse tipo no período.')}<br />{t('Tente um período maior.')}</div></div>
       {sel && size.w > 0 && <Popup e={sel} W={size.w} H={size.h} px={ox + view.tx + (sel.x / MAP_W) * sw * view.z} py={oy + view.ty + (sel.y / MAP_H) * sh * view.z} />}
+      {selR && size.w > 0 && <RiskPopup id={selR.id} W={size.w} H={size.h} px={ox + view.tx + (selR.x / MAP_W) * sw * view.z} py={oy + view.ty + (selR.y / MAP_H) * sh * view.z} />}
     </div>
   )
 }
@@ -392,6 +399,79 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
         </div>
       )}
       <div className="btns"><button className="btn pri" onClick={() => go('comparar')}>{t('Comparar períodos')}</button><button className="btn">{t('Compartilhar')}</button></div>
+    </div>
+  )
+}
+
+/** Ficha de um ponto de risco: mesmo formato do card dos focos do radar */
+function RiskPopup({ id, W, H, px, py }: { id: string; W: number; H: number; px: number; py: number }) {
+  const { s, set, t, ds, go } = useApp()
+  const en = s.lang === 'en'
+  const [tab, setTab] = useState<'resumo' | 'dados' | 'pol'>('resumo')
+  useEffect(() => setTab('resumo'), [id])
+  const ctx = { region: ds.realMeta.id, timeline: ds.timeline, riscos: ds.riscos, montanha: ds.real.meta.montanha, lang: s.lang }
+  const al = ds.alerts.find(a => a.id === id)
+  const f: Ficha | null = id.startsWith('p-') && al ? fichaPrevisao(al, en)
+    : id.startsWith('r-f-') ? fichaFogo(+id.slice(4), ctx)
+    : id.startsWith('r-d-') ? fichaLhasa(+id.slice(4), ctx)
+    : id.startsWith('m-') ? fichaMontanha(+id.slice(2), ctx) : null
+  const box = useRef<HTMLDivElement>(null)
+  const [ph, setPh] = useState(330)
+  useLayoutEffect(() => { if (box.current) setPh(box.current.offsetHeight) })
+  if (!f) return null
+  const PW = Math.min(286, W - 24), maxH = H - 24, hh = Math.min(ph, maxH)
+  let left = px > W * 0.55 ? px - 30 - PW : px + 30
+  left = Math.max(12, Math.min(W - PW - 12, left))
+  const top = Math.max(12, Math.min(H - hh - 12, py - hh / 2))
+  const li = (x: string) => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span className="bul">›</span><span>{x}</span></div>
+  return (
+    <div className="pop" ref={box} role="dialog" aria-label={t('Detalhe do foco')} style={{ left, top, width: PW, maxHeight: maxH, overflowY: 'auto' }} onClick={ev => ev.stopPropagation()} onPointerDown={ev => ev.stopPropagation()} onWheel={ev => ev.stopPropagation()}>
+      <button className="x" aria-label={t('Fechar detalhe')} onClick={() => set({ sel: null })}><Icon k="x" size={14} /></button>
+      <div style={{ display: 'flex', gap: 6 }}>
+        <span className="tag" style={{ background: rgba(f.cor, 0.14), color: f.cor }}>{f.tag}</span>
+        <span className="tag" style={{ background: 'rgba(251,191,36,.14)', color: '#F29900' }}>{f.estado}</span>
+      </div>
+      <div><h3>{t(f.titulo)}</h3><div className="sub">{t(f.sub)}</div></div>
+      <div className="metric"><b>{f.metrica}</b>{f.delta && <span style={{ color: 'var(--red2)', fontSize: 12, fontWeight: 500 }}>{f.delta}</span>}</div>
+      <div className="ptabs" role="tablist" aria-label={en ? 'Detail sections' : 'Seções do detalhe'}>
+        {([['resumo', en ? 'Summary' : 'Resumo'], ['dados', en ? 'Data' : 'Dados'], ['pol', en ? 'Polarization' : 'Polarização']] as const).map(([k, l]) => (
+          <button key={k} role="tab" aria-selected={tab === k} className={cx(tab === k && 'on')} onClick={() => setTab(k)}>{l}</button>
+        ))}
+      </div>
+      {tab === 'resumo' && (
+        <>
+          <div className="hyp"><b>🧪 {en ? 'Likely cause (hypothesis): ' : 'Causa provável (hipótese): '}</b>{f.causa}</div>
+          <div className="why">{f.resumo}</div>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 5 }}>
+              <span style={{ color: 'var(--mu)' }}>{en ? 'Danger level' : 'Nível de perigo'}</span>
+              <b style={{ color: 'var(--red2)' }}>{t(`${lvlOf(f.grau)} · ${f.grau}/100`)}</b>
+            </div>
+            <div className="gbar"><i style={{ width: `${f.grau}%` }} /></div>
+          </div>
+          <a className="plink" href={worldviewUrl(ds.realMeta.imagem, ds.timeline.at(-1)?.date)} target="_blank" rel="noreferrer">{en ? 'Confirm in the optical image (NASA Worldview) ↗' : 'Confirmar na imagem óptica (NASA Worldview) ↗'}</a>
+        </>
+      )}
+      {tab === 'dados' && (
+        <div className="pbody">
+          <b>{en ? 'What the data showed' : 'O que os dados mostraram'}</b>
+          {f.dados.map(li)}
+          {f.porque.length > 0 && <><b>{en ? 'Why this cause' : 'Por que essa causa'}</b>{f.porque.map(li)}</>}
+          <b>{en ? 'Other possible causes' : 'Outras causas possíveis'}</b>
+          {f.outras.map(li)}
+        </div>
+      )}
+      {tab === 'pol' && (
+        <div className="pbody">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ background: f.pol.sigla === 'HV' ? '#2F9E44' : '#1C7ED6', color: '#fff', fontWeight: 800, borderRadius: 6, padding: '2px 8px' }}>{f.pol.sigla}</span>
+            <b>{f.pol.oque}</b>
+          </div>
+          <div>{f.pol.texto}</div>
+          {f.pol.valores.length > 0 && <div className="mut">{f.pol.valores.map(v => <div key={v}>{v}</div>)}</div>}
+        </div>
+      )}
+      <div className="btns"><button className="btn pri" onClick={() => go('comparar')}>{t('Comparar períodos')}</button></div>
     </div>
   )
 }
