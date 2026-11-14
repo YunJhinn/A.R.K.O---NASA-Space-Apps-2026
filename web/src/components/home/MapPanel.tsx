@@ -201,7 +201,7 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
             <div className="pointer-events-none absolute z-[5]" style={{ ...pos(pj.X(ev0.lon), pj.Y(ev0.lat)), transform: 'translate(-50%,-50%) scale(var(--iz))' }}>
               <div style={{ width: 22, height: 22, borderRadius: 99, border: '3px solid #FF3B30', background: 'rgba(255,59,48,.25)', boxShadow: '0 0 0 6px rgba(255,59,48,.18)' }} />
               <div style={{ position: 'absolute', left: 28, top: -4, whiteSpace: 'nowrap', background: '#FF3B30', color: '#fff', fontSize: 11.5, fontWeight: 800, borderRadius: 6, padding: '2px 7px' }}>
-                ⚠ {en ? `Collapse · ${fmtDate(ev0.data)}` : `Colapso · ${fmtDate(ev0.data)}`}
+                ⚠ {ev0.tipo === 'enchente' ? (en ? `Flood · ${fmtDate(ev0.data)}` : `Enchente · ${fmtDate(ev0.data)}`) : (en ? `Collapse · ${fmtDate(ev0.data)}` : `Colapso · ${fmtDate(ev0.data)}`)}
               </div>
             </div>
           )

@@ -7,12 +7,12 @@ import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type 
 import { setI18n, tr } from './i18n'
 import { ago } from './util'
 import { eventAlerts } from './events'
-import { mountainAlerts, riskAlerts } from './riscos'
+import { calibrar, mountainAlerts, riskAlerts } from './riscos'
 import { previsoes } from './previsao'
 
 const ORD = { Alto: 0, 'Médio': 1, Baixo: 2 } as const
 /** colapso, depois as PREVISÕES por cruzamento (foco principal), depois o resto; dentro de cada grupo, do maior risco para o menor */
-const grupo = (x: Alert) => (x.ty === 'colapso' ? 0 : x.id?.startsWith('p-') ? 1 : 2)
+const grupo = (x: Alert) => (x.ty === 'colapso' || x.src === 'evento' ? 0 : x.id?.startsWith('p-') ? 1 : 2)
 const ordenar = (a: Alert[]) => a.map((x, i) => [x, i] as const).sort((p, q) => grupo(p[0]) - grupo(q[0]) || ORD[p[0].lvl] - ORD[q[0].lvl] || p[1] - q[1]).map(p => p[0])
 import fallbackJson from '../data/focos-fallback.json'
 import fallbackImg from '../assets/radar-fallback.jpg'
@@ -124,7 +124,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ob = localStorage.getItem('arko-ob') !== '1' && !location.hash
       localStorage.setItem('arko-ob', '1')
       const h = location.hash.slice(1)
-      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro') view = h
+      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao') view = h
     } catch { /* sem localStorage */ }
     let favs: MyPlace[] = [], recents: MyPlace[] = []
     try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
@@ -159,7 +159,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       .catch(() => {})
     fetch(base + 'riscos.json', { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : null))
-      .then((d: RiscosJson | null) => { if (d?.atualizado) setRiscos(x => ({ ...x, [m.id]: d })) })
+      .then((d: RiscosJson | null) => { if (d?.atualizado) setRiscos(x => ({ ...x, [m.id]: calibrar(d) })) })
       .catch(() => {})
     fetch(base + 'linha_tempo.json', { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : null))
@@ -199,7 +199,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [s.lang])
   useEffect(() => { try { if (location.hash !== '#' + s.view) history.replaceState(null, '', '#' + s.view) } catch { /* ok */ } }, [s.view])
   useEffect(() => {
-    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro') set({ view: h }) }
+    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao') set({ view: h }) }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])

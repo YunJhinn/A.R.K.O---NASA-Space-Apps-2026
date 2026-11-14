@@ -28,8 +28,9 @@ from pyproj import Transformer
 from PIL import Image
 
 # ---------------- configuração ----------------
-COLECAO = "NISAR_L2_GCOV_PROVISIONAL_V1"
-INICIO = "2026-06-17"                  # primeiras observações públicas calibradas
+COLECAO_PADRAO = "NISAR_L2_GCOV_PROVISIONAL_V1"
+INICIO_PADRAO = "2026-06-17"           # primeiras observações públicas calibradas
+COLECAO, INICIO, FIM = COLECAO_PADRAO, INICIO_PADRAO, None   # trocados por usar_regiao (v6.2: região com dados BETA)
 DIAS_MIN = 45                          # "antes" precisa ser pelo menos 45 dias antes do "depois"
 FREQ = "frequencyB"                    # grade de ~80 m
 MIN_PX = 40                            # menor foco: 40 pixels (~0,26 km²)
@@ -81,6 +82,20 @@ REGIOES = [
                   "Kyanjin Gompa": (85.57, 28.21), "Thulo Bharkhu": (85.31, 28.13), "Chilime": (85.30, 28.18),
                   "Betrawati": (85.19, 27.97), "Trishuli (Bidur)": (85.15, 27.90), "Devighat": (85.11, 27.86),
                   "Dhading Besi": (84.89, 27.91), "Melamchi": (85.58, 27.83), "Gyirong (China)": (85.33, 28.39)}),
+    # Moçambique (v6.2): estudo de caso da enchente do rio Limpopo em Chókwè (meados de jan 2026), usada para
+    # validar o A.R.K.O com um desastre real que a própria NASA mostrou com o NISAR (svs.gsfc.nasa.gov/5661).
+    # Dados BETA (antes da calibração final): coleção, início e fim próprios; a janela é fechada, então o robô
+    # processa uma vez e depois não muda mais.
+    dict(id="mocambique", nome="Rio Limpopo e Chókwè · Moçambique", pais="Moçambique", pasta="regioes/mocambique/",
+         orbita="_114_A_165_", bbox=(32.93, -24.58, 33.03, -24.48), sufixo=" · Moçambique", img=None,
+         colecao="NISAR_L2_GCOV_BETA_V1", inicio="2025-12-01", fim="2026-01-31", beta=True,
+         par=("2026-01-05", "2026-01-17"),
+         evento=dict(data="2026-01-17", lon=32.98, lat=-24.53, tipo="enchente",
+                     nome="Enchente do rio Limpopo em Chókwè", nome_en="Limpopo River flood in Chókwè"),
+         cidades={"Chókwè": (32.98, -24.53), "Chibuto": (33.53, -24.69), "Macia": (33.10, -25.03),
+                  "Xai-Xai": (33.64, -25.05), "Magude": (32.65, -25.02), "Mabalane": (32.63, -23.85),
+                  "Massingir": (32.16, -23.89), "Manhiça": (32.81, -25.40), "Bilene": (33.24, -25.30),
+                  "Maputo": (32.57, -25.97), "Mapai": (32.06, -22.85)}),
 ]
 # valores da região em uso (trocados por usar_regiao)
 ORBITA = BBOX_BUSCA = IMG = CIDADES = SUFIXO = MONTANHA = ZONA_GELO = None
@@ -117,7 +132,7 @@ def data_de(nome):
 def passagens():
     """Lista as passagens da mesma órbita, uma por data (a versão mais nova)."""
     hoje = dt.date.today().isoformat()
-    res = earthaccess.search_data(short_name=COLECAO, bounding_box=BBOX_BUSCA, temporal=(INICIO, hoje))
+    res = earthaccess.search_data(short_name=COLECAO, bounding_box=BBOX_BUSCA, temporal=(INICIO, FIM or hoje))
     por_data = {}
     for g in res:
         nome = g["umm"]["GranuleUR"]
@@ -146,12 +161,24 @@ def ler(nome):
     print("lendo da NASA:", nome, flush=True)
     res = earthaccess.search_data(short_name=COLECAO, granule_name=nome)
     h = h5py.File(earthaccess.open(res)[0], "r")
-    g = h[f"science/LSAR/GCOV/grids/{FREQ}"]
-    if "HHHH" not in g or "HVHV" not in g:
+    grids = h["science/LSAR/GCOV/grids"]
+    # v6.2: produtos BETA podem vir só com frequencyA (grade fina); nesse caso tira a média em blocos até ~80 m
+    freq = FREQ if FREQ in grids and "HHHH" in grids[FREQ] else "frequencyA"
+    g = grids[freq] if freq in grids else None
+    if g is None or "HHHH" not in g or "HVHV" not in g:
         print("  produto sem HH/HV, ignorado na comparação:", nome)
         return None
-    r = dict(hh=g["HHHH"][:], hv=g["HVHV"][:], x=g["xCoordinates"][:], y=g["yCoordinates"][:],
-             epsg=int(g["projection"].attrs["epsg_code"]))
+    x, y = g["xCoordinates"][:], g["yCoordinates"][:]
+    hh, hv = g["HHHH"][:], g["HVHV"][:]
+    k = max(1, int(round(80 / abs(x[1] - x[0])))) if freq != FREQ else 1
+    if k > 1:
+        print(f"  sem {FREQ}: usando {freq} em blocos de {k}x{k}")
+        ny, nx = (hh.shape[0] // k) * k, (hh.shape[1] // k) * k
+        bloco = lambda v: np.nanmean(v[:ny, :nx].reshape(ny // k, k, nx // k, k), axis=(1, 3))
+        with np.errstate(invalid="ignore"):
+            hh, hv = bloco(hh), bloco(hv)
+        x, y = x[:nx].reshape(-1, k).mean(1), y[:ny].reshape(-1, k).mean(1)
+    r = dict(hh=hh, hv=hv, x=x, y=y, epsg=int(g["projection"].attrs["epsg_code"]))
     np.savez(arq, **r)
     return r
 
@@ -347,8 +374,9 @@ def recorte_auto(d):
 
 def usar_regiao(reg):
     """Troca a configuração em uso para a região reg."""
-    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS, MAX_LT, MONTANHA, ZONA_GELO
+    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS, MAX_LT, MONTANHA, ZONA_GELO, COLECAO, INICIO, FIM
     ORBITA, BBOX_BUSCA, CIDADES, SUFIXO = reg["orbita"], reg["bbox"], reg["cidades"], reg["sufixo"]
+    COLECAO, INICIO, FIM = reg.get("colecao", COLECAO_PADRAO), reg.get("inicio", INICIO_PADRAO), reg.get("fim")
     MONTANHA, ZONA_GELO = reg.get("montanha"), reg.get("zona_gelo")
     MAX_LT = reg.get("max_lt", 8)
     DADOS = os.path.join(DADOS_RAIZ, reg["pasta"]) if reg["pasta"] else DADOS_RAIZ
@@ -412,7 +440,7 @@ def processar_regiao(reg, args, forcar):
     montanha = [f for f in focos if f["tipo"] in ("gelo", "detritos")]
     focos = [f for f in focos if f["tipo"] not in ("gelo", "detritos")]
     da, dd = str(data_de(antes)), str(data_de(depois))
-    out = {"fonte": "NASA-ISRO NISAR · GCOV banda L (PROVISIONAL) · ASF DAAC",
+    out = {"fonte": "NASA-ISRO NISAR · GCOV banda L (" + ("BETA, antes da calibração final" if reg.get("beta") else "PROVISIONAL") + ") · ASF DAAC",
            "antes": {"data": da, "produto": antes}, "depois": {"data": dd, "produto": depois},
            "area": area, "focos": focos} | ({"montanha": montanha} if MONTANHA or ZONA_GELO else {})
     gravar("focos.json", out)
@@ -460,7 +488,7 @@ def gravar_indice():
                     "antes": fa["antes"]["data"], "depois": fa["depois"]["data"], "focos": len(fa["focos"]),
                     "linha_tempo": os.path.exists(os.path.join(pasta, "linha_tempo.json")),
                     "cidades": {k: list(v) for k, v in reg["cidades"].items()}}
-                   | ({"evento": reg["evento"]} if reg.get("evento") else {}))
+                   | ({"evento": reg["evento"]} if reg.get("evento") else {}) | ({"beta": True} if reg.get("beta") else {}))
     with open(os.path.join(DADOS_RAIZ, "regioes.json"), "w", encoding="utf-8") as fp:
         json.dump(idx, fp, ensure_ascii=False, indent=1)
     print("\nÍndice data/regioes.json:", ", ".join(r["id"] for r in idx))

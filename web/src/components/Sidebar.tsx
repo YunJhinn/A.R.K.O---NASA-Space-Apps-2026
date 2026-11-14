@@ -16,6 +16,7 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
     ['casa', 'Início', () => go('inicio'), s.view === 'inicio' && s.focus !== 'alerts'],
     ['sino', 'Alertas', () => go('inicio', 'alerts'), s.view === 'inicio' && s.focus === 'alerts', String(ds.alerts.length)],
     ['grafico', 'Comparar períodos', () => go('comparar'), s.view === 'comparar'],
+    ['alvo', 'Validação', () => go('validacao'), s.view === 'validacao'],
     ['celular', 'Versão celular', () => go('celular'), s.view === 'celular'],
     ['radar', 'Aplicações futuras', () => go('futuro'), s.view === 'futuro'],
     ['play', 'Como usar', () => set({ ob: true, obStep: 0 }), false],

@@ -33,6 +33,19 @@ const HYPO: Record<string, RegionHypo> = {
       { text: ['O rio Trishuli subiu até 9 metros em 30 minutos, em plena época de monção.', 'The Trishuli river rose up to 9 metres in 30 minutes, in the middle of the monsoon season.'], src: 'g1', url: 'https://g1.globo.com/meio-ambiente/noticia/2026/08/28/entenda-a-formacao-de-geleiras-e-o-rompimento-que-provocou-enchente-repentina-no-nepal.ghtml' },
     ],
   },
+  mocambique: {
+    main: ['A enchente de janeiro de 2026: semanas de chuva forte no sul da África encheram o rio Limpopo, que transbordou sobre a planície de Chókwè e cobriu casas e lavouras.', 'The January 2026 flood: weeks of heavy rain across southern Africa swelled the Limpopo River, which overflowed onto the Chókwè plain, covering homes and farmland.'],
+    byType: {
+      agua: ['Água do rio Limpopo cobrindo a planície e as lavouras irrigadas de Chókwè.', 'Limpopo River water covering the plain and the irrigated farms of Chókwè.'],
+      solo: ['Água baixando e deixando solo encharcado e lama, ou campos preparados para plantio.', 'Water going down, leaving waterlogged soil and mud, or fields prepared for planting.'],
+      arvore: ['Lavouras e vegetação cobertas ou arrastadas pela água.', 'Crops and vegetation covered or swept away by the water.'],
+    },
+    context: [
+      { text: ['O NISAR comparou 5 e 17 de janeiro de 2026 nos rios Limpopo e Incomati e mostrou a área alagada.', 'NISAR compared 5 and 17 January 2026 over the Limpopo and Incomati rivers and showed the flooded area.'], src: 'NASA SVS', url: 'https://svs.gsfc.nasa.gov/5661' },
+      { text: ['Mais de 300 mil pessoas desalojadas só na província de Gaza, onde fica Chókwè.', 'More than 300,000 people displaced in Gaza province alone, where Chókwè is.'], src: 'AP · Africanews', url: 'https://www.africanews.com/amp/2026/01/20/thousands-affected-by-severe-flooding-in-mozambique-un-says/' },
+      { text: ['Em Chókwè, a água cobriu quase totalmente casas e prédios.', 'In Chókwè, water almost entirely covered houses and buildings.'], src: 'AP · Daily Sabah', url: 'https://www.dailysabah.com/world/africa/floods-displace-more-than-300000-in-mozambiques-gaza-province/amp' },
+    ],
+  },
   bangladesh: {
     main: ['O ciclo da monção: a chuva e a cheia dos rios alagam as planícies de junho a setembro, e a água começa a baixar no fim da estação.', 'The monsoon cycle: rain and river floods inundate the plains from June to September, and water starts draining at the end of the season.'],
     byType: {
@@ -120,12 +133,13 @@ const SEASON: Record<string, { name: Bi; months: number[]; kind: 'chuva' | 'seca
   bangladesh: [{ name: ['monção (jun–out)', 'monsoon (Jun–Oct)'], months: [6, 7, 8, 9, 10], kind: 'chuva' }],
   amazonia: [{ name: ['estação seca do sul da Amazônia (jul–nov)', 'southern Amazon dry season (Jul–Nov)'], months: [7, 8, 9, 10, 11], kind: 'seca' }],
   nepal: [{ name: ['monção (jun–set)', 'monsoon (Jun–Sep)'], months: [6, 7, 8, 9], kind: 'chuva' }],
+  mocambique: [{ name: ['estação das chuvas (nov–mar)', 'rainy season (Nov–Mar)'], months: [11, 12, 1, 2, 3], kind: 'chuva' }],
   sul: [{ name: ['época de semeadura do arroz irrigado (out–dez)', 'irrigated rice sowing season (Oct–Dec)'], months: [10, 11, 12], kind: 'arroz' }],
 }
 
 export interface FocusHypo { text: string; why: string[] }
 
-export interface KnownEvent { data: string; lon: number; lat: number; nome: string }
+export interface KnownEvent { data: string; lon: number; lat: number; nome: string; nome_en?: string; tipo?: 'colapso' | 'enchente' }
 
 export function focusHypothesis(k: string, ev: FocusEvidence, area: number | undefined, region: string, lang: Lang, pos?: { lon?: number; lat?: number }, evento?: KnownEvent): FocusHypo | null {
   if (k !== 'agua' && k !== 'solo' && k !== 'arvore') return null
@@ -134,7 +148,24 @@ export function focusHypothesis(k: string, ev: FocusEvidence, area: number | und
   const vs = ev.vs
   if (evento && pos?.lon != null && pos?.lat != null && vs && vs < evento.data && ev.date >= evento.data) {
     const km = Math.round(111.32 * Math.hypot((pos.lon - evento.lon) * Math.cos(((pos.lat + evento.lat) / 2) * Math.PI / 180), pos.lat - evento.lat))
-    const nomeEv = pt ? evento.nome : 'the Langtang Lirung rock–ice collapse'
+    const nomeEv = pt ? evento.nome : (evento.nome_en ?? 'the Langtang Lirung rock–ice collapse')
+    if (evento.tipo === 'enchente') {   // v6.2: enchente de rio (Moçambique)
+      const pertoE = km <= 60
+      const txtE = pertoE ? (pt ? {
+        agua: `Provável marca da enchente: área alagada pelo rio na planície, a ${km} km de Chókwè.`,
+        solo: `Provável marca da enchente: solo encharcado ou lama deixada pela água, a ${km} km de Chókwè.`,
+        arvore: `Provável marca da enchente: lavouras e vegetação cobertas ou arrastadas pela água, a ${km} km de Chókwè.`,
+      } : {
+        agua: `Likely mark of the flood: river water covering the plain, ${km} km from Chókwè.`,
+        solo: `Likely mark of the flood: waterlogged soil or mud left by the water, ${km} km from Chókwè.`,
+        arvore: `Likely mark of the flood: crops and vegetation covered or swept away by the water, ${km} km from Chókwè.`,
+      })[k] : (pt ? `Mudança no mesmo período da enchente, mas a ${km} km de Chókwè: pode ser chuva local ou outro rio.`
+                   : `A change in the same period as the flood, but ${km} km from Chókwè: it may be local rain or another river.`)
+      return { text: txtE, why: [
+        pt ? `A comparação (${d(vs)} → ${d(ev.date)}) atravessa o pico da enchente: ${nomeEv} (${d(evento.data)}).` : `The comparison (${d(vs)} → ${d(ev.date)}) spans the flood peak: ${nomeEv} (${d(evento.data)}).`,
+        pt ? `Distância até Chókwè: ${km} km${pertoE ? ', na planície do rio Limpopo' : ''}.` : `Distance to Chókwè: ${km} km${pertoE ? ', on the Limpopo River plain' : ''}.`,
+      ] }
+    }
     const perto = km <= 40
     const txt = perto ? (pt ? {
       agua: `Provável marca do desastre: lago de barragem ou água e lama da enxurrada, a ${km} km do ponto do colapso.`,

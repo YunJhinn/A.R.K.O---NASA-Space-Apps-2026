@@ -110,7 +110,7 @@ export function fichaLhasa(i: number, c: Ctx): Ficha | null {
     resumo: en ? `NASA's model puts a ${Math.round(a.p * 100)}% chance of a rain-triggered landslide here today${enc.length || mt.length ? ', and the radar already sees the ground changing nearby' : ''}.`
                : `O modelo da NASA estima ${Math.round(a.p * 100)}% de chance de deslizamento por chuva aqui hoje${enc.length || mt.length ? ', e o radar já vê o terreno mudando perto' : ''}.`,
     dados: [
-      en ? `LHASA probability: ${Math.round(a.p * 100)}% (A.R.K.O thresholds: 5% medium, 10% high)` : `Probabilidade LHASA: ${Math.round(a.p * 100)}% (limiares do A.R.K.O: 5% médio, 10% alto)`,
+      en ? `LHASA probability: ${Math.round(a.p * 100)}% (A.R.K.O thresholds: 10% medium, 25% high, tested on real landslides)` : `Probabilidade LHASA: ${Math.round(a.p * 100)}% (limiares do A.R.K.O: 10% médio, 25% alto, testados com deslizamentos reais)`,
       en ? `Area at this level: ~${Math.round(a.km2)} km² (1 km grid)` : `Área nesse nível: ~${Math.round(a.km2)} km² (grade de 1 km)`,
       en ? 'Inputs: GPM IMERG satellite rain (today and past days), soil moisture, snow, slope, faults and rock type' : 'Entradas: chuva do satélite GPM IMERG (hoje e dias anteriores), umidade do solo, neve, declividade, falhas e tipo de rocha',
       ...enc.slice(0, 2).map(x => en ? `NISAR ${dia(x.date, en)}: ${x.e.k === 'arvore' ? 'vegetation loss' : 'surface change'} ${n2(x.e.a ?? 0, en)} km² at ${n1(x.d, en)} km` : `NISAR ${dia(x.date, en)}: ${x.e.k === 'arvore' ? 'perda de vegetação' : 'mudança no terreno'} ${n2(x.e.a ?? 0, en)} km² a ${n1(x.d, en)} km`),

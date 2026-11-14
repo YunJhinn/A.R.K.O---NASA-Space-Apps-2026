@@ -33,8 +33,8 @@ const OB: Step[] = [
   },
   {
     art: 'regiao',
-    pt: ['Escolha a região ou busque um lugar', 'Os dados reais cobrem o rio Madeira (AM), Porto Alegre e o vale do Taquari (RS), Daca e o rio Jamuna, em Bangladesh, e o vale do Langtang, no Nepal, onde houve o colapso de 26 de agosto.', ['Troque de região em REGIÃO, no menu lateral.', 'Ou use a lupa no topo da tela para buscar qualquer cidade ou rio do mundo: se houver dados ali, o app abre a região e marca o lugar no mapa.']],
-    en: ['Pick a region or search a place', 'Real data covers the Madeira River (AM), Porto Alegre and the Taquari valley (RS), Dhaka and the Jamuna river in Bangladesh, and the Langtang valley in Nepal, site of the 26 August collapse.', ['Switch regions under REGION, in the side menu.', 'Or use the magnifier at the top to search any city or river in the world: if there is data there, the app opens the region and marks the place on the map.']],
+    pt: ['Escolha a região ou busque um lugar', 'Os dados reais cobrem o rio Madeira (AM), Porto Alegre e o vale do Taquari (RS), Daca e o rio Jamuna, em Bangladesh, o vale do Langtang, no Nepal, onde houve o colapso de 26 de agosto, e o rio Limpopo, em Moçambique, com a enchente de janeiro de 2026.', ['Troque de região em REGIÃO, no menu lateral.', 'Ou use a lupa no topo da tela para buscar qualquer cidade ou rio do mundo: se houver dados ali, o app abre a região e marca o lugar no mapa.']],
+    en: ['Pick a region or search a place', 'Real data covers the Madeira River (AM), Porto Alegre and the Taquari valley (RS), Dhaka and the Jamuna river in Bangladesh, the Langtang valley in Nepal, site of the 26 August collapse, and the Limpopo River in Mozambique, with the January 2026 flood.', ['Switch regions under REGION, in the side menu.', 'Or use the magnifier at the top to search any city or river in the world: if there is data there, the app opens the region and marks the place on the map.']],
   },
   {
     art: 'mapa',

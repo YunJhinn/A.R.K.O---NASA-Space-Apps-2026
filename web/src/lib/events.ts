@@ -6,7 +6,7 @@ import type { Alert } from './types'
 type Lang = 'pt' | 'en'
 type Bi = [string, string]
 interface EventAlert { fase: NonNullable<Alert['fase']>; quando: Bi; t: Bi; l: string; m: Bi; pz: Bi; fontes: { src: string; url: string }[] }
-interface EventCard { t: Bi; l: string; m: Bi; pz: Bi; etapas: EventAlert[] }
+interface EventCard { t: Bi; l: string; m: Bi; pz: Bi; etapas: EventAlert[]; ty?: Alert['ty']; fase?: NonNullable<Alert['fase']> }
 
 const ICIMOD = 'https://www.icimod.org/press-releases/second-major-himalayan-flood-in-seven-weeks-raises-new-questions-about-mountain-risk/'
 const EVENTOS: Record<string, EventCard> = {
@@ -44,6 +44,33 @@ const EVENTOS: Record<string, EventCard> = {
       fontes: [{ src: 'ICIMOD', url: ICIMOD }, { src: 'Remote Sensing (MDPI)', url: 'https://www.mdpi.com/2072-4292/18/21/3727' }],
     },
   ] },
+  // v6.2: enchente real usada para validar o A.R.K.O (dados BETA do NISAR, comparados com o resultado da NASA)
+  mocambique: {
+   ty: 'agua', fase: 'ocorrido',
+   t: ['Enchente do rio Limpopo (jan 2026)', 'Limpopo River flood (Jan 2026)'],
+   l: 'Chókwè · Gaza · Moçambique',
+   m: ['Desastre real usado para testar o A.R.K.O: o radar viu a água cobrir a planície entre 5 e 17 de janeiro.', 'Real disaster used to test A.R.K.O: radar saw water covering the plain between 5 and 17 January.'],
+   pz: ['Ocorrido em jan 2026 · estudo de caso', 'Occurred in Jan 2026 · case study'],
+   etapas: [
+    {
+      fase: 'sinal', quando: ['meses antes', 'months before'],
+      t: ['Sinal prévio: aviso de chuva forte na estação', 'Warning sign: heavy-rain warning for the season'],
+      l: 'Moçambique',
+      m: ['O instituto de meteorologia de Moçambique (INAM) avisou durante meses que a estação 2025–2026 teria chuva forte. De fim de dezembro a meados de janeiro, a chuva no sul da África encheu o rio Limpopo.',
+          'Mozambique’s weather institute (INAM) warned for months that the 2025–2026 season would bring heavy rain. From late December to mid-January, rain across southern Africa swelled the Limpopo River.'],
+      pz: ['Aviso oficial antes do desastre', 'Official warning before the disaster'],
+      fontes: [{ src: 'Al Jazeera', url: 'https://www.aljazeera.com/features/2026/2/5/we-have-to-rebuild-mozambique-flood-victims-persevere-in-face-of-loss' }],
+    },
+    {
+      fase: 'ocorrido', quando: ['17 jan', '17 Jan'],
+      t: ['Enchente ocorrida: Chókwè debaixo d’água', 'Flood occurred: Chókwè under water'],
+      l: 'Chókwè · Gaza · Moçambique',
+      m: ['Em 17 de janeiro, boa parte de Chókwè já estava alagada. Só na província de Gaza, mais de 300 mil pessoas foram desalojadas; no fim de janeiro, o instituto de desastres (INGD) contava 103 mortes e mais de 650 mil desalojados no país.',
+          'By 17 January, much of Chókwè was already flooded. In Gaza province alone, more than 300,000 people were displaced; by late January, the disaster institute (INGD) counted 103 deaths and more than 650,000 displaced nationwide.'],
+      pz: ['Ocorrido em jan 2026', 'Occurred in Jan 2026'],
+      fontes: [{ src: 'AP · Africanews', url: 'https://www.africanews.com/amp/2026/01/20/thousands-affected-by-severe-flooding-in-mozambique-un-says/' }, { src: 'Africanews (INGD)', url: 'https://www.africanews.com/amp/2026/01/29/search-and-rescue-efforts-continue-in-mozambique-after-weeks-of-heavy-rains/' }, { src: 'NASA SVS · NISAR', url: 'https://svs.gsfc.nasa.gov/5661' }],
+    },
+  ] },
 }
 
 export const FASE: Record<NonNullable<Alert['fase']>, Bi> = {
@@ -57,6 +84,6 @@ export function eventAlerts(region: string, lang: Lang): Alert[] {
   const ordem = { sinal: 0, ocorrido: 1, previsao: 2 }
   const etapas = ev.etapas.slice().sort((a, b) => ordem[a.fase] - ordem[b.fase])
     .map(e => ({ fase: e.fase, quando: L(e.quando), t: L(e.t), m: L(e.m), fontes: e.fontes }))
-  return [{ id: null, lvl: 'Alto', p: 100, t: L(ev.t), l: ev.l, ty: 'colapso', m: L(ev.m), pz: L(ev.pz), src: 'evento', fase: 'previsao',
+  return [{ id: null, lvl: 'Alto', p: 100, t: L(ev.t), l: ev.l, ty: ev.ty ?? 'colapso', m: L(ev.m), pz: L(ev.pz), src: 'evento', fase: ev.fase ?? 'previsao',
     fontes: [...new Map(ev.etapas.flatMap(e => e.fontes).map(f => [f.url, f])).values()], etapas }]
 }

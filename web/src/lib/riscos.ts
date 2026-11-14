@@ -84,3 +84,13 @@ export function mountainAlerts(list: FocoMontanha[] | undefined, antes: string, 
     }
   })
 }
+
+/** v6.2: limites do LHASA calibrados com deslizamentos reais (Nepal, 2026). Recalcula o nível pela
+ *  probabilidade, para valer também em dados gravados antes da mudança. Baixo 5%, Médio 10%, Alto 25%. */
+export const LHASA_LIM = { baixo: 0.05, medio: 0.10, alto: 0.25 }
+export function calibrar(d: RiscosJson): RiscosJson {
+  if (!d.deslizamento) return d
+  const nivel = (p: number) => (p >= LHASA_LIM.alto ? 'Alto' : p >= LHASA_LIM.medio ? 'Médio' : 'Baixo') as 'Alto' | 'Médio' | 'Baixo'
+  return { ...d, deslizamento: { ...d.deslizamento, limiares: { medio: LHASA_LIM.medio, alto: LHASA_LIM.alto },
+    areas: d.deslizamento.areas.filter(a => a.p >= LHASA_LIM.baixo).map(a => ({ ...a, nivel: nivel(a.p) })) } }
+}

@@ -19,7 +19,7 @@ const ESCALA: { ic: string; t: Bi; d: Bi }[] = [
 ]
 
 const FASES: { t: Bi; d: Bi; hoje?: boolean }[] = [
-  { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['4 regiões reais (Amazônia, Sul do Brasil, Bangladesh e Nepal), atualização diária, previsões por cruzamento de dados.', '4 real regions (Amazon, Southern Brazil, Bangladesh and Nepal), daily updates, forecasts from crossed data.'] },
+  { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['5 regiões reais (Amazônia, Sul do Brasil, Bangladesh, Nepal e Moçambique), atualização diária, previsões por cruzamento de dados e validação com desastres reais.', '5 real regions (Amazon, Southern Brazil, Bangladesh, Nepal and Mozambique), daily updates, forecasts from crossed data and validation against real disasters.'] },
   { t: ['Fase 2 · Movimento do solo e qualquer lugar', 'Phase 2 · Ground motion and anywhere'], d: ['Nova fonte NISAR GUNW para alertas de encosta e geleira se mexendo; e a pessoa desenha a área no mapa para monitorar qualquer lugar.', 'New NISAR GUNW source for alerts of slopes and glaciers moving; and people draw an area on the map to monitor any place.'] },
   { t: ['Fase 3 · Aviso que chega', 'Phase 3 · Warnings that reach people'], d: ['Alerta por WhatsApp, SMS e e-mail para quem acompanha uma região, e envio no padrão usado pela Defesa Civil (CAP).', 'Alerts by WhatsApp, SMS and e-mail to people following a region, and delivery in the standard used by civil defense (CAP).'] },
   { t: ['Fase 4 · Países inteiros e API aberta', 'Phase 4 · Whole countries and an open API'], d: ['Cobertura contínua de países, API pública para governos, escolas e pesquisadores, e validação com desastres passados.', 'Continuous coverage of whole countries, a public API for governments, schools and researchers, and validation against past disasters.'] },
@@ -36,7 +36,7 @@ export function Future() {
         <div>
           <h1>{en ? 'Future applications' : 'Aplicações futuras'}</h1>
           <div className="answer"><span className="dot" style={{ background: 'var(--acc)' }} />
-            <span>{en ? 'From 4 regions to the whole world, open to anyone who needs to decide, teach or stay safe.' : 'De 4 regiões para o mundo inteiro, aberto para quem precisa decidir, ensinar ou se proteger.'}</span>
+            <span>{en ? 'From 5 regions to the whole world, open to anyone who needs to decide, teach or stay safe.' : 'De 5 regiões para o mundo inteiro, aberto para quem precisa decidir, ensinar ou se proteger.'}</span>
           </div>
         </div>
       </div>

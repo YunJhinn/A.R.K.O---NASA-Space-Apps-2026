@@ -20,7 +20,10 @@ FIRMS = [("NOAA-20", "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa
          ("NOAA-21", "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_Global_48h.csv")]
 # Limiares do A.R.K.O para a probabilidade do LHASA (a NASA deixa cada usuário escolher o seu;
 # o visualizador oficial da NASA começa a colorir o mapa em 5%).
-LIM_BAIXO, LIM_MEDIO, LIM_ALTO = 0.02, 0.05, 0.10   # baixo: só aparece no mapa (monitoramento), sem alerta
+LIM_BAIXO, LIM_MEDIO, LIM_ALTO = 0.05, 0.10, 0.25   # baixo: só aparece no mapa (monitoramento), sem alerta
+# v6.2: limites calibrados com deslizamentos reais do Nepal em 2026 (Baglung, Myagdi, Palpa, Rolpa, Jajarkot).
+# Com "Alto" em 10% o alerta disparava em 7–19% dos dias do ano; com 25% dispara em 2–7% e ainda pegou
+# 4 dos 5 desastres antes ou no dia. Detalhes: docs/validacao_lhasa.md
 MAX_AREAS, MAX_GRUPOS = 8, 25
 GRUPO_GRAUS = 0.03
 # Pequena queima: 1-2 focos fracos (< 15 MW no total) -> provável queima controlada (lixo, roçado, palha).
