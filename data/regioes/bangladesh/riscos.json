@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T15:49Z",
+ "atualizado": "2026-11-14T18:01Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -82,29 +82,21 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 74,
-  "focos_risco": 22,
-  "pequenas": 46,
+  "focos": 69,
+  "duplicados_removidos": 5,
+  "focos_risco": 13,
+  "pequenas": 48,
   "grupos": [
    {
-    "lon": 91.1353,
-    "lat": 25.26,
-    "n": 6,
-    "frp": 29.2,
+    "lon": 91.138,
+    "lat": 25.2603,
+    "n": 4,
+    "frp": 22.7,
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Médio",
     "categoria": "risco",
+    "dois_satelites": 2,
     "lugar": "Ranikor · Meghalaya · Índia"
-   },
-   {
-    "lon": 91.3807,
-    "lat": 24.2691,
-    "n": 4,
-    "frp": 3.2,
-    "ultimo": "2026-11-12T19:49Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "lugar": "হবিগঞ্জ · সিলেট বিভাগ · Bangladeche"
    },
    {
     "lon": 91.6451,
@@ -114,6 +106,7 @@
     "ultimo": "2026-11-13T07:48Z",
     "nivel": "Médio",
     "categoria": "risco",
+    "dois_satelites": 0,
     "lugar": "Hajo · Assam · Índia"
    },
    {
@@ -124,27 +117,19 @@
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Médio",
     "categoria": "risco",
+    "dois_satelites": 0,
     "lugar": "Hajo · Assam · Índia"
    },
    {
-    "lon": 87.9821,
-    "lat": 25.9077,
+    "lon": 91.3826,
+    "lat": 24.2726,
     "n": 3,
-    "frp": 10.7,
-    "ultimo": "2026-11-12T07:24Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "lugar": "Karandighi · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 91.2356,
-    "lat": 25.5412,
-    "n": 3,
-    "frp": 2.9,
+    "frp": 2.5,
     "ultimo": "2026-11-12T19:49Z",
     "nivel": "Médio",
     "categoria": "risco",
-    "lugar": "Nongstoin · Meghalaya · Índia"
+    "dois_satelites": 1,
+    "lugar": "হবিগঞ্জ · সিলেট বিভাগ · Bangladeche"
    },
    {
     "lon": 87.936,
@@ -154,6 +139,7 @@
     "ultimo": "2026-11-12T06:29Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
    },
    {
@@ -164,6 +150,7 @@
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Khliehriat · Meghalaya · Índia"
    },
    {
@@ -174,7 +161,19 @@
     "ultimo": "2026-11-14T06:46Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Raiganj · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 87.9856,
+    "lat": 25.9061,
+    "n": 2,
+    "frp": 7.8,
+    "ultimo": "2026-11-12T07:24Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "Karandighi · Bengala Ocidental · Índia"
    },
    {
     "lon": 90.0433,
@@ -184,6 +183,7 @@
     "ultimo": "2026-11-13T07:48Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "a 15 km de Tangail · Bangladesh"
    },
    {
@@ -194,6 +194,7 @@
     "ultimo": "2026-11-13T07:05Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Faridpur · Bangladesh"
    },
    {
@@ -204,7 +205,19 @@
     "ultimo": "2026-11-14T06:46Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Kalna - I · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 91.2354,
+    "lat": 25.5416,
+    "n": 2,
+    "frp": 2.3,
+    "ultimo": "2026-11-12T18:53Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "Nongstoin · Meghalaya · Índia"
    },
    {
     "lon": 90.4758,
@@ -214,6 +227,7 @@
     "ultimo": "2026-11-14T07:28Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "a 14 km de Munshiganj · Bangladesh"
    },
    {
@@ -224,6 +238,7 @@
     "ultimo": "2026-11-13T07:07Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Sipajhar · Assam · Índia"
    },
    {
@@ -234,6 +249,7 @@
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Khliehriat · Meghalaya · Índia"
    },
    {
@@ -244,6 +260,7 @@
     "ultimo": "2026-11-14T07:28Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "a 29 km de Munshiganj · Bangladesh"
    },
    {
@@ -254,6 +271,7 @@
     "ultimo": "2026-11-13T07:48Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "a 9 km de Faridpur · Bangladesh"
    },
    {
@@ -264,6 +282,7 @@
     "ultimo": "2026-11-13T07:05Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Mairang · Meghalaya · Índia"
    },
    {
@@ -274,27 +293,8 @@
     "ultimo": "2026-11-13T07:05Z",
     "nivel": "Baixo",
     "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Khliehriat · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.3497,
-    "lat": 23.7907,
-    "n": 1,
-    "frp": 5.2,
-    "ultimo": "2026-11-14T07:28Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "lugar": "Zawlnuam · Mizoram · Índia"
-   },
-   {
-    "lon": 91.5438,
-    "lat": 24.9285,
-    "n": 1,
-    "frp": 5.0,
-    "ultimo": "2026-11-14T07:30Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "lugar": "ছাতক উপজেলা · সিলেট বিভাগ · Bangladeche"
    }
   ]
  }
