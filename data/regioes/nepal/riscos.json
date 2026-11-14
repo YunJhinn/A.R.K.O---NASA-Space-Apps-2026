@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T14:23Z",
+ "atualizado": "2026-11-14T15:49Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -83,6 +83,8 @@
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
   "focos": 2,
+  "focos_risco": 0,
+  "pequenas": 2,
   "grupos": [
    {
     "lon": 84.8478,
@@ -91,6 +93,7 @@
     "frp": 2.0,
     "ultimo": "2026-11-12T07:24Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 18 km de Dhading Besi · Nepal"
    },
    {
@@ -100,6 +103,7 @@
     "frp": 0.4,
     "ultimo": "2026-11-13T20:14Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 22 km de Dhading Besi · Nepal"
    }
   ]

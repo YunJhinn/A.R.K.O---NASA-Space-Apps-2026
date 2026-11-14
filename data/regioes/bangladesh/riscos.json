@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T14:23Z",
+ "atualizado": "2026-11-14T15:49Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -83,6 +83,8 @@
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
   "focos": 74,
+  "focos_risco": 22,
+  "pequenas": 46,
   "grupos": [
    {
     "lon": 91.1353,
@@ -91,6 +93,7 @@
     "frp": 29.2,
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "Ranikor · Meghalaya · Índia"
    },
    {
@@ -100,6 +103,7 @@
     "frp": 3.2,
     "ultimo": "2026-11-12T19:49Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "হবিগঞ্জ · সিলেট বিভাগ · Bangladeche"
    },
    {
@@ -109,6 +113,7 @@
     "frp": 17.0,
     "ultimo": "2026-11-13T07:48Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "Hajo · Assam · Índia"
    },
    {
@@ -118,6 +123,7 @@
     "frp": 13.8,
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "Hajo · Assam · Índia"
    },
    {
@@ -127,6 +133,7 @@
     "frp": 10.7,
     "ultimo": "2026-11-12T07:24Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "Karandighi · Bengala Ocidental · Índia"
    },
    {
@@ -136,6 +143,7 @@
     "frp": 2.9,
     "ultimo": "2026-11-12T19:49Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "Nongstoin · Meghalaya · Índia"
    },
    {
@@ -145,6 +153,7 @@
     "frp": 13.4,
     "ultimo": "2026-11-12T06:29Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
    },
    {
@@ -154,6 +163,7 @@
     "frp": 10.5,
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Khliehriat · Meghalaya · Índia"
    },
    {
@@ -163,6 +173,7 @@
     "frp": 10.5,
     "ultimo": "2026-11-14T06:46Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
@@ -172,6 +183,7 @@
     "frp": 6.6,
     "ultimo": "2026-11-13T07:48Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 15 km de Tangail · Bangladesh"
    },
    {
@@ -181,6 +193,7 @@
     "frp": 6.0,
     "ultimo": "2026-11-13T07:05Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Faridpur · Bangladesh"
    },
    {
@@ -190,6 +203,7 @@
     "frp": 5.9,
     "ultimo": "2026-11-14T06:46Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Kalna - I · Bengala Ocidental · Índia"
    },
    {
@@ -199,6 +213,7 @@
     "frp": 9.6,
     "ultimo": "2026-11-14T07:28Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 14 km de Munshiganj · Bangladesh"
    },
    {
@@ -208,6 +223,7 @@
     "frp": 9.4,
     "ultimo": "2026-11-13T07:07Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Sipajhar · Assam · Índia"
    },
    {
@@ -217,6 +233,7 @@
     "frp": 8.2,
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Khliehriat · Meghalaya · Índia"
    },
    {
@@ -226,6 +243,7 @@
     "frp": 6.9,
     "ultimo": "2026-11-14T07:28Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 29 km de Munshiganj · Bangladesh"
    },
    {
@@ -235,6 +253,7 @@
     "frp": 5.7,
     "ultimo": "2026-11-13T07:48Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 9 km de Faridpur · Bangladesh"
    },
    {
@@ -244,6 +263,7 @@
     "frp": 5.6,
     "ultimo": "2026-11-13T07:05Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Mairang · Meghalaya · Índia"
    },
    {
@@ -253,6 +273,7 @@
     "frp": 5.5,
     "ultimo": "2026-11-13T07:05Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Khliehriat · Meghalaya · Índia"
    },
    {
@@ -262,6 +283,7 @@
     "frp": 5.2,
     "ultimo": "2026-11-14T07:28Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Zawlnuam · Mizoram · Índia"
    },
    {
@@ -271,43 +293,8 @@
     "frp": 5.0,
     "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "ছাতক উপজেলা · সিলেট বিভাগ · Bangladeche"
-   },
-   {
-    "lon": 90.1377,
-    "lat": 23.4943,
-    "n": 1,
-    "frp": 4.7,
-    "ultimo": "2026-11-13T07:05Z",
-    "nivel": "Baixo",
-    "lugar": "সদরপুর উপজেলা · Daca · Bangladeche"
-   },
-   {
-    "lon": 90.0231,
-    "lat": 23.7183,
-    "n": 1,
-    "frp": 4.5,
-    "ultimo": "2026-11-13T07:05Z",
-    "nivel": "Baixo",
-    "lugar": "a 16 km de Manikganj · Bangladesh"
-   },
-   {
-    "lon": 91.6574,
-    "lat": 26.1226,
-    "n": 1,
-    "frp": 4.3,
-    "ultimo": "2026-11-13T07:48Z",
-    "nivel": "Baixo",
-    "lugar": "Azara · Assam · Índia"
-   },
-   {
-    "lon": 90.5397,
-    "lat": 23.3786,
-    "n": 1,
-    "frp": 4.2,
-    "ultimo": "2026-11-14T07:28Z",
-    "nivel": "Baixo",
-    "lugar": "a 18 km de Munshiganj · Bangladesh"
    }
   ]
  }

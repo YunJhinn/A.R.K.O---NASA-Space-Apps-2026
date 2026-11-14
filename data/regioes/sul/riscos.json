@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T14:23Z",
+ "atualizado": "2026-11-14T15:49Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -43,6 +43,8 @@
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
   "focos": 98,
+  "focos_risco": 54,
+  "pequenas": 39,
   "grupos": [
    {
     "lon": -51.526,
@@ -51,6 +53,7 @@
     "frp": 359.2,
     "ultimo": "2026-11-13T05:18Z",
     "nivel": "Alto",
+    "categoria": "risco",
     "lugar": "a 11 km de Eldorado do Sul · RS"
    },
    {
@@ -60,6 +63,7 @@
     "frp": 14.9,
     "ultimo": "2026-11-14T04:57Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "São Leopoldo · RS"
    },
    {
@@ -69,6 +73,7 @@
     "frp": 111.7,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "a 20 km de Novo Hamburgo · RS"
    },
    {
@@ -78,6 +83,7 @@
     "frp": 21.1,
     "ultimo": "2026-11-13T17:41Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "São José dos Ausentes · Rio Grande do Sul · Brasil"
    },
    {
@@ -87,6 +93,7 @@
     "frp": 26.0,
     "ultimo": "2026-11-13T17:41Z",
     "nivel": "Médio",
+    "categoria": "risco",
     "lugar": "Santa Catarina · Brasil"
    },
    {
@@ -96,6 +103,7 @@
     "frp": 28.3,
     "ultimo": "2026-11-13T17:41Z",
     "nivel": "Baixo",
+    "categoria": "risco",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
@@ -105,6 +113,7 @@
     "frp": 28.1,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Baixo",
+    "categoria": "risco",
     "lugar": "São Francisco de Paula · Rio Grande do Sul · Brasil"
    },
    {
@@ -114,6 +123,7 @@
     "frp": 25.3,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Baixo",
+    "categoria": "risco",
     "lugar": "a 21 km de Taquara · RS"
    },
    {
@@ -123,52 +133,8 @@
     "frp": 19.1,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Baixo",
+    "categoria": "risco",
     "lugar": "Capão da Canoa · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.9137,
-    "lat": -28.3128,
-    "n": 2,
-    "frp": 14.4,
-    "ultimo": "2026-11-13T17:41Z",
-    "nivel": "Baixo",
-    "lugar": "Vacaria · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.6037,
-    "lat": -29.566,
-    "n": 2,
-    "frp": 12.9,
-    "ultimo": "2026-11-12T18:00Z",
-    "nivel": "Baixo",
-    "lugar": "a 19 km de Taquara · RS"
-   },
-   {
-    "lon": -51.9555,
-    "lat": -29.4879,
-    "n": 2,
-    "frp": 7.7,
-    "ultimo": "2026-11-12T17:17Z",
-    "nivel": "Baixo",
-    "lugar": "Estrela · RS"
-   },
-   {
-    "lon": -51.1771,
-    "lat": -29.777,
-    "n": 2,
-    "frp": 5.8,
-    "ultimo": "2026-11-14T04:57Z",
-    "nivel": "Baixo",
-    "lugar": "São Leopoldo · RS"
-   },
-   {
-    "lon": -51.7424,
-    "lat": -30.4541,
-    "n": 2,
-    "frp": 5.4,
-    "ultimo": "2026-11-12T18:00Z",
-    "nivel": "Baixo",
-    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
     "lon": -52.0783,
@@ -177,6 +143,7 @@
     "frp": 16.9,
     "ultimo": "2026-11-12T18:00Z",
     "nivel": "Baixo",
+    "categoria": "risco",
     "lugar": "a 27 km de Lajeado · RS"
    },
    {
@@ -186,7 +153,58 @@
     "frp": 15.5,
     "ultimo": "2026-11-12T18:00Z",
     "nivel": "Baixo",
+    "categoria": "risco",
     "lugar": "a 23 km de Montenegro · RS"
+   },
+   {
+    "lon": -50.9137,
+    "lat": -28.3128,
+    "n": 2,
+    "frp": 14.4,
+    "ultimo": "2026-11-13T17:41Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "lugar": "Vacaria · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.6037,
+    "lat": -29.566,
+    "n": 2,
+    "frp": 12.9,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "lugar": "a 19 km de Taquara · RS"
+   },
+   {
+    "lon": -51.9555,
+    "lat": -29.4879,
+    "n": 2,
+    "frp": 7.7,
+    "ultimo": "2026-11-12T17:17Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "lugar": "Estrela · RS"
+   },
+   {
+    "lon": -51.1771,
+    "lat": -29.777,
+    "n": 2,
+    "frp": 5.8,
+    "ultimo": "2026-11-14T04:57Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "lugar": "São Leopoldo · RS"
+   },
+   {
+    "lon": -51.7424,
+    "lat": -30.4541,
+    "n": 2,
+    "frp": 5.4,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.5279,
@@ -195,6 +213,7 @@
     "frp": 10.4,
     "ultimo": "2026-11-12T17:17Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 29 km de Montenegro · RS"
    },
    {
@@ -204,6 +223,7 @@
     "frp": 10.3,
     "ultimo": "2026-11-13T17:41Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
    },
    {
@@ -213,6 +233,7 @@
     "frp": 10.0,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 20 km de Estrela · RS"
    },
    {
@@ -222,6 +243,7 @@
     "frp": 9.8,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Venâncio Aires · RS"
    },
    {
@@ -231,6 +253,7 @@
     "frp": 9.6,
     "ultimo": "2026-11-12T17:17Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 29 km de Montenegro · RS"
    },
    {
@@ -240,6 +263,7 @@
     "frp": 8.3,
     "ultimo": "2026-11-13T17:43Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 16 km de Taquara · RS"
    },
    {
@@ -249,6 +273,7 @@
     "frp": 8.3,
     "ultimo": "2026-11-13T17:41Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
@@ -258,6 +283,7 @@
     "frp": 7.9,
     "ultimo": "2026-11-12T17:17Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "a 29 km de Montenegro · RS"
    },
    {
@@ -267,7 +293,18 @@
     "frp": 6.5,
     "ultimo": "2026-11-13T16:58Z",
     "nivel": "Baixo",
+    "categoria": "pequena",
     "lugar": "Caxias do Sul · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.2249,
+    "lat": -29.573,
+    "n": 1,
+    "frp": 6.4,
+    "ultimo": "2026-11-12T18:00Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "lugar": "a 15 km de Novo Hamburgo · RS"
    }
   ]
  }
