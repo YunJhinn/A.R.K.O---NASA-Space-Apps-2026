@@ -12,7 +12,9 @@ export function Home() {
   const { s, t, ds } = useApp()
   const real = s.src === 'real', en = s.lang === 'en'
   const sub = real
-    ? (en ? `Real NISAR data · passes of ${ds.rd.aEN} and ${ds.rd.bEN} ${ds.rd.y}` : `Dados reais do NISAR · passagens de ${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}`)
+    ? (ds.realMeta.evento
+        ? (en ? `Map: before and after the collapse (NISAR passes of ${ds.rd.aEN} and ${ds.rd.bEN} ${ds.rd.y}) · Forecast: latest data` : `Mapa: antes e depois do colapso (passagens do NISAR de ${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) · Previsão: dados mais recentes`)
+        : (en ? `Real NISAR data · passes of ${ds.rd.aEN} and ${ds.rd.bEN} ${ds.rd.y}` : `Dados reais do NISAR · passagens de ${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}`))
     : (en ? 'Example · simulated data to learn the app' : 'Exemplo · dados simulados para aprender o app')
   return (
     <section className="view on home2" id="v-inicio" style={{ flexDirection: 'column', gap: 14 }}>

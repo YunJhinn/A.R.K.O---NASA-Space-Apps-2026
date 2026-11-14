@@ -42,29 +42,29 @@ export const TUTORIALS: Tut[] = [
   {
     id: 'dados', ic: 'camadas', group: 'start', act: 'inicio',
     pt: {
-      t: 'Exemplo ou NISAR real',
-      d: 'O app tem duas fontes de dados. Exemplo usa dados ilustrativos para aprender a usar todas as funções. NISAR real mostra o que o satélite detectou de verdade.',
+      t: 'Dados reais do NISAR',
+      d: 'Tudo o que o app mostra vem de satélites da NASA, atualizado todo dia por um robô.',
       steps: [
-        'No menu lateral, em DADOS, escolha Exemplo ou NISAR real. Também dá para trocar no mapa, pelo seletor “Dados”.',
-        'Exemplo tem duas regiões (Amazônia e Sul do Brasil), com queimadas, enchentes, previsões e um ano de histórico.',
-        'NISAR real tem quatro regiões: rio Madeira (AM), Porto Alegre e vale do Taquari (RS), Daca e rio Jamuna (Bangladesh) e Langtang e rio Trishuli (Nepal).',
-        'Os dados reais são atualizados automaticamente todos os dias: quando o NISAR passa de novo sobre uma região, a nova passagem entra na linha do tempo.',
+        'O radar NISAR (NASA e ISRO) compara cada passagem com a anterior: água nova, água que recuou, perda de vegetação e, nas montanhas, gelo e encostas.',
+        'O NASA LHASA dá, todo dia, a chance de deslizamento por chuva; o NASA FIRMS mostra os focos de calor das últimas 48 h.',
+        'Há quatro regiões: rio Madeira (AM), Porto Alegre e vale do Taquari (RS), Daca e rio Jamuna (Bangladesh) e Langtang e rio Trishuli (Nepal).',
+        'Na aba Previsão, o quadro “O que cada fonte de dados entrega” resume cada fonte, com a data e o link.',
       ],
-      tip: 'No modo real, fogo e previsões do tempo ainda não são medidos. Esses números aparecem como “—”.',
-      ex: 'Para aprender, comece no Exemplo e teste tudo sem medo. Depois troque para NISAR real e escolha Sul do Brasil para ver o que o satélite achou em Porto Alegre.',
+      tip: 'O que é hipótese aparece marcado como hipótese, com as provas de onde veio.',
+      ex: 'Escolha Sul do Brasil no menu para ver o que o satélite achou em Porto Alegre e no vale do Taquari.',
     },
     en: {
-      t: 'Example or real NISAR',
-      d: 'The app has two data sources. Example uses illustrative data so you can learn every feature. Real NISAR shows what the satellite actually detected.',
+      t: 'Real NISAR data',
+      d: 'Everything the app shows comes from NASA satellites, updated every day by a robot.',
       steps: [
-        'In the side menu, under DATA, pick Example or Real NISAR. You can also switch on the map, with the “Data” selector.',
-        'Example has two regions (Amazon and Southern Brazil), with fires, floods, forecasts and one year of history.',
-        'Real NISAR has four regions: Madeira River (AM), Porto Alegre and the Taquari valley (RS), Dhaka and the Jamuna river (Bangladesh), and Langtang and the Trishuli river (Nepal).',
-        'Real data updates automatically every day: when NISAR passes over a region again, the new pass joins the timeline.',
+        'The NISAR radar (NASA and ISRO) compares each pass with the previous one: new water, receding water, vegetation loss and, in mountains, ice and slopes.',
+        'NASA LHASA gives the daily chance of a rain-triggered landslide; NASA FIRMS shows heat spots from the last 48 h.',
+        'There are four regions: Madeira river (AM), Porto Alegre and Taquari valley (RS), Dhaka and Jamuna river (Bangladesh) and Langtang and Trishuli river (Nepal).',
+        'In the Forecast tab, the box “What each data source delivers” sums up each source, with its date and link.',
       ],
-      tip: 'In real mode, fire and weather forecasts are not measured yet. Those numbers show as “—”.',
-      ex: 'To learn, start with Example and try everything freely. Then switch to Real NISAR and pick Southern Brazil to see what the satellite found in Porto Alegre.',
-    },
+      tip: 'Anything that is a hypothesis is marked as one, with the evidence behind it.',
+      ex: 'Pick Southern Brazil in the menu to see what the satellite found in Porto Alegre and the Taquari valley.',
+    }
   },
   {
     id: 'regioes', ic: 'busca', group: 'start', act: 'search',
@@ -72,7 +72,7 @@ export const TUTORIALS: Tut[] = [
       t: 'Escolher e buscar regiões',
       d: 'Você pode trocar de região pelo menu ou buscar qualquer cidade, rio ou lugar do mundo pela lupa.',
       steps: [
-        'No menu lateral, em REGIÃO, escolha a região. No modo real é uma lista; no modo Exemplo são dois botões.',
+        'No menu lateral, em REGIÃO, escolha a região na lista.',
         'Para buscar, clique na lupa (“Buscar cidade, rio ou região”) no canto superior direito do Início ou de Comparar períodos.',
         'Digite pelo menos 2 letras e escolha um resultado. Se o lugar estiver dentro de uma região com dados, o app abre essa região e marca o ponto no mapa com um alfinete.',
         'Se o lugar estiver fora das áreas com dados, o app avisa e oferece botões para abrir as regiões disponíveis.',
@@ -85,7 +85,7 @@ export const TUTORIALS: Tut[] = [
       t: 'Choosing and searching regions',
       d: 'You can switch regions from the menu or search any city, river or place in the world with the magnifier.',
       steps: [
-        'In the side menu, under REGION, pick the region. In real mode it is a list; in Example mode it is two buttons.',
+        'In the side menu, under REGION, pick the region from the list.',
         'To search, click the magnifier (“Search city, river or region”) at the top right of Home or Compare periods.',
         'Type at least 2 letters and pick a result. If the place is inside a region with data, the app opens that region and marks the spot on the map with a pin.',
         'If the place is outside the areas with data, the app says so and offers buttons to open the available regions.',
@@ -153,7 +153,7 @@ export const TUTORIALS: Tut[] = [
     id: 'linha', ic: 'play', group: 'explore', act: 'map',
     pt: {
       t: 'Linha do tempo',
-      d: 'A linha do tempo fica logo abaixo do mapa. Cada barra é uma passagem do NISAR (ou uma semana, no modo Exemplo), e a altura mostra quantos focos foram detectados.',
+      d: 'A linha do tempo fica logo abaixo do mapa. Cada barra é uma passagem do NISAR, e a altura mostra quantos focos foram detectados.',
       steps: [
         'Escolha o modo no topo da linha do tempo: “Uma data” mostra só uma passagem; “Período” junta várias.',
         'No modo Período, clique na data inicial e depois na final. Também dá para arrastar o mouse sobre as barras.',
@@ -166,7 +166,7 @@ export const TUTORIALS: Tut[] = [
     },
     en: {
       t: 'Timeline',
-      d: 'The timeline sits right below the map. Each bar is a NISAR pass (or a week, in Example mode), and its height shows how many detections were found.',
+      d: 'The timeline sits right below the map. Each bar is a NISAR pass, and its height shows how many detections were found.',
       steps: [
         'Pick the mode at the top of the timeline: “One date” shows a single pass; “Period” joins several.',
         'In Period mode, click the start date and then the end date. You can also drag the mouse over the bars.',
@@ -190,7 +190,7 @@ export const TUTORIALS: Tut[] = [
         'Use + e − para dar zoom, o alvo para centralizar e o botão LEGENDA, no canto do mapa, para ver o significado de cada ícone.',
         'Em “Colorir por”, escolha Tipo (cor de cada mudança) ou Mês (cor da data em que aconteceu).',
       ],
-      tip: 'No modo Exemplo, “Mostrar previsões” desenha também o que pode acontecer nos próximos dias, com contorno tracejado.',
+      tip: 'As previsões aparecem no mapa com borda tracejada; clique para ver as provas de cada uma.',
       ex: 'Só quer ver desmatamento? Clique em Desmatamento acima do mapa e depois em um ícone de árvore cortada para ver a área perdida e a data.',
     },
     en: {
@@ -203,7 +203,7 @@ export const TUTORIALS: Tut[] = [
         'Use + and − to zoom, the target to recenter, and the LEGEND button in the map corner to see what each icon means.',
         'In “Color by”, pick Type (a color per change) or Month (a color per date).',
       ],
-      tip: 'In Example mode, “Show forecasts” also draws what may happen in the next days, with a dashed outline.',
+      tip: 'Forecasts appear on the map with a dashed border; click one to see its evidence.',
       ex: 'Only want deforestation? Click Deforestation above the map, then a cut-tree icon to see the area lost and the date.',
     },
   },
@@ -244,7 +244,7 @@ export const TUTORIALS: Tut[] = [
       steps: [
         'Abra “Comparar períodos” no menu lateral.',
         'Escolha o Tipo de mudança, o Período A (antes) e o Período B (depois). No modo real, cada período é uma passagem do NISAR.',
-        'Em Região, escolha qualquer região real ou de exemplo, ou use a lupa para buscar um lugar.',
+        'Em Região, escolha qualquer região, ou use a lupa para buscar um lugar.',
         'Arraste a barra azul embaixo do mapa: à esquerda aparece A, à direita aparece B.',
         'À direita, o resumo em uma frase, a tabela Focos por tipo e o Grau de mudança explicam a diferença. “Causa provável” sugere o que pode ter acontecido.',
       ],

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useApp } from '../../lib/store'
-import { REGION_LIST, dentro, projetar } from '../../lib/regions'
+import { REGION_LIST, dentro } from '../../lib/regions'
 import { realShort } from '../../lib/real'
 import { norm } from '../../lib/util'
 import { Icon } from '../Icon'
@@ -28,14 +28,6 @@ export function SearchBox() {
   const local: Place[] = []
   const k = norm(q.trim())
   if (k.length >= 2) {
-    REGION_LIST.forEach(r => {
-      if (norm(r.name).includes(k)) local.push({ name: r.name, detail: t('Região com dados de exemplo'), lon: NaN, lat: NaN, kind: 'local', region: r.id, src: 'demo' })
-      const seen = new Set<string>()
-      r.ev.filter(e => e.st === 'obs' && norm(e.pl).includes(k)).forEach(e => {
-        if (seen.has(e.pl)) return; seen.add(e.pl)
-        local.push({ name: e.pl, detail: `${t(ds.types[e.k].s)} · ${t(r.name)}`, lon: NaN, lat: NaN, kind: 'local', id: e.id, region: r.id, src: 'demo' })
-      })
-    })
     // regiões com dados reais do NISAR
     ds.realIndex.forEach(m => {
       if (norm(`${m.nome} ${m.pais} ${realShort(m)}`).includes(k)) local.push({ name: t(m.nome), detail: t('Região com dados reais do NISAR'), lon: NaN, lat: NaN, kind: 'local', region: m.id, src: 'real' })
@@ -73,23 +65,12 @@ export function SearchBox() {
 
   const pick = (p: Place) => {
     const done = () => { setOpen(false); goMap() }
-    // foco já conhecido (dados de exemplo)
-    if (p.id && p.region) {
-      setRegion(p.region, { src: 'demo', sel: p.id, preset: '1a', custom: null }); setQ(p.name); done(); return
-    }
     // nome de região
-    if (p.region && Number.isNaN(p.lon)) { setRegion(p.region, { src: p.src ?? 'demo' }); done(); return }
+    if (p.region && Number.isNaN(p.lon)) { setRegion(p.region, { src: 'real' }); done(); return }
     const pin = { lon: p.lon, lat: p.lat, label: p.name }
     const realHit = ds.realIndex.find(m => dentro(m.imagem, p.lon, p.lat))
-    const exHit = REGION_LIST.find(r => dentro(r.bounds, p.lon, p.lat))
-    // no modo real, prefere dados reais; no exemplo, prefere o exemplo; sem nenhum dos dois, avisa
-    const useReal = realHit && (s.src === 'real' || !exHit)
-    if (useReal) { setRegion(realHit.id, { src: 'real', pin, sel: null }); done(); return }
-    if (!exHit) { setMiss(p); return }
-    // foco de exemplo mais perto do ponto buscado (até ~40 px no mapa)
-    const { x, y } = projetar(exHit.bounds, p.lon, p.lat)
-    const near = exHit.ev.filter(e => e.st === 'obs').map(e => ({ e, d: Math.hypot(e.x - x, e.y - y) })).sort((a, b) => a.d - b.d)[0]
-    setRegion(exHit.id, { src: 'demo', pin, sel: near && near.d < 40 ? near.e.id : null, preset: '1a', custom: null }); done()
+    if (realHit) { setRegion(realHit.id, { src: 'real', pin, sel: null }); done(); return }
+    setMiss(p)
   }
 
   const results = [...local.slice(0, 5), ...world]
@@ -115,7 +96,6 @@ export function SearchBox() {
               </div>
               <p className="mt-3 text-[13px] leading-snug text-[var(--soft)]">{t('Ainda não monitoramos essa área. O A.R.K.O pode ser configurado para qualquer região coberta pelo NISAR. Regiões com dados agora:')}</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {REGION_LIST.map(r => <button key={r.id} className="btn" onClick={() => { setRegion(r.id, { src: 'demo' }); setOpen(false); goMap() }}>{t(r.name)} · {t('Exemplo')}</button>)}
                 {ds.realIndex.map(m => <button key={'r' + m.id} className="btn" onClick={() => { setRegion(m.id, { src: 'real' }); setOpen(false); goMap() }}>{t(realShort(m))} · {t('NISAR real')}</button>)}
               </div>
               <button className="mt-3 text-[12px] font-bold text-[var(--acc)]" onClick={() => setMiss(null)}>{t('← Voltar aos resultados')}</button>

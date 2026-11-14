@@ -64,10 +64,10 @@ export interface MyPlace {
 }
 
 const initial: State = {
-  view: 'inicio', lang: 'pt', src: 'demo', preset: '30d', custom: null, type: 'todos', prev: true, radar: true, sel: 'a1', risk: null,
+  view: 'inicio', lang: 'pt', src: 'real', preset: '30d', custom: null, type: 'todos', prev: true, radar: true, sel: null, risk: null,
   profile: null, colorBy: 'tipo', ob: false, obStep: 0, tut: null,
-  cmp: { k: 'agua', a: 'set', b: 'nov', swipe: 50 },
-  phone: { tab: 'alertas', type: 'todos', sel: 'a1', cType: 'agua', when: 'depois' },
+  cmp: { k: 'arvore', a: 'a', b: 'b', swipe: 50 },
+  phone: { tab: 'alertas', type: 'todos', sel: null, cType: 'arvore', when: 'depois' },
   tl: null, tlMode: 'periodo', focus: null, region: 'amazonia', pin: null, favs: [], recents: [],
 }
 
@@ -219,8 +219,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const idade = ago(new Date(m.depois + 'T12:00:00Z'))
     return (PRESETS.find(p => p[0] !== '7d' && p[2] >= idade + 1) ?? PRESETS[PRESETS.length - 1])[0]
   }, [realIndex])
-  const setSrc = useCallback((src: Src) => {
-    const isReal = src === 'real'
+  // ao carregar a lista de regiões, ajusta o período para cobrir a passagem mais recente
+  useEffect(() => { set(st => ({ ...st, preset: presetFor(st.region) })) }, [presetFor])
+  // MVP: só dados reais do NISAR (o modo Exemplo saiu da interface)
+  const setSrc = useCallback((_src: Src) => {
+    const src: Src = 'real', isReal = true
     set(st => {
       const region = isReal ? (hasReal(st.region) ? st.region : 'amazonia') : (st.region in REGIONS ? st.region : 'amazonia')
       const ex = REGIONS[region as RegionId]
@@ -235,14 +238,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   /** Abre uma região. Fica no modo atual se a região existir nele; senão troca de modo. */
   const setRegion = useCallback((r: string, extra: Partial<State> = {}) => {
     set(st => {
-      const src: Src = extra.src ?? (st.src === 'real' && hasReal(r) ? 'real' : r in REGIONS ? 'demo' : hasReal(r) ? 'real' : 'demo')
+      const src: Src = 'real'
       const region = src === 'real' ? (hasReal(r) ? r : 'amazonia') : (r in REGIONS ? r : 'amazonia')
       const ex = REGIONS[(region in REGIONS ? region : 'amazonia') as RegionId]
       const isReal = src === 'real'
       return {
-        region, src, sel: isReal ? null : ex.sel, type: 'todos', risk: null, tl: null, pin: null, custom: null, preset: isReal ? presetFor(region) : st.preset,
+        region, sel: isReal ? null : ex.sel, type: 'todos', risk: null, tl: null, pin: null, custom: null, preset: isReal ? presetFor(region) : st.preset,
         phone: { ...st.phone, sel: isReal ? null : ex.sel, type: 'todos', cType: isReal ? 'arvore' : 'agua' },
-        cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' }, ...extra,
+        cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' }, ...extra, src,
       }
     })
   }, [hasReal, presetFor])

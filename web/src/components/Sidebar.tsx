@@ -4,12 +4,12 @@ import { Icon } from './Icon'
 import brandIcon from '../assets/brand-icon.webp'
 import brandWord from '../assets/brand-word-light.webp'
 import { cx } from '../lib/util'
-import { REGION_LIST } from '../lib/regions'
 import { realShort } from '../lib/real'
 import { MyRegions } from './MyRegions'
 
-export function Sidebar() {
-  const { s, set, t, ds, setSrc, setRegion, go } = useApp()
+/** open/onNav: no celular o menu vira uma gaveta que fecha ao escolher algo */
+export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () => void }) {
+  const { s, set, t, ds, setRegion, go } = useApp()
   const real = s.src === 'real'
   const [mine, setMine] = useState(false)
   const nav: [string, string, () => void, boolean, string?][] = [
@@ -21,32 +21,22 @@ export function Sidebar() {
     ['play', 'Tutoriais', () => go('tutoriais'), s.view === 'tutoriais'],
   ]
   return (
-    <aside className="side side2" aria-label={t('Menu principal')}>
+    <aside className={cx('side side2', open && 'open')} aria-label={t('Menu principal')}>
       <div className="brand">
         <img id="brandIcon" src={brandIcon} alt="" width={36} height={36} style={{ borderRadius: 9, border: '1px solid var(--bd)' }} />
         <div><img src={brandWord} alt="A.R.K.O" style={{ height: 14, display: 'block', marginBottom: 4 }} /><small>{t('Radar Mundial')}</small></div>
       </div>
       <div className="sgroup">
         <div className="slbl">{t('REGIÃO')}</div>
-        <div className="seg sfull" role="group" aria-label={t('Fonte dos dados')}>
-          <button className={cx(!real && 'on')} aria-pressed={!real} onClick={() => setSrc('demo')}>{t('Exemplo')}</button>
-          <button className={cx(real && 'on')} aria-pressed={real} onClick={() => setSrc('real')}>{t('NISAR real')}</button>
-        </div>
-        {real ? (
-          <select value={ds.realMeta.id} onChange={e => setRegion(e.target.value, { src: 'real' })} aria-label={t('Região')} className="ssel">
-            {ds.realIndex.map(m => <option key={m.id} value={m.id}>{t(realShort(m))} · {t(m.nome.split(' · ')[0].split(' e ')[0])}</option>)}
-          </select>
-        ) : (
-          <select value={s.region} onChange={e => setRegion(e.target.value, { src: 'demo' })} aria-label={t('Região')} className="ssel">
-            {REGION_LIST.map(r => <option key={r.id} value={r.id}>{t(r.name)}</option>)}
-          </select>
-        )}
+        <select value={ds.realMeta.id} onChange={e => { setRegion(e.target.value, { src: 'real' }); onNav?.() }} aria-label={t('Região')} className="ssel">
+          {ds.realIndex.map(m => <option key={m.id} value={m.id}>{t(realShort(m))} · {t(m.nome.split(' · ')[0].split(' e ')[0])}</option>)}
+        </select>
         <button className="smine" aria-expanded={mine} onClick={() => setMine(!mine)}>★ {t('Minhas regiões')} <span>{mine ? '▴' : '▾'}</span></button>
         {mine && <MyRegions />}
       </div>
       <nav className="snav" aria-label={t('Telas')}>
         {nav.map(([ic, label, fn, on, badge]) => (
-          <button key={label} className={cx('nav', on && 'on')} onClick={fn}>
+          <button key={label} className={cx('nav', on && 'on')} onClick={() => { fn(); onNav?.() }}>
             <Icon k={ic} />{t(label)}{badge && <span className="badge">{badge}</span>}
           </button>
         ))}

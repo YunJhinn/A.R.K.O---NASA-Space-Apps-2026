@@ -11,7 +11,6 @@ import { MapBase } from '../MapBase'
 import { Icon } from '../Icon'
 import { SciButtons } from '../SciModal'
 import { SearchBox } from '../home/SearchBox'
-import { REGION_LIST } from '../../lib/regions'
 import { focusEvidence, type Lang } from '../../lib/evidence'
 import { focusHypothesis } from '../../lib/hypotheses'
 
@@ -113,12 +112,9 @@ export function CompareReal() {
         <label className="sel">{en ? 'Region' : 'Região'}
           <select value={'r:' + ds.realMeta.id}
             onChange={e => { const [src, id] = e.target.value.split(':'); setRegion(id, { src: src === 'r' ? 'real' : 'demo', pin: null }) }}>
-            <optgroup label={t('NISAR real')}>
+            
               {ds.realIndex.map(m => <option key={'r' + m.id} value={'r:' + m.id}>{t(realShort(m))} · {t(m.nome.split(' · ')[0].split(' e ')[0])}</option>)}
-            </optgroup>
-            <optgroup label={t('Exemplo')}>
-              {REGION_LIST.map(r => <option key={'d' + r.id} value={'d:' + r.id}>{t(r.name)}</option>)}
-            </optgroup>
+
           </select>
         </label>
       </div></div>

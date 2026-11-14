@@ -35,7 +35,7 @@ export function MapPanel() {
   const counts: Record<string, number> = { todos: 0 }
   base.forEach(e => { const w = real ? 1 : e.n * 4; counts[e.k] = (counts[e.k] ?? 0) + w; counts.todos += w })
   const sub = real
-    ? (step ? `${counts.todos} focos reais do NISAR · ${step.label} · clique em um foco para ver o que mudou` : `${counts.todos} focos reais do NISAR (${ds.rd.a} → ${ds.rd.b}) · clique em um foco para ver o que mudou`)
+    ? (step ? `${counts.todos} ${counts.todos === 1 ? 'foco real' : 'focos reais'} do NISAR · ${step.label} · clique em um foco para ver o que mudou` : `${counts.todos} ${counts.todos === 1 ? 'foco real' : 'focos reais'} do NISAR (${ds.rd.a} → ${ds.rd.b}) · clique em um foco para ver o que mudou`)
     : step ? `${counts.todos} focos detectados · ${step.label} · clique em um foco para ver o que mudou` : `${counts.todos} focos detectados em ${periodLabel()} · clique em um foco para ver o que mudou`
   const demoKpi = (k: string) => { const r = ds.region.kpi[s.preset].find(x => x[0] === k); return r ? { v: r[2], d: r[3].startsWith('—') ? '' : r[3].split(' ')[0] + ' ' + (r[3].split(' ')[1] ?? '') } : null }
   const ref = useRef<HTMLDivElement>(null)

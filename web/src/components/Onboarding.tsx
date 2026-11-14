@@ -17,8 +17,8 @@ const OB: Step[] = [
   },
   {
     art: 'dados',
-    pt: ['Dois modos: Exemplo e NISAR real', 'Exemplo usa dados ilustrativos para aprender todas as funções. NISAR real mostra o que o satélite detectou de verdade.', ['Troque quando quiser em DADOS, no menu lateral.', 'Os dados reais se atualizam sozinhos todo dia, a cada nova passagem do satélite.']],
-    en: ['Two modes: Example and Real NISAR', 'Example uses illustrative data to learn every feature. Real NISAR shows what the satellite actually detected.', ['Switch any time under DATA, in the side menu.', 'Real data updates by itself every day, with each new satellite pass.']],
+    pt: ['Só dados reais', 'Tudo o que você vê vem de satélites da NASA: o radar NISAR (água, vegetação, solo, gelo), o NASA LHASA (perigo de deslizamento por chuva) e o NASA FIRMS (focos de calor).', ['Os dados se atualizam sozinhos todo dia, com um robô.', 'O que é hipótese aparece marcado como hipótese.']],
+    en: ['Real data only', 'Everything you see comes from NASA satellites: the NISAR radar (water, vegetation, soil, ice), NASA LHASA (rain-triggered landslide danger) and NASA FIRMS (heat spots).', ['Data updates by itself every day, with a robot.', 'Anything that is a hypothesis is marked as one.']],
   },
   {
     art: 'regiao',
@@ -69,7 +69,7 @@ const chip = (ic: string, label: string, c: string) => (
 )
 
 export function Onboarding() {
-  const { s, set, t, ds, setSrc, go } = useApp()
+  const { s, set, t, ds, go } = useApp()
   const next = useRef<HTMLButtonElement>(null)
   const en = s.lang === 'en'
   const i = Math.min(s.obStep, OB.length - 1), st = OB[i]
@@ -154,13 +154,6 @@ export function Onboarding() {
             </ul>
           )}
           <div>
-            {st.art === 'dados' && (
-              <div className="prof" style={{ gridTemplateColumns: '1fr 1fr' }}>
-                {([['demo', 'Exemplo', en ? 'Amazon and Southern Brazil · illustrative data to learn the app' : 'Amazônia e Sul do Brasil · dados ilustrativos para aprender a usar'], ['real', 'NISAR real', en ? `${ds.realIndex.length} real regions · updated every pass` : `${ds.realIndex.length} regiões reais · atualizadas a cada passagem`]] as const).map(([k, h, d]) => (
-                  <button key={k} className={cx(s.src === k && 'on')} aria-pressed={s.src === k} onClick={() => setSrc(k)}><b>{t(h)}</b>{d}</button>
-                ))}
-              </div>
-            )}
             {st.art === 'perfil' && (
               <div className="prof">
                 {[['gestor', 'Gestão e Defesa Civil', 'Alertas e riscos primeiro'], ['prof', 'Educação', 'Comparar períodos e explicar'], ['pub', 'Curiosidade', 'Explorar o mapa']].map(([k, h, d]) => (
