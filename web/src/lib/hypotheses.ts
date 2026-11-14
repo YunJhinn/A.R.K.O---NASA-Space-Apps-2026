@@ -19,6 +19,20 @@ interface RegionHypo {
 }
 
 const HYPO: Record<string, RegionHypo> = {
+  nepal: {
+    main: ['As mudanças entre 19 e 31 de agosto no vale do Lhende Khola, no Bhote Koshi e no Trishuli são a marca do colapso de rocha e gelo do Langtang Lirung (26 ago) e da enxurrada de lama que ele causou. No alto das montanhas, neve molhada e sombras do relevo também mudam o sinal: focos longe do vale podem ser neve, não o desastre.', 'The changes between 19 and 31 August in the Lhende Khola valley, the Bhote Koshi and the Trishuli are the mark of the Langtang Lirung rock–ice collapse (26 Aug) and the debris flood it caused. High in the mountains, wet snow and terrain shadows also change the signal: detections far from the valley may be snow, not the disaster.'],
+    byType: {
+      agua: ['Lago de barragem formado pelos detritos que represaram o rio, ou lama e água da enxurrada nas margens.', 'A barrier lake formed by debris damming the river, or mud and floodwater on the banks.'],
+      solo: ['Água da enxurrada baixando, ou detritos novos cobrindo o leito do rio.', 'Floodwater going down, or fresh debris covering the riverbed.'],
+      arvore: ['Vegetação arrancada pela avalanche e pela enxurrada ao longo do vale.', 'Vegetation torn away by the avalanche and the flood along the valley.'],
+    },
+    context: [
+      { text: ['Cerca de 132 milhões de m³ de rocha e gelo se soltaram da face norte do Langtang Lirung e caíram no vale do Lhende Khola.', 'About 132 million m³ of rock and glacier ice detached from the north face of Langtang Lirung into the Lhende Khola valley.'], src: 'ICIMOD', url: 'https://www.icimod.org/press-releases/second-major-himalayan-flood-in-seven-weeks-raises-new-questions-about-mountain-risk/' },
+      { text: ['O radar Sentinel-1 registrou até 40 cm de deformação na encosta entre 7 jul e 24 ago, antes do colapso.', 'Sentinel-1 radar recorded up to 40 cm of slope deformation between 7 Jul and 24 Aug, before the collapse.'], src: 'ICIMOD', url: 'https://www.icimod.org/press-releases/second-major-himalayan-flood-in-seven-weeks-raises-new-questions-about-mountain-risk/' },
+      { text: ['Um estudo com dados do próprio NISAR mediu deslocamento na encosta em janelas de 24 dias que terminam em 16 e 19 ago.', 'A study using NISAR data measured slope displacement in 24-day windows ending on 16 and 19 Aug.'], src: 'Remote Sensing (MDPI)', url: 'https://www.mdpi.com/2072-4292/18/21/3727' },
+      { text: ['O rio Trishuli subiu até 9 metros em 30 minutos, em plena época de monção.', 'The Trishuli river rose up to 9 metres in 30 minutes, in the middle of the monsoon season.'], src: 'g1', url: 'https://g1.globo.com/meio-ambiente/noticia/2026/08/28/entenda-a-formacao-de-geleiras-e-o-rompimento-que-provocou-enchente-repentina-no-nepal.ghtml' },
+    ],
+  },
   bangladesh: {
     main: ['O ciclo da monção: a chuva e a cheia dos rios alagam as planícies de junho a setembro, e a água começa a baixar no fim da estação.', 'The monsoon cycle: rain and river floods inundate the plains from June to September, and water starts draining at the end of the season.'],
     byType: {
@@ -105,14 +119,38 @@ export function regionHypo(region: string, lang: Lang) {
 const SEASON: Record<string, { name: Bi; months: number[]; kind: 'chuva' | 'seca' | 'arroz' }[]> = {
   bangladesh: [{ name: ['monção (jun–out)', 'monsoon (Jun–Oct)'], months: [6, 7, 8, 9, 10], kind: 'chuva' }],
   amazonia: [{ name: ['estação seca do sul da Amazônia (jul–nov)', 'southern Amazon dry season (Jul–Nov)'], months: [7, 8, 9, 10, 11], kind: 'seca' }],
+  nepal: [{ name: ['monção (jun–set)', 'monsoon (Jun–Sep)'], months: [6, 7, 8, 9], kind: 'chuva' }],
   sul: [{ name: ['época de semeadura do arroz irrigado (out–dez)', 'irrigated rice sowing season (Oct–Dec)'], months: [10, 11, 12], kind: 'arroz' }],
 }
 
 export interface FocusHypo { text: string; why: string[] }
 
-export function focusHypothesis(k: string, ev: FocusEvidence, area: number | undefined, region: string, lang: Lang): FocusHypo | null {
+export interface KnownEvent { data: string; lon: number; lat: number; nome: string }
+
+export function focusHypothesis(k: string, ev: FocusEvidence, area: number | undefined, region: string, lang: Lang, pos?: { lon?: number; lat?: number }, evento?: KnownEvent): FocusHypo | null {
   if (k !== 'agua' && k !== 'solo' && k !== 'arvore') return null
   const pt = lang === 'pt', d = (iso: string) => fmtDate(iso, lang)
+  // desastre conhecido: a comparação atravessa a data do evento?
+  const vs = ev.vs
+  if (evento && pos?.lon != null && pos?.lat != null && vs && vs < evento.data && ev.date >= evento.data) {
+    const km = Math.round(111.32 * Math.hypot((pos.lon - evento.lon) * Math.cos(((pos.lat + evento.lat) / 2) * Math.PI / 180), pos.lat - evento.lat))
+    const nomeEv = pt ? evento.nome : 'the Langtang Lirung rock–ice collapse'
+    const perto = km <= 40
+    const txt = perto ? (pt ? {
+      agua: `Provável marca do desastre: lago de barragem ou água e lama da enxurrada, a ${km} km do ponto do colapso.`,
+      solo: `Provável marca do desastre: detritos novos no leito do rio ou água da enxurrada baixando, a ${km} km do ponto do colapso.`,
+      arvore: `Provável marca do desastre: vegetação arrancada pela avalanche e pela enxurrada, a ${km} km do ponto do colapso.`,
+    } : {
+      agua: `Likely mark of the disaster: a barrier lake or floodwater and mud, ${km} km from the collapse point.`,
+      solo: `Likely mark of the disaster: fresh debris in the riverbed or floodwater going down, ${km} km from the collapse point.`,
+      arvore: `Likely mark of the disaster: vegetation torn away by the avalanche and the flood, ${km} km from the collapse point.`,
+    })[k] : (pt ? `Mudança no mesmo período do desastre, mas a ${km} km do ponto do colapso: pode ter outra causa, como chuva da monção ou neve no alto da montanha.`
+                 : `A change in the same period as the disaster, but ${km} km from the collapse point: it may have another cause, such as monsoon rain or snow high on the mountain.`)
+    return { text: txt, why: [
+      pt ? `A comparação (${d(vs)} → ${d(ev.date)}) atravessa o dia do desastre: ${nomeEv} (${d(evento.data)}).` : `The comparison (${d(vs)} → ${d(ev.date)}) spans the day of the disaster: ${nomeEv} (${d(evento.data)}).`,
+      pt ? `Distância até o ponto do colapso: ${km} km${perto ? ', dentro do caminho provável da enxurrada' : ''}.` : `Distance to the collapse point: ${km} km${perto ? ', within the likely path of the flood' : ''}.`,
+    ] }
+  }
   const m = Number(ev.date.slice(5, 7))
   const season = (SEASON[region] ?? []).find(x => x.months.includes(m))
   const sName = season ? L(lang, season.name) : ''

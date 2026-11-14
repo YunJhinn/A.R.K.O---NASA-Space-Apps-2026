@@ -16,6 +16,8 @@ O app usa isso para a linha do tempo animada; o usuário escolhe a data na barra
 Várias regiões (v2.1): a lista REGIOES abaixo define cada área monitorada. A Amazônia fica em data/
 (como antes) e as outras em data/regioes/<id>/. O índice data/regioes.json diz ao app quais existem.
 Para rodar só uma região: python pipeline/atualizar.py --regiao sul
+Par fixo (v4): uma região pode ter par=("AAAA-MM-DD", "AAAA-MM-DD") para o mapa principal mostrar sempre
+um antes/depois escolhido (ex.: o desastre do Nepal); max_lt muda quantas passagens a linha do tempo começa.
 
 Login: usa EARTHDATA_USERNAME / EARTHDATA_PASSWORD (GitHub Actions) ou o _netrc do computador.
 """
@@ -60,6 +62,20 @@ REGIOES = [
                   "Mymensingh": (90.41, 24.75), "Sirajganj": (89.70, 24.45), "Jamalpur": (89.94, 24.92),
                   "Kishoreganj": (90.78, 24.43), "Chandpur": (90.67, 23.23), "Munshiganj": (90.53, 23.54),
                   "Narsingdi": (90.72, 23.92), "Bhairab": (90.98, 24.05), "Rajbari": (89.64, 23.76), "Bogra": (89.37, 24.85)}),
+    # Nepal (v4): estudo de caso do colapso de rocha e gelo do Langtang Lirung (26 ago 2026).
+    # par: o mapa principal compara a passagem de 19 ago (uma semana antes) com a de 31 ago (cinco dias depois).
+    # max_lt: a linha do tempo começa em junho, para mostrar o antes, o desastre e o depois.
+    dict(id="nepal", nome="Langtang e rio Trishuli · Nepal", pais="Nepal", pasta="regioes/nepal/",
+         orbita="_098_A_016_", bbox=(85.47, 28.23, 85.57, 28.33), sufixo=" · Nepal",
+         img=dict(oeste=84.8, leste=86.0, norte=28.478, sul=27.661),
+         par=("2026-08-19", "2026-08-31"), max_lt=12,
+         evento=dict(data="2026-08-26", lon=85.527, lat=28.287,
+                     nome="Colapso de rocha e gelo do Langtang Lirung"),
+         cidades={"Katmandu": (85.32, 27.71), "Syabrubesi": (85.35, 28.16), "Dhunche": (85.30, 28.11),
+                  "Rasuwagadhi": (85.38, 28.28), "Timure": (85.37, 28.25), "Langtang": (85.51, 28.22),
+                  "Kyanjin Gompa": (85.57, 28.21), "Thulo Bharkhu": (85.31, 28.13), "Chilime": (85.30, 28.18),
+                  "Betrawati": (85.19, 27.97), "Trishuli (Bidur)": (85.15, 27.90), "Devighat": (85.11, 27.86),
+                  "Dhading Besi": (84.89, 27.91), "Melamchi": (85.58, 27.83), "Gyirong (China)": (85.33, 28.39)}),
 ]
 # valores da região em uso (trocados por usar_regiao)
 ORBITA = BBOX_BUSCA = IMG = CIDADES = SUFIXO = None
@@ -295,8 +311,9 @@ def recorte_auto(d):
 
 def usar_regiao(reg):
     """Troca a configuração em uso para a região reg."""
-    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS
+    global ORBITA, BBOX_BUSCA, IMG, CIDADES, SUFIXO, DADOS, MAX_LT
     ORBITA, BBOX_BUSCA, CIDADES, SUFIXO = reg["orbita"], reg["bbox"], reg["cidades"], reg["sufixo"]
+    MAX_LT = reg.get("max_lt", 8)
     DADOS = os.path.join(DADOS_RAIZ, reg["pasta"]) if reg["pasta"] else DADOS_RAIZ
     os.makedirs(DADOS, exist_ok=True)
     IMG = reg["img"]
@@ -335,6 +352,10 @@ def processar_regiao(reg, args, forcar):
         if len(lista) < 2:
             print("Ainda não há duas passagens para comparar."); return lt_novo, ""
         antes, depois = escolher(lista)
+        if reg.get("par"):   # par fixo (ex.: antes e depois de um desastre conhecido)
+            por_data = {str(data_de(n)): n for n in lista}
+            if reg["par"][0] in por_data and reg["par"][1] in por_data:
+                antes, depois = por_data[reg["par"][0]], por_data[reg["par"][1]]
 
     estado_arq = os.path.join(DADOS, "estado.json")
     estado = json.load(open(estado_arq, encoding="utf-8")) if os.path.exists(estado_arq) else {}
@@ -395,7 +416,8 @@ def gravar_indice():
                     "imagem": {k: fa["imagem"][k] for k in ("oeste", "leste", "norte", "sul")},
                     "antes": fa["antes"]["data"], "depois": fa["depois"]["data"], "focos": len(fa["focos"]),
                     "linha_tempo": os.path.exists(os.path.join(pasta, "linha_tempo.json")),
-                    "cidades": {k: list(v) for k, v in reg["cidades"].items()}})
+                    "cidades": {k: list(v) for k, v in reg["cidades"].items()}}
+                   | ({"evento": reg["evento"]} if reg.get("evento") else {}))
     with open(os.path.join(DADOS_RAIZ, "regioes.json"), "w", encoding="utf-8") as fp:
         json.dump(idx, fp, ensure_ascii=False, indent=1)
     print("\nÍndice data/regioes.json:", ", ".join(r["id"] for r in idx))

@@ -34,7 +34,7 @@ export function PeriodBar() {
   )
 }
 
-function DatePicker({ onClose }: { onClose: () => void }) {
+export function DatePicker({ onClose }: { onClose: () => void }) {
   const { s, set, t } = useApp()
   const [mSel, setMSel] = useState<number[]>([])
   const [from, setFrom] = useState('2026-10-11')
@@ -94,6 +94,22 @@ function DatePicker({ onClose }: { onClose: () => void }) {
         <button className="btn" onClick={onClose}>{t('Cancelar')}</button>
         <button className="btn pri" onClick={apply}>{t('Aplicar período')}</button>
       </div>
+    </div>
+  )
+}
+
+/** v5: o período vira um botão só (os atalhos ficam dentro do seletor) */
+export function PeriodButton() {
+  const { s, t, ds } = useApp()
+  const [open, setOpen] = useState(false)
+  const real = s.src === 'real'
+  const range = real ? `${ds.rd.a} – ${ds.rd.b} ${ds.rd.y}` : s.custom ? s.custom.label : RANGE[s.preset]
+  return (
+    <div style={{ position: 'relative' }}>
+      <button className="datebtn" aria-haspopup="dialog" aria-expanded={open} aria-label={t('Escolher período')} onClick={e => { e.stopPropagation(); setOpen(!open) }}>
+        <Icon k="cal" size={15} /><span>{t(range)}</span><Icon k="seta" size={15} />
+      </button>
+      {open && <DatePicker onClose={() => setOpen(false)} />}
     </div>
   )
 }

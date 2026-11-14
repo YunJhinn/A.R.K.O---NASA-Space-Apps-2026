@@ -1,7 +1,7 @@
 import { AppProvider, useApp } from './lib/store'
+import './styles/clean.css'
 import { Sprite } from './components/Sprite'
 import { Sidebar } from './components/Sidebar'
-import { Protobar } from './components/Protobar'
 import { Home } from './components/home/Home'
 import { Compare } from './components/compare/Compare'
 import { PhoneView } from './components/phone/Phone'
@@ -24,7 +24,6 @@ function Screens() {
         </main>
       </div>
       <Onboarding />
-      <Protobar />
     </>
   )
 }

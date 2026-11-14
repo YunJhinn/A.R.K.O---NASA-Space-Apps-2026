@@ -1,33 +1,27 @@
 import { useApp } from '../../lib/store'
-import { Icon } from '../Icon'
-import { PeriodBar } from './PeriodBar'
-import { KpiPanel } from './KpiPanel'
+import { realTitle } from '../../lib/real'
+import { FavButton } from '../MyRegions'
+import { PeriodButton } from './PeriodBar'
 import { MapPanel } from './MapPanel'
 import { AlertPanel } from './AlertPanel'
 import { SearchBox } from './SearchBox'
+import { StatusBanner } from './StatusBanner'
 
+/** v5 · tela inicial: região e data → faixa de status → mapa e alertas lado a lado */
 export function Home() {
-  const { s, t, ds, inRange } = useApp()
-  const hi = ds.alerts.filter(a => a.lvl === 'Alto').length
-  let answer: string
-  if (s.src === 'real') {
-    const v = ds.ev.filter(e => e.st !== 'prev' && inRange(e.d))
-    const fl = v.filter(e => e.k === 'arvore').reduce((a, e) => a + (e.a ?? 0), 0)
-    answer = v.length
-      ? `${ds.alerts.length} alertas do radar NISAR real, ${hi} de alto risco. Floresta perdida: ${fl.toFixed(2).replace('.', ',')} km² entre ${ds.rd.a} e ${ds.rd.b}.`
-      : 'Nenhuma passagem do NISAR nesse período. Escolha 30 dias ou mais.'
-  } else {
-    answer = `${ds.alerts.length} alertas ativos, ${hi} de alto risco nas próximas 48h. ${s.preset === '30d' ? ds.region.answer30 : ''}`.trim()
-  }
+  const { s, t, ds } = useApp()
+  const real = s.src === 'real', en = s.lang === 'en'
+  const sub = real
+    ? (en ? `Real NISAR data · passes of ${ds.rd.aEN} and ${ds.rd.bEN} ${ds.rd.y}` : `Dados reais do NISAR · passagens de ${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}`)
+    : (en ? 'Example · simulated data to learn the app' : 'Exemplo · dados simulados para aprender o app')
   return (
-    <section className="view on" id="v-inicio" style={{ flexDirection: 'column', gap: 16 }}>
-      <div className="head">
-        <div><h1>{t('Início')}</h1><div className="answer"><span className="dot" style={{ background: 'var(--red)' }} /><span>{t(answer)}</span></div></div>
+    <section className="view on home2" id="v-inicio" style={{ flexDirection: 'column', gap: 14 }}>
+      <div className="head2">
+        <div className="ttl"><h1>{t(real ? realTitle(ds.realMeta) : ds.region.title)}<FavButton /></h1><div className="sub">{sub}</div></div>
         <SearchBox />
-        <button className="ibtn" aria-label={t(`Notificações: ${ds.alerts.length} alertas`)}><Icon k="sino" /><span className="pip" /></button>
+        <PeriodButton />
       </div>
-      <PeriodBar />
-      <KpiPanel />
+      <StatusBanner />
       <div className="body">
         <MapPanel />
         <AlertPanel />

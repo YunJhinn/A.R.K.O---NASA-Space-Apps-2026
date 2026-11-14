@@ -148,11 +148,11 @@ RULES.push(
 )
 Object.assign(EN, {
   'Linha do tempo': 'Timeline', 'Rio Madeira · Amazonas': 'Madeira River · Amazonas', 'Porto Alegre e vale do Taquari · RS': 'Porto Alegre and Taquari valley · RS',
-  'Daca e rio Jamuna · Bangladesh': 'Dhaka and Jamuna river · Bangladesh', 'Radar de Bangladesh': 'Bangladesh radar', 'Bangladesh': 'Bangladesh', 'Daca': 'Dhaka', 'Rio Madeira': 'Madeira River',
+  'Daca e rio Jamuna · Bangladesh': 'Dhaka and Jamuna river · Bangladesh', 'Langtang e rio Trishuli · Nepal': 'Langtang and Trishuli river · Nepal', 'Radar do Nepal': 'Nepal radar', 'Radar da Amazônia': 'Amazon radar', 'Nepal': 'Nepal', 'Colapso de rocha e gelo do Langtang Lirung': 'Langtang Lirung rock–ice collapse', 'Radar de Bangladesh': 'Bangladesh radar', 'Bangladesh': 'Bangladesh', 'Daca': 'Dhaka', 'Rio Madeira': 'Madeira River',
   '@A@ → @B@ @Y@': '@A@ → @B@, @Y@', 'Dados reais do NISAR: duas passagens (@A@ e @B@ @Y@) sobre': 'Real NISAR data: two passes (@A@ and @B@, @Y@) over',
   'Fogo e previsões do tempo ainda não entram nesta versão.': 'Fire and weather forecasts are not in this version yet.', 'toque em um alerta para ver no mapa': 'tap an alert to see it on the map',
-  'Exemplo mostra regiões com dados ilustrativos, para entender o app. NISAR real mostra o que o satélite detectou de verdade no rio Madeira (AM), em Porto Alegre (RS) e em Bangladesh. Troque quando quiser em Dados, no menu.': 'Example shows regions with illustrative data, to learn the app. Real NISAR shows what the satellite actually detected on the Madeira River (AM), in Porto Alegre (RS) and in Bangladesh. Switch anytime under Data in the menu.',
-  'MINHAS REGIÕES': 'MY REGIONS', 'Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.': 'There is a lot of farmland here: part of the vegetation loss may be harvest, not deforestation.', 'Favoritas': 'Favorites', 'Recentes': 'Recent', 'Favoritar região': 'Save region', 'Favoritada': 'Saved',
+  'Exemplo mostra regiões com dados ilustrativos, para entender o app. NISAR real mostra o que o satélite detectou de verdade no rio Madeira (AM), em Porto Alegre (RS), em Bangladesh e no Nepal. Troque quando quiser em Dados, no menu.': 'Example shows regions with illustrative data, to learn the app. Real NISAR shows what the satellite actually detected on the Madeira River (AM), in Porto Alegre (RS), in Bangladesh and in Nepal. Switch anytime under Data in the menu.',
+  'MINHAS REGIÕES': 'MY REGIONS', 'Esta região mostra o antes e o depois do colapso de rocha e gelo do Langtang Lirung (26 ago 2026); o ponto vermelho no mapa marca onde ele começou.': 'This region shows the before and after of the Langtang Lirung rock–ice collapse (26 Aug 2026); the red dot on the map marks where it started.', 'Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.': 'There is a lot of farmland here: part of the vegetation loss may be harvest, not deforestation.', 'Favoritas': 'Favorites', 'Recentes': 'Recent', 'Favoritar região': 'Save region', 'Favoritada': 'Saved',
   'Remover dos favoritos': 'Remove from favorites', 'Nenhuma região favoritada ainda. Use a estrela no painel.': 'No saved regions yet. Use the star on the panel.',
   'As regiões que você abrir ou buscar aparecem aqui.': 'Regions you open or search appear here.', 'Dados reais': 'Real data', 'Exemplo · ': 'Example · ', 'Dados reais · ': 'Real data · ',
   'Região com dados reais do NISAR': 'Region with real NISAR data', 'Uma data': 'One date', 'Modo da linha do tempo': 'Timeline mode', 'Jun → Nov 2026': 'Jun → Nov 2026',
@@ -170,6 +170,7 @@ Object.assign(EN, {
   'Passagem sem canal de vegetação (modo SHSV)': 'Pass without the vegetation channel (SHSV mode)',
   'Arraste para escolher a data': 'Drag to choose the date', 'Ver tudo': 'Show all', 'Escolher data na linha do tempo': 'Choose a date on the timeline',
   'Mostra só os focos da data escolhida': 'Shows only the detections from the chosen date',
+  'Minhas regiões': 'My regions', 'Dados de exemplo': 'Example data', 'Telas': 'Screens', 'Radar Mundial': 'World Radar', 'Médio': 'Medium', 'Alto': 'High', 'Baixo': 'Low',
   'Semanas de exemplo': 'Example weeks', 'Passagens reais do NISAR': 'Real NISAR passes',
 })
 

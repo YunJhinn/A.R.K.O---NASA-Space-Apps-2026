@@ -1,5 +1,5 @@
 // Ícone do app: tipos de evento usam o desenho ilustrado (x-*), o resto usa traço (i-*).
-const ILL = new Set(['fogo', 'agua', 'arvore', 'solo', 'vento', 'tornado'])
+const ILL = new Set(['fogo', 'agua', 'arvore', 'solo', 'vento', 'tornado', 'colapso'])
 
 export function Icon({ k, size = 18, className = '' }: { k: string; size?: number; className?: string }) {
   if (ILL.has(k)) {

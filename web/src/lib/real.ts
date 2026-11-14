@@ -142,6 +142,8 @@ export interface RealMeta {
   focos: number
   linha_tempo: boolean
   cidades?: Record<string, [number, number]>
+  /** desastre conhecido nesta região (data, ponto e nome), marcado no mapa */
+  evento?: { data: string; lon: number; lat: number; nome: string }
 }
 export const REAL_DEFAULT: RealMeta = {
   id: 'amazonia', nome: 'Rio Madeira · Amazonas', pais: 'Brasil', pasta: '',
@@ -152,6 +154,7 @@ export const REAL_TITLES: Record<string, [string, string]> = {
   amazonia: ['Radar da Amazônia', 'Amazônia'],
   sul: ['Radar do Sul do Brasil', 'Sul do Brasil'],
   bangladesh: ['Radar de Bangladesh', 'Bangladesh'],
+  nepal: ['Radar do Nepal', 'Nepal'],
 }
 export const realTitle = (m: RealMeta) => REAL_TITLES[m.id]?.[0] ?? `Radar · ${m.nome}`
 export const realShort = (m: RealMeta) => REAL_TITLES[m.id]?.[1] ?? m.nome.split(' · ')[0]

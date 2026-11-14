@@ -2,8 +2,8 @@ import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from
 import { useApp } from '../../lib/store'
 import { MES, MAP_H, MAP_W } from '../../lib/demo'
 import type { Ev, EvType, Info } from '../../lib/types'
-import { cx, evMonth, lvlOf, pos, rgba } from '../../lib/util'
-import { REAL_NAMES } from '../../lib/real'
+import { cx, evMonth, kmf, lvlOf, pos, rgba } from '../../lib/util'
+import { REAL_NAMES, projector } from '../../lib/real'
 import { Icon } from '../Icon'
 import { Heat, MapBase } from '../MapBase'
 import { RealBackdrop, realBase } from '../RealBackdrop'
@@ -34,26 +34,33 @@ export function MapPanel() {
   const sub = real
     ? (step ? `${counts.todos} focos reais do NISAR · ${step.label} · clique em um foco para ver o que mudou` : `${counts.todos} focos reais do NISAR (${ds.rd.a} → ${ds.rd.b}) · clique em um foco para ver o que mudou`)
     : step ? `${counts.todos} focos detectados · ${step.label} · clique em um foco para ver o que mudou` : `${counts.todos} focos detectados em ${periodLabel()} · clique em um foco para ver o que mudou`
+  const demoKpi = (k: string) => { const r = ds.region.kpi[s.preset].find(x => x[0] === k); return r ? { v: r[2], d: r[3].startsWith('—') ? '' : r[3].split(' ')[0] + ' ' + (r[3].split(' ')[1] ?? '') } : null }
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => { if (s.focus === 'map') ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }, [s.focus])
   return (
     <div className="card panel" id="mapPanel" ref={ref}>
-      <div className="ph">
-        <div style={{ flex: 1 }}><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p><div style={{ marginTop: 8 }}><SciButtons kind={s.type} compact /></div></div>
-        <div className="seg" role="group" aria-label={t('Camada')}>
-          {s.src === 'real' && realBase(ds.realMeta.id)
-            ? <><button className={cx(!s.radar && 'on')} aria-pressed={!s.radar} onClick={() => set({ radar: false })}>{t('Mapa')}</button><button className={cx(s.radar && 'on')} aria-pressed={s.radar} onClick={() => set({ radar: true })}>{t('Radar')}</button></>
-            : <><button className="on">{t('Radar')}</button><button>{t('Satélite óptico')}</button></>}<button onClick={() => go('comparar')}>{t('Antes / depois')}</button>
+      <div className="ph ph2">
+        <div className="ttl"><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p></div>
+        <div className="act">
+          <SciButtons kind={s.type} compact />
+          <div className="seg" role="group" aria-label={t('Camada')}>
+            {s.src === 'real' && realBase(ds.realMeta.id)
+              ? <><button className={cx(!s.radar && 'on')} aria-pressed={!s.radar} onClick={() => set({ radar: false })}>{t('Mapa')}</button><button className={cx(s.radar && 'on')} aria-pressed={s.radar} onClick={() => set({ radar: true })}>{t('Radar')}</button></>
+              : <button className="on">{t('Radar')}</button>}<button onClick={() => go('comparar')}>{t('Antes / depois')}</button>
+          </div>
         </div>
       </div>
       <div className="chiprow">
-        <div className="chips" role="group" aria-label={t('Filtrar por tipo de evento')}>
-          {(['todos', 'fogo', 'agua', 'arvore', 'solo'] as const).map(k => {
+        <div className="chips chips2" role="group" aria-label={t('Filtrar por tipo de evento')}>
+          {(['todos', 'fogo', 'agua', 'arvore', 'solo'] as const).filter(k => !(real && k === 'fogo')).map(k => {
             const on = s.type === k, col = k === 'todos' ? '#5F6670' : ds.types[k].c
+            const kv = k === 'todos' ? null : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
             return (
-              <button key={k} className={cx('chip', on && 'on', k === 'todos' && 'all')} aria-pressed={on} style={{ '--c': col } as CSSProperties} onClick={() => set({ type: k })}>
+              <button key={k} className={cx('chip', on && 'on', k === 'todos' && 'all')} aria-pressed={on} style={{ '--c': col } as CSSProperties} onClick={() => set({ type: k })}
+                title={k === 'todos' ? undefined : t(`${counts[k] ?? 0} focos`)}>
                 <span style={{ color: col, display: 'flex' }}><Icon k={k === 'todos' ? 'todos' : ds.types[k].ic} size={15} /></span>
-                {t(k === 'todos' ? 'Todos' : ds.types[k].n)}<span className="n">{counts[k] ?? 0}</span>
+                {t(k === 'todos' ? 'Todos' : ds.types[k].n)}
+                {kv ? <><span className="v">{t(kv.v)}</span>{kv.d && <span className="dl">{t(kv.d)}</span>}</> : <span className="n">{counts.todos}</span>}
               </button>
             )
           })}
@@ -71,7 +78,7 @@ export function MapPanel() {
 }
 
 function ChangeMap({ ev }: { ev: Ev[] }) {
-  const { s, set, t, ds, setSrc } = useApp()
+  const { s, set, t, ds } = useApp()
   const real = s.src === 'real'
   const en = s.lang === 'en'
   const { img, step } = useFocus()
@@ -172,6 +179,17 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
             </button>
           )
         })}
+        {real && ds.realMeta.evento && (() => {
+          const ev0 = ds.realMeta.evento, pj = projector(ds.realMeta.imagem)
+          return (
+            <div className="pointer-events-none absolute z-[5]" style={{ ...pos(pj.X(ev0.lon), pj.Y(ev0.lat)), transform: 'translate(-50%,-50%) scale(var(--iz))' }}>
+              <div style={{ width: 22, height: 22, borderRadius: 99, border: '3px solid #FF3B30', background: 'rgba(255,59,48,.25)', boxShadow: '0 0 0 6px rgba(255,59,48,.18)' }} />
+              <div style={{ position: 'absolute', left: 28, top: -4, whiteSpace: 'nowrap', background: '#FF3B30', color: '#fff', fontSize: 11.5, fontWeight: 800, borderRadius: 6, padding: '2px 7px' }}>
+                ⚠ {en ? `Collapse · ${fmtDate(ev0.data)}` : `Colapso · ${fmtDate(ev0.data)}`}
+              </div>
+            </div>
+          )
+        })()}
         <Pin />
       </div>
       {full && (
@@ -180,21 +198,10 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
           {en ? 'Back' : 'Voltar'}
         </button>
       )}
-      <button className="float prevtog" style={full ? { top: 66 } : undefined} aria-pressed={s.prev} onClick={e => { e.stopPropagation(); set({ prev: !s.prev }) }}>
-        <span className={cx('switch', s.prev && 'on')} aria-hidden="true" />{t('Mostrar previsões')}
-      </button>
-      <div className="float" id="srcWrap" style={{ left: '50%', top: 14, transform: 'translateX(-50%)', padding: '4px 4px 4px 10px', display: 'flex', gap: 8, alignItems: 'center', zIndex: 30 }} onClick={e => e.stopPropagation()}>
-        <span style={{ fontSize: 12, color: 'var(--mu)' }}>{t('Dados')}</span>
-        <div className="seg" id="srcSeg" role="group" aria-label={t('Fonte dos dados do mapa')} style={{ border: 0, padding: 0, background: 'transparent' }}>
-          <button className={cx(!real && 'on')} aria-pressed={!real} onClick={() => setSrc('demo')}>{t('Exemplo')}</button>
-          <button className={cx(real && 'on')} aria-pressed={real} onClick={() => setSrc('real')}>{t('NISAR real')}</button>
-        </div>
-      </div>
-      {real && (
-        <div className="float" id="srcBadge" style={{ left: '50%', top: 62, transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, padding: '6px 10px', whiteSpace: 'nowrap', zIndex: 3 }} onClick={e => e.stopPropagation()}>
-          <span className="dot" style={{ background: 'var(--acc)' }} /><b style={{ fontWeight: 600 }}>{t('Radar NISAR real')}</b>
-          · {step ? fmtDate(step.date) : t(`${ds.rd.a} → ${ds.rd.b} ${ds.rd.y}`)} · {t(ds.realMeta.nome)} · NASA-ISRO / ASF DAAC
-        </div>
+      {!real && (
+        <button className="float prevtog" style={full ? { top: 66 } : undefined} aria-pressed={s.prev} onClick={e => { e.stopPropagation(); set({ prev: !s.prev }) }}>
+          <span className={cx('switch', s.prev && 'on')} aria-hidden="true" />{t('Mostrar previsões')}
+        </button>
       )}
       <div className="mctl" onClick={e => e.stopPropagation()}>
         <div className="grp">
@@ -261,11 +268,11 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
   const { s, set, t, ds, go } = useApp()
   const real = s.src === 'real'
   const c = ds.types[e.k].c
-  const [more, setMore] = useState<'causas' | 'pol' | null>(null)
+  const [tab, setTab] = useState<'resumo' | 'dados' | 'pol'>('resumo')
   const lang = s.lang as Lang, en = lang === 'en'
   const evd = real ? focusEvidence(e, ds.timeline, { vs: ds.real.meta.antes.data, date: ds.real.meta.depois.data }, lang) : null
   const phy = physics(e.k, lang)
-  const fh = evd ? focusHypothesis(e.k, evd, e.a, ds.realMeta.id, lang) : null
+  const fh = evd ? focusHypothesis(e.k, evd, e.a, ds.realMeta.id, lang, { lon: e.lon, lat: e.lat }, ds.realMeta.evento) : null
   const n1 = (x: number) => (en ? x.toFixed(1) : x.toFixed(1).replace('.', ','))
   const pol = POL[e.k]
   const inf: Info = ds.info[e.id] ?? {
@@ -293,72 +300,69 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
       </div>
       <div><h3>{t(inf.t)}</h3><div className="sub">{t(inf.sub)}</div></div>
       <div className="metric"><b>{t(inf.m)}</b><span style={{ color: 'var(--red2)', fontSize: 12, fontWeight: 500 }}>{t(inf.d)}</span></div>
-      {e.st !== 'prev' && maxH >= 470 && (
-        <div className="ba">
-          <span><div style={{ background: 'linear-gradient(120deg,#EEF1F4,#C9D8E8 55%,#EEF1F4)' }} />{t(`Antes · ${before}`)}</span>
-          <span><div style={{ background: `linear-gradient(120deg,#EEF1F4,${rgba(c, 0.55)} 55%,#EEF1F4)` }} />{t(`Depois · ${after}`)}</span>
-        </div>
-      )}
-      <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 5 }}>
-          <span style={{ color: 'var(--mu)', display: 'flex', gap: 6, alignItems: 'center' }}>{t('Grau de mudança')}
-            <span className="help" tabIndex={0} data-tip={t('Escala de 0 a 100 que compara os dois períodos. Acima de 50 é uma mudança alta.')}>?</span></span>
-          <b style={{ color: 'var(--red2)' }}>{t(`${lvlOf(inf.g)} · ${inf.g}/100`)}</b>
-        </div>
-        <div className="gbar"><i style={{ width: `${inf.g}%` }} /></div>
-      </div>
-      <div className="why"><b>{t('O que isso significa?')}</b>{t(inf.why)}</div>
       {e.st !== 'prev' && (
-        <div style={{ display: 'flex', gap: 6 }}>
-          <button className={cx('btn', more === 'causas' && 'pri')} style={{ flex: 1, fontSize: 12, padding: '7px 6px' }} aria-expanded={more === 'causas'} onClick={() => setMore(more === 'causas' ? null : 'causas')}>🔎 {en ? 'Likely causes' : 'Causas prováveis'}</button>
-          <button className={cx('btn', more === 'pol' && 'pri')} style={{ flex: 1, fontSize: 12, padding: '7px 6px' }} aria-expanded={more === 'pol'} onClick={() => setMore(more === 'pol' ? null : 'pol')}>📡 {en ? 'Polarization' : 'Polarização'}</button>
+        <div className="ptabs" role="tablist" aria-label={en ? 'Detail sections' : 'Seções do detalhe'}>
+          {([['resumo', en ? 'Summary' : 'Resumo'], ['dados', en ? 'Data' : 'Dados'], ['pol', en ? 'Polarization' : 'Polarização']] as const).map(([k, l]) => (
+            <button key={k} role="tab" aria-selected={tab === k} className={cx(tab === k && 'on')} onClick={() => setTab(k)}>{l}</button>
+          ))}
         </div>
       )}
-      {more === 'causas' && (
-        <div style={{ background: '#EAF2FF', border: '1px solid #BCD3F7', borderRadius: 10, padding: '10px 12px', fontSize: 12.5, lineHeight: 1.45 }}>
+      {(tab === 'resumo' || e.st === 'prev') && (
+        <>
           {fh && (
-            <div style={{ background: '#FFF8EB', border: '1px solid #F5D58A', borderRadius: 8, padding: '7px 9px', marginBottom: 6 }}>
-              <b style={{ color: '#B45309' }}>🧪 {en ? 'Hypothesis for this focus: ' : 'Hipótese para este foco: '}</b>{fh.text}
-              {fh.why.length > 0 && <div style={{ marginTop: 3 }}><b style={{ fontSize: 11.5 }}>{en ? 'Based on:' : 'Com base em:'}</b>{fh.why.map(w => <div key={w} style={{ display: 'flex', gap: 5, fontSize: 11.5 }}><span style={{ color: '#B45309', fontWeight: 800 }}>›</span><span>{w}</span></div>)}</div>}
-              <div style={{ color: '#5B6B7F', fontSize: 11, marginTop: 3 }}>{en ? 'A hypothesis, not a conclusion: confirm in the optical image below.' : 'É hipótese, não conclusão: confirme na imagem óptica abaixo.'}</div>
+            <div className="hyp"><b>🧪 {en ? 'Likely cause (hypothesis): ' : 'Causa provável (hipótese): '}</b>{fh.text}</div>
+          )}
+          <div className="why">{evd ? evd.plain : t(inf.why)}</div>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 5 }}>
+              <span style={{ color: 'var(--mu)', display: 'flex', gap: 6, alignItems: 'center' }}>{t('Grau de mudança')}
+                <span className="help" tabIndex={0} data-tip={t('Escala de 0 a 100 que compara os dois períodos. Acima de 50 é uma mudança alta.')}>?</span></span>
+              <b style={{ color: 'var(--red2)' }}>{t(`${lvlOf(inf.g)} · ${inf.g}/100`)}</b>
+            </div>
+            <div className="gbar"><i style={{ width: `${inf.g}%` }} /></div>
+          </div>
+          {real && e.st !== 'prev' && <a className="plink" href={worldviewUrl(ds.realMeta.imagem, e.date ?? ds.timeline.at(-1)?.date)} target="_blank" rel="noreferrer">{en ? 'Confirm in the optical image (NASA Worldview) ↗' : 'Confirmar na imagem óptica (NASA Worldview) ↗'}</a>}
+        </>
+      )}
+      {tab === 'dados' && e.st !== 'prev' && (
+        <div className="pbody">
+          {maxH >= 470 && (
+            <div className="ba">
+              <span><div style={{ background: 'linear-gradient(120deg,#EEF1F4,#C9D8E8 55%,#EEF1F4)' }} />{t(`Antes · ${before}`)}</span>
+              <span><div style={{ background: `linear-gradient(120deg,#EEF1F4,${rgba(c, 0.55)} 55%,#EEF1F4)` }} />{t(`Depois · ${after}`)}</span>
             </div>
           )}
           {evd ? (
             <>
-              <div style={{ background: '#fff', borderRadius: 8, padding: '7px 9px', marginBottom: 6 }}><b>💬 {en ? 'In plain words: ' : 'Em palavras simples: '}</b>{evd.plain}</div>
-              <b style={{ display: 'block', marginBottom: 3 }}>{en ? 'What the radar measured here (scientific data)' : 'O que o radar mediu aqui (dados científicos)'}</b>
-              {evd.measured.map(x => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span style={{ color: '#2563EB', fontWeight: 800 }}>›</span><span>{x}</span></div>)}
-              <b style={{ display: 'block', margin: '6px 0 3px' }}>{en ? 'Same spot in other passes (≤ 2 km)' : 'Mesmo lugar em outras passagens (≤ 2 km)'}</b>
-              {evd.spot.map(x => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span style={{ color: '#2563EB', fontWeight: 800 }}>›</span><span>{x}</span></div>)}
-              {evd.reading && <div style={{ marginTop: 3 }}><b>{en ? 'From the data: ' : 'Pelos dados: '}</b>{evd.reading}</div>}
+              <b>{en ? 'What the radar measured' : 'O que o radar mediu'}</b>
+              {evd.measured.map(x => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span className="bul">›</span><span>{x}</span></div>)}
+              {fh && fh.why.length > 0 && (<><b>{en ? 'Why this cause' : 'Por que essa causa'}</b>{fh.why.map(w => <div key={w} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span className="bul">›</span><span>{w}</span></div>)}</>)}
+              <b>{en ? 'Same spot in other passes (≤ 2 km)' : 'Mesmo lugar em outras passagens (≤ 2 km)'}</b>
+              {evd.spot.map(x => <div key={x} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span className="bul">›</span><span>{x}</span></div>)}
+              {evd.reading && <div><b>{en ? 'From the data: ' : 'Pelos dados: '}</b>{evd.reading}</div>}
             </>
-          ) : (
-            <div style={{ marginBottom: 4 }}>{real ? (en ? 'This type is not measured by the radar.' : 'Este tipo não é medido pelo radar.') : (en ? 'Example mode: simulated data, no real measurement. Below is only the radar physics.' : 'Modo Exemplo: dados simulados, sem medição real. Abaixo está só a física do radar.')}</div>
-          )}
+          ) : <div>{t(inf.why)}</div>}
           {phy && (
             <>
-              <b style={{ display: 'block', margin: '6px 0 3px' }}>{en ? 'What can produce this signal' : 'O que pode gerar esse sinal'}</b>
-              {phy.could.map(h => <div key={h} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span style={{ color: '#2563EB', fontWeight: 800 }}>›</span><span>{h}</span></div>)}
-              <div style={{ color: '#5B6B7F', marginTop: 4 }}>{phy.notRadar}</div>
+              <b>{en ? 'Other possible causes of this signal' : 'Outras causas possíveis desse sinal'}</b>
+              {phy.could.map(h => <div key={h} style={{ display: 'flex', gap: 6, marginBottom: 2 }}><span className="bul">›</span><span>{h}</span></div>)}
+              <div className="mut">{phy.notRadar}</div>
             </>
           )}
-          {real && <a href={worldviewUrl(ds.realMeta.imagem, e.date ?? ds.timeline.at(-1)?.date)} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 6, fontWeight: 800, color: '#2563EB' }}>{en ? 'Check which one in the optical image (NASA Worldview) ↗' : 'Conferir qual foi na imagem óptica (NASA Worldview) ↗'}</a>}
         </div>
       )}
-      {more === 'pol' && pol && (
-        <div style={{ background: '#F3F5F8', borderRadius: 10, padding: '10px 12px', fontSize: 12.5, lineHeight: 1.45 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+      {tab === 'pol' && e.st !== 'prev' && pol && (
+        <div className="pbody">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ background: pol.pol === 'HH' ? '#1C7ED6' : '#2F9E44', color: '#fff', fontWeight: 800, borderRadius: 6, padding: '2px 8px' }}>{pol.pol}</span>
             <b>{LL(lang, pol.what as [string, string])}</b>
           </div>
-          {pol.pol === 'HH'
-            ? <span>{en ? 'HH = sends and receives horizontal. Still water reflects like a mirror and returns little signal, so new water makes HH drop; when water leaves, HH rises again.' : 'HH = envia e recebe na horizontal. Água parada reflete como espelho e devolve pouco sinal: água nova faz o HH cair; quando a água sai, o HH volta a subir.'}</span>
-            : pol.pol === 'HV' ? <span>{en ? 'HV = sends horizontal, receives vertical. Mostly branches and leaves “rotate” the wave, so HV measures vegetation volume: less vegetation, lower HV.' : 'HV = envia na horizontal e recebe na vertical. Principalmente galhos e folhas “giram” a onda, então o HV mede o volume da vegetação: menos vegetação, HV mais baixo.'}</span>
-            : <span>{en ? 'This type comes from weather data, not radar.' : 'Este tipo vem de dados do tempo, não do radar.'}</span>}
-          {evd && <div style={{ marginTop: 6, background: '#fff', borderRadius: 8, padding: '7px 9px' }}><b>💬 {en ? 'In plain words: ' : 'Em palavras simples: '}</b>{evd.plainPol}</div>}
+          <div>{evd ? evd.plainPol : pol.pol === 'HH'
+            ? (en ? 'HH = sends and receives horizontal. Still water reflects like a mirror and returns little signal, so new water makes HH drop; when water leaves, HH rises again.' : 'HH = envia e recebe na horizontal. Água parada reflete como espelho e devolve pouco sinal: água nova faz o HH cair; quando a água sai, o HH volta a subir.')
+            : pol.pol === 'HV' ? (en ? 'HV = sends horizontal, receives vertical. Mostly branches and leaves “rotate” the wave, so HV measures vegetation volume: less vegetation, lower HV.' : 'HV = envia na horizontal e recebe na vertical. Principalmente galhos e folhas “giram” a onda, então o HV mede o volume da vegetação: menos vegetação, HV mais baixo.')
+            : (en ? 'This type comes from weather data, not radar.' : 'Este tipo vem de dados do tempo, não do radar.')}</div>
           {real && e.db != null && (e.k === 'agua' || e.k === 'solo' || e.k === 'arvore') && (
-            <div style={{ marginTop: 6, background: '#fff', borderRadius: 8, padding: '6px 8px' }}>
-              <b>{en ? 'In this focus: ' : 'Neste foco: '}</b>
+            <div className="mut">
               {en ? `${pol.pol} ${e.k === 'solo' ? 'rose' : 'dropped'} ${n1(e.db)} dB (echo ${n1(factor(e.db))}× ${e.k === 'solo' ? 'stronger' : 'weaker'}). Rule: ${RULE[e.k][1]}.` : `${pol.pol} ${e.k === 'solo' ? 'subiu' : 'caiu'} ${n1(e.db)} dB (eco ${n1(factor(e.db))}× ${e.k === 'solo' ? 'mais forte' : 'mais fraco'}). Regra: ${RULE[e.k][0]}.`}
               {e.hh && <div>HH: {n1(e.hh[0])} → {n1(e.hh[1])} dB</div>}
               {e.hv && <div>HV: {n1(e.hv[0])} → {n1(e.hv[1])} dB</div>}

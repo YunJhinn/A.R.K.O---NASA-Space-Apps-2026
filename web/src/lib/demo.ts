@@ -18,6 +18,7 @@ export const TYPES_REAL: Partial<Record<EvType, Pick<TypeMeta, 'n' | 's'>>> = {
   solo: { n: 'Água que recuou', s: 'Água que recuou' },
 }
 export const TORNADO_C = '#5B6575'
+export const COLAPSO_C = '#B42318'
 
 export const PRESETS: [PresetKey, string, number][] = [
   ['7d', '7 dias', 7], ['30d', '30 dias', 30], ['3m', '3 meses', 90], ['6m', '6 meses', 180], ['1a', '1 ano', 365],

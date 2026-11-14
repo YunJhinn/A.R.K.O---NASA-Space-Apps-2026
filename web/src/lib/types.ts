@@ -4,7 +4,7 @@ export type Src = 'demo' | 'real'
 export type Lang = 'pt' | 'en'
 export type View = 'inicio' | 'comparar' | 'celular' | 'tutoriais' | 'futuro'
 export type EvType = 'fogo' | 'agua' | 'arvore' | 'solo' | 'vento'
-export type AlertType = EvType | 'tornado'
+export type AlertType = EvType | 'tornado' | 'colapso'
 export type TypeFilter = 'todos' | EvType
 export type Level = 'Alto' | 'Médio' | 'Baixo'
 export type PresetKey = '7d' | '30d' | '3m' | '6m' | '1a'
@@ -54,7 +54,13 @@ export interface Alert {
   ty: AlertType
   m: string
   pz: string
-  src: 'NISAR' | 'ext'
+  src: 'NISAR' | 'ext' | 'evento'
+  /** alertas de colapso: já ocorreu, sinal antes da queda ou previsão de perigo */
+  fase?: 'ocorrido' | 'sinal' | 'previsao'
+  /** fontes citadas (alertas de evento conhecido) */
+  fontes?: { src: string; url: string }[]
+  /** etapas de um mesmo evento (sinal prévio → ocorrido → previsão), mostradas num card só */
+  etapas?: { fase: 'ocorrido' | 'sinal' | 'previsao'; quando: string; t: string; m: string; fontes: { src: string; url: string }[] }[]
   _x?: number
   _y?: number
 }

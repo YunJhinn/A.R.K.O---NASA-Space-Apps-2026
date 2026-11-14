@@ -5,6 +5,8 @@ import { INFO_DEMO, PRESETS, TYPES, TYPES_REAL, type TypeMeta } from './demo'
 import { REGIONS, type Region, type RegionId } from './regions'
 import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type RealSet, type TimelinePoint } from './real'
 import { setI18n, tr } from './i18n'
+import { ago } from './util'
+import { eventAlerts } from './events'
 import fallbackJson from '../data/focos-fallback.json'
 import fallbackImg from '../assets/radar-fallback.jpg'
 import type { FocosAppJson } from './types'
@@ -166,14 +168,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (isReal) (Object.keys(TYPES_REAL) as EvType[]).forEach(k => { types[k] = { ...types[k], ...TYPES_REAL[k] } })
     return {
       ev: isReal ? real.ev : region.ev,
-      alerts: isReal ? real.alerts : region.alerts,
+      alerts: isReal ? [...eventAlerts(realMeta.id, s.lang), ...real.alerts] : region.alerts,
       cities: isReal ? real.cities : region.cities,
       cmp: isReal ? real.cmp : region.cmp,
       info: { ...INFO_DEMO, ...region.info, ...real.info, ...Object.assign({}, ...timeline.map(p => p.info)) },
       img: isReal ? real.img : region.img,
       types, rd: real.rd, real, timeline, region, realMeta, realIndex,
     }
-  }, [s.src, s.region, real, timeline, realMeta, realIndex])
+  }, [s.src, s.region, s.lang, real, timeline, realMeta, realIndex])
 
   // idioma: precisa estar pronto antes dos filhos renderizarem
   setI18n(s.lang, ds.rd)
@@ -196,6 +198,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [ds.ev, s.prev, s.type, inRange],
   )
   const hasReal = useCallback((id: string) => realIndex.some(m => m.id === id), [realIndex])
+  /** período inicial de uma região real: o menor que inclua a passagem mais recente dela (ex.: Nepal, de agosto) */
+  const presetFor = useCallback((id: string): PresetKey => {
+    const m = realIndex.find(x => x.id === id)
+    if (!m) return '30d'
+    const idade = ago(new Date(m.depois + 'T12:00:00Z'))
+    return (PRESETS.find(p => p[0] !== '7d' && p[2] >= idade + 1) ?? PRESETS[PRESETS.length - 1])[0]
+  }, [realIndex])
   const setSrc = useCallback((src: Src) => {
     const isReal = src === 'real'
     set(st => {
@@ -203,12 +212,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const ex = REGIONS[region as RegionId]
       return {
         src, region, pin: null,
-        sel: isReal ? null : ex.sel, type: 'todos', risk: null, custom: null, preset: isReal ? '30d' : st.preset, tl: null,
+        sel: isReal ? null : ex.sel, type: 'todos', risk: null, custom: null, preset: isReal ? presetFor(region) : st.preset, tl: null,
         phone: { ...st.phone, sel: isReal ? null : ex.sel, type: 'todos', cType: isReal ? 'arvore' : 'agua' },
         cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' },
       }
     })
-  }, [hasReal])
+  }, [hasReal, presetFor])
   /** Abre uma região. Fica no modo atual se a região existir nele; senão troca de modo. */
   const setRegion = useCallback((r: string, extra: Partial<State> = {}) => {
     set(st => {
@@ -217,12 +226,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const ex = REGIONS[(region in REGIONS ? region : 'amazonia') as RegionId]
       const isReal = src === 'real'
       return {
-        region, src, sel: isReal ? null : ex.sel, type: 'todos', risk: null, tl: null, pin: null, custom: null, preset: isReal ? '30d' : st.preset,
+        region, src, sel: isReal ? null : ex.sel, type: 'todos', risk: null, tl: null, pin: null, custom: null, preset: isReal ? presetFor(region) : st.preset,
         phone: { ...st.phone, sel: isReal ? null : ex.sel, type: 'todos', cType: isReal ? 'arvore' : 'agua' },
         cmp: { ...st.cmp, k: isReal ? 'arvore' : 'agua', a: isReal ? 'a' : 'set', b: isReal ? 'b' : 'nov' }, ...extra,
       }
     })
-  }, [hasReal])
+  }, [hasReal, presetFor])
   // ---- minhas regiões: favoritas e recentes ----
   const regionName = useCallback((src: Src, id: string) => {
     if (src === 'real') { const m = realIndex.find(x => x.id === id); return m ? realShort(m) : id }

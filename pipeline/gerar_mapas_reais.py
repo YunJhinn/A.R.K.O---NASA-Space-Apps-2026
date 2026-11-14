@@ -55,13 +55,15 @@ def hc_admin(path):
     return out
 
 ADMIN = {'br': hc_admin(f'{G}/@highcharts/map-collection/countries/br/br-all.geo.json'),
-         'bd': hc_admin(f'{G}/@highcharts/map-collection/countries/bd/bd-all.geo.json')}
+         'bd': hc_admin(f'{G}/@highcharts/map-collection/countries/bd/bd-all.geo.json'),
+         'np': hc_admin(f'{G}/@highcharts/map-collection/countries/np/np-all.geo.json')}
 
 # Configuração de cada região: país/estado em destaque e rótulos
 CFG = {
     'amazonia': dict(adm='br', foco=('state', 'Amazonas'), pais='Brazil', label='abbr'),
     'sul': dict(adm='br', foco=('state', 'Rio Grande do Sul'), pais='Brazil', label='abbr'),
     'bangladesh': dict(adm='bd', foco=('country', 'Bangladesh'), pais='Bangladesh', label='name'),
+    'nepal': dict(adm='np', foco=('country', 'Nepal'), pais='Nepal', label='name', rio_min=0, rio_grosso=5, rio_ligar=0.06, lago_min=40),
 }
 
 PAL = dict(ocean=(8, 37, 82), coast=(25, 118, 210), out=(60, 112, 156), focus=(27, 36, 50), land=(47, 92, 132),
@@ -105,8 +107,17 @@ def run(r):
         focus = mask([polys for _, n, polys in adm if n == cfg['foco'][1]])
     else:
         focus = country
-    lakes = mask([[p for p in LAKES if p and near(p[0]) and big(p[0], 10)]])
-    rivers = mask([[p for p in RIVERS if p and near(p[0]) and big(p[0], 12)]])
+    lakes = mask([[p for p in LAKES if p and near(p[0]) and big(p[0], cfg.get('lago_min', 10))]])
+    rivers = mask([[p for p in RIVERS if p and near(p[0]) and big(p[0], cfg.get('rio_min', 12))]])
+    if cfg.get('rio_ligar'):    # liga cada pedaço de rio aos 2 vizinhos mais próximos (até rio_ligar graus)
+        cs = [(sum(q[0] for q in p[0]) / len(p[0]), sum(q[1] for q in p[0]) / len(p[0])) for p in RIVERS if p and near(p[0])]
+        dr = ImageDraw.Draw(rivers)
+        for i, c in enumerate(cs):
+            viz = sorted((math.hypot(c[0] - o[0], c[1] - o[1]), j) for j, o in enumerate(cs) if j != i)[:2]
+            for dd, j in viz:
+                if dd <= cfg['rio_ligar']: dr.line([P(*c), P(*cs[j])], fill=255, width=4)
+    if cfg.get('rio_grosso'):   # rios de montanha vêm em pedaços pequenos: engrossa para virar uma linha contínua
+        rivers = rivers.filter(ImageFilter.MaxFilter(cfg['rio_grosso'])).filter(ImageFilter.GaussianBlur(1.2))
 
     A = lambda m: np.asarray(m, dtype=np.float32) / 255
     L, F, LK, RV = A(land), A(focus), A(lakes), A(rivers)
@@ -132,7 +143,7 @@ def run(r):
     for n, polys in COUNTRIES: outline(polys, PAL['border'] + (235,), 3)
     for _, n, polys in adm: outline(polys, PAL['border'] + (150,), 2)
     for p in LAKES:
-        if p and near(p[0]) and big(p[0], 10): pts = [P(*q) for q in p[0]]; d.line(pts + [pts[0]], fill=(170, 215, 250, 200), width=2)
+        if p and near(p[0]) and big(p[0], cfg.get('lago_min', 10)): pts = [P(*q) for q in p[0]]; d.line(pts + [pts[0]], fill=(170, 215, 250, 200), width=2)
     # rótulos (estado/divisão) no centro de cada área visível
     try: font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 44 if cfg['label'] == 'abbr' else 30)
     except Exception: font = ImageFont.load_default()

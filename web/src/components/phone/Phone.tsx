@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { useApp, type PhoneTab } from '../../lib/store'
-import { MES, MES_LONGO, RISK, TORNADO_C } from '../../lib/demo'
+import { MES, MES_LONGO } from '../../lib/demo'
+import { AlertCard } from '../AlertCard'
 import type { Ev, Info } from '../../lib/types'
 import { cx, evMonth, kmf, lvlOf, pos, rgba } from '../../lib/util'
 import { REAL_NAMES, type RealKind } from '../../lib/real'
@@ -77,21 +78,9 @@ function PAlerts() {
         <h1 style={{ fontSize: 22, fontWeight: 600, lineHeight: 1.25 }}>{t(high === 1 ? '1 alerta de alto risco perto de você' : `${high} alertas de alto risco perto de você`)}</h1>
         <p style={{ color: 'var(--mu)', fontSize: 13, marginTop: 6 }}>{s.src === 'real' ? `${t(ds.realMeta.nome)} · ${t('toque em um alerta para ver no mapa')}` : t(`${s.region === 'sul' ? 'Porto Alegre e região' : 'Manaus e região'} · toque em um alerta para ver no mapa`)}</p>
       </div>
-      {ds.alerts.map((a, i) => {
-        const c = a.ty === 'tornado' ? TORNADO_C : ds.types[a.ty].c
-        const [rb, rt] = RISK[a.lvl]
-        return (
-          <button key={i} className="al" style={{ padding: 14, '--c': c } as CSSProperties} onClick={() => { if (a.id) set({ phone: { ...s.phone, sel: a.id, type: 'todos', tab: 'mapa' } }) }}>
-            <div className="r1">
-              <span className="tile" style={{ width: 40, height: 40, background: rgba(c, 0.12), color: c }}><Icon k={a.ty === 'tornado' ? 'tornado' : ds.types[a.ty].ic} size={20} /></span>
-              <div style={{ flex: 1 }}><h4 style={{ fontSize: 14.5 }}>{t(a.t)}</h4><div className="loc">{t(`${a.l} · ${a.pz}`)}</div></div>
-              <span className="risk" style={{ background: rgba(rb, 0.14), color: rt }}>{t(a.lvl)}</span>
-            </div>
-            <p style={{ fontSize: 13 }}>{t(a.m)}</p>
-            <div className="ft">{a.src !== 'NISAR' ? <span className="ext">{t('Fonte externa: meteorologia')}</span> : t('Fonte: NISAR')}{a.id && <a style={{ marginLeft: 'auto' }}>{t('Ver no mapa →')}</a>}</div>
-          </button>
-        )
-      })}
+      {ds.alerts.map((a, i) => (
+        <AlertCard key={(a.id ?? a.t) + i} a={a} big onMap={a.id ? () => set({ phone: { ...s.phone, sel: a.id, type: 'todos', tab: 'mapa' } }) : undefined} />
+      ))}
       <button className="btn pri" style={{ height: 48, flex: 'none' }}>{t('Avisar minha equipe')}</button>
     </>
   )

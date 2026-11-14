@@ -11,3 +11,34 @@
 .map .mapback:hover { background: #eaf1fc; }
 .map .zoomhint { left: 50%; bottom: 14px; transform: translateX(-50%); font-size: 12px; font-weight: 700; padding: 6px 12px; z-index: 30; pointer-events: none; }
 .map .pop { z-index: 60; overscroll-behavior: contain; }
+
+/* v4.1 · cards de alerta enxutos */
+.al p.one { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 6px 0 2px; }
+.al .etapas { display: flex; flex-wrap: nowrap; align-items: center; gap: 4px; margin: 8px 0 2px; font-size: 11px; white-space: nowrap; }
+.al .etapas > span { display: inline-flex; align-items: baseline; gap: 3px; color: #6B7280; padding: 2px 6px; border-radius: 99px; background: rgba(0,0,0,.04); }
+.al .etapas > span b { font-weight: 700; }
+.al .etapas > span small { font-size: 10px; opacity: .85; }
+.al .etapas > i { font-style: normal; color: #9CA3AF; font-weight: 800; }
+.al .etapas > span.on { background: var(--c); color: #fff; }
+.al .det { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 4px; padding: 10px; border-radius: 10px; background: rgba(255,255,255,.7); font-size: 12.5px; line-height: 1.45; }
+.al .det > div { display: flex; flex-direction: column; gap: 2px; }
+.al .det .src { color: #5B6B7F; font-size: 11.5px; }
+.al .det .src [role=link] { color: #1D4ED8; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.al .det .nota { color: #5B6B7F; font-size: 11px; }
+.al .ft button.lnk { all: unset; cursor: pointer; font-weight: 700; color: var(--c); }
+.alist-more { all: unset; cursor: pointer; text-align: center; font-weight: 700; font-size: 13px; color: #92400E; padding: 8px; border-radius: 10px; background: rgba(255,255,255,.55); }
+
+/* v4.1 · cartão do foco com abas */
+.pop .ptabs { display: flex; gap: 2px; padding: 3px; border-radius: 10px; background: #EEF2F7; }
+.pop .ptabs button { all: unset; flex: 1; text-align: center; cursor: pointer; font-size: 12px; font-weight: 700; color: #5B6B7F; padding: 6px 4px; border-radius: 8px; }
+.pop .ptabs button.on { background: #fff; color: #1E2A3A; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.pop .ptabs button:focus-visible { outline: 2px solid #2563EB; }
+.pop .hyp { background: #FFF8EB; border: 1px solid #F5D58A; border-radius: 10px; padding: 8px 10px; font-size: 12.5px; line-height: 1.45; }
+.pop .hyp b { color: #B45309; }
+.pop .plink { font-size: 12px; font-weight: 700; color: #2563EB; }
+.pop .pbody { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; line-height: 1.45; }
+.pop .pbody > b { margin-top: 4px; font-size: 12px; }
+.pop .pbody .bul { color: #2563EB; font-weight: 800; }
+.pop .mut { color: #5B6B7F; font-size: 11.5px; }
+
+.al .etapas > span:not(.on) small { display: none; }
