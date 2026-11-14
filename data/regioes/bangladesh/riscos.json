@@ -1,10 +1,11 @@
 {
- "atualizado": "2026-11-14T13:43Z",
+ "atualizado": "2026-11-14T14:23Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
   "data": "2026-11-13",
   "limiares": {
+   "baixo": 0.02,
    "medio": 0.05,
    "alto": 0.1
   },
@@ -15,49 +16,65 @@
     "lon": 92.0042,
     "lat": 25.6042,
     "p": 0.1452,
-    "km2": 142.6,
+    "km2": 2887.5,
     "nivel": "Alto",
     "lugar": "Mawryngkneng · Meghalaya · Índia"
    },
    {
-    "lon": 92.2208,
-    "lat": 25.7959,
-    "p": 0.1056,
-    "km2": 40.0,
-    "nivel": "Alto",
-    "lugar": "Donka · Assam · Índia"
-   },
-   {
-    "lon": 91.9042,
+    "lon": 92.0208,
     "lat": 25.6876,
-    "p": 0.0885,
-    "km2": 6.2,
-    "nivel": "Médio",
-    "lugar": "Umsning · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.2792,
-    "lat": 25.7626,
-    "p": 0.0795,
+    "p": 0.0721,
     "km2": 0.8,
     "nivel": "Médio",
-    "lugar": "Donka · Assam · Índia"
-   },
-   {
-    "lon": 91.9625,
-    "lat": 25.6626,
-    "p": 0.0785,
-    "km2": 1.5,
-    "nivel": "Médio",
     "lugar": "Umsning · Meghalaya · Índia"
    },
    {
-    "lon": 92.2958,
-    "lat": 25.7126,
-    "p": 0.0777,
-    "km2": 3.1,
+    "lon": 90.6125,
+    "lat": 26.3376,
+    "p": 0.0639,
+    "km2": 5.4,
     "nivel": "Médio",
-    "lugar": "Thadlaskein · Meghalaya · Índia"
+    "lugar": "Bongaigaon · Assam · Índia"
+   },
+   {
+    "lon": 90.6875,
+    "lat": 26.3626,
+    "p": 0.0569,
+    "km2": 19.1,
+    "nivel": "Médio",
+    "lugar": "Srijangram · Assam · Índia"
+   },
+   {
+    "lon": 92.6542,
+    "lat": 25.5542,
+    "p": 0.0559,
+    "km2": 88.7,
+    "nivel": "Médio",
+    "lugar": "Umrangso · Assam · Índia"
+   },
+   {
+    "lon": 90.6375,
+    "lat": 26.2709,
+    "p": 0.0548,
+    "km2": 11.5,
+    "nivel": "Médio",
+    "lugar": "Srijangram · Assam · Índia"
+   },
+   {
+    "lon": 92.5208,
+    "lat": 24.0792,
+    "p": 0.052,
+    "km2": 111.6,
+    "nivel": "Médio",
+    "lugar": "Zawlnuam · Mizoram · Índia"
+   },
+   {
+    "lon": 92.7625,
+    "lat": 26.1626,
+    "p": 0.0492,
+    "km2": 4.6,
+    "nivel": "Baixo",
+    "lugar": "Doboka · Assam · Índia"
    }
   ]
  },

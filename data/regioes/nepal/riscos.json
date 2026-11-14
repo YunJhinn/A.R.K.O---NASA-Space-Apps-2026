@@ -1,16 +1,82 @@
 {
- "atualizado": "2026-11-14T13:43Z",
+ "atualizado": "2026-11-14T14:23Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
   "data": "2026-11-13",
   "limiares": {
+   "baixo": 0.02,
    "medio": 0.05,
    "alto": 0.1
   },
   "max": 0.0472,
   "p90": 0.0217,
-  "areas": []
+  "areas": [
+   {
+    "lon": 85.3875,
+    "lat": 27.7792,
+    "p": 0.0472,
+    "km2": 478.0,
+    "nivel": "Baixo",
+    "lugar": "a 10 km de Katmandu · Nepal"
+   },
+   {
+    "lon": 85.0042,
+    "lat": 27.6626,
+    "p": 0.0452,
+    "km2": 693.5,
+    "nivel": "Baixo",
+    "lugar": "a 24 km de Devighat · Nepal"
+   },
+   {
+    "lon": 85.6708,
+    "lat": 27.6626,
+    "p": 0.0449,
+    "km2": 107.5,
+    "nivel": "Baixo",
+    "lugar": "a 21 km de Melamchi · Nepal"
+   },
+   {
+    "lon": 85.3042,
+    "lat": 27.7376,
+    "p": 0.0327,
+    "km2": 34.8,
+    "nivel": "Baixo",
+    "lugar": "Katmandu · Nepal"
+   },
+   {
+    "lon": 85.4208,
+    "lat": 27.6626,
+    "p": 0.0299,
+    "km2": 3.8,
+    "nivel": "Baixo",
+    "lugar": "a 11 km de Katmandu · Nepal"
+   },
+   {
+    "lon": 85.1125,
+    "lat": 27.8876,
+    "p": 0.0285,
+    "km2": 92.2,
+    "nivel": "Baixo",
+    "lugar": "Devighat · Nepal"
+   },
+   {
+    "lon": 85.0875,
+    "lat": 27.8459,
+    "p": 0.0227,
+    "km2": 0.8,
+    "nivel": "Baixo",
+    "lugar": "Devighat · Nepal"
+   },
+   {
+    "lon": 85.2958,
+    "lat": 27.6709,
+    "p": 0.0225,
+    "km2": 1.5,
+    "nivel": "Baixo",
+    "lugar": "Katmandu · Nepal"
+   }
+  ]
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
