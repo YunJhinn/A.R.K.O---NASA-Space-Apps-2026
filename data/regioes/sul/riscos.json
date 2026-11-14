@@ -1,42 +1,17 @@
 {
- "atualizado": "2026-11-14T18:01Z",
+ "atualizado": "2026-11-14T19:27Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
   "data": "2026-11-13",
   "limiares": {
-   "baixo": 0.02,
-   "medio": 0.05,
-   "alto": 0.1
+   "baixo": 0.05,
+   "medio": 0.1,
+   "alto": 0.25
   },
   "max": 0.0202,
   "p90": 0.0082,
-  "areas": [
-   {
-    "lon": -51.8125,
-    "lat": -28.5458,
-    "p": 0.0202,
-    "km2": 1.5,
-    "nivel": "Baixo",
-    "lugar": "São Domingos do Sul · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.8042,
-    "lat": -28.5208,
-    "p": 0.0202,
-    "km2": 2.3,
-    "nivel": "Baixo",
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.0875,
-    "lat": -27.7958,
-    "p": 0.0202,
-    "km2": 0.8,
-    "nivel": "Baixo",
-    "lugar": "Anita Garibaldi · Santa Catarina · Brasil"
-   }
-  ]
+  "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",

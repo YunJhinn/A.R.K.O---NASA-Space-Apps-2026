@@ -308,5 +308,76 @@
    "lat": 28.287,
    "nome": "Colapso de rocha e gelo do Langtang Lirung"
   }
+ },
+ {
+  "id": "mocambique",
+  "nome": "Rio Limpopo e Chókwè · Moçambique",
+  "pais": "Moçambique",
+  "pasta": "regioes/mocambique/",
+  "imagem": {
+   "oeste": 30.66,
+   "leste": 35.247,
+   "norte": -23.469,
+   "sul": -26.593
+  },
+  "antes": "2026-01-05",
+  "depois": "2026-01-17",
+  "focos": 25,
+  "linha_tempo": true,
+  "cidades": {
+   "Chókwè": [
+    32.98,
+    -24.53
+   ],
+   "Chibuto": [
+    33.53,
+    -24.69
+   ],
+   "Macia": [
+    33.1,
+    -25.03
+   ],
+   "Xai-Xai": [
+    33.64,
+    -25.05
+   ],
+   "Magude": [
+    32.65,
+    -25.02
+   ],
+   "Mabalane": [
+    32.63,
+    -23.85
+   ],
+   "Massingir": [
+    32.16,
+    -23.89
+   ],
+   "Manhiça": [
+    32.81,
+    -25.4
+   ],
+   "Bilene": [
+    33.24,
+    -25.3
+   ],
+   "Maputo": [
+    32.57,
+    -25.97
+   ],
+   "Mapai": [
+    32.06,
+    -22.85
+   ]
+  },
+  "evento": {
+   "data": "2026-01-17",
+   "lon": 32.98,
+   "lat": -24.53,
+   "tipo": "enchente",
+   "nome": "Enchente do rio Limpopo em Chókwè",
+   "nome_en": "Limpopo River flood in Chókwè"
+  },
+  "beta": true
  }
 ]
