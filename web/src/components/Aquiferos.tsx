@@ -6,6 +6,7 @@ import { fmt, theilSen } from '../lib/rios'
 import { Ajuda } from './Ajuda'
 import { AquiferoMapa, type MapaGrace } from './AquiferoMapa'
 import { AquiferoAfundamento } from './AquiferoAfundamento'
+import { AquiferoHistorico } from './AquiferoHistorico'
 
 type Bi = [string, string]
 interface Aq { id: string; nome: string; onde: string; bbox: number[]; sobre: string; area_km2: number; tend_cm_ano: number; tend_km3_ano: number; proj2030_cm: number; serie: { d: string; cm: number }[]; anual: { ano: number; cm: number; n: number }[]; fonte: string; gerado: string; mapa?: MapaGrace; contexto?: { t: string; url: string } }
@@ -177,6 +178,8 @@ export function Aquiferos() {
         </div>
 
         {/* 3 · onde (mapa GRACE) e o chão (NISAR) */}
+        <AquiferoHistorico serie={a.serie} en={en} />
+
         {a.mapa && <AquiferoMapa id={id} m={a.mapa} bbox={a.bbox} ultimoMes={I.ultimo.d} en={en} />}
         <AquiferoAfundamento aq={id} en={en} />
 

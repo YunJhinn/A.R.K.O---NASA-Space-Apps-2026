@@ -5,6 +5,7 @@ import { DATA_BASE, useApp } from '../lib/store'
 import { MapaTempo, Monitor } from './RioMonitor'
 import { Ajuda } from './Ajuda'
 import { RadarRio } from './RadarRio'
+import { inflexao, type Inflexao } from '../lib/inflexao'
 import { acoes, AJUDA, analisar, carregarContinuo, carregarRio, GRUPOS, meta, veredito, VEREDITO, type ContinuoJson, CONTEXTO, ESTADO, fmt, frase, METRICAS, RIOS, type Analise, type Metrica, type RioJson } from '../lib/rios'
 
 type Bi = [string, string]
@@ -76,6 +77,10 @@ export function Historico() {
   const metricas = (Object.keys(METRICAS) as Metrica[]).filter(m => ok?.serie.some(a => a[m] != null))
   useEffect(() => { if (ok && !metricas.includes(k)) setK(metricas[0]) }, [ok?.id])   // eslint-disable-line
   const an = useMemo(() => Object.fromEntries(metricas.map(m => [m, ok ? analisar(ok, m) : null])) as Partial<Record<Metrica, Analise | null>>, [ok, metricas.join()])
+  // v7.7 · ponto de inflexão de cada medida (ano em que o padrão de longo prazo mudou)
+  const inf = useMemo(() => Object.fromEntries(metricas.map(m => {
+    const x = an[m]; return [m, x ? inflexao(x.pts.map(p => p[0]), x.pts.map(p => p[1]), METRICAS[m].bom) : null]
+  })) as Partial<Record<Metrica, Inflexao | null>>, [an])   // eslint-disable-line
   const a = an[k], M = METRICAS[k], info = RIOS.find(r => r.id === rid)!
   const ctx = CONTEXTO[rid]
   const anos = ok ? `${ok.serie[0]?.ano}–${ok.serie[ok.serie.length - 1]?.ano}` : ''
@@ -154,6 +159,51 @@ export function Historico() {
             )
           })()}
 
+          {/* v7.7 · PROCESSOS LENTOS: o que some um rio aos poucos. O alerta é a mudança de padrão (ponto de inflexão),
+              que dá ANOS de antecedência para agir, e não horas como num alerta de enchente. */}
+          <div className="card" style={{ padding: 18 }}>
+            <h3 className="m-0 flex items-center text-[15px]">{en ? 'Slow processes · long-term reading' : 'Processos lentos · leitura de longo prazo'}<Ajuda txt={en ? 'Silting and loss of riverbank forest happen slowly and can make a river disappear. The early signal is a CHANGE OF PATTERN: the year from which the trend started to behave differently (inflection point). Detecting it gives years of lead time to act — protect banks, control erosion, replant — instead of reacting to a disaster.' : 'Assoreamento e perda de mata nas margens acontecem devagar e podem fazer um rio desaparecer. O sinal antecipado é a MUDANÇA DE PADRÃO: o ano a partir do qual a tendência passou a se comportar diferente (ponto de inflexão). Detectá-la dá anos de antecedência para agir — proteger margens, conter erosão, replantar — em vez de reagir a um desastre.'} /></h3>
+            <div className="mt-2 grid gap-2 lg:grid-cols-3">
+              {([
+                [en ? 'Silting / erosion' : 'Assoreamento / erosão', ['turbidez', 'solo_exposto'] as Metrica[], en ? 'sediment in the water and bare soil on the banks' : 'sedimento na água e solo exposto nas margens'],
+                [en ? 'Riverbank forest' : 'Mata nas margens', ['mata_ciliar'] as Metrica[], en ? 'the forest that holds soil and filters runoff' : 'a mata que segura o solo e filtra a enxurrada'],
+                [en ? 'Water volume' : 'Volume de água', (['agua_km2', 'gelo_km2'] as Metrica[]), en ? 'open water (or ice that feeds the river)' : 'água aberta (ou gelo que alimenta o rio)'],
+              ] as const).map(([titulo, ks, sub]) => {
+                const itens = ks.filter(m => an[m])
+                if (!itens.length) return null
+                const linhas = itens.map(m => {
+                  const x = an[m]!, I = inf[m], MM = METRICAS[m]
+                  const ruim = MM.bom === 'baixo' ? x.tend.m > 0 : x.tend.m < 0
+                  const forte = x.estado === 'alerta' || x.estado === 'atencao' || Math.abs(x.tend.m * 10) >= Math.abs(x.base || 1) * 0.03
+                  const piorouPadrao = I?.sig && (MM.bom === 'baixo' ? I.depois > I.antes : I.depois < I.antes)
+                  return { m, x, I, MM, ruim: ruim && forte, piorouPadrao }
+                })
+                const alerta = linhas.some(l => l.piorouPadrao), atencao = linhas.some(l => l.ruim)
+                const cor = alerta ? '#B42318' : atencao ? '#B54708' : '#067647', bg = alerta ? '#FEF3F2' : atencao ? '#FFFAEB' : '#ECFDF3'
+                return (
+                  <div key={titulo} className="rounded-lg p-3" style={{ background: bg, border: `1px solid ${cor}33` }}>
+                    <div className="flex items-center justify-between gap-2">
+                      <b className="text-[13.5px]" style={{ color: '#101828' }}>{titulo}</b>
+                      <span className="rounded px-2 py-0.5 text-[11px] font-bold" style={{ background: '#fff', color: cor }}>{alerta ? (en ? 'pattern worsened' : 'padrão piorou') : atencao ? (en ? 'slowly worsening' : 'piorando aos poucos') : (en ? 'stable / improving' : 'estável / melhorando')}</span>
+                    </div>
+                    <div className="text-[11.5px]" style={{ color: '#667085' }}>{sub}</div>
+                    <ul className="m-0 mt-1.5 list-none space-y-1 p-0 text-[12.5px] leading-snug" style={{ color: '#344054' }}>
+                      {linhas.map(l => (
+                        <li key={l.m}>
+                          <b>{B(l.MM.nome)}</b>: {en ? 'pace' : 'ritmo'} {l.x.tend.m > 0 ? '+' : ''}{fmt(l.x.tend.m * 10, en, 1)} {l.MM.un}/{en ? 'decade' : 'década'}.{' '}
+                          {l.I?.sig
+                            ? <>{en ? `Pattern changed in ${l.I.ano}` : `O padrão mudou em ${l.I.ano}`} ({fmt(l.I.antes * 10, en, 1)} → {fmt(l.I.depois * 10, en, 1)}).{l.I.anosAtePior != null && <> <b style={{ color: '#B42318' }}>{en ? `If it continues, passes the worst value ever recorded in ~${fmt(l.I.anosAtePior, en, 0)} years.` : `Se continuar, passa do pior valor já registrado em ~${fmt(l.I.anosAtePior, en, 0)} anos.`}</b></>}</>
+                            : (en ? `Same pace since ${l.x.pts[0][0]}.` : `Mesmo ritmo desde ${l.x.pts[0][0]}.`)}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })}
+            </div>
+            <p className="m-0 mt-2 text-[11.5px]" style={{ color: '#667085' }}>{en ? 'Inflection = year that best splits the series into two different trends (Theil–Sen), accepted only if each part has 6+ years and the change is large and consistent. Projection, not forecast.' : 'Inflexão = o ano que melhor divide a série em duas tendências diferentes (Theil–Sen), aceito só se cada trecho tem 6+ anos e a mudança é grande e consistente. Projeção, não previsão.'}</p>
+          </div>
+
           {/* PAINÉIS: um por medida, com "?" explicando o que é */}
           <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))' }}>
             {metricas.map(m => {
@@ -169,6 +219,9 @@ export function Historico() {
                     <svg viewBox="0 0 80 26" width={80} height={26} aria-hidden="true"><path d={sp.map((p, i) => `${i ? 'L' : 'M'}${(i / Math.max(1, sp.length - 1)) * 78 + 1},${25 - ((p[1] - lo) / (hi - lo || 1)) * 23}`).join('')} fill="none" stroke={MM.cor} strokeWidth={1.6} /></svg>
                   </div>
                   <div className="mt-1 text-[12px]" style={{ color: '#475467' }}>{en ? 'was' : 'era'} {fmt(x.base, en)} {MM.un} · {x.var > 0 ? '+' : ''}{fmt(x.var, en, 0)}% · {en ? 'trend' : 'tendência'}: {tend}</div>
+                  {(() => { const I = inf[m]; if (!I?.sig) return <div className="mt-1 text-[11.5px]" style={{ color: '#667085' }}>{en ? 'Same pattern since' : 'Mesmo padrão desde'} {x.pts[0][0]}</div>
+                    const piora = MM.bom === 'baixo' ? I.depois > I.antes : I.depois < I.antes
+                    return <div className="mt-1 text-[11.5px] font-semibold" style={{ color: piora ? '#B42318' : '#067647' }}>{en ? 'Inflection' : 'Inflexão'} {I.ano}: {fmt(I.antes * 10, en, 1)} → {fmt(I.depois * 10, en, 1)} {MM.un}/{en ? 'decade' : 'década'}</div> })()}
                   <div className="mt-2 flex flex-wrap items-center gap-1.5">
                     <span className="inline-block rounded px-2 py-0.5 text-[11.5px] font-bold" style={{ background: E.bg, color: E.c }}>{B(E.t)}</span>
                     {alvo != null && <span className="text-[11.5px]" style={{ color: '#065986' }}>{en ? 'goal' : 'meta'}: {fmt(alvo, en)} {MM.un}</span>}
