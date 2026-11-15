@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T06:17Z",
+ "atualizado": "2026-11-15T07:46Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,10 +17,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 100,
+  "focos": 110,
   "duplicados_removidos": 16,
-  "focos_risco": 58,
-  "pequenas": 37,
+  "focos_risco": 63,
+  "pequenas": 42,
   "grupos": [
    {
     "lon": -57.8198,
@@ -32,6 +32,17 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "a 13 km de Jacareacanga · PA"
+   },
+   {
+    "lon": -54.4734,
+    "lat": -3.7671,
+    "n": 5,
+    "frp": 26.5,
+    "ultimo": "2026-11-15T04:31Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Placas · Pará · Brasil"
    },
    {
     "lon": -58.5156,
