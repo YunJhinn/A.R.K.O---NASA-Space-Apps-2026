@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T07:46Z",
+ "atualizado": "2026-11-15T09:31Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,10 +17,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 110,
-  "duplicados_removidos": 16,
-  "focos_risco": 63,
-  "pequenas": 42,
+  "focos": 116,
+  "duplicados_removidos": 25,
+  "focos_risco": 65,
+  "pequenas": 45,
   "grupos": [
    {
     "lon": -57.8198,
@@ -34,6 +34,17 @@
     "lugar": "a 13 km de Jacareacanga · PA"
    },
    {
+    "lon": -58.513,
+    "lat": -3.6845,
+    "n": 6,
+    "frp": 154.8,
+    "ultimo": "2026-11-15T05:29Z",
+    "nivel": "Alto",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Itacoatiara · Amazonas · Brasil"
+   },
+   {
     "lon": -54.4734,
     "lat": -3.7671,
     "n": 5,
@@ -41,19 +52,8 @@
     "ultimo": "2026-11-15T04:31Z",
     "nivel": "Médio",
     "categoria": "risco",
-    "dois_satelites": 0,
+    "dois_satelites": 2,
     "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -58.5156,
-    "lat": -3.6878,
-    "n": 4,
-    "frp": 153.0,
-    "ultimo": "2026-11-13T17:06Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Itacoatiara · Amazonas · Brasil"
    },
    {
     "lon": -57.6044,
@@ -298,6 +298,17 @@
     "lugar": "Pará · Brasil"
    },
    {
+    "lon": -55.7717,
+    "lat": -4.4373,
+    "n": 2,
+    "frp": 4.8,
+    "ultimo": "2026-11-15T05:29Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 26 km de Miritituba · PA"
+   },
+   {
     "lon": -54.9184,
     "lat": -4.1231,
     "n": 2,
@@ -417,17 +428,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -55.1683,
-    "lat": -4.1578,
-    "n": 1,
-    "frp": 7.0,
-    "ultimo": "2026-11-13T17:49Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 30 km de Rurópolis · PA"
    }
   ]
  }

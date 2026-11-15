@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T06:17Z",
+ "atualizado": "2026-11-15T09:31Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,9 +17,9 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 52,
+  "focos": 59,
   "duplicados_removidos": 8,
-  "focos_risco": 40,
+  "focos_risco": 47,
   "pequenas": 8,
   "grupos": [
    {
@@ -45,6 +45,17 @@
     "lugar": "Autazes · Amazonas · Brasil"
    },
    {
+    "lon": -59.1555,
+    "lat": -3.9858,
+    "n": 7,
+    "frp": 39.8,
+    "ultimo": "2026-11-15T05:29Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 13 km de Nova Olinda do Norte · AM"
+   },
+   {
     "lon": -60.2742,
     "lat": -5.5077,
     "n": 6,
@@ -67,15 +78,15 @@
     "lugar": "Amazonas · Brasil"
    },
    {
-    "lon": -59.155,
-    "lat": -3.9862,
+    "lon": -59.9754,
+    "lat": -4.3433,
     "n": 5,
-    "frp": 37.5,
-    "ultimo": "2026-11-14T17:30Z",
+    "frp": 4.3,
+    "ultimo": "2026-11-15T05:29Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "a 13 km de Nova Olinda do Norte · AM"
+    "lugar": "Autazes · Amazonas · Brasil"
    },
    {
     "lon": -59.529,
