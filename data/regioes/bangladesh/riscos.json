@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T19:27Z",
+ "atualizado": "2026-11-15T00:13Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -82,10 +82,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 69,
+  "focos": 74,
   "duplicados_removidos": 5,
-  "focos_risco": 13,
-  "pequenas": 48,
+  "focos_risco": 16,
+  "pequenas": 50,
   "grupos": [
    {
     "lon": 91.138,
@@ -119,6 +119,17 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Hajo · Assam · Índia"
+   },
+   {
+    "lon": 90.5315,
+    "lat": 23.7013,
+    "n": 3,
+    "frp": 2.9,
+    "ultimo": "2026-11-14T19:55Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 10 km de Narayanganj · Bangladesh"
    },
    {
     "lon": 91.3826,

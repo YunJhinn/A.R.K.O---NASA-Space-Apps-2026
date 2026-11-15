@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T19:27Z",
+ "atualizado": "2026-11-15T00:13Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,17 +17,17 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 87,
+  "focos": 93,
   "duplicados_removidos": 13,
-  "focos_risco": 72,
+  "focos_risco": 77,
   "pequenas": 13,
   "grupos": [
    {
-    "lon": -59.2162,
-    "lat": -3.9789,
-    "n": 20,
-    "frp": 232.9,
-    "ultimo": "2026-11-13T17:49Z",
+    "lon": -59.2168,
+    "lat": -3.9788,
+    "n": 21,
+    "frp": 239.5,
+    "ultimo": "2026-11-14T17:30Z",
     "nivel": "Alto",
     "categoria": "risco",
     "dois_satelites": 5,
@@ -56,11 +56,11 @@
     "lugar": "Autazes · Amazonas · Brasil"
    },
    {
-    "lon": -59.1551,
-    "lat": -3.9856,
-    "n": 7,
-    "frp": 60.5,
-    "ultimo": "2026-11-13T17:06Z",
+    "lon": -59.1567,
+    "lat": -3.9852,
+    "n": 8,
+    "frp": 65.9,
+    "ultimo": "2026-11-14T17:30Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
@@ -78,33 +78,33 @@
     "lugar": "Autazes · Amazonas · Brasil"
    },
    {
+    "lon": -60.1253,
+    "lat": -5.3075,
+    "n": 5,
+    "frp": 40.9,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.8421,
+    "lat": -5.0893,
+    "n": 4,
+    "frp": 26.5,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
     "lon": -60.1826,
     "lat": -5.339,
     "n": 4,
     "frp": 25.1,
     "ultimo": "2026-11-13T05:10Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -60.1257,
-    "lat": -5.3098,
-    "n": 3,
-    "frp": 27.5,
-    "ultimo": "2026-11-13T17:06Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -59.8416,
-    "lat": -5.0905,
-    "n": 3,
-    "frp": 23.5,
-    "ultimo": "2026-11-13T17:47Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
@@ -174,6 +174,17 @@
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 1,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.0135,
+    "lat": -5.1876,
+    "n": 2,
+    "frp": 5.3,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Amazonas · Brasil"
    },
    {
@@ -292,17 +303,6 @@
     "n": 1,
     "frp": 5.1,
     "ultimo": "2026-11-12T18:08Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -60.0146,
-    "lat": -5.1886,
-    "n": 1,
-    "frp": 1.2,
-    "ultimo": "2026-11-13T05:10Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,

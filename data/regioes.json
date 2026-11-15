@@ -310,6 +310,60 @@
   }
  },
  {
+  "id": "tapajos",
+  "nome": "Rio Tapajós · Itaituba (PA)",
+  "pais": "Brasil",
+  "pasta": "regioes/tapajos/",
+  "imagem": {
+   "oeste": -58.726,
+   "leste": -54.056,
+   "norte": -3.488,
+   "sul": -6.669
+  },
+  "antes": "2026-09-01",
+  "depois": "2026-10-19",
+  "focos": 21,
+  "linha_tempo": true,
+  "cidades": {
+   "Itaituba": [
+    -55.98,
+    -4.28
+   ],
+   "Miritituba": [
+    -55.96,
+    -4.29
+   ],
+   "Trairão": [
+    -55.94,
+    -4.7
+   ],
+   "Rurópolis": [
+    -54.91,
+    -4.09
+   ],
+   "Aveiro": [
+    -55.32,
+    -3.61
+   ],
+   "Jacareacanga": [
+    -57.75,
+    -6.22
+   ],
+   "Santarém": [
+    -54.71,
+    -2.44
+   ],
+   "Belterra": [
+    -54.94,
+    -2.64
+   ],
+   "Novo Progresso": [
+    -55.38,
+    -7.05
+   ]
+  }
+ },
+ {
   "id": "mocambique",
   "nome": "Rio Limpopo e Chókwè · Moçambique",
   "pais": "Moçambique",
