@@ -48,6 +48,12 @@ Water disappears slowly: banks without forest silt up the river, headwaters with
 | Water stored in aquifers | GRACE and GRACE-FO (NASA/DLR/GFZ), GFZ GravIS grid |
 | Native vegetation at headwaters | ESA CCI Land Cover and Impact Observatory/Esri LULC |
 
+## Roadmap
+
+- **Global scale:** NISAR, Landsat, HLS, GRACE/GRACE-FO and SWOT already cover the whole planet. The same daily robot can monitor every river, headwater and aquifer that supplies fresh and drinking water, anywhere these NASA data exist.
+- **Ask in plain language:** an AI assistant (LLM) turns questions like "which rivers in Goiás are on alert?" into filters over A.R.K.O data and answers only with our numbers and sources.
+- **Act where it matters:** automatic headwater detection, e-mail and messaging alerts, and pilots with water utilities and basin committees, starting in Goiás, Brazil.
+
 ## Honest limits
 
 - NISAR data is still in beta. When quality is not enough, the screen says "inconclusive".

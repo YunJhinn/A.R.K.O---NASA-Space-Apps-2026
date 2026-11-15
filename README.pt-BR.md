@@ -48,6 +48,12 @@ O **NISAR** (NASA-ISRO, radar em banda L, passa a cada 12 dias) enxerga através
 | Água guardada nos aquíferos | GRACE e GRACE-FO (NASA/DLR/GFZ), grade GFZ GravIS |
 | Vegetação nativa nas nascentes | ESA CCI Land Cover e Impact Observatory/Esri LULC |
 
+## Próximos passos
+
+- **Escala global:** NISAR, Landsat, HLS, GRACE/GRACE-FO e SWOT já cobrem o planeta inteiro. O mesmo robô diário pode acompanhar todo rio, nascente e aquífero que abastece água doce e potável, em qualquer lugar onde esses dados da NASA existem.
+- **Perguntas em linguagem normal:** um assistente de IA (LLM) transforma perguntas como "quais rios de Goiás estão em alerta?" em filtros sobre os dados do A.R.K.O e responde só com os nossos números e fontes.
+- **Agir onde importa:** detecção automática de nascentes, alertas por e-mail e mensagem, e pilotos com companhias de saneamento e comitês de bacia, começando por Goiás.
+
 ## Limites, com honestidade
 
 - Os dados NISAR ainda estão em fase beta. Quando a qualidade não basta, a tela mostra "inconclusivo".
