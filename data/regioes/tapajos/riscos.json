@@ -1,92 +1,37 @@
 {
- "atualizado": "2026-11-15T00:13Z",
+ "atualizado": "2026-11-15T06:17Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-13",
+  "data": "2026-11-14",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0094,
-  "p90": 0.0023,
+  "max": 0.0252,
+  "p90": 0.0028,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 201,
-  "duplicados_removidos": 32,
-  "focos_risco": 131,
-  "pequenas": 59,
+  "focos": 100,
+  "duplicados_removidos": 16,
+  "focos_risco": 58,
+  "pequenas": 37,
   "grupos": [
    {
-    "lon": -57.8207,
-    "lat": -6.1169,
-    "n": 14,
-    "frp": 32.6,
+    "lon": -57.8198,
+    "lat": -6.1208,
+    "n": 7,
+    "frp": 7.6,
     "ultimo": "2026-11-14T05:50Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 14 km de Jacareacanga · PA"
-   },
-   {
-    "lon": -55.44,
-    "lat": -3.586,
-    "n": 9,
-    "frp": 949.8,
-    "ultimo": "2026-11-12T16:28Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "a 14 km de Aveiro · PA"
-   },
-   {
-    "lon": -54.3051,
-    "lat": -4.0375,
-    "n": 8,
-    "frp": 43.0,
-    "ultimo": "2026-11-14T17:30Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -54.3297,
-    "lat": -3.6049,
-    "n": 6,
-    "frp": 34.4,
-    "ultimo": "2026-11-14T04:53Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -58.4595,
-    "lat": -3.7356,
-    "n": 5,
-    "frp": 57.8,
-    "ultimo": "2026-11-13T17:06Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -57.604,
-    "lat": -5.7865,
-    "n": 5,
-    "frp": 56.2,
-    "ultimo": "2026-11-13T17:06Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
+    "lugar": "a 13 km de Jacareacanga · PA"
    },
    {
     "lon": -58.5156,
@@ -100,15 +45,15 @@
     "lugar": "Itacoatiara · Amazonas · Brasil"
    },
    {
-    "lon": -58.3673,
-    "lat": -6.4791,
+    "lon": -57.6044,
+    "lat": -5.7867,
     "n": 4,
-    "frp": 22.3,
-    "ultimo": "2026-11-12T17:24Z",
+    "frp": 54.0,
+    "ultimo": "2026-11-13T17:06Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Maués · Amazonas · Brasil"
+    "lugar": "Pará · Brasil"
    },
    {
     "lon": -55.6843,
@@ -131,28 +76,6 @@
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -58.5906,
-    "lat": -3.7407,
-    "n": 3,
-    "frp": 66.0,
-    "ultimo": "2026-11-13T17:06Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -58.1812,
-    "lat": -3.6513,
-    "n": 3,
-    "frp": 51.7,
-    "ultimo": "2026-11-13T17:06Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Maués · Amazonas · Brasil"
    },
    {
     "lon": -54.9418,
@@ -188,28 +111,6 @@
     "lugar": "Itaituba · Pará · Brasil"
    },
    {
-    "lon": -58.4188,
-    "lat": -3.8036,
-    "n": 3,
-    "frp": 37.9,
-    "ultimo": "2026-11-14T17:30Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -54.7038,
-    "lat": -6.4393,
-    "n": 3,
-    "frp": 33.1,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Altamira · Pará · Brasil"
-   },
-   {
     "lon": -58.1296,
     "lat": -3.5567,
     "n": 3,
@@ -219,17 +120,6 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Maués · Amazonas · Brasil"
-   },
-   {
-    "lon": -54.4488,
-    "lat": -4.0052,
-    "n": 3,
-    "frp": 24.5,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Placas · Pará · Brasil"
    },
    {
     "lon": -57.7057,
@@ -243,103 +133,147 @@
     "lugar": "Pará · Brasil"
    },
    {
-    "lon": -58.2882,
-    "lat": -3.7876,
+    "lon": -58.6253,
+    "lat": -6.5806,
     "n": 3,
-    "frp": 23.0,
-    "ultimo": "2026-11-12T17:24Z",
+    "frp": 6.1,
+    "ultimo": "2026-11-14T17:30Z",
     "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Maués · Amazonas · Brasil"
+   },
+   {
+    "lon": -58.5897,
+    "lat": -3.744,
+    "n": 2,
+    "frp": 63.6,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -57.4859,
+    "lat": -3.6304,
+    "n": 2,
+    "frp": 58.6,
+    "ultimo": "2026-11-14T04:53Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Maués · Amazonas · Brasil"
+   },
+   {
+    "lon": -55.9276,
+    "lat": -4.6791,
+    "n": 2,
+    "frp": 29.4,
+    "ultimo": "2026-11-13T17:47Z",
+    "nivel": "Baixo",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Trairão · PA"
+   },
+   {
+    "lon": -57.926,
+    "lat": -3.9689,
+    "n": 2,
+    "frp": 25.8,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Maués · Amazonas · Brasil"
    },
    {
-    "lon": -54.1951,
-    "lat": -3.6559,
-    "n": 3,
-    "frp": 21.3,
+    "lon": -54.1976,
+    "lat": -3.6557,
+    "n": 2,
+    "frp": 19.8,
     "ultimo": "2026-11-14T17:30Z",
-    "nivel": "Médio",
+    "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Uruará · Pará · Brasil"
    },
    {
-    "lon": -55.5034,
-    "lat": -3.7457,
-    "n": 3,
-    "frp": 19.1,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Médio",
+    "lon": -54.379,
+    "lat": -3.8772,
+    "n": 2,
+    "frp": 18.6,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "a 25 km de Aveiro · PA"
+    "lugar": "Placas · Pará · Brasil"
    },
    {
-    "lon": -57.1898,
-    "lat": -5.7875,
-    "n": 3,
-    "frp": 11.5,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Médio",
+    "lon": -55.0561,
+    "lat": -4.2521,
+    "n": 2,
+    "frp": 16.2,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Itaituba · Pará · Brasil"
+    "lugar": "a 24 km de Rurópolis · PA"
    },
    {
-    "lon": -54.2645,
-    "lat": -3.614,
-    "n": 3,
-    "frp": 9.4,
+    "lon": -54.3063,
+    "lat": -4.0374,
+    "n": 2,
+    "frp": 15.5,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Baixo",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Placas · Pará · Brasil"
+   },
+   {
+    "lon": -58.4627,
+    "lat": -3.7212,
+    "n": 1,
+    "frp": 44.7,
     "ultimo": "2026-11-13T17:06Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 1,
+    "lugar": "Itacoatiara · Amazonas · Brasil"
+   },
+   {
+    "lon": -58.3512,
+    "lat": -3.7563,
+    "n": 1,
+    "frp": 37.8,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -58.4188,
+    "lat": -3.8023,
+    "n": 2,
+    "frp": 14.1,
+    "ultimo": "2026-11-14T17:30Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -54.2669,
+    "lat": -3.6224,
+    "n": 2,
+    "frp": 8.2,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -57.5687,
-    "lat": -3.9098,
-    "n": 2,
-    "frp": 14.2,
-    "ultimo": "2026-11-13T17:49Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Maués · Amazonas · Brasil"
-   },
-   {
-    "lon": -55.4597,
-    "lat": -6.3938,
-    "n": 2,
-    "frp": 11.8,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Itaituba · Pará · Brasil"
-   },
-   {
-    "lon": -55.728,
-    "lat": -3.9769,
-    "n": 2,
-    "frp": 10.9,
-    "ultimo": "2026-11-13T17:49Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Aveiro · Pará · Brasil"
-   },
-   {
-    "lon": -55.615,
-    "lat": -3.9252,
-    "n": 2,
-    "frp": 8.1,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Aveiro · Pará · Brasil"
    },
    {
     "lon": -55.4899,
@@ -353,50 +287,6 @@
     "lugar": "Pará · Brasil"
    },
    {
-    "lon": -55.3327,
-    "lat": -6.5415,
-    "n": 2,
-    "frp": 6.9,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
-   },
-   {
-    "lon": -57.1897,
-    "lat": -3.799,
-    "n": 2,
-    "frp": 6.4,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Maués · Amazonas · Brasil"
-   },
-   {
-    "lon": -55.464,
-    "lat": -3.6861,
-    "n": 2,
-    "frp": 5.3,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 18 km de Aveiro · PA"
-   },
-   {
-    "lon": -54.5431,
-    "lat": -3.9293,
-    "n": 2,
-    "frp": 4.6,
-    "ultimo": "2026-11-12T05:29Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "Placas · Pará · Brasil"
-   },
-   {
     "lon": -54.9184,
     "lat": -4.1231,
     "n": 2,
@@ -408,15 +298,15 @@
     "lugar": "Rurópolis · PA"
    },
    {
-    "lon": -55.6187,
-    "lat": -6.2272,
+    "lon": -54.3312,
+    "lat": -3.602,
     "n": 2,
-    "frp": 3.0,
+    "frp": 1.2,
     "ultimo": "2026-11-14T04:53Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Itaituba · Pará · Brasil"
+    "lugar": "Placas · Pará · Brasil"
    },
    {
     "lon": -56.9743,
@@ -427,17 +317,6 @@
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 1,
-    "lugar": "Itaituba · Pará · Brasil"
-   },
-   {
-    "lon": -56.2413,
-    "lat": -4.4503,
-    "n": 1,
-    "frp": 12.9,
-    "ultimo": "2026-11-12T17:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
     "lugar": "Itaituba · Pará · Brasil"
    },
    {
@@ -461,6 +340,83 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Uruará · Pará · Brasil"
+   },
+   {
+    "lon": -57.5658,
+    "lat": -3.9045,
+    "n": 1,
+    "frp": 11.5,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Maués · Amazonas · Brasil"
+   },
+   {
+    "lon": -57.5782,
+    "lat": -3.6695,
+    "n": 1,
+    "frp": 11.1,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Maués · Amazonas · Brasil"
+   },
+   {
+    "lon": -58.5218,
+    "lat": -3.8513,
+    "n": 1,
+    "frp": 10.4,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -57.261,
+    "lat": -3.7342,
+    "n": 1,
+    "frp": 7.5,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Maués · Amazonas · Brasil"
+   },
+   {
+    "lon": -56.3068,
+    "lat": -4.2546,
+    "n": 1,
+    "frp": 7.3,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Itaituba · Pará · Brasil"
+   },
+   {
+    "lon": -58.356,
+    "lat": -3.6972,
+    "n": 1,
+    "frp": 7.0,
+    "ultimo": "2026-11-13T17:06Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -55.1683,
+    "lat": -4.1578,
+    "n": 1,
+    "frp": 7.0,
+    "ultimo": "2026-11-13T17:49Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 30 km de Rurópolis · PA"
    }
   ]
  }

@@ -1,91 +1,26 @@
 {
- "atualizado": "2026-11-15T00:13Z",
+ "atualizado": "2026-11-15T06:17Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-13",
+  "data": "2026-11-14",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.1452,
-  "p90": 0.0232,
-  "areas": [
-   {
-    "lon": 92.0042,
-    "lat": 25.6042,
-    "p": 0.1452,
-    "km2": 142.6,
-    "nivel": "Médio",
-    "lugar": "Mawryngkneng · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.2208,
-    "lat": 25.7959,
-    "p": 0.1056,
-    "km2": 40.0,
-    "nivel": "Médio",
-    "lugar": "Donka · Assam · Índia"
-   },
-   {
-    "lon": 91.9042,
-    "lat": 25.6876,
-    "p": 0.0885,
-    "km2": 6.2,
-    "nivel": "Baixo",
-    "lugar": "Umsning · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.2792,
-    "lat": 25.7626,
-    "p": 0.0795,
-    "km2": 0.8,
-    "nivel": "Baixo",
-    "lugar": "Donka · Assam · Índia"
-   },
-   {
-    "lon": 91.9625,
-    "lat": 25.6626,
-    "p": 0.0785,
-    "km2": 1.5,
-    "nivel": "Baixo",
-    "lugar": "Umsning · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.2958,
-    "lat": 25.7126,
-    "p": 0.0777,
-    "km2": 3.1,
-    "nivel": "Baixo",
-    "lugar": "Thadlaskein · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.0208,
-    "lat": 25.6876,
-    "p": 0.0721,
-    "km2": 0.8,
-    "nivel": "Baixo",
-    "lugar": "Umsning · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.2958,
-    "lat": 25.7376,
-    "p": 0.0698,
-    "km2": 0.8,
-    "nivel": "Baixo",
-    "lugar": "Donka · Assam · Índia"
-   }
-  ]
+  "max": 0.0298,
+  "p90": 0.0047,
+  "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 74,
-  "duplicados_removidos": 5,
-  "focos_risco": 16,
-  "pequenas": 50,
+  "focos": 53,
+  "duplicados_removidos": 2,
+  "focos_risco": 7,
+  "pequenas": 41,
   "grupos": [
    {
     "lon": 91.138,
@@ -110,50 +45,6 @@
     "lugar": "Hajo · Assam · Índia"
    },
    {
-    "lon": 91.5062,
-    "lat": 26.233,
-    "n": 3,
-    "frp": 13.8,
-    "ultimo": "2026-11-14T07:30Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Hajo · Assam · Índia"
-   },
-   {
-    "lon": 90.5315,
-    "lat": 23.7013,
-    "n": 3,
-    "frp": 2.9,
-    "ultimo": "2026-11-14T19:55Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 10 km de Narayanganj · Bangladesh"
-   },
-   {
-    "lon": 91.3826,
-    "lat": 24.2726,
-    "n": 3,
-    "frp": 2.5,
-    "ultimo": "2026-11-12T19:49Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "হবিগঞ্জ · সিলেট বিভাগ · Bangladeche"
-   },
-   {
-    "lon": 87.936,
-    "lat": 25.9317,
-    "n": 2,
-    "frp": 13.4,
-    "ultimo": "2026-11-12T06:29Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
-   },
-   {
     "lon": 92.352,
     "lat": 25.2761,
     "n": 2,
@@ -176,26 +67,15 @@
     "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
-    "lon": 87.9856,
-    "lat": 25.9061,
+    "lon": 91.5051,
+    "lat": 26.2327,
     "n": 2,
-    "frp": 7.8,
-    "ultimo": "2026-11-12T07:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "Karandighi · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 90.0433,
-    "lat": 24.3166,
-    "n": 2,
-    "frp": 6.6,
-    "ultimo": "2026-11-13T07:48Z",
+    "frp": 10.0,
+    "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 15 km de Tangail · Bangladesh"
+    "lugar": "Hajo · Assam · Índia"
    },
    {
     "lon": 89.8838,
@@ -209,26 +89,15 @@
     "lugar": "Faridpur · Bangladesh"
    },
    {
-    "lon": 88.2254,
-    "lat": 23.2824,
+    "lon": 90.5309,
+    "lat": 23.7015,
     "n": 2,
-    "frp": 5.9,
-    "ultimo": "2026-11-14T06:46Z",
+    "frp": 2.1,
+    "ultimo": "2026-11-14T19:55Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Kalna - I · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 91.2354,
-    "lat": 25.5416,
-    "n": 2,
-    "frp": 2.3,
-    "ultimo": "2026-11-12T18:53Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "Nongstoin · Meghalaya · Índia"
+    "lugar": "a 10 km de Narayanganj · Bangladesh"
    },
    {
     "lon": 90.4758,
@@ -306,6 +175,39 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Khliehriat · Meghalaya · Índia"
+   },
+   {
+    "lon": 92.3497,
+    "lat": 23.7907,
+    "n": 1,
+    "frp": 5.2,
+    "ultimo": "2026-11-14T07:28Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Zawlnuam · Mizoram · Índia"
+   },
+   {
+    "lon": 91.5438,
+    "lat": 24.9285,
+    "n": 1,
+    "frp": 5.0,
+    "ultimo": "2026-11-14T07:30Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "ছাতক উপজেলা · সিলেট বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 90.1377,
+    "lat": 23.4943,
+    "n": 1,
+    "frp": 4.7,
+    "ultimo": "2026-11-13T07:05Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "সদরপুর উপজেলা · Daca · Bangladeche"
    }
   ]
  }
