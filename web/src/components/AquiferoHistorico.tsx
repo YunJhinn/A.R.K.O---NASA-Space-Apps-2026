@@ -4,13 +4,14 @@
 import { useMemo } from 'react'
 import { fmt } from '../lib/rios'
 import { inflexao, type Inflexao } from '../lib/inflexao'
+import { cenario } from '../lib/cenarios'
 import { Ajuda } from './Ajuda'
 
 type Ponto = { d: string; cm: number }
 const MES = { pt: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'], en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
 const sg = (v: number, en: boolean, d = 1) => `${v > 0 ? '+' : ''}${fmt(v, en, d)}`
 
-function serieAnual(serie: Ponto[]) {
+export function serieAnual(serie: Ponto[]) {
   const por: Record<number, number[]> = {}
   serie.forEach(p => { (por[+p.d.slice(0, 4)] ??= []).push(p.cm) })
   const anos = Object.keys(por).map(Number).filter(y => por[y].length >= 10).sort((a, b) => a - b)
@@ -49,7 +50,10 @@ export function AquiferoHistorico({ serie, en }: { serie: Ponto[]; en: boolean }
     return { ...m, normal, ult: m.v[m.v.length - 1], inf: inflexao(A.anos, m.v, 'alto') }
   })), [A, en])
 
-  const principal = ind.find(m => m.inf?.sig && !m.inf.costura && m.inf.depois < m.inf.antes) ?? ind.find(m => m.inf?.sig) ?? null
+  const cen = ind.map(m => {
+    const antes = m.v.slice(0, -3), iP = antes.indexOf(Math.min(...antes))
+    return { m, limAno: A.anos[iP], C: cenario(A.anos, m.v, 'alto', antes[iP], m.inf) }
+  })
   const fraseInf = (m: typeof ind[number]) => {
     const i = m.inf!; const pior = i.depois < i.antes
     const x = Math.abs(i.antes) > 0.05 ? Math.abs(i.depois / i.antes) : null
@@ -91,14 +95,26 @@ export function AquiferoHistorico({ serie, en }: { serie: Ponto[]; en: boolean }
               ? ind.filter(m => m.inf?.sig).map(m => <div key={m.k} className="mt-1">{fraseInf(m)}{m.inf!.costura && <span style={{ color: '#667085' }}> {en ? '(coincides with the GRACE → GRACE-FO switch: confirm)' : '(coincide com a troca de satélite GRACE → GRACE-FO: confirmar)'}</span>}</div>)
               : <div className="mt-1">{en ? 'No significant change of pattern since 2002: the pace is the same throughout the series.' : 'Nenhuma mudança de padrão significativa desde 2002: o ritmo é o mesmo em toda a série.'}</div>}
           </div>
-          <div className="rounded-lg p-3" style={{ background: principal?.inf?.anosAtePior != null ? '#FEF3F2' : '#F8FAFC', border: `1px solid ${principal?.inf?.anosAtePior != null ? '#FECDCA' : '#E4E7EC'}` }}>
-            <div className="text-[11px] font-bold uppercase tracking-wide" style={{ color: '#667085' }}>{en ? 'If the new pace continues' : 'Se o novo ritmo continuar'}</div>
-            <div className="mt-1">{principal?.inf?.anosAtePior != null
-              ? (en ? <>In about <b>{fmt(principal.inf.anosAtePior, en, 1)} years</b>, "{principal.nome.toLowerCase()}" goes below the <b>worst value ever recorded</b> ({principal.inf.anoPior}: {fmt(principal.inf.pior, en, 1)} cm).</> : <>Em cerca de <b>{fmt(principal.inf.anosAtePior, en, 1)} anos</b>, o "{principal.nome.toLowerCase()}" passa do <b>pior valor já registrado</b> ({principal.inf.anoPior}: {fmt(principal.inf.pior, en, 1)} cm).</>)
-              : principal?.inf?.sig && principal.inf.depois >= principal.inf.antes
-                ? (en ? 'The change was for the better: keep monitoring to confirm it holds.' : 'A mudança foi para melhor: seguir monitorando para confirmar que se mantém.')
-                : (en ? 'No accelerated worsening detected.' : 'Nenhuma piora acelerada detectada.')}</div>
-            <div className="mt-1 text-[11.5px]" style={{ color: '#667085' }}>{en ? 'Projection, not forecast.' : 'Projeção, não previsão.'}</div>
+          <div className="rounded-lg p-3" style={{ background: '#F8FAFC', border: '1px solid #E4E7EC' }}>
+            <div className="flex items-center text-[11px] font-bold uppercase tracking-wide" style={{ color: '#667085' }}>{en ? 'Future scenarios · if nothing changes' : 'Cenários futuros · se nada mudar'}<Ajuda txt={en ? 'For each indicator: the last 3 years vs the 10 years before; the pace (after the inflection if there is one, else the last 15 years); the critical limit = worst value recorded before the last 3 years; when it would be crossed, with a likely range. Scenario, not forecast.' : 'Para cada indicador: os últimos 3 anos vs os 10 anos antes; o ritmo (depois da inflexão, se houver, senão os últimos 15 anos); o limite crítico = pior valor registrado antes dos últimos 3 anos; quando seria cruzado, com faixa provável. Cenário, não previsão.'} /></div>
+            <ul className="m-0 mt-1 list-none space-y-1.5 p-0">
+              {cen.filter(c => c.C).map(({ m, limAno, C }) => {
+                const c = C!, tom = c.jaPassou != null || c.noLimite ? '#B42318' : c.cruza != null ? '#B54708' : '#067647'
+                return (
+                  <li key={m.k} className="text-[12.5px] leading-snug">
+                    <b>{m.nome}</b>{c.vsDecada != null && <> · {c.decadaTxt}: <b style={{ color: c.vsDecada < 0 ? '#B42318' : '#067647' }}>{sg(m.v.slice(-3).sort((a, b) => a - b)[1] - (m.v.slice(-13, -3).reduce((t, v) => t + v, 0) / Math.max(1, m.v.slice(-13, -3).length)), en)} cm</b></>}
+                    <br /><span style={{ color: tom, fontWeight: 600 }}>
+                      {c.jaPassou != null ? (en ? `Below the worst level before (${limAno}: ${fmt(c.limite, en, 1)} cm) since ${c.jaPassou}.` : `Abaixo do pior nível anterior (${limAno}: ${fmt(c.limite, en, 1)} cm) desde ${c.jaPassou}.`)
+                        : c.noLimite ? (en ? `At the worst level before (${limAno}), oscillating around it.` : `No pior nível anterior (${limAno}), oscilando em torno dele.`)
+                        : c.cruza != null ? (en ? `Passes the worst level before (${limAno}) around ${c.cruza}` : `Passa do pior nível anterior (${limAno}) por volta de ${c.cruza}`) + (c.faixa ? ` (${en ? 'likely' : 'provável'} ${c.faixa[0]}–${Number.isFinite(c.faixa[1]) ? c.faixa[1] : (en ? 'never, if it slows' : 'nunca, se desacelerar')})` : '') + '.'
+                        : c.longe ? (en ? `Not before ${c.horizonte} at this pace.` : `Nesse ritmo, não antes de ${c.horizonte}.`)
+                        : (en ? 'At this pace it does not reach the worst level.' : 'Nesse ritmo não chega ao pior nível.')}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+            <div className="mt-1 text-[11.5px]" style={{ color: '#667085' }}>{en ? 'Scenario, not forecast.' : 'Cenário, não previsão.'}</div>
           </div>
           <div className="rounded-lg p-3" style={{ background: foraN >= 3 ? '#FFFAEB' : '#F8FAFC', border: `1px solid ${foraN >= 3 ? '#FEDF89' : '#E4E7EC'}` }}>
             <div className="text-[11px] font-bold uppercase tracking-wide" style={{ color: '#667085' }}>{en ? 'Last 24 months' : 'Últimos 24 meses'}</div>

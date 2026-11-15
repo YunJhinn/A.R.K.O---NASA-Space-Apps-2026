@@ -12,10 +12,8 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
     ['radar', 'Radar NISAR', () => go('inicio'), s.view === 'inicio'],
     ['relogio', 'Histórico do rio', () => go('historico'), s.view === 'historico'],
     ['camadas', 'Aquíferos', () => go('aquiferos'), s.view === 'aquiferos'],
+    ['sino', 'Cenários futuros', () => go('cenarios'), s.view === 'cenarios'],
     ['alvo', 'Validação', () => go('validacao'), s.view === 'validacao'],
-    ['celular', 'Versão celular', () => go('celular'), s.view === 'celular'],
-    ['mapa', 'Aplicações futuras', () => go('futuro'), s.view === 'futuro'],
-    ['play', 'Como usar', () => set({ ob: true, obStep: 0 }), false],
   ]
   return (
     <aside className={cx('side side2', open && 'open')} aria-label={t('Menu principal')}>

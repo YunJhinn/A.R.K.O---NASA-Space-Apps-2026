@@ -6,6 +6,7 @@ import { MapaTempo, Monitor } from './RioMonitor'
 import { Ajuda } from './Ajuda'
 import { RadarRio } from './RadarRio'
 import { inflexao, type Inflexao } from '../lib/inflexao'
+import { cenario } from '../lib/cenarios'
 import { acoes, AJUDA, analisar, carregarContinuo, carregarRio, GRUPOS, meta, veredito, VEREDITO, type ContinuoJson, CONTEXTO, ESTADO, fmt, frase, METRICAS, RIOS, type Analise, type Metrica, type RioJson } from '../lib/rios'
 
 type Bi = [string, string]
@@ -204,6 +205,48 @@ export function Historico() {
             <p className="m-0 mt-2 text-[11.5px]" style={{ color: '#667085' }}>{en ? 'Inflection = year that best splits the series into two different trends (Theil–Sen), accepted only if each part has 6+ years and the change is large and consistent. Projection, not forecast.' : 'Inflexão = o ano que melhor divide a série em duas tendências diferentes (Theil–Sen), aceito só se cada trecho tem 6+ anos e a mudança é grande e consistente. Projeção, não previsão.'}</p>
           </div>
 
+          {/* v7.9 · CENÁRIOS FUTUROS: se nada mudar, quando cada medida chega a um limite crítico (com faixa de incerteza) */}
+          <div className="card" style={{ padding: 18 }}>
+            <h3 className="m-0 flex items-center text-[15px]">{en ? 'Future scenarios · if nothing changes' : 'Cenários futuros · se nada mudar'}<Ajuda txt={en ? 'For each measure: (1) how the latest year compares with the 10 years before it; (2) the pace used — after the inflection point if there is one, otherwise the last 15 years; (3) a critical limit made explicit (half of what the river had at the start for forest and water; double for turbidity and bare soil); (4) when that limit would be reached at this pace, with a likely range (16–84% of the possible trends). A scenario, not a forecast: rain, policies and works change the course.' : 'Para cada medida: (1) como o último ano se compara com os 10 anos antes dele; (2) o ritmo usado — depois do ponto de inflexão, se houver, senão os últimos 15 anos; (3) um limite crítico explícito (metade do que o rio tinha no início, para mata e água; o dobro, para turbidez e solo exposto); (4) quando esse limite seria atingido nesse ritmo, com uma faixa provável (16–84% das tendências possíveis). Cenário, não previsão: chuva, políticas e obras mudam o rumo.'} /></h3>
+            <div className="mt-2 grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+              {metricas.map(m => {
+                const x = an[m]; if (!x) return null
+                const MM = METRICAS[m], lim = MM.bom === 'alto' ? x.base * 0.5 : Math.max(x.base * 2, x.base + 5)   // 'baixo': no mínimo +5 pontos (linha de base quase zero)
+                const C = cenario(x.pts.map(p => p[0]), x.pts.map(p => p[1]), MM.bom, lim, inf[m] ?? null)
+                if (!C) return null
+                const per = B(x.baseTxt).replace('média ', '').replace(' average', '')
+                const limTxt = MM.bom === 'alto' ? (en ? `half of ${per}` : `metade de ${per}`) : x.base * 2 >= x.base + 5 ? (en ? `double of ${per}` : `o dobro de ${per}`) : (en ? `${per} + 5 points` : `${per} + 5 pontos`)
+                const ruimDec = C.vsDecada != null && (MM.bom === 'alto' ? C.vsDecada < -5 : C.vsDecada > 5)
+                const ano = new Date().getFullYear()
+                // v7.10 · cores simples: vermelho = crítico (já passou, no limite ou chega em ≤10 anos); amarelo = atenção
+                // (vai em direção ao limite, ou piorou vs a década anterior); verde = dentro do padrão
+                const nv: 'crit' | 'aten' | 'ok' = C.jaPassou != null || C.noLimite || (C.cruza != null && C.cruza - ano <= 10) ? 'crit' : C.cruza != null || ruimDec ? 'aten' : 'ok'
+                const T = { crit: { c: '#B42318', bg: '#FEF3F2', bd: '#FDA29B', t: en ? 'Critical' : 'Crítico' }, aten: { c: '#93370D', bg: '#FEFBE8', bd: '#FDE272', t: en ? 'Attention' : 'Atenção' }, ok: { c: '#067647', bg: '#ECFDF3', bd: '#ABEFC6', t: en ? 'Within the normal range' : 'Dentro do padrão' } }[nv]
+                const nome = B(MM.nome).toLowerCase()
+                const comp = C.vsDecada == null || Math.abs(C.vsDecada) < 5 ? (en ? `About the same as the previous decade.` : `Parecido com a década anterior.`)
+                  : en ? `${fmt(Math.abs(C.vsDecada), en, 0)}% ${C.vsDecada > 0 ? 'more' : 'less'} than in the previous decade${ruimDec ? ' — worse' : ' — better'}.`
+                  : `${fmt(Math.abs(C.vsDecada), en, 0)}% ${C.vsDecada > 0 ? 'a mais' : 'a menos'} que na década anterior${ruimDec ? ' — piorou' : ' — melhorou'}.`
+                const futuro = C.jaPassou != null ? (en ? `Already past the critical level since ${C.jaPassou}.` : `Já passou do nível crítico desde ${C.jaPassou}.`)
+                  : C.noLimite ? (en ? 'It is at the critical level now.' : 'Está no nível crítico agora.')
+                  : C.cruza != null ? (en ? `If it continues like this, it reaches the critical level around ${C.cruza} (in ${C.cruza - ano} years).` : `Se continuar assim, chega ao nível crítico por volta de ${C.cruza} (daqui a ${C.cruza - ano} anos).`)
+                  : C.longe ? (en ? `Far from the critical level: not before ${C.horizonte}.` : `Longe do nível crítico: não antes de ${C.horizonte}.`)
+                  : (en ? 'At this pace it does not reach the critical level.' : 'Nesse ritmo não chega ao nível crítico.')
+                return (
+                  <div key={m} className="rounded-lg p-3 text-[13px] leading-snug" style={{ background: T.bg, border: `1px solid ${T.bd}`, borderLeft: `4px solid ${T.c}`, color: '#344054' }}>
+                    <div className="flex items-center justify-between gap-2">
+                      <b className="text-[13.5px]" style={{ color: '#101828' }}>{B(MM.nome)}</b>
+                      <span className="rounded px-2 py-0.5 text-[11.5px] font-bold" style={{ background: '#fff', color: T.c, border: `1px solid ${T.bd}` }}>{T.t}</span>
+                    </div>
+                    <div className="mt-1.5 font-semibold" style={{ color: T.c }}>{futuro}</div>
+                    <div className="mt-1">{comp}</div>
+                    <div className="mt-1.5 text-[11.5px]" style={{ color: '#667085' }} title={`${en ? 'pace' : 'ritmo'} ${C.ritmo > 0 ? '+' : ''}${fmt(C.ritmo * 10, en, 1)} ${MM.un}/${en ? 'decade' : 'década'}${C.faixa ? ` · ${en ? 'likely' : 'provável'} ${C.faixa[0]}–${Number.isFinite(C.faixa[1]) ? C.faixa[1] : (en ? 'never' : 'nunca')}` : ''}`}>{en ? `Critical level for ${nome}` : `Nível crítico de ${nome}`}: {fmt(lim, en, 1)} {MM.un} ({limTxt})</div>
+                  </div>
+                )
+              })}
+            </div>
+            <p className="m-0 mt-2 text-[11.5px]" style={{ color: '#667085' }}>{en ? 'Scenario, not forecast. Limits are A.R.K.O references relative to the river itself, shown so the reader knows exactly what “critical” means here.' : 'Cenário, não previsão. Os limites são referências do A.R.K.O relativas ao próprio rio, mostradas para o leitor saber exatamente o que “crítico” quer dizer aqui.'}</p>
+          </div>
+
           {/* PAINÉIS: um por medida, com "?" explicando o que é */}
           <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))' }}>
             {metricas.map(m => {
@@ -212,7 +255,7 @@ export function Historico() {
               const sp = x.pts.slice(-20), lo = Math.min(...sp.map(p => p[1])), hi = Math.max(...sp.map(p => p[1]))
               const tend = (MM.bom === 'baixo' ? x.tend.m < 0 : x.tend.m > 0) ? (en ? 'improving' : 'melhorando') : Math.abs(x.tend.m) < Math.abs(x.base) * 0.005 ? (en ? 'stable' : 'estável') : (en ? 'worsening' : 'piorando')
               return (
-                <div key={m} role="button" tabIndex={0} onClick={() => setK(m)} onKeyDown={e => e.key === 'Enter' && setK(m)} className="card text-left" style={{ padding: 14, outline: m === k ? '2px solid #1D4ED8' : 'none', cursor: 'pointer' }}>
+                <div key={m} role="button" tabIndex={0} onClick={() => setK(m)} onKeyDown={e => e.key === 'Enter' && setK(m)} className="card text-left" style={{ padding: 14, outline: m === k ? '2px solid #1D4ED8' : 'none', cursor: 'pointer', background: E.bg, borderLeft: `4px solid ${E.c}` }}>
                   <div className="flex items-center text-[12px] font-bold uppercase tracking-wide" style={{ color: '#475467' }}>{B(MM.nome)}<Ajuda txt={B(AJUDA[m])} /></div>
                   <div className="mt-1 flex items-end justify-between gap-2">
                     <div className="text-[22px] font-extrabold leading-none" style={{ color: MM.cor }}>{fmt(x.agora, en)} <span className="text-[13px] font-bold">{MM.un}</span></div>

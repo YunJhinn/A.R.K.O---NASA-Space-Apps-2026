@@ -123,8 +123,8 @@ export function frase(a: Analise, en: boolean): string {
 
 export const ESTADO: Record<Analise['estado'], { t: Bi; c: string; bg: string }> = {
   alerta: { t: ['Piorando: agir', 'Getting worse: act'], c: '#B42318', bg: '#FEF3F2' },
-  atencao: { t: ['Atenção: tendência ruim', 'Watch: bad trend'], c: '#B54708', bg: '#FFFAEB' },
-  estavel: { t: ['Estável', 'Stable'], c: '#475467', bg: '#F2F4F7' },
+  atencao: { t: ['Atenção: tendência ruim', 'Watch: bad trend'], c: '#B54708', bg: '#FEF7C3' },
+  estavel: { t: ['Dentro do padrão', 'Within the normal range'], c: '#067647', bg: '#ECFDF3' },
   melhor: { t: ['Melhorou', 'Improved'], c: '#067647', bg: '#ECFDF3' },
 }
 

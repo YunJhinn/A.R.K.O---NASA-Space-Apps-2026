@@ -11,6 +11,7 @@ import { Onboarding } from './components/Onboarding'
 import { Future } from './components/Future'
 import { Validacao } from './components/Validacao'
 import { Historico } from './components/Historico'
+import { Cenarios } from './components/Cenarios'
 import { Aquiferos } from './components/Aquiferos'
 
 function Screens() {
@@ -30,6 +31,7 @@ function Screens() {
         <main className="main">
           {s.view === 'historico' && <Historico />}
           {s.view === 'aquiferos' && <Aquiferos />}
+          {s.view === 'cenarios' && <Cenarios />}
           {s.view === 'inicio' && <Home />}
           {s.view === 'comparar' && <Compare />}
           {s.view === 'celular' && <PhoneView />}

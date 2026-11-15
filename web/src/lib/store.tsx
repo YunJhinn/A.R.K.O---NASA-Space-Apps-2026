@@ -119,10 +119,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       const q = new URLSearchParams(location.search).get('lang')
       if ((q ?? localStorage.getItem('arko-lang')) === 'en') lang = 'en'
-      ob = localStorage.getItem('arko-ob') !== '1' && !location.hash
+      ob = false   // v7.10: o tutorial saiu do MVP
       localStorage.setItem('arko-ob', '1')
       const h = location.hash.slice(1)
-      if (h === 'inicio' || h === 'celular' || h === 'futuro' || h === 'validacao' || h === 'historico' || h === 'aquiferos') view = h
+      if (h === 'inicio' || h === 'cenarios' || h === 'validacao' || h === 'historico' || h === 'aquiferos') view = h
     } catch { /* sem localStorage */ }
     let favs: MyPlace[] = [], recents: MyPlace[] = []
     try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
@@ -198,7 +198,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [s.lang])
   useEffect(() => { try { if (location.hash !== '#' + s.view) history.replaceState(null, '', '#' + s.view) } catch { /* ok */ } }, [s.view])
   useEffect(() => {
-    const on = () => { const h = location.hash.slice(1); if (h === 'inicio' || h === 'celular' || h === 'futuro' || h === 'validacao' || h === 'historico' || h === 'aquiferos') set({ view: h }); else if (h === 'comparar') { set({ view: 'inicio' }); try { history.replaceState(null, '', '#inicio') } catch { /* ok */ } } }
+    const on = () => { const h = location.hash.slice(1); if (h === 'inicio' || h === 'cenarios' || h === 'validacao' || h === 'historico' || h === 'aquiferos') set({ view: h }); else if (h === 'comparar' || h === 'celular' || h === 'futuro') { set({ view: 'inicio' }); try { history.replaceState(null, '', '#inicio') } catch { /* ok */ } } }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])
@@ -270,7 +270,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     set({ view: 'historico' })
   }, [setRegion])
 
-  const go = useCallback((v: View, focus: State['focus'] = null) => { const view: View = v === 'comparar' ? 'inicio' : v; set({ view, focus }); if (!focus) window.scrollTo(0, 0) }, [])
+  const go = useCallback((v: View, focus: State['focus'] = null) => { const view: View = v === 'comparar' || v === 'celular' || v === 'futuro' ? 'inicio' : v; set({ view, focus }); if (!focus) window.scrollTo(0, 0) }, [])
 
   const value: Ctx = { s, set, ds, t: tr, setSrc, setRegion, here, openPlace, toggleFav, regionName, go, days, inRange, periodLabel, visible }
   return <AppCtx.Provider value={value}>{children}</AppCtx.Provider>
