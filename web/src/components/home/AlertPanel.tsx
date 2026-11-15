@@ -29,7 +29,7 @@ export function AlertPanel() {
     <div className="card alerts alerts2" id="alertPanel" ref={ref}>
       <div className="alband">
         <svg viewBox="0 0 64 64" className="alwarn" aria-hidden="true"><use href="#x-alerta" /></svg>
-        <b>{t('Alerta de riscos')}</b>
+        <b>{t('Riscos para a água')}</b>
         <span className="alcount"><i />{ds.alerts.length} · {high} {s.lang === 'en' ? 'HIGH' : 'ALTO'}</span>
       </div>
       {real && (

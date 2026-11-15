@@ -13,43 +13,43 @@ interface Step { art: Art; pt: [string, string, string[]]; en: [string, string, 
 const OB: Step[] = [
   {
     art: 'radar',
-    pt: ['Bem-vindo ao A.R.K.O', 'Usamos o radar do satélite NISAR, da NASA e da ISRO, que enxerga o chão de dia, de noite e através das nuvens, e transformamos esse sinal em alertas, mapas e comparações simples.', ['Em 1 minuto você conhece cada parte da tela.', 'Pode pular quando quiser e rever depois em “Como usar”, no menu.']],
-    en: ['Welcome to A.R.K.O', 'We use the radar of the NISAR satellite, from NASA and ISRO, which sees the ground by day, by night and through clouds, and turn that signal into simple alerts, maps and comparisons.', ['In 1 minute you will know every part of the screen.', 'Skip any time and see it again under “How to use”, in the menu.']],
+    pt: ['Bem-vindo ao A.R.K.O Rios', 'Usamos satélites da NASA para contar o que aconteceu com a água que abastece cidades, ano a ano, desde 1985, e mostrar para onde ela vai se nada mudar. O objetivo é conservar a água potável e prevenir, não só remediar.', ['Em 1 minuto você conhece cada parte do app.', 'Pode pular quando quiser e rever depois em “Como usar”, no menu.']],
+    en: ['Welcome to A.R.K.O Rivers', 'We use NASA satellites to tell what happened to the water that supplies cities, year by year since 1985, and show where it is heading if nothing changes. The goal is to conserve drinking water and prevent harm, not just repair it.', ['In 1 minute you will know every part of the app.', 'Skip any time and see it again under “How to use”, in the menu.']],
   },
   {
     art: 'dados',
-    pt: ['Só dados reais', 'Tudo o que você vê vem de satélites da NASA: o radar NISAR (água, vegetação, solo, gelo), o NASA LHASA (perigo de deslizamento por chuva) e o NASA FIRMS (focos de calor).', ['Os dados se atualizam sozinhos todo dia, com um robô.', 'O que é hipótese aparece marcado como hipótese.']],
-    en: ['Real data only', 'Everything you see comes from NASA satellites: the NISAR radar (water, vegetation, soil, ice), NASA LHASA (rain-triggered landslide danger) and NASA FIRMS (heat spots).', ['Data updates by itself every day, with a robot.', 'Anything that is a hypothesis is marked as one.']],
+    pt: ['Só dados reais, de 40 anos até hoje', 'Landsat (NASA/USGS, desde 1985): cor da água, área de água, mata ciliar e solo exposto. SWOT (NASA/CNES, desde 2023): nível do rio. NISAR (NASA/ISRO, agora): mudanças a cada ~12 dias, através das nuvens. LHASA e FIRMS: chuva extrema e fogo na bacia.', ['Cada número mostra de quais imagens veio.', 'O que é hipótese aparece marcado como hipótese.']],
+    en: ['Real data only, from 40 years ago to today', 'Landsat (NASA/USGS, since 1985): water colour, water area, riverside forest and bare soil. SWOT (NASA/CNES, since 2023): river level. NISAR (NASA/ISRO, now): changes every ~12 days, through clouds. LHASA and FIRMS: extreme rain and fire in the basin.', ['Every number shows which images it came from.', 'Anything that is a hypothesis is marked as one.']],
   },
   {
     art: 'exemplo',
-    pt: ['Um exemplo de uso, em 4 passos', 'Imagine que você é da Defesa Civil no Sul do Brasil:', ['1. A faixa do topo responde: há perigo agora? Onde? E traz uma sugestão de resposta.', '2. Em “Ver no mapa”, a ficha do ponto mostra a causa provável, os dados e o sinal do radar.', '3. A aba Previsão cruza radar, chuva e fogo e mostra o que pode acontecer.', '4. Em “Comparar períodos”, você vê o que mudou ao longo do tempo e por quê.']],
-    en: ['A usage example, in 4 steps', 'Imagine you work for civil defense in Southern Brazil:', ['1. The top banner answers: is there danger now? Where? And it gives a suggested response.', '2. In “See on map”, the point card shows the likely cause, the data and the radar signal.', '3. The Forecast tab crosses radar, rain and fire and shows what may happen.', '4. In “Compare periods”, you see what changed over time and why.']],
+    pt: ['Um exemplo de uso, em 4 passos', 'Imagine que você trabalha na companhia de água de Itaituba, no rio Tapajós:', ['1. Em “Histórico do rio”, os cartões dizem se a água piorou desde os anos 80.', '2. O gráfico mostra o ano a ano, o pior ano e onde a curva chega em 2030 se nada mudar.', '3. “Causa provável” e “Como proteger esta água” dizem por que mudou e quem pode agir.', '4. As fotos de satélite, década a década, mostram a mudança para qualquer pessoa entender.']],
+    en: ['A usage example, in 4 steps', 'Imagine you work for the water utility in Itaituba, on the Tapajós River:', ['1. In “River history”, the cards say whether the water got worse since the 1980s.', '2. The chart shows each year, the worst year and where the curve reaches by 2030 if nothing changes.', '3. “Probable cause” and “How to protect this water” say why it changed and who can act.', '4. Satellite photos, decade by decade, show the change so anyone can understand it.']],
   },
   {
     art: 'quem',
-    pt: ['Quem pode usar, e como', 'O A.R.K.O é aberto e serve a quem precisa decidir, ensinar ou se proteger:', []],
-    en: ['Who can use it, and how', 'A.R.K.O is open and serves anyone who needs to decide, teach or stay safe:', []],
+    pt: ['Quem pode usar, e como', 'O A.R.K.O Rios é aberto e serve a quem precisa proteger, decidir ou ensinar sobre a água:', []],
+    en: ['Who can use it, and how', 'A.R.K.O Rivers is open and serves anyone who needs to protect, decide or teach about water:', []],
   },
   {
     art: 'regiao',
-    pt: ['Escolha a região ou busque um lugar', 'Os dados reais cobrem o rio Madeira (AM), Porto Alegre e o vale do Taquari (RS), Daca e o rio Jamuna, em Bangladesh, o vale do Langtang, no Nepal, onde houve o colapso de 26 de agosto, e o rio Limpopo, em Moçambique, com a enchente de janeiro de 2026.', ['Troque de região em REGIÃO, no menu lateral.', 'Ou use a lupa no topo da tela para buscar qualquer cidade ou rio do mundo: se houver dados ali, o app abre a região e marca o lugar no mapa.']],
-    en: ['Pick a region or search a place', 'Real data covers the Madeira River (AM), Porto Alegre and the Taquari valley (RS), Dhaka and the Jamuna river in Bangladesh, the Langtang valley in Nepal, site of the 26 August collapse, and the Limpopo River in Mozambique, with the January 2026 flood.', ['Switch regions under REGION, in the side menu.', 'Or use the magnifier at the top to search any city or river in the world: if there is data there, the app opens the region and marks the place on the map.']],
+    pt: ['Escolha o rio', 'Seis rios que abastecem cidades e sofrem pressões diferentes: Tapajós (garimpo), Madeira (dragas e desmatamento), Guaíba em Porto Alegre (cidade e cheias), rios de Daca (cidade crescendo sobre a água), nascentes do Trishuli no Nepal (geleiras derretendo) e a barragem de Massingir em Moçambique (secas).', ['No Histórico do rio, escolha o rio nos botões do topo.', 'Para ver o rio agora pelo radar, use REGIÃO, no menu lateral, ou o botão “Ver o rio agora”.']],
+    en: ['Pick the river', 'Six rivers that supply cities and face different pressures: Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka’s rivers (city growing over water), the Trishuli headwaters in Nepal (melting glaciers) and Massingir Dam in Mozambique (droughts).', ['In River history, pick the river with the buttons at the top.', 'To see the river now by radar, use REGION in the side menu or the “See the river now” button.']],
   },
   {
     art: 'mapa',
-    pt: ['Leia o mapa de mudanças', 'Cada ícone é um foco: um lugar onde o radar viu o chão mudar.', ['Filtre por tipo nos botões acima do mapa.', 'Clique em um foco para ver o que mudou, quando e o tamanho da área.', 'O botão LEGENDA, no canto do mapa, explica cada ícone.']],
-    en: ['Read the change map', 'Each icon is a detection: a place where the radar saw the ground change.', ['Filter by type with the buttons above the map.', 'Click a detection to see what changed, when and the area size.', 'The LEGEND button in the map corner explains each icon.']],
+    pt: ['O rio agora, pelo radar', 'Em “Agora no rio”, o mapa mostra o que o radar NISAR viu mudar nas últimas passagens: água nova, água que recuou, margem perdendo vegetação.', ['Filtre por tipo nos botões acima do mapa.', 'Clique em um foco para ver o que mudou, quando e o tamanho da área.']],
+    en: ['The river now, by radar', 'In “River now”, the map shows what the NISAR radar saw change in recent passes: new water, receding water, banks losing vegetation.', ['Filter by type with the buttons above the map.', 'Click a detection to see what changed, when and the area size.']],
   },
   {
     art: 'alertas',
-    pt: ['Veja os alertas de riscos', 'O painel laranja junta os focos mais importantes em alertas, do mais urgente para o menos urgente.', ['Filtre por Alto, Médio ou Baixo.', 'Cada alerta diz o que aconteceu, perto de qual cidade e com qual confiança.', 'Clique em “Ver no mapa” para ir direto ao lugar.']],
-    en: ['See the risk alerts', 'The orange panel groups the most important detections into alerts, from most to least urgent.', ['Filter by High, Medium or Low.', 'Each alert says what happened, near which city and with what confidence.', 'Click “See on map” to jump straight to the place.']],
+    pt: ['Alertas para a água', 'O painel junta o que ameaça o rio agora: margem desmatada, fogo na bacia (cinza e terra vão para a água), chuva extrema que arrasta sedimento.', ['Cada alerta diz o que aconteceu, perto de qual cidade e o que fazer.', 'Clique em “Ver no mapa” para ir direto ao lugar.']],
+    en: ['Alerts for the water', 'The panel gathers what threatens the river now: cleared banks, fire in the basin (ash and soil end up in the water), extreme rain washing sediment.', ['Each alert says what happened, near which city and what to do.', 'Click “See on map” to jump straight to the place.']],
   },
   {
     art: 'comparar',
-    pt: ['Compare dois momentos', 'Em “Comparar períodos”, o mesmo mapa mostra o antes (A) e o depois (B).', ['Escolha o tipo de mudança, as duas datas e a região (ou busque pela lupa).', 'Arraste a barra azul sobre o mapa para revelar a diferença.', 'O resumo ao lado explica a mudança em uma frase.']],
-    en: ['Compare two moments', 'In “Compare periods”, the same map shows before (A) and after (B).', ['Pick the type of change, the two dates and the region (or search with the magnifier).', 'Drag the blue bar over the map to reveal the difference.', 'The summary beside it explains the change in one sentence.']],
+    pt: ['Compare dois momentos', 'Compare décadas com as fotos do Histórico do rio, ou passagens recentes do radar em “Comparar passagens”.', ['Arraste a barra sobre a imagem para revelar a diferença.', 'O resumo explica a mudança em uma frase.']],
+    en: ['Compare two moments', 'Compare decades with the River history photos, or recent radar passes in “Compare passes”.', ['Drag the bar over the image to reveal the difference.', 'The summary explains the change in one sentence.']],
   },
   {
     art: 'perfil',
@@ -89,7 +89,7 @@ export function Onboarding() {
 
   // Desenho de cada passo (por cima da imagem)
   const overlays: Partial<Record<Art, ReactNode>> = {
-    dados: <div style={center} className="flex flex-wrap justify-center gap-1.5">{[chip('radar', 'NASA-ISRO NISAR', '#2563EB'), chip('deslizamento', 'NASA LHASA', '#9A5B13'), chip('fogo', 'NASA FIRMS', '#E2553A')]}</div>,
+    dados: <div style={center} className="flex flex-wrap justify-center gap-1.5">{[chip('grafico', 'Landsat 1985→', '#15803D'), chip('agua', 'SWOT', '#0891B2'), chip('radar', 'NISAR', '#2563EB'), chip('deslizamento', 'LHASA', '#9A5B13'), chip('fogo', 'FIRMS', '#E2553A')]}</div>,
     exemplo: (
       <div style={{ ...center, width: 340 }} className="flex flex-col gap-1.5">
         {[['sino', en ? 'Danger now · suggested response' : 'Perigo agora · sugestão de resposta', '#D92D20'], ['alvo', en ? 'Point card: cause, data, radar' : 'Ficha: causa, dados, radar', '#2563EB'], ['radar', en ? 'Forecast: crossed sources' : 'Previsão: fontes cruzadas', '#7C3AED'], ['grafico', en ? 'Compare: what changed and why' : 'Comparar: o que mudou e por quê', '#2E9E5B']].map(([ic, l, c], n) => (
@@ -164,7 +164,7 @@ export function Onboarding() {
             )}
             {st.art === 'perfil' && (
               <div className="prof">
-                {[['gestor', 'Gestão e Defesa Civil', 'Alertas e riscos primeiro'], ['prof', 'Educação', 'Comparar períodos e explicar'], ['pub', 'Curiosidade', 'Explorar o mapa']].map(([k, h, d]) => (
+                {[['gestor', 'Gestão da água', 'Riscos e o que fazer primeiro'], ['prof', 'Educação', '40 anos de fotos e gráficos'], ['pub', 'Curiosidade', 'Explorar os rios']].map(([k, h, d]) => (
                   <button key={k} className={cx(s.profile === k && 'on')} aria-pressed={s.profile === k} onClick={() => set({ profile: k })}><b>{t(h)}</b>{t(d)}</button>
                 ))}
               </div>

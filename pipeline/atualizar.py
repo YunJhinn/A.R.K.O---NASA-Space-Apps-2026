@@ -86,6 +86,12 @@ REGIOES = [
     # validar o A.R.K.O com um desastre real que a própria NASA mostrou com o NISAR (svs.gsfc.nasa.gov/5661).
     # Dados BETA (antes da calibração final): coleção, início e fim próprios; a janela é fechada, então o robô
     # processa uma vez e depois não muda mais.
+    # Tapajós (v7.0, A.R.K.O Rios): rio que abastece Itaituba, rio abaixo do garimpo de ouro do médio Tapajós.
+    dict(id="tapajos", nome="Rio Tapajós · Itaituba (PA)", pais="Brasil", pasta="regioes/tapajos/",
+         orbita="_103_A_175_", bbox=(-56.00, -4.30, -55.95, -4.25), sufixo=" · PA", img=None,
+         cidades={"Itaituba": (-55.98, -4.28), "Miritituba": (-55.96, -4.29), "Trairão": (-55.94, -4.70),
+                  "Rurópolis": (-54.91, -4.09), "Aveiro": (-55.32, -3.61), "Jacareacanga": (-57.75, -6.22),
+                  "Santarém": (-54.71, -2.44), "Belterra": (-54.94, -2.64), "Novo Progresso": (-55.38, -7.05)}),
     dict(id="mocambique", nome="Rio Limpopo e Chókwè · Moçambique", pais="Moçambique", pasta="regioes/mocambique/",
          orbita="_114_A_165_", bbox=(32.93, -24.58, 33.03, -24.48), sufixo=" · Moçambique", img=None,
          colecao="NISAR_L2_GCOV_BETA_V1", inicio="2025-12-01", fim="2026-01-31", beta=True,
@@ -526,6 +532,14 @@ def main():
                 periodos.append("riscos " + dt.date.today().isoformat())
         except Exception as e:
             print("ERRO nos riscos (LHASA/FIRMS):", e)
+        # A.R.K.O Rios (v7.0): nível dos rios pelo SWOT (Hydrocron, aberto, sem senha)
+        try:
+            import rios_swot
+            rios_swot.main()
+            novo = True
+            periodos.append("rios SWOT " + dt.date.today().isoformat())
+        except Exception as e:
+            print("ERRO no SWOT dos rios:", e)
     saida("novo", str(novo).lower())
     if periodos:
         saida("periodo", "; ".join(periodos))

@@ -1,0 +1,682 @@
+{
+ "id": "daca",
+ "nome": "Rios Buriganga e Turag em Daca",
+ "pais": "Bangladesh",
+ "bbox": [
+  90.32,
+  23.68,
+  90.47,
+  23.83
+ ],
+ "meses": [
+  11,
+  12,
+  1,
+  2,
+  3
+ ],
+ "cidade": "Daca",
+ "pressao": "cidade crescendo sobre rios e áreas alagáveis",
+ "montanha": false,
+ "gerado": "2026-11-14",
+ "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
+ "serie": [
+  {
+   "ano": 1988,
+   "imagens": [
+    "1988-02-19 L5",
+    "1988-01-02 L5"
+   ],
+   "agua_km2": 21.28,
+   "turbidez": 6.53,
+   "mata_ciliar": 12.0,
+   "solo_exposto": 19.4
+  },
+  {
+   "ano": 1989,
+   "imagens": [
+    "1989-02-05 L5",
+    "1989-03-09 L5",
+    "1989-02-21 L5"
+   ],
+   "agua_km2": 13.53,
+   "turbidez": 5.99,
+   "mata_ciliar": 6.5,
+   "solo_exposto": 23.6
+  },
+  {
+   "ano": 1990,
+   "imagens": [
+    "1989-12-22 L5",
+    "1989-11-20 L5",
+    "1989-11-04 L5"
+   ],
+   "agua_km2": 56.47,
+   "turbidez": 9.49,
+   "mata_ciliar": 2.8,
+   "solo_exposto": 27.6,
+   "foto": "fotos/daca_1990.jpg"
+  },
+  {
+   "ano": 1991,
+   "imagens": [
+    "1991-02-27 L5",
+    "1991-01-26 L5",
+    "1990-12-09 L5"
+   ],
+   "agua_km2": 23.07,
+   "turbidez": 8.08,
+   "mata_ciliar": 8.5,
+   "solo_exposto": 19.7
+  },
+  {
+   "ano": 1992,
+   "imagens": [
+    "1991-12-12 L5",
+    "1991-11-26 L5",
+    "1991-11-10 L5"
+   ],
+   "agua_km2": 51.65,
+   "turbidez": 9.67,
+   "mata_ciliar": 1.8,
+   "solo_exposto": 27.8
+  },
+  {
+   "ano": 1993,
+   "imagens": [
+    "1992-12-30 L5",
+    "1992-11-12 L5",
+    "1993-04-05 L5"
+   ],
+   "agua_km2": 46.6,
+   "turbidez": 9.42,
+   "mata_ciliar": 9.5,
+   "solo_exposto": 15.6
+  },
+  {
+   "ano": 1994,
+   "imagens": [
+    "1994-02-19 L5",
+    "1994-01-18 L5",
+    "1994-01-02 L5"
+   ],
+   "agua_km2": 18.07,
+   "turbidez": 6.38,
+   "mata_ciliar": 5.1,
+   "solo_exposto": 23.5
+  },
+  {
+   "ano": 1995,
+   "imagens": [
+    "1994-12-20 L5",
+    "1994-12-04 L5",
+    "1994-11-18 L5"
+   ],
+   "agua_km2": 31.04,
+   "turbidez": 8.29,
+   "mata_ciliar": 5.6,
+   "solo_exposto": 21.2,
+   "foto": "fotos/daca_1995.jpg"
+  },
+  {
+   "ano": 1996,
+   "imagens": [
+    "1995-11-21 L5",
+    "1996-02-09 L5",
+    "1995-12-23 L5"
+   ],
+   "agua_km2": 52.32,
+   "turbidez": 8.18,
+   "mata_ciliar": 10.8,
+   "solo_exposto": 27.3
+  },
+  {
+   "ano": 1997,
+   "imagens": [
+    "1996-12-25 L5",
+    "1997-01-26 L5"
+   ],
+   "agua_km2": 30.81,
+   "turbidez": 7.48,
+   "mata_ciliar": 3.85,
+   "solo_exposto": 30.15
+  },
+  {
+   "ano": 1998,
+   "imagens": [
+    "1998-04-03 L5",
+    "1998-03-02 L5",
+    "1998-02-14 L5"
+   ],
+   "agua_km2": 10.74,
+   "turbidez": 3.89,
+   "mata_ciliar": 18.4,
+   "solo_exposto": 21.1
+  },
+  {
+   "ano": 1999,
+   "imagens": [
+    "1999-03-21 L5",
+    "1999-03-05 L5",
+    "1999-02-17 L5"
+   ],
+   "agua_km2": 8.96,
+   "turbidez": 5.12,
+   "mata_ciliar": 12.0,
+   "solo_exposto": 37.2
+  },
+  {
+   "ano": 2000,
+   "imagens": [
+    "1999-12-18 L5",
+    "2000-01-19 L5",
+    "1999-12-02 L5"
+   ],
+   "agua_km2": 33.34,
+   "turbidez": 7.3,
+   "mata_ciliar": 2.1,
+   "solo_exposto": 36.2,
+   "foto": "fotos/daca_2000.jpg"
+  },
+  {
+   "ano": 2001,
+   "imagens": [
+    "2000-12-20 L5",
+    "2001-01-21 L5",
+    "2001-01-05 L5"
+   ],
+   "agua_km2": 32.64,
+   "turbidez": 10.18,
+   "mata_ciliar": 0.4,
+   "solo_exposto": 55.0
+  },
+  {
+   "ano": 2002,
+   "imagens": [
+    "2002-03-05 L7",
+    "2002-02-17 L7",
+    "2002-02-01 L7"
+   ],
+   "agua_km2": 15.11,
+   "turbidez": 6.89,
+   "mata_ciliar": 11.4,
+   "solo_exposto": 29.2
+  },
+  {
+   "ano": 2003,
+   "imagens": [
+    "2002-12-02 L7",
+    "2002-11-16 L7",
+    "2003-03-24 L7"
+   ],
+   "agua_km2": 42.78,
+   "turbidez": 9.13,
+   "mata_ciliar": 12.9,
+   "solo_exposto": 28.1
+  },
+  {
+   "ano": 2004,
+   "imagens": [
+    "2004-02-15 L5",
+    "2004-03-02 L5"
+   ],
+   "agua_km2": 13.49,
+   "turbidez": 6.45,
+   "mata_ciliar": 9.65,
+   "solo_exposto": 36.0
+  },
+  {
+   "ano": 2005,
+   "imagens": [
+    "2004-11-29 L5",
+    "2004-11-13 L5",
+    "2005-01-16 L5"
+   ],
+   "agua_km2": 39.79,
+   "turbidez": 6.58,
+   "mata_ciliar": 4.6,
+   "solo_exposto": 37.0,
+   "foto": "fotos/daca_2005.jpg"
+  },
+  {
+   "ano": 2006,
+   "imagens": [
+    "2006-04-25 L5",
+    "2006-02-04 L5",
+    "2005-11-16 L5"
+   ],
+   "agua_km2": 28.63,
+   "turbidez": 6.83,
+   "mata_ciliar": 5.8,
+   "solo_exposto": 29.2
+  },
+  {
+   "ano": 2007,
+   "imagens": [
+    "2006-12-21 L5",
+    "2006-12-05 L5",
+    "2006-11-19 L5"
+   ],
+   "agua_km2": 27.47,
+   "turbidez": 7.56,
+   "mata_ciliar": 0.2,
+   "solo_exposto": 57.2
+  },
+  {
+   "ano": 2008,
+   "imagens": [
+    "2008-04-14 L5",
+    "2008-04-30 L5"
+   ],
+   "agua_km2": 9.25,
+   "turbidez": 6.61,
+   "mata_ciliar": 8.95,
+   "solo_exposto": 29.3
+  },
+  {
+   "ano": 2009,
+   "imagens": [
+    "2008-12-10 L5",
+    "2008-11-24 L5",
+    "2008-11-08 L5"
+   ],
+   "agua_km2": 35.63,
+   "turbidez": 6.98,
+   "mata_ciliar": 2.4,
+   "solo_exposto": 44.2
+  },
+  {
+   "ano": 2010,
+   "imagens": [
+    "2009-11-27 L5",
+    "2010-01-30 L5",
+    "2009-11-11 L5"
+   ],
+   "agua_km2": 31.77,
+   "turbidez": 9.19,
+   "mata_ciliar": 0.0,
+   "solo_exposto": 71.2,
+   "foto": "fotos/daca_2010.jpg"
+  },
+  {
+   "ano": 2011,
+   "imagens": [
+    "2010-12-16 L5",
+    "2010-11-30 L5",
+    "2011-04-07 L5"
+   ],
+   "agua_km2": 24.71,
+   "turbidez": 6.92,
+   "mata_ciliar": 4.3,
+   "solo_exposto": 40.0
+  },
+  {
+   "ano": 2012,
+   "imagens": [
+    "2011-11-25 L7",
+    "2011-11-09 L7",
+    "2012-02-13 L7"
+   ],
+   "agua_km2": 21.91,
+   "turbidez": 4.52,
+   "mata_ciliar": 11.0,
+   "solo_exposto": 34.3
+  },
+  {
+   "ano": 2013,
+   "imagens": [
+    "2013-04-12 L8"
+   ],
+   "agua_km2": 8.19,
+   "turbidez": 5.35,
+   "mata_ciliar": 10.1,
+   "solo_exposto": 34.3
+  },
+  {
+   "ano": 2014,
+   "imagens": [
+    "2014-03-30 L8",
+    "2014-01-25 L8",
+    "2013-12-24 L8"
+   ],
+   "agua_km2": 17.5,
+   "turbidez": 4.96,
+   "mata_ciliar": 5.2,
+   "solo_exposto": 45.0
+  },
+  {
+   "ano": 2015,
+   "imagens": [
+    "2014-11-25 L8",
+    "2015-01-28 L8",
+    "2015-02-13 L8"
+   ],
+   "agua_km2": 17.48,
+   "turbidez": 6.62,
+   "mata_ciliar": 4.4,
+   "solo_exposto": 43.3,
+   "foto": "fotos/daca_2015.jpg"
+  },
+  {
+   "ano": 2016,
+   "imagens": [
+    "2016-01-15 L8",
+    "2016-02-16 L8",
+    "2015-11-12 L8"
+   ],
+   "agua_km2": 20.3,
+   "turbidez": 9.06,
+   "mata_ciliar": 3.1,
+   "solo_exposto": 63.6
+  },
+  {
+   "ano": 2017,
+   "imagens": [
+    "2017-01-17 L8",
+    "2017-02-02 L8",
+    "2016-11-14 L8"
+   ],
+   "agua_km2": 17.8,
+   "turbidez": 6.66,
+   "mata_ciliar": 3.1,
+   "solo_exposto": 55.2
+  },
+  {
+   "ano": 2018,
+   "imagens": [
+    "2017-12-03 L8",
+    "2018-02-21 L8",
+    "2018-01-20 L8"
+   ],
+   "agua_km2": 17.5,
+   "turbidez": 5.78,
+   "mata_ciliar": 6.1,
+   "solo_exposto": 47.5
+  },
+  {
+   "ano": 2019,
+   "imagens": [
+    "2019-01-23 L8",
+    "2019-01-07 L8",
+    "2018-12-22 L8"
+   ],
+   "agua_km2": 14.72,
+   "turbidez": 5.43,
+   "mata_ciliar": 6.0,
+   "solo_exposto": 43.4
+  },
+  {
+   "ano": 2020,
+   "imagens": [
+    "2020-02-11 L8",
+    "2020-01-26 L8",
+    "2019-11-23 L8"
+   ],
+   "agua_km2": 16.91,
+   "turbidez": 6.25,
+   "mata_ciliar": 4.4,
+   "solo_exposto": 48.0,
+   "foto": "fotos/daca_2020.jpg"
+  },
+  {
+   "ano": 2021,
+   "imagens": [
+    "2020-12-27 L8",
+    "2021-03-17 L8",
+    "2021-01-12 L8"
+   ],
+   "agua_km2": 18.79,
+   "turbidez": 7.71,
+   "mata_ciliar": 2.7,
+   "solo_exposto": 56.7
+  },
+  {
+   "ano": 2022,
+   "imagens": [
+    "2022-03-20 L8",
+    "2022-01-31 L8",
+    "2022-02-16 L8"
+   ],
+   "agua_km2": 12.22,
+   "turbidez": 5.53,
+   "mata_ciliar": 7.5,
+   "solo_exposto": 40.2
+  },
+  {
+   "ano": 2023,
+   "imagens": [
+    "2023-02-03 L8",
+    "2023-04-08 L8",
+    "2022-12-25 L9"
+   ],
+   "agua_km2": 12.43,
+   "turbidez": 5.86,
+   "mata_ciliar": 3.5,
+   "solo_exposto": 55.3
+  },
+  {
+   "ano": 2024,
+   "imagens": [
+    "2023-11-26 L9",
+    "2023-11-10 L9",
+    "2024-03-01 L9"
+   ],
+   "agua_km2": 15.79,
+   "turbidez": 4.91,
+   "mata_ciliar": 8.9,
+   "solo_exposto": 34.7
+  },
+  {
+   "ano": 2025,
+   "imagens": [
+    "2024-12-30 L9",
+    "2024-12-06 L8",
+    "2025-02-24 L8"
+   ],
+   "agua_km2": 14.78,
+   "turbidez": 5.95,
+   "mata_ciliar": 5.0,
+   "solo_exposto": 44.4,
+   "foto": "fotos/daca_2025.jpg"
+  },
+  {
+   "ano": 2026,
+   "imagens": [
+    "2026-01-26 L8",
+    "2026-02-11 L8",
+    "2026-01-18 L9"
+   ],
+   "agua_km2": 13.19,
+   "turbidez": 6.56,
+   "mata_ciliar": 2.2,
+   "solo_exposto": 60.4
+  }
+ ],
+ "swot": {
+  "reach_id": "45220200225",
+  "rio": "Rio Dhaleshwari/Buriganga, sul de Daca",
+  "serie": [
+   {
+    "d": "2023-07-27",
+    "wse": 3.5
+   },
+   {
+    "d": "2023-09-20",
+    "wse": 3.39
+   },
+   {
+    "d": "2023-10-31",
+    "wse": 2.17
+   },
+   {
+    "d": "2023-11-21",
+    "wse": 1.39
+   },
+   {
+    "d": "2023-12-12",
+    "wse": 1.63
+   },
+   {
+    "d": "2023-12-21",
+    "wse": 1.1
+   },
+   {
+    "d": "2024-01-02",
+    "wse": 1.01
+   },
+   {
+    "d": "2024-01-23",
+    "wse": 0.65
+   },
+   {
+    "d": "2024-03-25",
+    "wse": 1.38
+   },
+   {
+    "d": "2024-04-15",
+    "wse": 1.73
+   },
+   {
+    "d": "2024-04-24",
+    "wse": 1.76
+   },
+   {
+    "d": "2024-05-06",
+    "wse": 2.68
+   },
+   {
+    "d": "2024-05-27",
+    "wse": 3.36
+   },
+   {
+    "d": "2024-06-17",
+    "wse": 2.71
+   },
+   {
+    "d": "2024-07-29",
+    "wse": 3.96
+   },
+   {
+    "d": "2024-09-29",
+    "wse": 3.28
+   },
+   {
+    "d": "2024-10-20",
+    "wse": 3.08
+   },
+   {
+    "d": "2024-11-10",
+    "wse": 2.42
+   },
+   {
+    "d": "2024-12-01",
+    "wse": 1.83
+   },
+   {
+    "d": "2024-12-22",
+    "wse": 1.14
+   },
+   {
+    "d": "2025-02-22",
+    "wse": 0.5
+   },
+   {
+    "d": "2025-04-05",
+    "wse": 1.08
+   },
+   {
+    "d": "2025-04-13",
+    "wse": 1.16
+   },
+   {
+    "d": "2025-04-26",
+    "wse": 1.44
+   },
+   {
+    "d": "2025-05-17",
+    "wse": 2.59
+   },
+   {
+    "d": "2025-06-15",
+    "wse": 2.6
+   },
+   {
+    "d": "2025-06-27",
+    "wse": 3.22
+   },
+   {
+    "d": "2025-08-29",
+    "wse": 3.8
+   },
+   {
+    "d": "2025-09-19",
+    "wse": 3.67
+   },
+   {
+    "d": "2025-10-31",
+    "wse": 2.16
+   },
+   {
+    "d": "2026-01-01",
+    "wse": 1.72
+   },
+   {
+    "d": "2026-01-22",
+    "wse": 0.9
+   },
+   {
+    "d": "2026-01-31",
+    "wse": 1.52
+   },
+   {
+    "d": "2026-03-05",
+    "wse": 1.29
+   },
+   {
+    "d": "2026-03-26",
+    "wse": 0.9
+   },
+   {
+    "d": "2026-04-15",
+    "wse": 2.12
+   },
+   {
+    "d": "2026-06-17",
+    "wse": 3.46
+   },
+   {
+    "d": "2026-06-26",
+    "wse": 2.92
+   },
+   {
+    "d": "2026-07-08",
+    "wse": 3.53
+   },
+   {
+    "d": "2026-07-29",
+    "wse": 3.7
+   },
+   {
+    "d": "2026-09-09",
+    "wse": 3.74
+   },
+   {
+    "d": "2026-09-29",
+    "wse": 3.2
+   },
+   {
+    "d": "2026-10-08",
+    "wse": 2.63
+   },
+   {
+    "d": "2026-10-20",
+    "wse": 1.82
+   },
+   {
+    "d": "2026-10-29",
+    "wse": 2.65
+   }
+  ],
+  "fonte": "SWOT L2 RiverSP (NASA/CNES) via Hydrocron, PO.DAAC"
+ }
+}

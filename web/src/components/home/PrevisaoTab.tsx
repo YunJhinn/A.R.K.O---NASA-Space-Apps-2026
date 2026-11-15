@@ -117,7 +117,7 @@ export function PrevisaoTab({ onMap }: { onMap: (id: string | null) => void }) {
   return (
     <div className="pv">
       <div className="pv-h">
-        <b>{en ? 'Forecast for' : 'Previsão para'} {t(ds.realMeta.nome.split(' · ')[0])}</b>
+        <b>{en ? 'Risks to the water of' : 'Riscos para a água de'} {t(ds.realMeta.nome.split(' · ')[0])}</b>
         <small>{en ? 'Updated' : 'Atualizado'}: {fontes}</small>
       </div>
       {ativas.map(l => {

@@ -1,0 +1,700 @@
+{
+ "id": "madeira",
+ "nome": "Rio Madeira em Nova Olinda do Norte",
+ "pais": "Brasil · AM",
+ "bbox": [
+  -59.2,
+  -4.0,
+  -59.0,
+  -3.8
+ ],
+ "meses": [
+  7,
+  8,
+  9,
+  10
+ ],
+ "cidade": "Nova Olinda do Norte",
+ "pressao": "dragas de garimpo e desmatamento",
+ "montanha": false,
+ "gerado": "2026-11-14",
+ "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
+ "serie": [
+  {
+   "ano": 1985,
+   "imagens": [
+    "1985-09-17 L5",
+    "1985-09-01 L5",
+    "1985-08-16 L5"
+   ],
+   "agua_km2": 112.82,
+   "turbidez": 10.26,
+   "mata_ciliar": 91.9,
+   "solo_exposto": 0.4,
+   "foto": "fotos/madeira_1985.jpg"
+  },
+  {
+   "ano": 1986,
+   "imagens": [
+    "1986-10-06 L5",
+    "1986-08-03 L5",
+    "1986-07-18 L5"
+   ],
+   "agua_km2": 122.06,
+   "turbidez": 3.17,
+   "mata_ciliar": 93.8,
+   "solo_exposto": 0.2
+  },
+  {
+   "ano": 1987,
+   "imagens": [
+    "1987-09-07 L5",
+    "1987-08-06 L5",
+    "1987-08-22 L5"
+   ],
+   "agua_km2": 123.81,
+   "turbidez": 8.78,
+   "mata_ciliar": 93.0,
+   "solo_exposto": 0.3
+  },
+  {
+   "ano": 1988,
+   "imagens": [
+    "1988-09-25 L5",
+    "1988-10-11 L5"
+   ],
+   "agua_km2": 119.16,
+   "turbidez": 8.84,
+   "mata_ciliar": 88.05,
+   "solo_exposto": 2.4
+  },
+  {
+   "ano": 1989,
+   "imagens": [
+    "1989-09-12 L5",
+    "1989-07-10 L5",
+    "1989-08-11 L5"
+   ],
+   "agua_km2": 126.82,
+   "turbidez": 6.54,
+   "mata_ciliar": 89.6,
+   "solo_exposto": 0.5
+  },
+  {
+   "ano": 1990,
+   "imagens": [
+    "1990-08-30 L5"
+   ],
+   "agua_km2": 124.36,
+   "turbidez": 7.74,
+   "mata_ciliar": 92.1,
+   "solo_exposto": 0.3,
+   "foto": "fotos/madeira_1990.jpg"
+  },
+  {
+   "ano": 1991,
+   "imagens": [
+    "1991-08-17 L5"
+   ],
+   "agua_km2": 133.46,
+   "turbidez": 10.43,
+   "mata_ciliar": 7.6,
+   "solo_exposto": 0.1
+  },
+  {
+   "ano": 1992,
+   "imagens": [
+    "1992-09-20 L5",
+    "1992-07-02 L5",
+    "1992-07-18 L5"
+   ],
+   "agua_km2": 124.31,
+   "turbidez": 10.87,
+   "mata_ciliar": 90.0,
+   "solo_exposto": 0.3
+  },
+  {
+   "ano": 1993,
+   "imagens": [
+    "1993-08-22 L5",
+    "1993-09-23 L5"
+   ],
+   "agua_km2": 106.0,
+   "turbidez": 10.7,
+   "mata_ciliar": 80.75,
+   "solo_exposto": 2.0
+  },
+  {
+   "ano": 1994,
+   "imagens": [
+    "1994-08-09 L5",
+    "1994-10-12 L5",
+    "1994-10-28 L5"
+   ],
+   "agua_km2": 117.98,
+   "turbidez": 7.48,
+   "mata_ciliar": 86.8,
+   "solo_exposto": 0.8
+  },
+  {
+   "ano": 1995,
+   "imagens": [
+    "1995-08-28 L5",
+    "1995-09-13 L5",
+    "1995-08-12 L5"
+   ],
+   "agua_km2": 125.47,
+   "turbidez": 12.36,
+   "mata_ciliar": 89.2,
+   "solo_exposto": 0.2,
+   "foto": "fotos/madeira_1995.jpg"
+  },
+  {
+   "ano": 1996,
+   "imagens": [
+    "1996-08-14 L5",
+    "1996-10-17 L5"
+   ],
+   "agua_km2": 121.19,
+   "turbidez": 9.78,
+   "mata_ciliar": 88.75,
+   "solo_exposto": 0.85
+  },
+  {
+   "ano": 1997,
+   "imagens": [
+    "1997-08-01 L5",
+    "1997-08-17 L5"
+   ],
+   "agua_km2": 123.88,
+   "turbidez": 7.62,
+   "mata_ciliar": 86.35,
+   "solo_exposto": 1.4
+  },
+  {
+   "ano": 1998,
+   "imagens": [
+    "1998-08-04 L5",
+    "1998-10-07 L5"
+   ],
+   "agua_km2": 113.69,
+   "turbidez": 11.42,
+   "mata_ciliar": 85.5,
+   "solo_exposto": 2.4
+  },
+  {
+   "ano": 1999,
+   "imagens": [
+    "1999-09-08 L5",
+    "1999-10-10 L5",
+    "1999-10-26 L5"
+   ],
+   "agua_km2": 123.51,
+   "turbidez": 8.56,
+   "mata_ciliar": 87.3,
+   "solo_exposto": 0.7
+  },
+  {
+   "ano": 2000,
+   "imagens": [
+    "2000-08-25 L5"
+   ],
+   "agua_km2": 116.59,
+   "turbidez": 6.32,
+   "mata_ciliar": 89.7,
+   "solo_exposto": 0.5,
+   "foto": "fotos/madeira_2000.jpg"
+  },
+  {
+   "ano": 2001,
+   "imagens": [
+    "2001-08-28 L5",
+    "2001-07-11 L5",
+    "2001-07-27 L5"
+   ],
+   "agua_km2": 126.03,
+   "turbidez": 3.34,
+   "mata_ciliar": 91.2,
+   "solo_exposto": 0.4
+  },
+  {
+   "ano": 2002,
+   "imagens": [
+    "2002-07-06 L7",
+    "2002-09-08 L7",
+    "2002-09-24 L7"
+   ],
+   "agua_km2": 123.19,
+   "turbidez": 5.88,
+   "mata_ciliar": 91.5,
+   "solo_exposto": 0.2
+  },
+  {
+   "ano": 2003,
+   "imagens": [
+    "2003-07-17 L5",
+    "2003-10-21 L5"
+   ],
+   "agua_km2": 114.59,
+   "turbidez": 7.53,
+   "mata_ciliar": 83.85,
+   "solo_exposto": 2.05
+  },
+  {
+   "ano": 2004,
+   "imagens": [
+    "2004-08-20 L5",
+    "2004-09-05 L5",
+    "2004-10-23 L5"
+   ],
+   "agua_km2": 116.57,
+   "turbidez": 10.08,
+   "mata_ciliar": 84.6,
+   "solo_exposto": 1.5
+  },
+  {
+   "ano": 2005,
+   "imagens": [
+    "2005-08-07 L5",
+    "2005-08-23 L5"
+   ],
+   "agua_km2": 115.8,
+   "turbidez": 7.49,
+   "mata_ciliar": 88.85,
+   "solo_exposto": 0.6,
+   "foto": "fotos/madeira_2005.jpg"
+  },
+  {
+   "ano": 2006,
+   "imagens": [
+    "2006-08-10 L5",
+    "2006-07-09 L5",
+    "2006-09-11 L5"
+   ],
+   "agua_km2": 124.39,
+   "turbidez": 4.28,
+   "mata_ciliar": 84.4,
+   "solo_exposto": 1.1
+  },
+  {
+   "ano": 2008,
+   "imagens": [
+    "2008-08-15 L5",
+    "2008-07-14 L5"
+   ],
+   "agua_km2": 125.44,
+   "turbidez": 3.0,
+   "mata_ciliar": 87.65,
+   "solo_exposto": 0.65
+  },
+  {
+   "ano": 2009,
+   "imagens": [
+    "2009-08-02 L5",
+    "2009-08-18 L5",
+    "2009-09-03 L5"
+   ],
+   "agua_km2": 126.59,
+   "turbidez": 6.25,
+   "mata_ciliar": 79.8,
+   "solo_exposto": 1.2
+  },
+  {
+   "ano": 2010,
+   "imagens": [
+    "2010-10-08 L5"
+   ],
+   "agua_km2": 97.6,
+   "turbidez": 12.43,
+   "mata_ciliar": 78.9,
+   "solo_exposto": 4.3,
+   "foto": "fotos/madeira_2010.jpg"
+  },
+  {
+   "ano": 2011,
+   "imagens": [
+    "2011-07-23 L5"
+   ],
+   "agua_km2": 115.03,
+   "turbidez": 3.3,
+   "mata_ciliar": 87.9,
+   "solo_exposto": 0.6
+  },
+  {
+   "ano": 2012,
+   "imagens": [
+    "2012-08-02 L7",
+    "2012-07-01 L7"
+   ],
+   "agua_km2": 124.81,
+   "turbidez": 7.77,
+   "mata_ciliar": 86.8,
+   "solo_exposto": 0.8
+  },
+  {
+   "ano": 2015,
+   "imagens": [
+    "2015-09-20 L8",
+    "2015-08-19 L8",
+    "2015-09-04 L8"
+   ],
+   "agua_km2": 126.2,
+   "turbidez": 5.24,
+   "mata_ciliar": 81.0,
+   "solo_exposto": 1.1,
+   "foto": "fotos/madeira_2015.jpg"
+  },
+  {
+   "ano": 2016,
+   "imagens": [
+    "2016-10-08 L8",
+    "2016-09-22 L8",
+    "2016-07-04 L8"
+   ],
+   "agua_km2": 105.47,
+   "turbidez": 11.16,
+   "mata_ciliar": 86.4,
+   "solo_exposto": 1.5
+  },
+  {
+   "ano": 2017,
+   "imagens": [
+    "2017-07-07 L8",
+    "2017-08-08 L8"
+   ],
+   "agua_km2": 127.8,
+   "turbidez": 3.48,
+   "mata_ciliar": 89.75,
+   "solo_exposto": 0.65
+  },
+  {
+   "ano": 2018,
+   "imagens": [
+    "2018-10-14 L8",
+    "2018-08-27 L8",
+    "2018-08-11 L8"
+   ],
+   "agua_km2": 120.09,
+   "turbidez": 6.23,
+   "mata_ciliar": 88.8,
+   "solo_exposto": 0.5
+  },
+  {
+   "ano": 2019,
+   "imagens": [
+    "2019-08-14 L8",
+    "2019-08-30 L8",
+    "2019-07-13 L8"
+   ],
+   "agua_km2": 127.73,
+   "turbidez": 4.02,
+   "mata_ciliar": 84.4,
+   "solo_exposto": 0.6
+  },
+  {
+   "ano": 2020,
+   "imagens": [
+    "2020-07-31 L8",
+    "2020-08-16 L8"
+   ],
+   "agua_km2": 126.38,
+   "turbidez": 3.39,
+   "mata_ciliar": 87.85,
+   "solo_exposto": 0.7,
+   "foto": "fotos/madeira_2020.jpg"
+  },
+  {
+   "ano": 2021,
+   "imagens": [
+    "2021-08-03 L8",
+    "2021-07-18 L8"
+   ],
+   "agua_km2": 132.19,
+   "turbidez": 7.22,
+   "mata_ciliar": 86.8,
+   "solo_exposto": 1.1
+  },
+  {
+   "ano": 2022,
+   "imagens": [
+    "2022-09-15 L9",
+    "2022-08-06 L8"
+   ],
+   "agua_km2": 115.08,
+   "turbidez": 5.62,
+   "mata_ciliar": 84.45,
+   "solo_exposto": 1.25
+  },
+  {
+   "ano": 2023,
+   "imagens": [
+    "2023-08-25 L8",
+    "2023-10-28 L8",
+    "2023-09-02 L9"
+   ],
+   "agua_km2": 119.91,
+   "turbidez": 10.36,
+   "mata_ciliar": 71.0,
+   "solo_exposto": 3.2
+  },
+  {
+   "ano": 2024,
+   "imagens": [
+    "2024-08-27 L8",
+    "2024-08-19 L9",
+    "2024-07-18 L9"
+   ],
+   "agua_km2": 121.57,
+   "turbidez": 8.16,
+   "mata_ciliar": 84.0,
+   "solo_exposto": 0.9
+  },
+  {
+   "ano": 2025,
+   "imagens": [
+    "2025-08-22 L9",
+    "2025-07-29 L8"
+   ],
+   "agua_km2": 127.75,
+   "turbidez": 3.75,
+   "mata_ciliar": 88.65,
+   "solo_exposto": 1.05,
+   "foto": "fotos/madeira_2025.jpg"
+  },
+  {
+   "ano": 2026,
+   "imagens": [
+    "2026-08-25 L9",
+    "2026-09-02 L8",
+    "2026-07-24 L9"
+   ],
+   "agua_km2": 125.59,
+   "turbidez": 6.13,
+   "mata_ciliar": 81.5,
+   "solo_exposto": 1.2
+  }
+ ],
+ "swot": {
+  "reach_id": "62261700051",
+  "rio": "Rio Madeira",
+  "serie": [
+   {
+    "d": "2023-09-04",
+    "wse": 13.93
+   },
+   {
+    "d": "2023-10-15",
+    "wse": 6.98
+   },
+   {
+    "d": "2023-11-05",
+    "wse": 6.75
+   },
+   {
+    "d": "2023-11-26",
+    "wse": 7.34
+   },
+   {
+    "d": "2023-12-17",
+    "wse": 9.92
+   },
+   {
+    "d": "2024-01-07",
+    "wse": 11.55
+   },
+   {
+    "d": "2024-01-12",
+    "wse": 13.76
+   },
+   {
+    "d": "2024-01-28",
+    "wse": 13.12
+   },
+   {
+    "d": "2024-02-18",
+    "wse": 14.83
+   },
+   {
+    "d": "2024-03-09",
+    "wse": 15.94
+   },
+   {
+    "d": "2024-03-30",
+    "wse": 16.61
+   },
+   {
+    "d": "2024-04-20",
+    "wse": 17.16
+   },
+   {
+    "d": "2024-06-01",
+    "wse": 17.59
+   },
+   {
+    "d": "2024-06-22",
+    "wse": 17.19
+   },
+   {
+    "d": "2024-07-13",
+    "wse": 16.69
+   },
+   {
+    "d": "2024-08-23",
+    "wse": 12.8
+   },
+   {
+    "d": "2024-09-13",
+    "wse": 8.69
+   },
+   {
+    "d": "2024-09-19",
+    "wse": 13.95
+   },
+   {
+    "d": "2024-10-25",
+    "wse": 5.8
+   },
+   {
+    "d": "2024-10-30",
+    "wse": 13.92
+   },
+   {
+    "d": "2024-11-15",
+    "wse": 6.49
+   },
+   {
+    "d": "2024-12-06",
+    "wse": 8.77
+   },
+   {
+    "d": "2024-12-11",
+    "wse": 16.1
+   },
+   {
+    "d": "2024-12-27",
+    "wse": 11.52
+   },
+   {
+    "d": "2025-01-16",
+    "wse": 13.84
+   },
+   {
+    "d": "2025-02-06",
+    "wse": 15.57
+   },
+   {
+    "d": "2025-03-20",
+    "wse": 18.38
+   },
+   {
+    "d": "2025-04-10",
+    "wse": 19.46
+   },
+   {
+    "d": "2025-05-01",
+    "wse": 20.04
+   },
+   {
+    "d": "2025-05-22",
+    "wse": 20.15
+   },
+   {
+    "d": "2025-06-11",
+    "wse": 19.92
+   },
+   {
+    "d": "2025-07-02",
+    "wse": 19.65
+   },
+   {
+    "d": "2025-07-23",
+    "wse": 19.07
+   },
+   {
+    "d": "2025-08-13",
+    "wse": 17.97
+   },
+   {
+    "d": "2025-09-03",
+    "wse": 16.69
+   },
+   {
+    "d": "2025-09-24",
+    "wse": 14.31
+   },
+   {
+    "d": "2025-10-15",
+    "wse": 11.93
+   },
+   {
+    "d": "2025-11-04",
+    "wse": 10.78
+   },
+   {
+    "d": "2025-11-25",
+    "wse": 11.42
+   },
+   {
+    "d": "2025-12-16",
+    "wse": 13.47
+   },
+   {
+    "d": "2026-01-06",
+    "wse": 14.94
+   },
+   {
+    "d": "2026-01-27",
+    "wse": 15.62
+   },
+   {
+    "d": "2026-02-17",
+    "wse": 16.71
+   },
+   {
+    "d": "2026-03-10",
+    "wse": 17.67
+   },
+   {
+    "d": "2026-03-31",
+    "wse": 18.24
+   },
+   {
+    "d": "2026-04-20",
+    "wse": 18.98
+   },
+   {
+    "d": "2026-05-11",
+    "wse": 19.59
+   },
+   {
+    "d": "2026-06-22",
+    "wse": 19.16
+   },
+   {
+    "d": "2026-07-13",
+    "wse": 18.89
+   },
+   {
+    "d": "2026-08-03",
+    "wse": 17.61
+   },
+   {
+    "d": "2026-08-24",
+    "wse": 15.85
+   },
+   {
+    "d": "2026-09-13",
+    "wse": 13.21
+   },
+   {
+    "d": "2026-10-04",
+    "wse": 10.11
+   },
+   {
+    "d": "2026-10-25",
+    "wse": 8.9
+   }
+  ],
+  "fonte": "SWOT L2 RiverSP (NASA/CNES) via Hydrocron, PO.DAAC"
+ }
+}

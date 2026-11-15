@@ -1,8 +1,30 @@
-# A.R.K.O — Advanced Reconnaissance & Knowledge Operations
+# A.R.K.O Rivers — Advanced Reconnaissance & Knowledge Operations
 
 **NASA Space Apps Challenge 2026 · Dancing with the SARs** · [Leia em português](README.pt-BR.md)
 
-A.R.K.O turns NISAR satellite radar (NASA-ISRO) into simple alerts, maps and answers about floods, fires and deforestation, for people who must act fast (Civil Defense) and people who teach and research (schools, universities). The Amazon is our pilot; the goal is any place on Earth that NISAR observes.
+A.R.K.O Rivers uses NASA satellites to **conserve the rivers that supply drinking water**. For each river it tells, year by year since 1985, what happened to the water (turbidity, water area, riverside forest, bare banks, glacier ice), why it probably happened, where it is heading by 2030 if nothing changes, and who can act. Less than 1% of Earth's water is fresh and available to drink, and rivers are where we are degrading it.
+
+## A.R.K.O Rivers in one minute
+
+| Layer | Satellite | Years | What it shows |
+| --- | --- | --- | --- |
+| River history | **Landsat 4–9** (NASA/USGS) | 1985 → today | Water turbidity, water area, riverside forest, bare soil on the banks, glacier ice |
+| River level | **SWOT** (NASA/CNES) | 2023 → today | Water surface height of the river reach that supplies the city |
+| River now | **NISAR** (NASA/ISRO) | every ~12 days | New water, receding water and banks losing vegetation, through clouds |
+| Risks in the basin | **LHASA** and **FIRMS** (NASA) | daily | Extreme rain (sediment) and fire (ash and soil) |
+
+**6 rivers:** Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka's rivers (city growing over water), Trishuli headwaters in Nepal (melting ice) and Massingir Dam in Mozambique (droughts).
+
+**Validated against real records (4 of 4):** the 1980s–90s gold rush and the 2019–2022 gold rush on the Tapajós (Lobo et al. 2015; MapBiomas), the record low water of 2024 at Itaituba (Geological Survey of Brazil) and the refilling of Massingir Dam after its 2006 repair. See `docs/arko_rios_metodo.md`.
+
+**What it cannot see:** sewage chemicals, pesticides and microplastics are not visible from space. The satellite shows the visible effect and tells where and when to collect lab samples.
+
+Scripts: `pipeline/rios_landsat.py` (40-year series, open data, no login) and `pipeline/rios_swot.py` (river level, open Hydrocron API). The daily robot refreshes SWOT and NISAR.
+
+---
+
+*Earlier versions of A.R.K.O focused on disaster alerts; that work is still in the app ("River now", "Alerts") and in the history below.*
+
 
 ## What is in this repository
 

@@ -164,11 +164,12 @@ export const REAL_DEFAULT: RealMeta = {
 }
 /** Título do painel e nome curto para o menu */
 export const REAL_TITLES: Record<string, [string, string]> = {
-  amazonia: ['Radar da Amazônia', 'Amazônia'],
-  sul: ['Radar do Sul do Brasil', 'Sul do Brasil'],
-  bangladesh: ['Radar de Bangladesh', 'Bangladesh'],
-  nepal: ['Radar do Nepal', 'Nepal'],
-  mocambique: ['Radar de Moçambique', 'Moçambique'],
+  amazonia: ['Rio Madeira agora', 'Rio Madeira (AM)'],
+  sul: ['Guaíba e Jacuí agora', 'Guaíba · Porto Alegre'],
+  bangladesh: ['Rios de Daca agora', 'Rios de Daca'],
+  nepal: ['Trishuli e geleiras agora', 'Nascentes do Trishuli'],
+  mocambique: ['Rio Limpopo agora', 'Rio Limpopo'],
+  tapajos: ['Rio Tapajós agora', 'Rio Tapajós (PA)'],
 }
 export const realTitle = (m: RealMeta) => REAL_TITLES[m.id]?.[0] ?? `Radar · ${m.nome}`
 export const realShort = (m: RealMeta) => REAL_TITLES[m.id]?.[1] ?? m.nome.split(' · ')[0]

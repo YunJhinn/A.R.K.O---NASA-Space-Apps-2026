@@ -6,23 +6,23 @@ import { USOS } from '../lib/usos'
 const ICONS = ['solo', 'alvo', 'casa', 'nuvem', 'arvore', 'agua']
 type Bi = [string, string]
 
-// Como o A.R.K.O sai de 4 regiões para o mundo inteiro, aberto para todos
+// Como o A.R.K.O Rios sai de 6 rios para qualquer rio do mundo, aberto para todos
 const ESCALA: { ic: string; t: Bi; d: Bi }[] = [
-  { ic: 'radar', t: ['Os satélites já cobrem o mundo', 'The satellites already cover the world'],
-    d: ['O NISAR mapeia quase toda a terra do planeta a cada 12 dias; o LHASA e o FIRMS da NASA também são globais. O dado para qualquer lugar já existe.', 'NISAR maps nearly all of Earth’s land every 12 days; NASA’s LHASA and FIRMS are global too. The data for any place already exists.'] },
-  { ic: 'alvo', t: ['Nova região em minutos', 'A new region in minutes'],
-    d: ['Para monitorar um lugar novo basta cadastrar a área e a órbita do satélite. O robô passa a baixar, comparar e publicar sozinho.', 'To monitor a new place you only register the area and the satellite orbit. The robot then downloads, compares and publishes on its own.'] },
+  { ic: 'radar', t: ['Os satélites já cobrem todos os rios', 'The satellites already cover every river'],
+    d: ['O Landsat fotografa o planeta desde os anos 80; o SWOT mede o nível de quase todo rio com mais de 100 m de largura; o NISAR vê o chão a cada 12 dias. O dado para qualquer rio já existe.', 'Landsat has photographed the planet since the 1980s; SWOT measures the level of nearly every river wider than 100 m; NISAR sees the ground every 12 days. The data for any river already exists.'] },
+  { ic: 'alvo', t: ['Um rio novo em minutos', 'A new river in minutes'],
+    d: ['Para acompanhar um rio novo basta desenhar a caixa sobre o trecho que abastece a cidade. O script calcula os 40 anos sozinho.', 'To follow a new river you only draw the box over the stretch that supplies the city. The script computes the 40 years by itself.'] },
   { ic: 'nuvem', t: ['Custo quase zero', 'Near-zero cost'],
-    d: ['Dados públicos da NASA, robô no GitHub Actions e site estático: dá para rodar sem servidor próprio e sem licença paga.', 'Public NASA data, a robot on GitHub Actions and a static site: it runs without its own server and without paid licenses.'] },
+    d: ['Dados públicos (NASA, USGS, CNES), robô no GitHub Actions e site estático: dá para rodar sem servidor próprio e sem licença paga.', 'Public data (NASA, USGS, CNES), a robot on GitHub Actions and a static site: it runs with no server of its own and no paid license.'] },
   { ic: 'casa', t: ['Aberto para todos', 'Open to everyone'],
-    d: ['Código aberto (licença MIT), dados abertos e método explicado: qualquer cidade, escola ou ONG pode usar, conferir e melhorar.', 'Open source (MIT license), open data and an explained method: any city, school or NGO can use, check and improve it.'] },
+    d: ['Código aberto (licença MIT), dados abertos e método explicado: qualquer companhia de água, escola ou comunidade pode usar, conferir e melhorar.', 'Open source (MIT license), open data and an explained method: any water utility, school or community can use, check and improve it.'] },
 ]
 
 const FASES: { t: Bi; d: Bi; hoje?: boolean }[] = [
-  { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['5 regiões reais (Amazônia, Sul do Brasil, Bangladesh, Nepal e Moçambique), atualização diária, previsões por cruzamento de dados e validação com desastres reais.', '5 real regions (Amazon, Southern Brazil, Bangladesh, Nepal and Mozambique), daily updates, forecasts from crossed data and validation against real disasters.'] },
-  { t: ['Fase 2 · Movimento do solo e qualquer lugar', 'Phase 2 · Ground motion and anywhere'], d: ['Nova fonte NISAR GUNW para alertas de encosta e geleira se mexendo; e a pessoa desenha a área no mapa para monitorar qualquer lugar.', 'New NISAR GUNW source for alerts of slopes and glaciers moving; and people draw an area on the map to monitor any place.'] },
-  { t: ['Fase 3 · Aviso que chega', 'Phase 3 · Warnings that reach people'], d: ['Alerta por WhatsApp, SMS e e-mail para quem acompanha uma região, e envio no padrão usado pela Defesa Civil (CAP).', 'Alerts by WhatsApp, SMS and e-mail to people following a region, and delivery in the standard used by civil defense (CAP).'] },
-  { t: ['Fase 4 · Países inteiros e API aberta', 'Phase 4 · Whole countries and an open API'], d: ['Cobertura contínua de países, API pública para governos, escolas e pesquisadores, e validação com desastres passados.', 'Continuous coverage of whole countries, a public API for governments, schools and researchers, and validation against past disasters.'] },
+  { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['6 rios que abastecem cidades, 40 anos de Landsat, nível do rio pelo SWOT, radar NISAR agora e validação com fatos reais no Tapajós.', '6 rivers that supply cities, 40 years of Landsat, river level from SWOT, NISAR radar now and validation against real facts on the Tapajós.'] },
+  { t: ['Fase 2 · Qualquer rio, e água subterrânea', 'Phase 2 · Any river, and groundwater'], d: ['A pessoa desenha o trecho do rio no mapa; somamos o GRACE-FO (NASA), que mede a água subterrânea perdida desde 2002, e o NISAR GUNW, que mede o chão afundando onde se bombeia água demais.', 'People draw the river stretch on the map; we add GRACE-FO (NASA), which measures groundwater lost since 2002, and NISAR GUNW, which measures ground sinking where too much water is pumped.'] },
+  { t: ['Fase 3 · Alerta antes da água piorar', 'Phase 3 · Alerts before the water gets worse'], d: ['Aviso automático para a companhia de água e a comunidade quando a turbidez sobe, a mata ciliar cai ou o rio desce abaixo do normal para a época.', 'Automatic alerts to the water utility and the community when turbidity rises, riverside forest drops or the river falls below normal for the season.'] },
+  { t: ['Fase 4 · Bacias inteiras e API aberta', 'Phase 4 · Whole basins and an open API'], d: ['Bacias inteiras ligadas (de onde vem o barro, para onde ele vai), API pública para governos, escolas e pesquisadores, e validação com medidas de laboratório.', 'Whole connected basins (where the mud comes from, where it goes), a public API for governments, schools and researchers, and validation with lab measurements.'] },
 ]
 
 /** Aba "Aplicações futuras": quem usa, como escala para o mundo e o que o NISAR ainda permite medir */
@@ -36,7 +36,7 @@ export function Future() {
         <div>
           <h1>{en ? 'Future applications' : 'Aplicações futuras'}</h1>
           <div className="answer"><span className="dot" style={{ background: 'var(--acc)' }} />
-            <span>{en ? 'From 5 regions to the whole world, open to anyone who needs to decide, teach or stay safe.' : 'De 5 regiões para o mundo inteiro, aberto para quem precisa decidir, ensinar ou se proteger.'}</span>
+            <span>{en ? 'From 6 rivers to any river in the world, open to anyone who needs to protect, decide or teach about drinking water.' : 'De 6 rios para qualquer rio do mundo, aberto para quem precisa proteger, decidir ou ensinar sobre a água que bebemos.'}</span>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@ export function Future() {
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
         <div style={{ background: 'linear-gradient(135deg,#0F1B33,#173A6B)', color: '#fff', padding: '18px 22px' }}>
           <div className="text-[11px] font-bold uppercase tracking-[.1em]" style={{ color: '#9CC3FF' }}>{en ? 'SCALABILITY' : 'ESCALABILIDADE'}</div>
-          <div className="mt-1 text-[18px] font-extrabold">{en ? 'How A.R.K.O becomes global and open' : 'Como o A.R.K.O vira mundial e de uso aberto'}</div>
+          <div className="mt-1 text-[18px] font-extrabold">{en ? 'How A.R.K.O Rivers becomes global and open' : 'Como o A.R.K.O Rios vira mundial e de uso aberto'}</div>
         </div>
         <div className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4">
           {ESCALA.map(e => (
@@ -79,8 +79,8 @@ export function Future() {
           </div>
           <p className="m-0 text-[13px] leading-relaxed" style={{ color: '#3C4B5E' }}>
             {en
-              ? 'GUNW (Geocoded Unwrapped Interferogram) is another NISAR product: it compares the phase of the radar wave between two passes and measures how many centimeters the ground moved. Today A.R.K.O uses GCOV, which shows what the surface looks like (water, vegetation, soil). Adding GUNW lets it see a slope or a glacier creeping before it collapses, like the signals found after the fact in Nepal. The same robot will download it, with the same free NASA Earthdata login.'
-              : 'O GUNW (interferograma desdobrado e georreferenciado) é outro produto do NISAR: ele compara a fase da onda do radar entre duas passagens e mede quantos centímetros o chão se moveu. Hoje o A.R.K.O usa o GCOV, que mostra como a superfície está (água, vegetação, solo). Com o GUNW, dá para ver uma encosta ou uma geleira se mexendo antes de desabar, como os sinais encontrados depois no Nepal. O mesmo robô vai baixá-lo, com o mesmo login gratuito do NASA Earthdata.'}
+              ? 'GUNW (Geocoded Unwrapped Interferogram) is another NISAR product: it compares the phase of the radar wave between two passes and measures how many centimeters the ground moved. For water, it shows land sinking where groundwater is over-pumped (as in Dhaka) and movement in dams and river banks. Together with GRACE-FO (groundwater since 2002), it completes the picture of water below the surface.'
+              : 'O GUNW (interferograma desdobrado e georreferenciado) é outro produto do NISAR: compara a fase da onda do radar entre duas passagens e mede quantos centímetros o chão se moveu. Para a água, ele mostra o solo afundando onde se bombeia água subterrânea demais (como em Daca) e o movimento de barragens e margens. Junto com o GRACE-FO (água subterrânea desde 2002), completa a visão da água que não se vê.'}
           </p>
         </div>
         <div className="px-5 pb-5">
@@ -117,8 +117,8 @@ export function Future() {
           ))}
         </div>
         <div className="px-5 pb-5 text-[13.5px]" style={{ color: '#2B3A4D' }}>
-          <b>{en ? 'Next for A.R.K.O: ' : 'Próximo passo do A.R.K.O: '}</b>
-          {en ? 'add the NISAR GUNW product to measure ground motion and see a slope moving before it slides, as happened before the Nepal collapse.' : 'adicionar o produto NISAR GUNW para medir o movimento do solo e ver a encosta se mexendo antes de deslizar, como aconteceu antes do colapso no Nepal.'}
+          <b>{en ? 'Next for A.R.K.O Rivers: ' : 'Próximo passo do A.R.K.O Rios: '}</b>
+          {en ? 'add GRACE-FO and NISAR GUNW to follow the water below ground, and let anyone draw their own river stretch.' : 'somar o GRACE-FO e o NISAR GUNW para acompanhar a água debaixo da terra, e deixar qualquer pessoa desenhar o trecho do seu rio.'}
         </div>
       </div>
 
@@ -126,18 +126,20 @@ export function Future() {
         <h2 style={{ margin: '0 0 8px', fontSize: 17 }}>{en ? 'Honest limits of today’s data' : 'Limites honestos dos dados de hoje'}</h2>
         <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[13.5px]" style={{ color: '#2B3A4D' }}>
           {SCI.limits.map(b => <li key={b[0]} className="flex gap-2"><span style={{ color: '#DC2626', fontWeight: 800 }}>!</span>{L(lang, b)}</li>)}
-          <li className="flex gap-2"><span style={{ color: '#DC2626', fontWeight: 800 }}>!</span>{en ? 'Forecasts use rules made by the team and have not yet been validated against past disasters.' : 'As previsões usam regras criadas pela equipe e ainda não foram validadas com desastres passados.'}</li>
+          <li className="flex gap-2"><span style={{ color: '#DC2626', fontWeight: 800 }}>!</span>{en ? 'Long-term trends use Landsat (1985 on), with slightly different sensors over time; projections to 2030 assume the last 15 years continue and are a warning, not a forecast.' : 'As tendências longas usam o Landsat (desde 1985), com sensores um pouco diferentes ao longo do tempo; as projeções para 2030 supõem que os últimos 15 anos continuem e são um alerta, não uma previsão.'}</li>
         </ul>
       </div>
 
       <div className="card flex flex-wrap items-center gap-3" style={{ padding: 16 }}>
         <b style={{ fontSize: 13 }}>{en ? 'Open data and sources:' : 'Dados abertos e fontes:'}</b>
+        <a href="https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2" target="_blank" rel="noreferrer" className="rounded-full border px-3 py-1 text-[12.5px] font-bold" style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#BCD3E4', color: '#1E2A3A' }}>Landsat</a>
+        <a href="https://podaac.jpl.nasa.gov/SWOT" target="_blank" rel="noreferrer" className="rounded-full border px-3 py-1 text-[12.5px] font-bold" style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#BCD3E4', color: '#1E2A3A' }}>SWOT</a>
         {SCI.sources.map(([n, u]) => <a key={u} href={u} target="_blank" rel="noreferrer" className="rounded-full border px-3 py-1 text-[12.5px] font-bold" style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#BCD3F7', color: '#2563EB' }}>{n} ↗</a>)}
         <a href="https://gpm.nasa.gov/landslides/projects.html" target="_blank" rel="noreferrer" className="rounded-full border px-3 py-1 text-[12.5px] font-bold" style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#BCD3F7', color: '#2563EB' }}>NASA LHASA ↗</a>
         <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noreferrer" className="rounded-full border px-3 py-1 text-[12.5px] font-bold" style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#BCD3F7', color: '#2563EB' }}>NASA FIRMS ↗</a>
         <span className="text-[12.5px]" style={{ color: '#5B6B7F' }}>{en ? 'Open source · MIT license' : 'Código aberto · licença MIT'}</span>
         <span style={{ flex: 1 }} />
-        <button className="btn pri" style={{ flex: 'none', width: 'auto' }} onClick={() => go('inicio', 'map')}>{en ? 'Back to the map →' : 'Voltar ao mapa →'}</button>
+        <button className="btn pri" style={{ flex: 'none', width: 'auto' }} onClick={() => go('historico')}>{en ? 'Back to river history →' : 'Voltar ao histórico do rio →'}</button>
       </div>
     </section>
   )

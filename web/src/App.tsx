@@ -10,9 +10,10 @@ import { PhoneView } from './components/phone/Phone'
 import { Onboarding } from './components/Onboarding'
 import { Future } from './components/Future'
 import { Validacao } from './components/Validacao'
+import { Historico } from './components/Historico'
 
 function Screens() {
-  const { s, t, ds } = useApp()
+  const { s, t } = useApp()
   const [menu, setMenu] = useState(false)
   return (
     <>
@@ -20,12 +21,13 @@ function Screens() {
       <div className="mbar">
         <button type="button" aria-label={t('Abrir menu')} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? '✕' : '☰'}</button>
         <img src={brandWord} alt="A.R.K.O" style={{ height: 13 }} />
-        <span>{t(ds.realMeta.nome.split(' · ')[0])}</span>
+        <span>{t('Rios')}</span>
       </div>
       {menu && <div className="mshade" onClick={() => setMenu(false)} />}
       <div className="app">
         <Sidebar open={menu} onNav={() => setMenu(false)} />
         <main className="main">
+          {s.view === 'historico' && <Historico />}
           {s.view === 'inicio' && <Home />}
           {s.view === 'comparar' && <Compare />}
           {s.view === 'celular' && <PhoneView />}

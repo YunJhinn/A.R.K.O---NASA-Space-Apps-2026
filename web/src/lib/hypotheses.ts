@@ -33,6 +33,18 @@ const HYPO: Record<string, RegionHypo> = {
       { text: ['O rio Trishuli subiu até 9 metros em 30 minutos, em plena época de monção.', 'The Trishuli river rose up to 9 metres in 30 minutes, in the middle of the monsoon season.'], src: 'g1', url: 'https://g1.globo.com/meio-ambiente/noticia/2026/08/28/entenda-a-formacao-de-geleiras-e-o-rompimento-que-provocou-enchente-repentina-no-nepal.ghtml' },
     ],
   },
+  tapajos: {
+    main: ['O médio Tapajós concentra garimpo de ouro: dragas e desmonte das margens jogam barro na água, e na vazante o rio fica mais baixo e mais sensível.', 'The middle Tapajós concentrates gold mining: dredges and bank clearing dump mud into the water, and in the low-water season the river is lower and more sensitive.'],
+    byType: {
+      agua: ['Água subindo ou espalhando na várzea: começo da cheia ou chuva forte na bacia.', 'Water rising or spreading on the floodplain: start of the flood season or heavy rain in the basin.'],
+      solo: ['Água recuando e expondo bancos de areia: vazante, que foi recorde em 2024.', 'Water receding and exposing sandbanks: low-water season, which hit a record in 2024.'],
+      arvore: ['Margem perdendo vegetação: possível garimpo, desmatamento ou abertura de área.', 'Bank losing vegetation: possible mining, clearing or new land opening.'],
+    },
+    context: [
+      { text: ['A lama do garimpo mudou a cor da água em Alter do Chão em 2022, segundo o MapBiomas.', 'Mining mud changed the colour of the water at Alter do Chão in 2022, according to MapBiomas.'], src: 'MapBiomas', url: 'https://www.oeco.org.br/wp-content/uploads/2022/01/Release-Alter_final.pdf' },
+      { text: ['Em 2024 o Tapajós teve a menor mínima em Itaituba desde 1974 (83 cm).', 'In 2024 the Tapajós had its lowest level at Itaituba since 1974 (83 cm).'], src: 'SGB', url: 'https://rigeo.sgb.gov.br/jspui/bitstream/doc/25671/1/250911_nota%20tecnica_itaituba.pdf' },
+    ],
+  },
   mocambique: {
     main: ['A enchente de janeiro de 2026: semanas de chuva forte no sul da África encheram o rio Limpopo, que transbordou sobre a planície de Chókwè e cobriu casas e lavouras.', 'The January 2026 flood: weeks of heavy rain across southern Africa swelled the Limpopo River, which overflowed onto the Chókwè plain, covering homes and farmland.'],
     byType: {
@@ -133,6 +145,7 @@ const SEASON: Record<string, { name: Bi; months: number[]; kind: 'chuva' | 'seca
   bangladesh: [{ name: ['monção (jun–out)', 'monsoon (Jun–Oct)'], months: [6, 7, 8, 9, 10], kind: 'chuva' }],
   amazonia: [{ name: ['estação seca do sul da Amazônia (jul–nov)', 'southern Amazon dry season (Jul–Nov)'], months: [7, 8, 9, 10, 11], kind: 'seca' }],
   nepal: [{ name: ['monção (jun–set)', 'monsoon (Jun–Sep)'], months: [6, 7, 8, 9], kind: 'chuva' }],
+  tapajos: [{ name: ['vazante (ago–nov): rio baixo, garimpo mais ativo', 'low water (Aug–Nov): low river, more mining activity'], months: [8, 9, 10, 11], kind: 'seca' }],
   mocambique: [{ name: ['estação das chuvas (nov–mar)', 'rainy season (Nov–Mar)'], months: [11, 12, 1, 2, 3], kind: 'chuva' }],
   sul: [{ name: ['época de semeadura do arroz irrigado (out–dez)', 'irrigated rice sowing season (Oct–Dec)'], months: [10, 11, 12], kind: 'arroz' }],
 }

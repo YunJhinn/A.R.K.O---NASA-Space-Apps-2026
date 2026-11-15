@@ -64,7 +64,7 @@ export interface MyPlace {
 }
 
 const initial: State = {
-  view: 'inicio', lang: 'pt', src: 'real', preset: '30d', custom: null, type: 'todos', prev: true, radar: true, sel: null, risk: null,
+  view: 'historico', lang: 'pt', src: 'real', preset: '30d', custom: null, type: 'todos', prev: true, radar: true, sel: null, risk: null,
   profile: null, colorBy: 'tipo', ob: false, obStep: 0, tut: null,
   cmp: { k: 'arvore', a: 'a', b: 'b', swipe: 50 },
   phone: { tab: 'alertas', type: 'todos', sel: null, cType: 'arvore', when: 'depois' },
@@ -124,7 +124,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ob = localStorage.getItem('arko-ob') !== '1' && !location.hash
       localStorage.setItem('arko-ob', '1')
       const h = location.hash.slice(1)
-      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao') view = h
+      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao' || h === 'historico') view = h
     } catch { /* sem localStorage */ }
     let favs: MyPlace[] = [], recents: MyPlace[] = []
     try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
@@ -199,7 +199,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [s.lang])
   useEffect(() => { try { if (location.hash !== '#' + s.view) history.replaceState(null, '', '#' + s.view) } catch { /* ok */ } }, [s.view])
   useEffect(() => {
-    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao') set({ view: h }) }
+    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao' || h === 'historico') set({ view: h }) }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])

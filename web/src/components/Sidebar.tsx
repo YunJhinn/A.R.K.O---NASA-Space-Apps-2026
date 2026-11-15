@@ -13,24 +13,25 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
   const real = s.src === 'real'
   const [mine, setMine] = useState(false)
   const nav: [string, string, () => void, boolean, string?][] = [
-    ['casa', 'Início', () => go('inicio'), s.view === 'inicio' && s.focus !== 'alerts'],
+    ['relogio', 'Histórico do rio', () => go('historico'), s.view === 'historico'],
+    ['radar', 'Agora no rio', () => go('inicio'), s.view === 'inicio' && s.focus !== 'alerts'],
     ['sino', 'Alertas', () => go('inicio', 'alerts'), s.view === 'inicio' && s.focus === 'alerts', String(ds.alerts.length)],
-    ['grafico', 'Comparar períodos', () => go('comparar'), s.view === 'comparar'],
+    ['grafico', 'Comparar passagens', () => go('comparar'), s.view === 'comparar'],
     ['alvo', 'Validação', () => go('validacao'), s.view === 'validacao'],
     ['celular', 'Versão celular', () => go('celular'), s.view === 'celular'],
-    ['radar', 'Aplicações futuras', () => go('futuro'), s.view === 'futuro'],
+    ['mapa', 'Aplicações futuras', () => go('futuro'), s.view === 'futuro'],
     ['play', 'Como usar', () => set({ ob: true, obStep: 0 }), false],
   ]
   return (
     <aside className={cx('side side2', open && 'open')} aria-label={t('Menu principal')}>
       <div className="brand">
         <img id="brandIcon" src={brandIcon} alt="" width={36} height={36} style={{ borderRadius: 9, border: '1px solid var(--bd)' }} />
-        <div><img src={brandWord} alt="A.R.K.O" style={{ height: 14, display: 'block', marginBottom: 4 }} /><small>{t('Radar Mundial')}</small></div>
+        <div><img src={brandWord} alt="A.R.K.O" style={{ height: 14, display: 'block', marginBottom: 4 }} /><small>{t('Rios · água potável')}</small></div>
       </div>
       <div className="sgroup">
-        <div className="slbl">{t('REGIÃO')}</div>
+        <div className="slbl">{t('RIO (RADAR AGORA)')}</div>
         <select value={ds.realMeta.id} onChange={e => { setRegion(e.target.value, { src: 'real' }); onNav?.() }} aria-label={t('Região')} className="ssel">
-          {ds.realIndex.map(m => <option key={m.id} value={m.id}>{t(realShort(m))} · {t(m.nome.split(' · ')[0].split(' e ')[0])}</option>)}
+          {ds.realIndex.map(m => <option key={m.id} value={m.id}>{t(realShort(m))}</option>)}
         </select>
         <button className="smine" aria-expanded={mine} onClick={() => setMine(!mine)}>★ {t('Minhas regiões')} <span>{mine ? '▴' : '▾'}</span></button>
         {mine && <MyRegions />}

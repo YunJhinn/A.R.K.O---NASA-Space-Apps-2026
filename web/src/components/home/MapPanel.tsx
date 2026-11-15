@@ -43,7 +43,7 @@ export function MapPanel() {
   return (
     <div className="card panel" id="mapPanel" ref={ref}>
       <div className="ph ph2">
-        <div className="ttl"><h2>{t('Mapa de mudanças')}</h2><p>{t(sub)}</p></div>
+        <div className="ttl"><h2>{t('Mudanças no rio e nas margens')}</h2><p>{t(sub)}</p></div>
         <div className="act">
           <SciButtons kind={s.type} compact />
           <div className="seg" role="group" aria-label={t('Colorir focos por')} title={t('Colorir por')}>

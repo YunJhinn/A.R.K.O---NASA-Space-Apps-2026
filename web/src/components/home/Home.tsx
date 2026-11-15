@@ -9,7 +9,7 @@ import { StatusBanner } from './StatusBanner'
 
 /** v5 · tela inicial: região e data → faixa de status → mapa e alertas lado a lado */
 export function Home() {
-  const { s, t, ds } = useApp()
+  const { s, t, ds, go } = useApp()
   const real = s.src === 'real', en = s.lang === 'en'
   const sub = real
     ? (ds.realMeta.evento
@@ -24,6 +24,10 @@ export function Home() {
         <div className="ttl"><h1>{t(real ? realTitle(ds.realMeta) : ds.region.title)}<FavButton /></h1><div className="sub">{sub}</div></div>
         <SearchBox />
         <PeriodButton />
+      </div>
+      <div className="rounded-xl px-4 py-2.5 text-[13px]" style={{ background: '#EFF8FF', border: '1px solid #B2DDFF', color: '#1849A9' }}>
+        💧 {en ? 'This is the river NOW (NISAR radar, every ~12 days, through clouds). For 40 years of history and where the water is heading, open ' : 'Este é o rio AGORA (radar NISAR, a cada ~12 dias, através das nuvens). Para 40 anos de história e para onde a água está indo, abra '}
+        <button type="button" onClick={() => go('historico')} style={{ color: '#1D4ED8', fontWeight: 700, textDecoration: 'underline' }}>{en ? 'River history' : 'Histórico do rio'}</button>.
       </div>
       <StatusBanner />
       <div className="body">
