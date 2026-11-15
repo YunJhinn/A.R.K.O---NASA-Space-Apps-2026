@@ -1,0 +1,404 @@
+{
+ "id": "joaoleite",
+ "nome": "Reservatório do João Leite (abastece Goiânia)",
+ "pais": "Brasil · GO",
+ "bbox": [
+  -49.27,
+  -16.62,
+  -49.12,
+  -16.47
+ ],
+ "meses": [
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "cidade": "Goiânia",
+ "pressao": "crescimento urbano e agrícola na bacia, secas no Cerrado",
+ "montanha": false,
+ "gerado": "2026-11-14",
+ "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
+ "serie": [
+  {
+   "ano": 1985,
+   "imagens": [
+    "1985-06-05 L5",
+    "1985-07-23 L5"
+   ],
+   "agua_km2": 0.16,
+   "mata_ciliar": 28.6,
+   "solo_exposto": 3.8,
+   "foto": "fotos/joaoleite_1985.jpg"
+  },
+  {
+   "ano": 1986,
+   "imagens": [
+    "1986-08-11 L5"
+   ],
+   "agua_km2": 0.18,
+   "mata_ciliar": 3.6,
+   "solo_exposto": 7.0,
+   "foto": "fotos/joaoleite_1986.jpg"
+  },
+  {
+   "ano": 1989,
+   "imagens": [
+    "1989-05-31 L5",
+    "1989-09-04 L5",
+    "1989-08-19 L5"
+   ],
+   "agua_km2": 0.19,
+   "mata_ciliar": 9.1,
+   "solo_exposto": 2.4,
+   "foto": "fotos/joaoleite_1989.jpg"
+  },
+  {
+   "ano": 1990,
+   "imagens": [
+    "1990-08-22 L5"
+   ],
+   "agua_km2": 0.15,
+   "mata_ciliar": 2.0,
+   "solo_exposto": 10.2,
+   "foto": "fotos/joaoleite_1990.jpg"
+  },
+  {
+   "ano": 1992,
+   "imagens": [
+    "1992-08-27 L5"
+   ],
+   "agua_km2": 0.21,
+   "mata_ciliar": 0.5,
+   "solo_exposto": 10.0,
+   "foto": "fotos/joaoleite_1992.jpg"
+  },
+  {
+   "ano": 1993,
+   "imagens": [
+    "1993-07-29 L5"
+   ],
+   "agua_km2": 0.2,
+   "mata_ciliar": 2.9,
+   "solo_exposto": 9.3,
+   "foto": "fotos/joaoleite_1993.jpg"
+  },
+  {
+   "ano": 1994,
+   "imagens": [
+    "1994-09-18 L5"
+   ],
+   "agua_km2": 0.29,
+   "turbidez": 8.98,
+   "mata_ciliar": 0.0,
+   "solo_exposto": 43.7,
+   "foto": "fotos/joaoleite_1994.jpg"
+  },
+  {
+   "ano": 1995,
+   "imagens": [
+    "1995-09-21 L5"
+   ],
+   "agua_km2": 0.87,
+   "turbidez": 7.92,
+   "mata_ciliar": 1.1,
+   "solo_exposto": 19.8,
+   "foto": "fotos/joaoleite_1995.jpg"
+  },
+  {
+   "ano": 1996,
+   "imagens": [
+    "1996-08-22 L5",
+    "1996-06-19 L5",
+    "1996-07-05 L5"
+   ],
+   "agua_km2": 0.25,
+   "mata_ciliar": 12.1,
+   "solo_exposto": 2.2,
+   "foto": "fotos/joaoleite_1996.jpg"
+  },
+  {
+   "ano": 1997,
+   "imagens": [
+    "1997-07-08 L5"
+   ],
+   "agua_km2": 5.96,
+   "turbidez": -2.6,
+   "mata_ciliar": 35.5,
+   "solo_exposto": 3.5,
+   "foto": "fotos/joaoleite_1997.jpg"
+  },
+  {
+   "ano": 1998,
+   "imagens": [
+    "1998-06-09 L5",
+    "1998-05-01 L5",
+    "1998-08-28 L5"
+   ],
+   "agua_km2": 0.29,
+   "mata_ciliar": 38.8,
+   "solo_exposto": 1.8,
+   "foto": "fotos/joaoleite_1998.jpg"
+  },
+  {
+   "ano": 1999,
+   "imagens": [
+    "1999-06-28 L5",
+    "1999-07-14 L5"
+   ],
+   "agua_km2": 0.58,
+   "turbidez": 5.14,
+   "mata_ciliar": 10.8,
+   "solo_exposto": 3.7,
+   "foto": "fotos/joaoleite_1999.jpg"
+  },
+  {
+   "ano": 2000,
+   "imagens": [
+    "2000-09-18 L5",
+    "2000-06-14 L5"
+   ],
+   "agua_km2": 0.38,
+   "turbidez": 4.35,
+   "mata_ciliar": 23.55,
+   "solo_exposto": 3.85,
+   "foto": "fotos/joaoleite_2000.jpg"
+  },
+  {
+   "ano": 2001,
+   "imagens": [
+    "2001-07-19 L5"
+   ],
+   "agua_km2": 0.19,
+   "mata_ciliar": 17.6,
+   "solo_exposto": 2.7,
+   "foto": "fotos/joaoleite_2001.jpg"
+  },
+  {
+   "ano": 2002,
+   "imagens": [
+    "2002-08-07 L5"
+   ],
+   "agua_km2": 0.35,
+   "turbidez": 3.96,
+   "mata_ciliar": 8.0,
+   "solo_exposto": 9.3,
+   "foto": "fotos/joaoleite_2002.jpg"
+  },
+  {
+   "ano": 2004,
+   "imagens": [
+    "2004-07-11 L5",
+    "2004-08-28 L5"
+   ],
+   "agua_km2": 0.46,
+   "turbidez": 4.54,
+   "mata_ciliar": 10.4,
+   "solo_exposto": 14.45,
+   "foto": "fotos/joaoleite_2004.jpg"
+  },
+  {
+   "ano": 2005,
+   "imagens": [
+    "2005-08-15 L5",
+    "2005-08-31 L5"
+   ],
+   "agua_km2": 0.45,
+   "turbidez": 5.13,
+   "mata_ciliar": 3.0,
+   "solo_exposto": 18.95,
+   "foto": "fotos/joaoleite_2005.jpg"
+  },
+  {
+   "ano": 2006,
+   "imagens": [
+    "2006-07-17 L5",
+    "2006-07-01 L5"
+   ],
+   "agua_km2": 0.47,
+   "turbidez": 4.28,
+   "mata_ciliar": 17.9,
+   "solo_exposto": 2.95,
+   "foto": "fotos/joaoleite_2006.jpg"
+  },
+  {
+   "ano": 2008,
+   "imagens": [
+    "2008-08-07 L5"
+   ],
+   "agua_km2": 0.47,
+   "turbidez": 4.7,
+   "mata_ciliar": 10.0,
+   "solo_exposto": 5.8,
+   "foto": "fotos/joaoleite_2008.jpg"
+  },
+  {
+   "ano": 2009,
+   "imagens": [
+    "2009-09-27 L5",
+    "2009-08-10 L5",
+    "2009-06-07 L5"
+   ],
+   "agua_km2": 0.49,
+   "turbidez": 5.28,
+   "mata_ciliar": 44.8,
+   "solo_exposto": 2.6,
+   "foto": "fotos/joaoleite_2009.jpg"
+  },
+  {
+   "ano": 2010,
+   "imagens": [
+    "2010-07-12 L5",
+    "2010-06-10 L5",
+    "2010-05-25 L5"
+   ],
+   "agua_km2": 6.4,
+   "turbidez": 2.6,
+   "mata_ciliar": 24.85,
+   "solo_exposto": 5.45,
+   "foto": "fotos/joaoleite_2010.jpg"
+  },
+  {
+   "ano": 2013,
+   "imagens": [
+    "2013-05-17 L8"
+   ],
+   "agua_km2": 11.65,
+   "turbidez": 1.7,
+   "mata_ciliar": 79.9,
+   "solo_exposto": 1.5,
+   "foto": "fotos/joaoleite_2013.jpg"
+  },
+  {
+   "ano": 2014,
+   "imagens": [
+    "2014-06-21 L8",
+    "2014-09-09 L8",
+    "2014-07-07 L8"
+   ],
+   "agua_km2": 12.11,
+   "turbidez": 2.81,
+   "mata_ciliar": 39.3,
+   "solo_exposto": 1.8,
+   "foto": "fotos/joaoleite_2014.jpg"
+  },
+  {
+   "ano": 2015,
+   "imagens": [
+    "2015-05-23 L8"
+   ],
+   "agua_km2": 7.1,
+   "turbidez": 4.43,
+   "mata_ciliar": 70.7,
+   "solo_exposto": 4.5,
+   "foto": "fotos/joaoleite_2015.jpg"
+  },
+  {
+   "ano": 2016,
+   "imagens": [
+    "2016-06-10 L8"
+   ],
+   "agua_km2": 11.4,
+   "turbidez": 0.79,
+   "mata_ciliar": 57.3,
+   "solo_exposto": 2.0,
+   "foto": "fotos/joaoleite_2016.jpg"
+  },
+  {
+   "ano": 2017,
+   "imagens": [
+    "2017-07-31 L8",
+    "2017-06-29 L8"
+   ],
+   "agua_km2": 12.2,
+   "turbidez": 3.29,
+   "mata_ciliar": 52.05,
+   "solo_exposto": 2.25,
+   "foto": "fotos/joaoleite_2017.jpg"
+  },
+  {
+   "ano": 2018,
+   "imagens": [
+    "2018-06-16 L8",
+    "2018-09-04 L8"
+   ],
+   "agua_km2": 11.72,
+   "turbidez": 1.35,
+   "mata_ciliar": 46.05,
+   "solo_exposto": 2.55,
+   "foto": "fotos/joaoleite_2018.jpg"
+  },
+  {
+   "ano": 2019,
+   "imagens": [
+    "2019-08-22 L8",
+    "2019-06-19 L8",
+    "2019-05-18 L8"
+   ],
+   "agua_km2": 11.97,
+   "turbidez": 1.07,
+   "mata_ciliar": 67.9,
+   "solo_exposto": 1.2,
+   "foto": "fotos/joaoleite_2019.jpg"
+  },
+  {
+   "ano": 2020,
+   "imagens": [
+    "2020-06-21 L8",
+    "2020-07-23 L8"
+   ],
+   "agua_km2": 11.7,
+   "turbidez": 0.97,
+   "mata_ciliar": 47.95,
+   "solo_exposto": 2.3,
+   "foto": "fotos/joaoleite_2020.jpg"
+  },
+  {
+   "ano": 2022,
+   "imagens": [
+    "2022-08-30 L8"
+   ],
+   "agua_km2": 11.04,
+   "turbidez": 2.97,
+   "mata_ciliar": 13.7,
+   "solo_exposto": 14.1,
+   "foto": "fotos/joaoleite_2022.jpg"
+  },
+  {
+   "ano": 2023,
+   "imagens": [
+    "2023-08-09 L9"
+   ],
+   "agua_km2": 9.48,
+   "turbidez": 2.62,
+   "mata_ciliar": 26.9,
+   "solo_exposto": 8.6,
+   "foto": "fotos/joaoleite_2023.jpg"
+  },
+  {
+   "ano": 2025,
+   "imagens": [
+    "2025-07-21 L8",
+    "2025-06-27 L9"
+   ],
+   "agua_km2": 11.93,
+   "turbidez": 1.46,
+   "mata_ciliar": 41.9,
+   "solo_exposto": 3.15,
+   "foto": "fotos/joaoleite_2025.jpg"
+  },
+  {
+   "ano": 2026,
+   "imagens": [
+    "2026-07-08 L8"
+   ],
+   "agua_km2": 11.55,
+   "turbidez": 1.17,
+   "mata_ciliar": 53.8,
+   "solo_exposto": 2.7,
+   "foto": "fotos/joaoleite_2026.jpg"
+  }
+ ],
+ "inicio_analise": 2010
+}

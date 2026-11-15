@@ -17,7 +17,7 @@ export function AlertPanel() {
   const high = cnt.Alto
   const ref = useRef<HTMLDivElement>(null)
   const [all, setAll] = useState(false)
-  const [aba, setAba] = useState<'prev' | 'al'>('prev')
+  const [aba, setAba] = useState<'prev' | 'al'>('al')
   useEffect(() => { if (s.focus === 'alerts') setAba('al') }, [s.focus])
   const prevOn = real && aba === 'prev'
   useEffect(() => { if (s.focus === 'alerts') ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }, [s.focus])
@@ -32,7 +32,7 @@ export function AlertPanel() {
         <b>{t('Riscos para a água')}</b>
         <span className="alcount"><i />{ds.alerts.length} · {high} {s.lang === 'en' ? 'HIGH' : 'ALTO'}</span>
       </div>
-      {real && (
+      {false && (
         <div className="pv-tabs" role="tablist">
           <button role="tab" aria-selected={aba === 'prev'} className={cx(aba === 'prev' && 'on')} onClick={() => setAba('prev')}>{s.lang === 'en' ? 'Forecast' : 'Previsão'}</button>
           <button role="tab" aria-selected={aba === 'al'} className={cx(aba === 'al' && 'on')} onClick={() => setAba('al')}>{s.lang === 'en' ? 'Alerts' : 'Alertas'} <span>{ds.alerts.length}</span></button>

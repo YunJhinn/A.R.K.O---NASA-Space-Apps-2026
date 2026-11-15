@@ -19,8 +19,8 @@ const ESCALA: { ic: string; t: Bi; d: Bi }[] = [
 ]
 
 const FASES: { t: Bi; d: Bi; hoje?: boolean }[] = [
-  { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['6 rios que abastecem cidades, 40 anos de Landsat, nível do rio pelo SWOT, radar NISAR agora e validação com fatos reais no Tapajós.', '6 rivers that supply cities, 40 years of Landsat, river level from SWOT, NISAR radar now and validation against real facts on the Tapajós.'] },
-  { t: ['Fase 2 · Qualquer rio, e água subterrânea', 'Phase 2 · Any river, and groundwater'], d: ['A pessoa desenha o trecho do rio no mapa; somamos o GRACE-FO (NASA), que mede a água subterrânea perdida desde 2002, e o NISAR GUNW, que mede o chão afundando onde se bombeia água demais.', 'People draw the river stretch on the map; we add GRACE-FO (NASA), which measures groundwater lost since 2002, and NISAR GUNW, which measures ground sinking where too much water is pumped.'] },
+  { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['10 rios (4 em Goiás), 40 anos de Landsat, monitor contínuo HLS (2–5 dias), nível pelo SWOT, 7 aquíferos pelo GRACE desde 2002, radar NISAR e validação com fatos reais.', '10 rivers (4 in Goiás), 40 years of Landsat, HLS continuous monitor (2–5 days), level from SWOT, 7 aquifers from GRACE since 2002, NISAR radar and validation against real facts.'] },
+  { t: ['Fase 2 · Qualquer rio e água subterrânea separada', 'Phase 2 · Any river and separated groundwater'], d: ['A pessoa desenha o trecho do rio no mapa; separamos a água subterrânea do GRACE com modelos de umidade do solo (GLDAS) e somamos o NISAR GUNW, que mede o chão afundando onde se bombeia água demais.', 'People draw the river stretch on the map; we separate groundwater in GRACE using soil-moisture models (GLDAS) and add NISAR GUNW, which measures ground sinking where too much water is pumped.'] },
   { t: ['Fase 3 · Alerta antes da água piorar', 'Phase 3 · Alerts before the water gets worse'], d: ['Aviso automático para a companhia de água e a comunidade quando a turbidez sobe, a mata ciliar cai ou o rio desce abaixo do normal para a época.', 'Automatic alerts to the water utility and the community when turbidity rises, riverside forest drops or the river falls below normal for the season.'] },
   { t: ['Fase 4 · Bacias inteiras e API aberta', 'Phase 4 · Whole basins and an open API'], d: ['Bacias inteiras ligadas (de onde vem o barro, para onde ele vai), API pública para governos, escolas e pesquisadores, e validação com medidas de laboratório.', 'Whole connected basins (where the mud comes from, where it goes), a public API for governments, schools and researchers, and validation with lab measurements.'] },
 ]
@@ -36,7 +36,7 @@ export function Future() {
         <div>
           <h1>{en ? 'Future applications' : 'Aplicações futuras'}</h1>
           <div className="answer"><span className="dot" style={{ background: 'var(--acc)' }} />
-            <span>{en ? 'From 6 rivers to any river in the world, open to anyone who needs to protect, decide or teach about drinking water.' : 'De 6 rios para qualquer rio do mundo, aberto para quem precisa proteger, decidir ou ensinar sobre a água que bebemos.'}</span>
+            <span>{en ? 'From 10 rivers and 7 aquifers to any river and aquifer in the world, open to anyone who needs to protect, decide or teach about drinking water.' : 'De 10 rios e 7 aquíferos para qualquer rio e aquífero do mundo, aberto para quem precisa proteger, decidir ou ensinar sobre a água que bebemos.'}</span>
           </div>
         </div>
       </div>

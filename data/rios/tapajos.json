@@ -42,7 +42,8 @@
    "agua_km2": 52.95,
    "turbidez": 6.22,
    "mata_ciliar": 85.65,
-   "solo_exposto": 1.45
+   "solo_exposto": 1.45,
+   "foto": "fotos/tapajos_1986.jpg"
   },
   {
    "ano": 1987,
@@ -54,7 +55,8 @@
    "agua_km2": 52.36,
    "turbidez": 8.69,
    "mata_ciliar": 75.2,
-   "solo_exposto": 2.1
+   "solo_exposto": 2.1,
+   "foto": "fotos/tapajos_1987.jpg"
   },
   {
    "ano": 1988,
@@ -66,7 +68,8 @@
    "agua_km2": 53.05,
    "turbidez": 10.12,
    "mata_ciliar": 79.5,
-   "solo_exposto": 1.6
+   "solo_exposto": 1.6,
+   "foto": "fotos/tapajos_1988.jpg"
   },
   {
    "ano": 1989,
@@ -77,7 +80,8 @@
    "agua_km2": 51.64,
    "turbidez": 14.18,
    "mata_ciliar": 72.9,
-   "solo_exposto": 3.2
+   "solo_exposto": 3.2,
+   "foto": "fotos/tapajos_1989.jpg"
   },
   {
    "ano": 1990,
@@ -100,7 +104,8 @@
    "agua_km2": 54.21,
    "turbidez": 10.29,
    "mata_ciliar": 84.3,
-   "solo_exposto": 0.1
+   "solo_exposto": 0.1,
+   "foto": "fotos/tapajos_1991.jpg"
   },
   {
    "ano": 1992,
@@ -111,7 +116,8 @@
    "agua_km2": 44.63,
    "turbidez": 8.34,
    "mata_ciliar": 67.4,
-   "solo_exposto": 6.65
+   "solo_exposto": 6.65,
+   "foto": "fotos/tapajos_1992.jpg"
   },
   {
    "ano": 1993,
@@ -122,7 +128,8 @@
    "agua_km2": 53.45,
    "turbidez": 7.11,
    "mata_ciliar": 84.6,
-   "solo_exposto": 0.95
+   "solo_exposto": 0.95,
+   "foto": "fotos/tapajos_1993.jpg"
   },
   {
    "ano": 1994,
@@ -133,7 +140,8 @@
    "agua_km2": 55.84,
    "turbidez": 7.33,
    "mata_ciliar": 80.8,
-   "solo_exposto": 0.3
+   "solo_exposto": 0.3,
+   "foto": "fotos/tapajos_1994.jpg"
   },
   {
    "ano": 1995,
@@ -157,7 +165,8 @@
    "agua_km2": 47.55,
    "turbidez": 8.61,
    "mata_ciliar": 65.3,
-   "solo_exposto": 6.2
+   "solo_exposto": 6.2,
+   "foto": "fotos/tapajos_1996.jpg"
   },
   {
    "ano": 1997,
@@ -169,7 +178,8 @@
    "agua_km2": 52.35,
    "turbidez": 6.33,
    "mata_ciliar": 68.4,
-   "solo_exposto": 2.6
+   "solo_exposto": 2.6,
+   "foto": "fotos/tapajos_1997.jpg"
   },
   {
    "ano": 1998,
@@ -181,7 +191,8 @@
    "agua_km2": 50.98,
    "turbidez": 3.31,
    "mata_ciliar": 86.0,
-   "solo_exposto": 1.2
+   "solo_exposto": 1.2,
+   "foto": "fotos/tapajos_1998.jpg"
   },
   {
    "ano": 1999,
@@ -193,7 +204,8 @@
    "agua_km2": 51.63,
    "turbidez": 3.47,
    "mata_ciliar": 83.9,
-   "solo_exposto": 0.9
+   "solo_exposto": 0.9,
+   "foto": "fotos/tapajos_1999.jpg"
   },
   {
    "ano": 2000,
@@ -216,7 +228,8 @@
    "agua_km2": 53.49,
    "turbidez": 3.72,
    "mata_ciliar": 76.6,
-   "solo_exposto": 9.9
+   "solo_exposto": 9.9,
+   "foto": "fotos/tapajos_2001.jpg"
   },
   {
    "ano": 2002,
@@ -228,7 +241,8 @@
    "agua_km2": 51.69,
    "turbidez": 4.11,
    "mata_ciliar": 70.6,
-   "solo_exposto": 0.7
+   "solo_exposto": 0.7,
+   "foto": "fotos/tapajos_2002.jpg"
   },
   {
    "ano": 2003,
@@ -240,7 +254,8 @@
    "agua_km2": 46.64,
    "turbidez": 3.5,
    "mata_ciliar": 74.8,
-   "solo_exposto": 1.2
+   "solo_exposto": 1.2,
+   "foto": "fotos/tapajos_2003.jpg"
   },
   {
    "ano": 2004,
@@ -252,7 +267,8 @@
    "agua_km2": 51.85,
    "turbidez": 4.41,
    "mata_ciliar": 67.3,
-   "solo_exposto": 1.5
+   "solo_exposto": 1.5,
+   "foto": "fotos/tapajos_2004.jpg"
   },
   {
    "ano": 2005,
@@ -277,7 +293,8 @@
    "agua_km2": 51.57,
    "turbidez": 4.86,
    "mata_ciliar": 78.0,
-   "solo_exposto": 1.8
+   "solo_exposto": 1.8,
+   "foto": "fotos/tapajos_2006.jpg"
   },
   {
    "ano": 2007,
@@ -289,7 +306,8 @@
    "agua_km2": 49.95,
    "turbidez": 5.04,
    "mata_ciliar": 61.2,
-   "solo_exposto": 2.6
+   "solo_exposto": 2.6,
+   "foto": "fotos/tapajos_2007.jpg"
   },
   {
    "ano": 2008,
@@ -301,7 +319,8 @@
    "agua_km2": 52.82,
    "turbidez": 3.08,
    "mata_ciliar": 76.7,
-   "solo_exposto": 1.2
+   "solo_exposto": 1.2,
+   "foto": "fotos/tapajos_2008.jpg"
   },
   {
    "ano": 2009,
@@ -313,7 +332,8 @@
    "agua_km2": 52.16,
    "turbidez": 4.58,
    "mata_ciliar": 67.1,
-   "solo_exposto": 1.8
+   "solo_exposto": 1.8,
+   "foto": "fotos/tapajos_2009.jpg"
   },
   {
    "ano": 2010,
@@ -334,7 +354,8 @@
    "agua_km2": 52.54,
    "turbidez": 3.59,
    "mata_ciliar": 75.5,
-   "solo_exposto": 1.9
+   "solo_exposto": 1.9,
+   "foto": "fotos/tapajos_2011.jpg"
   },
   {
    "ano": 2012,
@@ -346,7 +367,8 @@
    "agua_km2": 45.69,
    "turbidez": 4.08,
    "mata_ciliar": 84.0,
-   "solo_exposto": 1.7
+   "solo_exposto": 1.7,
+   "foto": "fotos/tapajos_2012.jpg"
   },
   {
    "ano": 2013,
@@ -358,7 +380,8 @@
    "agua_km2": 52.67,
    "turbidez": 4.07,
    "mata_ciliar": 81.0,
-   "solo_exposto": 1.6
+   "solo_exposto": 1.6,
+   "foto": "fotos/tapajos_2013.jpg"
   },
   {
    "ano": 2014,
@@ -369,7 +392,8 @@
    "agua_km2": 54.66,
    "turbidez": 5.45,
    "mata_ciliar": 77.05,
-   "solo_exposto": 2.15
+   "solo_exposto": 2.15,
+   "foto": "fotos/tapajos_2014.jpg"
   },
   {
    "ano": 2015,
@@ -391,7 +415,8 @@
    "agua_km2": 52.58,
    "turbidez": 4.24,
    "mata_ciliar": 84.7,
-   "solo_exposto": 2.1
+   "solo_exposto": 2.1,
+   "foto": "fotos/tapajos_2016.jpg"
   },
   {
    "ano": 2017,
@@ -403,7 +428,8 @@
    "agua_km2": 52.83,
    "turbidez": 4.16,
    "mata_ciliar": 70.1,
-   "solo_exposto": 3.7
+   "solo_exposto": 3.7,
+   "foto": "fotos/tapajos_2017.jpg"
   },
   {
    "ano": 2018,
@@ -415,7 +441,8 @@
    "agua_km2": 50.11,
    "turbidez": 4.19,
    "mata_ciliar": 83.5,
-   "solo_exposto": 1.7
+   "solo_exposto": 1.7,
+   "foto": "fotos/tapajos_2018.jpg"
   },
   {
    "ano": 2019,
@@ -426,7 +453,8 @@
    "agua_km2": 54.05,
    "turbidez": 4.46,
    "mata_ciliar": 83.8,
-   "solo_exposto": 1.75
+   "solo_exposto": 1.75,
+   "foto": "fotos/tapajos_2019.jpg"
   },
   {
    "ano": 2020,
@@ -451,7 +479,8 @@
    "agua_km2": 55.07,
    "turbidez": 8.08,
    "mata_ciliar": 82.1,
-   "solo_exposto": 2.2
+   "solo_exposto": 2.2,
+   "foto": "fotos/tapajos_2021.jpg"
   },
   {
    "ano": 2022,
@@ -463,7 +492,8 @@
    "agua_km2": 53.36,
    "turbidez": 9.83,
    "mata_ciliar": 80.1,
-   "solo_exposto": 2.7
+   "solo_exposto": 2.7,
+   "foto": "fotos/tapajos_2022.jpg"
   },
   {
    "ano": 2023,
@@ -475,7 +505,8 @@
    "agua_km2": 54.38,
    "turbidez": 6.55,
    "mata_ciliar": 75.6,
-   "solo_exposto": 3.5
+   "solo_exposto": 3.5,
+   "foto": "fotos/tapajos_2023.jpg"
   },
   {
    "ano": 2024,
@@ -487,7 +518,8 @@
    "agua_km2": 53.06,
    "turbidez": 4.84,
    "mata_ciliar": 76.0,
-   "solo_exposto": 3.5
+   "solo_exposto": 3.5,
+   "foto": "fotos/tapajos_2024.jpg"
   },
   {
    "ano": 2025,
@@ -512,7 +544,8 @@
    "agua_km2": 52.89,
    "turbidez": 8.5,
    "mata_ciliar": 69.1,
-   "solo_exposto": 4.2
+   "solo_exposto": 4.2,
+   "foto": "fotos/tapajos_2026.jpg"
   }
  ],
  "swot": {

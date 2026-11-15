@@ -18,8 +18,8 @@ const OB: Step[] = [
   },
   {
     art: 'dados',
-    pt: ['Só dados reais, de 40 anos até hoje', 'Landsat (NASA/USGS, desde 1985): cor da água, área de água, mata ciliar e solo exposto. SWOT (NASA/CNES, desde 2023): nível do rio. NISAR (NASA/ISRO, agora): mudanças a cada ~12 dias, através das nuvens. LHASA e FIRMS: chuva extrema e fogo na bacia.', ['Cada número mostra de quais imagens veio.', 'O que é hipótese aparece marcado como hipótese.']],
-    en: ['Real data only, from 40 years ago to today', 'Landsat (NASA/USGS, since 1985): water colour, water area, riverside forest and bare soil. SWOT (NASA/CNES, since 2023): river level. NISAR (NASA/ISRO, now): changes every ~12 days, through clouds. LHASA and FIRMS: extreme rain and fire in the basin.', ['Every number shows which images it came from.', 'Anything that is a hypothesis is marked as one.']],
+    pt: ['Só dados reais, de 40 anos até hoje', 'Landsat (NASA/USGS, desde 1985): cor da água, área de água, mata ciliar e solo exposto. SWOT (NASA/CNES, desde 2023): nível do rio. HLS (NASA, a cada 2–5 dias): cada imagem nova comparada com o normal do mês. GRACE/GRACE-FO (desde 2002): a água dos aquíferos. NISAR (NASA/ISRO): o rio através das nuvens.', ['Cada número mostra de quais imagens veio.', 'O que é hipótese aparece marcado como hipótese.']],
+    en: ['Real data only, from 40 years ago to today', 'Landsat (NASA/USGS, since 1985): water colour, water area, riverside forest and bare soil. SWOT (NASA/CNES, since 2023): river level. HLS (NASA, every 2–5 days): each new image compared with the month’s normal. GRACE/GRACE-FO (since 2002): aquifer water. NISAR (NASA/ISRO): the river through clouds.', ['Every number shows which images it came from.', 'Anything that is a hypothesis is marked as one.']],
   },
   {
     art: 'exemplo',
@@ -33,8 +33,8 @@ const OB: Step[] = [
   },
   {
     art: 'regiao',
-    pt: ['Escolha o rio', 'Seis rios que abastecem cidades e sofrem pressões diferentes: Tapajós (garimpo), Madeira (dragas e desmatamento), Guaíba em Porto Alegre (cidade e cheias), rios de Daca (cidade crescendo sobre a água), nascentes do Trishuli no Nepal (geleiras derretendo) e a barragem de Massingir em Moçambique (secas).', ['No Histórico do rio, escolha o rio nos botões do topo.', 'Para ver o rio agora pelo radar, use REGIÃO, no menu lateral, ou o botão “Ver o rio agora”.']],
-    en: ['Pick the river', 'Six rivers that supply cities and face different pressures: Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka’s rivers (city growing over water), the Trishuli headwaters in Nepal (melting glaciers) and Massingir Dam in Mozambique (droughts).', ['In River history, pick the river with the buttons at the top.', 'To see the river now by radar, use REGION in the side menu or the “See the river now” button.']],
+    pt: ['Escolha o rio ou o aquífero', 'Em Goiás: João Leite e Meia Ponte (água de Goiânia), Araguaia e Serra da Mesa. No Brasil e no mundo: Tapajós (garimpo), Madeira (dragas e desmatamento), Guaíba em Porto Alegre (cidade e cheias), rios de Daca (cidade crescendo sobre a água), nascentes do Trishuli no Nepal (geleiras derretendo) e a barragem de Massingir em Moçambique (secas). Na aba Aquíferos: Guarani, Urucuia, Goiás e outros.', ['No Histórico do rio, escolha o rio nos botões do topo.', 'Para ver o rio agora pelo radar, use REGIÃO, no menu lateral, ou o botão “Ver o rio agora”.']],
+    en: ['Pick the river or aquifer', 'In Goiás: João Leite and Meia Ponte (Goiânia’s water), Araguaia and Serra da Mesa. In Brazil and the world: Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka’s rivers (city growing over water), the Trishuli headwaters in Nepal (melting glaciers) and Massingir Dam in Mozambique (droughts). In the Aquifers tab: Guarani, Urucuia, Goiás and more.', ['In River history, pick the river with the buttons at the top.', 'To see the river now by radar, use REGION in the side menu or the “See the river now” button.']],
   },
   {
     art: 'mapa',
@@ -89,7 +89,7 @@ export function Onboarding() {
 
   // Desenho de cada passo (por cima da imagem)
   const overlays: Partial<Record<Art, ReactNode>> = {
-    dados: <div style={center} className="flex flex-wrap justify-center gap-1.5">{[chip('grafico', 'Landsat 1985→', '#15803D'), chip('agua', 'SWOT', '#0891B2'), chip('radar', 'NISAR', '#2563EB'), chip('deslizamento', 'LHASA', '#9A5B13'), chip('fogo', 'FIRMS', '#E2553A')]}</div>,
+    dados: <div style={center} className="flex flex-wrap justify-center gap-1.5">{[chip('grafico', 'Landsat 1985→', '#15803D'), chip('relogio', 'HLS', '#7C3AED'), chip('agua', 'SWOT', '#0891B2'), chip('camadas', 'GRACE', '#0369A1'), chip('radar', 'NISAR', '#2563EB'), chip('deslizamento', 'LHASA', '#9A5B13'), chip('fogo', 'FIRMS', '#E2553A')]}</div>,
     exemplo: (
       <div style={{ ...center, width: 340 }} className="flex flex-col gap-1.5">
         {[['sino', en ? 'Danger now · suggested response' : 'Perigo agora · sugestão de resposta', '#D92D20'], ['alvo', en ? 'Point card: cause, data, radar' : 'Ficha: causa, dados, radar', '#2563EB'], ['radar', en ? 'Forecast: crossed sources' : 'Previsão: fontes cruzadas', '#7C3AED'], ['grafico', en ? 'Compare: what changed and why' : 'Comparar: o que mudou e por quê', '#2E9E5B']].map(([ic, l, c], n) => (

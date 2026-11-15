@@ -2,7 +2,9 @@
 // a tendência se nada mudar e o que fazer para proteger a água.
 import { useEffect, useMemo, useState } from 'react'
 import { DATA_BASE, useApp } from '../lib/store'
-import { acoes, analisar, carregarRio, CONTEXTO, ESTADO, fmt, frase, METRICAS, RIOS, type Analise, type Metrica, type RioJson } from '../lib/rios'
+import { MapaTempo, Monitor } from './RioMonitor'
+import { Ajuda } from './Ajuda'
+import { acoes, AJUDA, analisar, carregarContinuo, carregarRio, GRUPOS, meta, veredito, VEREDITO, type ContinuoJson, CONTEXTO, ESTADO, fmt, frase, METRICAS, RIOS, type Analise, type Metrica, type RioJson } from '../lib/rios'
 
 type Bi = [string, string]
 
@@ -60,44 +62,6 @@ function Swot({ r, en }: { r: RioJson; en: boolean }) {
   )
 }
 
-function Fotos({ r, en }: { r: RioJson; en: boolean }) {
-  const fs = r.serie.filter(a => a.foto)
-  const [a, setA] = useState(0), [b, setB] = useState(Math.max(0, fs.length - 1)), [pos, setPos] = useState(50)
-  useEffect(() => { setA(0); setB(Math.max(0, fs.length - 1)) }, [r.id, fs.length])
-  if (fs.length < 2) return null
-  const A = fs[a], Bf = fs[b]
-  return (
-    <div className="card" style={{ padding: 18 }}>
-      <h3 className="m-0 text-[15px]">{en ? 'Satellite photos, decade by decade (Landsat, true colour)' : 'Fotos de satélite, década a década (Landsat, cor real)'}</h3>
-      <p className="m-0 mb-3 mt-1 text-[12.5px]" style={{ color: '#5B6B7F' }}>{en ? 'Pick two years and slide to compare. Brown or milky water = sediment; light patches on the banks = bare soil.' : 'Escolha dois anos e arraste para comparar. Água marrom ou leitosa = sedimento; manchas claras na margem = solo exposto.'}</p>
-      <div className="mb-2 flex flex-wrap items-center gap-2 text-[13px]">
-        <span>{en ? 'From' : 'De'}</span>
-        <select value={a} onChange={e => setA(+e.target.value)} className="rounded-lg border px-2 py-1">{fs.map((f, i) => <option key={f.ano} value={i}>{f.ano}</option>)}</select>
-        <span>{en ? 'to' : 'até'}</span>
-        <select value={b} onChange={e => setB(+e.target.value)} className="rounded-lg border px-2 py-1">{fs.map((f, i) => <option key={f.ano} value={i}>{f.ano}</option>)}</select>
-      </div>
-      <div className="relative overflow-hidden rounded-xl" style={{ aspectRatio: '1 / 1', maxWidth: 520, background: '#0B1220' }}>
-        <img src={DATA_BASE + 'rios/' + Bf.foto} alt={`${Bf.ano}`} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <img src={DATA_BASE + 'rios/' + A.foto} alt={`${A.ano}`} className="absolute inset-0 h-full w-full object-cover" />
-        </div>
-        <div className="absolute inset-y-0" style={{ left: `${pos}%`, width: 2, background: '#fff', boxShadow: '0 0 6px #000' }} />
-        <span className="absolute left-2 top-2 rounded px-2 py-0.5 text-[12px] font-bold" style={{ background: '#000a', color: '#fff' }}>{A.ano}</span>
-        <span className="absolute right-2 top-2 rounded px-2 py-0.5 text-[12px] font-bold" style={{ background: '#000a', color: '#fff' }}>{Bf.ano}</span>
-        <input type="range" min={0} max={100} value={pos} onChange={e => setPos(+e.target.value)} aria-label={en ? 'Compare slider' : 'Comparar'} className="absolute inset-x-0 bottom-2 mx-auto" style={{ width: '90%' }} />
-      </div>
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-        {fs.map((f, i) => (
-          <button key={f.ano} type="button" onClick={() => setB(i)} className="shrink-0 rounded-lg p-0.5" style={{ border: i === b ? '2px solid #2563EB' : '2px solid transparent' }}>
-            <img src={DATA_BASE + 'rios/' + f.foto} alt={`${f.ano}`} style={{ width: 74, height: 74, objectFit: 'cover', borderRadius: 6, display: 'block' }} />
-            <div className="text-center text-[11px] font-bold">{f.ano}</div>
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 export function Historico() {
   const { s, ds, setRegion, go } = useApp()
   const en = s.lang === 'en', B = (x: Bi) => x[en ? 1 : 0]
@@ -105,7 +69,8 @@ export function Historico() {
   const [rid, setRid] = useState(inicial)
   const [rio, setRio] = useState<RioJson | null | 'erro'>(null)
   const [k, setK] = useState<Metrica>('turbidez')
-  useEffect(() => { setRio(null); carregarRio(DATA_BASE, rid).then(d => setRio(d ?? 'erro')) }, [rid])
+  const [cont, setCont] = useState<ContinuoJson | null>(null)
+  useEffect(() => { setRio(null); setCont(null); carregarRio(DATA_BASE, rid).then(d => setRio(d ?? 'erro')); carregarContinuo(DATA_BASE, rid).then(setCont) }, [rid])
   const ok = rio && rio !== 'erro' ? rio : null
   const metricas = (Object.keys(METRICAS) as Metrica[]).filter(m => ok?.serie.some(a => a[m] != null))
   useEffect(() => { if (ok && !metricas.includes(k)) setK(metricas[0]) }, [ok?.id])   // eslint-disable-line
@@ -127,13 +92,18 @@ export function Historico() {
         </div>
       </div>
 
-      {/* escolha do rio */}
-      <div className="flex flex-wrap gap-2">
-        {RIOS.map(r => (
-          <button key={r.id} type="button" onClick={() => setRid(r.id)} className="rounded-full px-3.5 py-2 text-[13px] font-semibold"
-            style={{ background: r.id === rid ? '#1D4ED8' : '#fff', color: r.id === rid ? '#fff' : '#1E2A3A', border: '1px solid ' + (r.id === rid ? '#1D4ED8' : '#D0D5DD') }}>
-            💧 {en ? r.nome_en : r.nome}
-          </button>
+      {/* escolha do rio, por grupo */}
+      <div className="grid gap-2">
+        {GRUPOS.map(g => (
+          <div key={g.k} className="flex flex-wrap items-center gap-2">
+            <span className="w-[70px] text-[11px] font-bold uppercase tracking-[.08em]" style={{ color: '#667085' }}>{B(g.t)}</span>
+            {RIOS.filter(r => r.grupo === g.k).map(r => (
+              <button key={r.id} type="button" onClick={() => setRid(r.id)} className="rounded-full px-3 py-1.5 text-[12.5px] font-semibold"
+                style={{ background: r.id === rid ? '#1D4ED8' : '#fff', color: r.id === rid ? '#fff' : '#1E2A3A', border: '1px solid ' + (r.id === rid ? '#1D4ED8' : '#D0D5DD') }}>
+                💧 {en ? r.nome_en : r.nome}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
 
@@ -141,21 +111,73 @@ export function Historico() {
         <div className="card" style={{ padding: 20 }}>{rio === 'erro' ? (en ? 'No data for this river yet.' : 'Ainda não há dados para este rio.') : (en ? 'Loading 40 years of images…' : 'Carregando 40 anos de imagens…')}</div>
       ) : (
         <>
-          {/* resumo: um cartão por medida */}
-          <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))' }}>
+          {/* FICHA: em 5 segundos, qual rio, qual período, se corre risco, por quê e o que fazer */}
+          {(() => {
+            const V = veredito(an), VV = VEREDITO[V.v]
+            const ult = cont?.ultima
+            const metas = (Object.values(an).filter(Boolean) as Analise[]).map(x => ({ x, alvo: meta(x) })).filter(m => m.alvo != null && (m.x.estado === 'alerta' || m.x.estado === 'atencao'))
+            return (
+              <div className="card" style={{ padding: 0, overflow: 'hidden', border: `2px solid ${VV.c}` }}>
+                <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4" style={{ background: VV.bg }}>
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-[.1em]" style={{ color: '#475467' }}>{en ? 'You are looking at' : 'Você está vendo'}</div>
+                    <div className="text-[20px] font-extrabold leading-tight" style={{ color: '#101828' }}>{en ? info.nome_en : info.nome}</div>
+                    <div className="mt-0.5 text-[13px]" style={{ color: '#344054' }}>
+                      {en ? 'Period' : 'Período'}: <b>{anos}</b>{ult ? <> · {en ? 'latest image' : 'última imagem'}: <b>{ult.d.split('-').reverse().join('/')}</b> ({ult.sat})</> : null} · {en ? 'supplies' : 'abastece'} {ok.cidade}
+                    </div>
+                  </div>
+                  <div className="rounded-xl px-4 py-2 text-center" style={{ background: '#fff', border: `2px solid ${VV.c}` }}>
+                    <div className="text-[11px] font-bold uppercase tracking-[.08em]" style={{ color: '#475467' }}>{en ? 'Conservation status' : 'Estado de conservação'}</div>
+                    <div className="text-[17px] font-extrabold" style={{ color: VV.c }}>{VV.ic} {B(VV.t)}</div>
+                  </div>
+                </div>
+                <div className="grid gap-4 px-5 py-4 lg:grid-cols-3">
+                  <div>
+                    <div className="mb-1 text-[12.5px] font-bold" style={{ color: '#101828' }}>{en ? 'Why' : 'Por quê'}</div>
+                    {V.ruins.length ? <ul className="m-0 list-disc space-y-1 pl-4 text-[13px] leading-snug" style={{ color: '#344054' }}>{V.ruins.slice(0, 3).map(x => <li key={x.k}>{frase(x, en)}</li>)}</ul>
+                      : <p className="m-0 text-[13px]" style={{ color: '#344054' }}>{en ? 'No measure is getting worse beyond its normal variation. Keep monitoring and protecting the banks.' : 'Nenhuma medida está piorando além da variação normal. Continue acompanhando e protegendo as margens.'}</p>}
+                  </div>
+                  <div>
+                    <div className="mb-1 text-[12.5px] font-bold" style={{ color: '#101828' }}>{en ? 'Probable cause' : 'Causa provável'}</div>
+                    <p className="m-0 text-[13px] leading-snug" style={{ color: '#344054' }}>{ctx ? B(ctx.causa).split('. ').slice(0, 2).join('. ') + '.' : ok.pressao}</p>
+                  </div>
+                  <div>
+                    <div className="mb-1 text-[12.5px] font-bold" style={{ color: '#101828' }}>{en ? 'What to do now' : 'O que fazer agora'}</div>
+                    <ul className="m-0 list-none space-y-1 p-0 text-[13px] leading-snug" style={{ color: '#344054' }}>{acoes(ok, an, en).slice(0, 2).map(x => <li key={x.quem}><b style={{ color: '#026AA2' }}>{x.quem}:</b> {x.o_que}</li>)}</ul>
+                    {metas.length > 0 && <div className="mt-2 rounded-lg p-2 text-[12.5px]" style={{ background: '#F0F9FF', border: '1px solid #B9E6FE', color: '#065986' }}>
+                      <b>{en ? 'Recovery goal' : 'Meta de recuperação'}:</b> {metas.map(m => `${METRICAS[m.x.k].nome[en ? 1 : 0]} ${en ? 'back to' : 'voltar a'} ${fmt(m.alvo!, en)} ${METRICAS[m.x.k].un} (${en ? 'as in' : 'como em'} ${m.x.melhorJanela![0]}–${m.x.melhorJanela![1]})`).join('; ')}
+                    </div>}
+                  </div>
+                </div>
+              </div>
+            )
+          })()}
+
+          {/* PAINÉIS: um por medida, com "?" explicando o que é */}
+          <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))' }}>
             {metricas.map(m => {
               const x = an[m]; if (!x) return null
-              const E = ESTADO[x.estado], MM = METRICAS[m]
+              const E = ESTADO[x.estado], MM = METRICAS[m], alvo = meta(x)
+              const sp = x.pts.slice(-20), lo = Math.min(...sp.map(p => p[1])), hi = Math.max(...sp.map(p => p[1]))
+              const tend = (MM.bom === 'baixo' ? x.tend.m < 0 : x.tend.m > 0) ? (en ? 'improving' : 'melhorando') : Math.abs(x.tend.m) < Math.abs(x.base) * 0.005 ? (en ? 'stable' : 'estável') : (en ? 'worsening' : 'piorando')
               return (
-                <button key={m} type="button" onClick={() => setK(m)} className="card text-left" style={{ padding: 14, outline: m === k ? '2px solid #1D4ED8' : 'none', cursor: 'pointer' }}>
-                  <div className="text-[12px] font-bold uppercase tracking-wide" style={{ color: '#475467' }}>{B(MM.nome)}</div>
-                  <div className="mt-1 text-[22px] font-extrabold leading-none" style={{ color: MM.cor }}>{fmt(x.agora, en)} <span className="text-[13px] font-bold">{MM.un}</span></div>
-                  <div className="mt-1 text-[12px]" style={{ color: '#475467' }}>{en ? 'was' : 'era'} {fmt(x.base, en)} {MM.un} · {x.var > 0 ? '+' : ''}{fmt(x.var, en, 0)}%</div>
-                  <span className="mt-2 inline-block rounded px-2 py-0.5 text-[11.5px] font-bold" style={{ background: E.bg, color: E.c }}>{B(E.t)}</span>
-                </button>
+                <div key={m} role="button" tabIndex={0} onClick={() => setK(m)} onKeyDown={e => e.key === 'Enter' && setK(m)} className="card text-left" style={{ padding: 14, outline: m === k ? '2px solid #1D4ED8' : 'none', cursor: 'pointer' }}>
+                  <div className="flex items-center text-[12px] font-bold uppercase tracking-wide" style={{ color: '#475467' }}>{B(MM.nome)}<Ajuda txt={B(AJUDA[m])} /></div>
+                  <div className="mt-1 flex items-end justify-between gap-2">
+                    <div className="text-[22px] font-extrabold leading-none" style={{ color: MM.cor }}>{fmt(x.agora, en)} <span className="text-[13px] font-bold">{MM.un}</span></div>
+                    <svg viewBox="0 0 80 26" width={80} height={26} aria-hidden="true"><path d={sp.map((p, i) => `${i ? 'L' : 'M'}${(i / Math.max(1, sp.length - 1)) * 78 + 1},${25 - ((p[1] - lo) / (hi - lo || 1)) * 23}`).join('')} fill="none" stroke={MM.cor} strokeWidth={1.6} /></svg>
+                  </div>
+                  <div className="mt-1 text-[12px]" style={{ color: '#475467' }}>{en ? 'was' : 'era'} {fmt(x.base, en)} {MM.un} · {x.var > 0 ? '+' : ''}{fmt(x.var, en, 0)}% · {en ? 'trend' : 'tendência'}: {tend}</div>
+                  <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                    <span className="inline-block rounded px-2 py-0.5 text-[11.5px] font-bold" style={{ background: E.bg, color: E.c }}>{B(E.t)}</span>
+                    {alvo != null && <span className="text-[11.5px]" style={{ color: '#065986' }}>{en ? 'goal' : 'meta'}: {fmt(alvo, en)} {MM.un}</span>}
+                  </div>
+                </div>
               )
             })}
           </div>
+
+          <MapaTempo r={ok} c={cont} en={en} an={an} />
 
           {/* gráfico principal */}
           {a && (
@@ -172,6 +194,8 @@ export function Historico() {
               <p className="m-0 mt-2 text-[12.5px]" style={{ color: '#5B6B7F' }}>{B(M.o_que)} {en ? `Purple line: trend (last 15 years; whole series for ice), robust Theil–Sen; dashed: where it goes by 2030 if nothing changes. It is a projection, not a certainty.` : `Linha roxa: tendência (últimos 15 anos; série inteira para o gelo), método robusto de Theil–Sen; tracejada: onde chega em 2030 se nada mudar. É uma projeção, não uma certeza.`}</p>
             </div>
           )}
+
+          <Monitor c={cont} en={en} k0={k} />
 
           {/* causa provável + o que fazer */}
           <div className="grid gap-3 lg:grid-cols-2">
@@ -193,7 +217,6 @@ export function Historico() {
             </div>
           </div>
 
-          <Fotos r={ok} en={en} />
           <Swot r={ok} en={en} />
 
           <div className="card" style={{ padding: 16 }}>

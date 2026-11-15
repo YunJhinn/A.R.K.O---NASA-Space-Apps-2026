@@ -43,7 +43,8 @@
    "agua_km2": 122.06,
    "turbidez": 3.17,
    "mata_ciliar": 93.8,
-   "solo_exposto": 0.2
+   "solo_exposto": 0.2,
+   "foto": "fotos/madeira_1986.jpg"
   },
   {
    "ano": 1987,
@@ -55,7 +56,8 @@
    "agua_km2": 123.81,
    "turbidez": 8.78,
    "mata_ciliar": 93.0,
-   "solo_exposto": 0.3
+   "solo_exposto": 0.3,
+   "foto": "fotos/madeira_1987.jpg"
   },
   {
    "ano": 1988,
@@ -66,7 +68,8 @@
    "agua_km2": 119.16,
    "turbidez": 8.84,
    "mata_ciliar": 88.05,
-   "solo_exposto": 2.4
+   "solo_exposto": 2.4,
+   "foto": "fotos/madeira_1988.jpg"
   },
   {
    "ano": 1989,
@@ -78,7 +81,8 @@
    "agua_km2": 126.82,
    "turbidez": 6.54,
    "mata_ciliar": 89.6,
-   "solo_exposto": 0.5
+   "solo_exposto": 0.5,
+   "foto": "fotos/madeira_1989.jpg"
   },
   {
    "ano": 1990,
@@ -99,7 +103,8 @@
    "agua_km2": 133.46,
    "turbidez": 10.43,
    "mata_ciliar": 7.6,
-   "solo_exposto": 0.1
+   "solo_exposto": 0.1,
+   "foto": "fotos/madeira_1991.jpg"
   },
   {
    "ano": 1992,
@@ -111,7 +116,8 @@
    "agua_km2": 124.31,
    "turbidez": 10.87,
    "mata_ciliar": 90.0,
-   "solo_exposto": 0.3
+   "solo_exposto": 0.3,
+   "foto": "fotos/madeira_1992.jpg"
   },
   {
    "ano": 1993,
@@ -122,7 +128,8 @@
    "agua_km2": 106.0,
    "turbidez": 10.7,
    "mata_ciliar": 80.75,
-   "solo_exposto": 2.0
+   "solo_exposto": 2.0,
+   "foto": "fotos/madeira_1993.jpg"
   },
   {
    "ano": 1994,
@@ -134,7 +141,8 @@
    "agua_km2": 117.98,
    "turbidez": 7.48,
    "mata_ciliar": 86.8,
-   "solo_exposto": 0.8
+   "solo_exposto": 0.8,
+   "foto": "fotos/madeira_1994.jpg"
   },
   {
    "ano": 1995,
@@ -158,7 +166,8 @@
    "agua_km2": 121.19,
    "turbidez": 9.78,
    "mata_ciliar": 88.75,
-   "solo_exposto": 0.85
+   "solo_exposto": 0.85,
+   "foto": "fotos/madeira_1996.jpg"
   },
   {
    "ano": 1997,
@@ -169,7 +178,8 @@
    "agua_km2": 123.88,
    "turbidez": 7.62,
    "mata_ciliar": 86.35,
-   "solo_exposto": 1.4
+   "solo_exposto": 1.4,
+   "foto": "fotos/madeira_1997.jpg"
   },
   {
    "ano": 1998,
@@ -180,7 +190,8 @@
    "agua_km2": 113.69,
    "turbidez": 11.42,
    "mata_ciliar": 85.5,
-   "solo_exposto": 2.4
+   "solo_exposto": 2.4,
+   "foto": "fotos/madeira_1998.jpg"
   },
   {
    "ano": 1999,
@@ -192,7 +203,8 @@
    "agua_km2": 123.51,
    "turbidez": 8.56,
    "mata_ciliar": 87.3,
-   "solo_exposto": 0.7
+   "solo_exposto": 0.7,
+   "foto": "fotos/madeira_1999.jpg"
   },
   {
    "ano": 2000,
@@ -215,7 +227,8 @@
    "agua_km2": 126.03,
    "turbidez": 3.34,
    "mata_ciliar": 91.2,
-   "solo_exposto": 0.4
+   "solo_exposto": 0.4,
+   "foto": "fotos/madeira_2001.jpg"
   },
   {
    "ano": 2002,
@@ -227,7 +240,8 @@
    "agua_km2": 123.19,
    "turbidez": 5.88,
    "mata_ciliar": 91.5,
-   "solo_exposto": 0.2
+   "solo_exposto": 0.2,
+   "foto": "fotos/madeira_2002.jpg"
   },
   {
    "ano": 2003,
@@ -238,7 +252,8 @@
    "agua_km2": 114.59,
    "turbidez": 7.53,
    "mata_ciliar": 83.85,
-   "solo_exposto": 2.05
+   "solo_exposto": 2.05,
+   "foto": "fotos/madeira_2003.jpg"
   },
   {
    "ano": 2004,
@@ -250,7 +265,8 @@
    "agua_km2": 116.57,
    "turbidez": 10.08,
    "mata_ciliar": 84.6,
-   "solo_exposto": 1.5
+   "solo_exposto": 1.5,
+   "foto": "fotos/madeira_2004.jpg"
   },
   {
    "ano": 2005,
@@ -274,7 +290,8 @@
    "agua_km2": 124.39,
    "turbidez": 4.28,
    "mata_ciliar": 84.4,
-   "solo_exposto": 1.1
+   "solo_exposto": 1.1,
+   "foto": "fotos/madeira_2006.jpg"
   },
   {
    "ano": 2008,
@@ -285,7 +302,8 @@
    "agua_km2": 125.44,
    "turbidez": 3.0,
    "mata_ciliar": 87.65,
-   "solo_exposto": 0.65
+   "solo_exposto": 0.65,
+   "foto": "fotos/madeira_2008.jpg"
   },
   {
    "ano": 2009,
@@ -297,7 +315,8 @@
    "agua_km2": 126.59,
    "turbidez": 6.25,
    "mata_ciliar": 79.8,
-   "solo_exposto": 1.2
+   "solo_exposto": 1.2,
+   "foto": "fotos/madeira_2009.jpg"
   },
   {
    "ano": 2010,
@@ -318,7 +337,8 @@
    "agua_km2": 115.03,
    "turbidez": 3.3,
    "mata_ciliar": 87.9,
-   "solo_exposto": 0.6
+   "solo_exposto": 0.6,
+   "foto": "fotos/madeira_2011.jpg"
   },
   {
    "ano": 2012,
@@ -329,7 +349,8 @@
    "agua_km2": 124.81,
    "turbidez": 7.77,
    "mata_ciliar": 86.8,
-   "solo_exposto": 0.8
+   "solo_exposto": 0.8,
+   "foto": "fotos/madeira_2012.jpg"
   },
   {
    "ano": 2015,
@@ -354,7 +375,8 @@
    "agua_km2": 105.47,
    "turbidez": 11.16,
    "mata_ciliar": 86.4,
-   "solo_exposto": 1.5
+   "solo_exposto": 1.5,
+   "foto": "fotos/madeira_2016.jpg"
   },
   {
    "ano": 2017,
@@ -365,31 +387,32 @@
    "agua_km2": 127.8,
    "turbidez": 3.48,
    "mata_ciliar": 89.75,
-   "solo_exposto": 0.65
+   "solo_exposto": 0.65,
+   "foto": "fotos/madeira_2017.jpg"
   },
   {
    "ano": 2018,
    "imagens": [
     "2018-10-14 L8",
-    "2018-08-27 L8",
-    "2018-08-11 L8"
+    "2018-08-27 L8"
    ],
-   "agua_km2": 120.09,
-   "turbidez": 6.23,
-   "mata_ciliar": 88.8,
-   "solo_exposto": 0.5
+   "agua_km2": 118.29,
+   "turbidez": 9.04,
+   "mata_ciliar": 86.7,
+   "solo_exposto": 1.25,
+   "foto": "fotos/madeira_2018.jpg"
   },
   {
    "ano": 2019,
    "imagens": [
-    "2019-08-14 L8",
     "2019-08-30 L8",
     "2019-07-13 L8"
    ],
-   "agua_km2": 127.73,
-   "turbidez": 4.02,
-   "mata_ciliar": 84.4,
-   "solo_exposto": 0.6
+   "agua_km2": 126.53,
+   "turbidez": 3.99,
+   "mata_ciliar": 87.65,
+   "solo_exposto": 0.75,
+   "foto": "fotos/madeira_2019.jpg"
   },
   {
    "ano": 2020,
@@ -406,13 +429,13 @@
   {
    "ano": 2021,
    "imagens": [
-    "2021-08-03 L8",
     "2021-07-18 L8"
    ],
-   "agua_km2": 132.19,
-   "turbidez": 7.22,
-   "mata_ciliar": 86.8,
-   "solo_exposto": 1.1
+   "agua_km2": 129.59,
+   "turbidez": 8.6,
+   "mata_ciliar": 87.5,
+   "solo_exposto": 1.2,
+   "foto": "fotos/madeira_2021.jpg"
   },
   {
    "ano": 2022,
@@ -423,19 +446,20 @@
    "agua_km2": 115.08,
    "turbidez": 5.62,
    "mata_ciliar": 84.45,
-   "solo_exposto": 1.25
+   "solo_exposto": 1.25,
+   "foto": "fotos/madeira_2022.jpg"
   },
   {
    "ano": 2023,
    "imagens": [
     "2023-08-25 L8",
-    "2023-10-28 L8",
-    "2023-09-02 L9"
+    "2023-09-26 L8"
    ],
-   "agua_km2": 119.91,
-   "turbidez": 10.36,
-   "mata_ciliar": 71.0,
-   "solo_exposto": 3.2
+   "agua_km2": 120.0,
+   "turbidez": 9.82,
+   "mata_ciliar": 77.8,
+   "solo_exposto": 3.1,
+   "foto": "fotos/madeira_2023.jpg"
   },
   {
    "ano": 2024,
@@ -447,31 +471,31 @@
    "agua_km2": 121.57,
    "turbidez": 8.16,
    "mata_ciliar": 84.0,
-   "solo_exposto": 0.9
+   "solo_exposto": 0.9,
+   "foto": "fotos/madeira_2024.jpg"
   },
   {
    "ano": 2025,
    "imagens": [
-    "2025-08-22 L9",
-    "2025-07-29 L8"
+    "2025-07-29 L8",
+    "2025-10-17 L8"
    ],
-   "agua_km2": 127.75,
-   "turbidez": 3.75,
-   "mata_ciliar": 88.65,
-   "solo_exposto": 1.05,
+   "agua_km2": 125.12,
+   "turbidez": 7.47,
+   "mata_ciliar": 88.25,
+   "solo_exposto": 1.5,
    "foto": "fotos/madeira_2025.jpg"
   },
   {
    "ano": 2026,
    "imagens": [
-    "2026-08-25 L9",
-    "2026-09-02 L8",
-    "2026-07-24 L9"
+    "2026-08-25 L9"
    ],
-   "agua_km2": 125.59,
+   "agua_km2": 125.99,
    "turbidez": 6.13,
    "mata_ciliar": 81.5,
-   "solo_exposto": 1.2
+   "solo_exposto": 1.2,
+   "foto": "fotos/madeira_2026.jpg"
   }
  ],
  "swot": {

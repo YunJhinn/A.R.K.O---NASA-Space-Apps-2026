@@ -23,7 +23,7 @@ import pystac_client, planetary_computer as pc
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..", "data", "rios")
 ANO0, ANO1 = 1985, dt.date.today().year
-FOTOS = {1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025}
+FOTOS = set(range(1985, 2100))   # v7.1: uma foto por ano, para a linha do tempo no mapa
 
 # Rios escolhidos: trechos que abastecem cidades e onde há pressão conhecida. bbox = (lon0, lat0, lon1, lat1)
 RIOS = [
@@ -40,6 +40,15 @@ RIOS = [
     dict(id="limpopo", nome="Barragem de Massingir (rio dos Elefantes, bacia do Limpopo)", pais="Moçambique",
          bbox=(31.95, -23.95, 32.20, -23.70), meses=(5, 6, 7, 8, 9), cidade="Chókwè e Massingir",
          pressao="secas, cheias e uso para irrigação"),
+    # Goiás (v7.1): água de Goiânia e dois grandes corpos d'água do estado
+    dict(id="joaoleite", nome="Reservatório do João Leite (abastece Goiânia)", pais="Brasil · GO", bbox=(-49.27, -16.62, -49.12, -16.47),
+         meses=(5, 6, 7, 8, 9), cidade="Goiânia", pressao="crescimento urbano e agrícola na bacia, secas no Cerrado", inicio_analise=2010),
+    dict(id="meiaponte", nome="Rio Meia Ponte em Goiânia", pais="Brasil · GO", bbox=(-49.32, -16.70, -49.18, -16.56),
+         meses=(5, 6, 7, 8, 9), cidade="Goiânia", pressao="esgoto e ocupação urbana das margens"),
+    dict(id="araguaia", nome="Rio Araguaia em Aruanã", pais="Brasil · GO", bbox=(-51.15, -15.00, -51.00, -14.85),
+         meses=(6, 7, 8, 9), cidade="Aruanã", pressao="assoreamento e desmatamento do Cerrado na bacia"),
+    dict(id="serradamesa", nome="Lago de Serra da Mesa (rio Tocantins)", pais="Brasil · GO", bbox=(-48.60, -14.20, -48.30, -13.90),
+         meses=(6, 7, 8, 9, 10), cidade="Uruaçu e Minaçu", pressao="secas longas e uso da água para energia", inicio_analise=1999),
 ]
 
 cat = pystac_client.Client.open("https://planetarycomputer.microsoft.com/api/stac/v1", modifier=pc.sign_inplace)
@@ -112,8 +121,8 @@ def foto(b, caminho):
     rgb = np.dstack([b["red"], b["green"], b["blue"]]).astype(float) * 0.0000275 - 0.2
     rgb = np.clip(rgb / 0.25, 0, 1) ** 0.8
     im = Image.fromarray((rgb * 255).astype(np.uint8))
-    im.thumbnail((480, 480))
-    im.save(caminho, quality=82)
+    im.thumbnail((400, 400))
+    im.save(caminho, quality=76)
 
 
 def ano_rio(args):
@@ -165,6 +174,8 @@ def main():
     for r in rios:
         serie = sorted(res[r["id"]], key=lambda x: x["ano"])
         meta = {k: r[k] for k in ("id", "nome", "pais", "bbox", "meses", "cidade", "pressao")}
+        if r.get("inicio_analise"):   # represas: a análise começa quando o lago encheu (antes era só o rio)
+            meta["inicio_analise"] = r["inicio_analise"]
         json.dump({**meta, "montanha": bool(r.get("montanha")), "gerado": dt.date.today().isoformat(),
                    "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
                    "serie": serie}, open(os.path.join(RAIZ, r["id"] + ".json"), "w"), ensure_ascii=False, indent=1)

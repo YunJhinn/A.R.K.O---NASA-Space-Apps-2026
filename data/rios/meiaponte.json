@@ -1,0 +1,459 @@
+{
+ "id": "meiaponte",
+ "nome": "Rio Meia Ponte em Goiânia",
+ "pais": "Brasil · GO",
+ "bbox": [
+  -49.32,
+  -16.7,
+  -49.18,
+  -16.56
+ ],
+ "meses": [
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "cidade": "Goiânia",
+ "pressao": "esgoto e ocupação urbana das margens",
+ "montanha": false,
+ "gerado": "2026-11-14",
+ "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
+ "serie": [
+  {
+   "ano": 1985,
+   "imagens": [
+    "1985-06-05 L5",
+    "1985-07-23 L5"
+   ],
+   "agua_km2": 0.23,
+   "mata_ciliar": 16.95,
+   "solo_exposto": 14.05,
+   "foto": "fotos/meiaponte_1985.jpg"
+  },
+  {
+   "ano": 1986,
+   "imagens": [
+    "1986-08-11 L5",
+    "1986-07-10 L5"
+   ],
+   "agua_km2": 0.16,
+   "mata_ciliar": 2.85,
+   "solo_exposto": 21.7,
+   "foto": "fotos/meiaponte_1986.jpg"
+  },
+  {
+   "ano": 1989,
+   "imagens": [
+    "1989-05-31 L5",
+    "1989-09-04 L5",
+    "1989-08-19 L5"
+   ],
+   "agua_km2": 0.26,
+   "mata_ciliar": 8.5,
+   "solo_exposto": 10.9,
+   "foto": "fotos/meiaponte_1989.jpg"
+  },
+  {
+   "ano": 1990,
+   "imagens": [
+    "1990-06-19 L5",
+    "1990-08-22 L5"
+   ],
+   "agua_km2": 0.41,
+   "mata_ciliar": 8.7,
+   "solo_exposto": 21.9,
+   "foto": "fotos/meiaponte_1990.jpg"
+  },
+  {
+   "ano": 1991,
+   "imagens": [
+    "1991-09-26 L5"
+   ],
+   "agua_km2": 0.77,
+   "mata_ciliar": 0.0,
+   "solo_exposto": 94.5,
+   "foto": "fotos/meiaponte_1991.jpg"
+  },
+  {
+   "ano": 1992,
+   "imagens": [
+    "1992-08-27 L5"
+   ],
+   "agua_km2": 0.25,
+   "mata_ciliar": 0.4,
+   "solo_exposto": 28.1,
+   "foto": "fotos/meiaponte_1992.jpg"
+  },
+  {
+   "ano": 1993,
+   "imagens": [
+    "1993-07-29 L5"
+   ],
+   "agua_km2": 0.27,
+   "mata_ciliar": 2.0,
+   "solo_exposto": 20.6,
+   "foto": "fotos/meiaponte_1993.jpg"
+  },
+  {
+   "ano": 1994,
+   "imagens": [
+    "1994-09-18 L5"
+   ],
+   "agua_km2": 0.35,
+   "turbidez": 8.98,
+   "mata_ciliar": 0.0,
+   "solo_exposto": 54.9,
+   "foto": "fotos/meiaponte_1994.jpg"
+  },
+  {
+   "ano": 1995,
+   "imagens": [
+    "1995-09-21 L5"
+   ],
+   "agua_km2": 0.42,
+   "turbidez": 8.3,
+   "mata_ciliar": 0.5,
+   "solo_exposto": 36.3,
+   "foto": "fotos/meiaponte_1995.jpg"
+  },
+  {
+   "ano": 1996,
+   "imagens": [
+    "1996-08-22 L5",
+    "1996-06-19 L5"
+   ],
+   "agua_km2": 0.35,
+   "turbidez": 5.01,
+   "mata_ciliar": 14.1,
+   "solo_exposto": 13.3,
+   "foto": "fotos/meiaponte_1996.jpg"
+  },
+  {
+   "ano": 1997,
+   "imagens": [
+    "1997-07-08 L5"
+   ],
+   "agua_km2": 16.09,
+   "turbidez": -2.61,
+   "mata_ciliar": 28.1,
+   "solo_exposto": 9.5,
+   "foto": "fotos/meiaponte_1997.jpg"
+  },
+  {
+   "ano": 1998,
+   "imagens": [
+    "1998-05-01 L5",
+    "1998-08-28 L5",
+    "1998-07-11 L5"
+   ],
+   "agua_km2": 0.37,
+   "turbidez": 5.77,
+   "mata_ciliar": 10.2,
+   "solo_exposto": 8.0,
+   "foto": "fotos/meiaponte_1998.jpg"
+  },
+  {
+   "ano": 1999,
+   "imagens": [
+    "1999-08-31 L5",
+    "1999-06-28 L5",
+    "1999-07-14 L5"
+   ],
+   "agua_km2": 0.44,
+   "turbidez": 5.56,
+   "mata_ciliar": 9.4,
+   "solo_exposto": 15.2,
+   "foto": "fotos/meiaponte_1999.jpg"
+  },
+  {
+   "ano": 2000,
+   "imagens": [
+    "2000-09-18 L5",
+    "2000-06-14 L5"
+   ],
+   "agua_km2": 0.52,
+   "turbidez": 4.86,
+   "mata_ciliar": 22.15,
+   "solo_exposto": 12.0,
+   "foto": "fotos/meiaponte_2000.jpg"
+  },
+  {
+   "ano": 2001,
+   "imagens": [
+    "2001-07-19 L5"
+   ],
+   "agua_km2": 0.08,
+   "mata_ciliar": 16.7,
+   "solo_exposto": 2.3,
+   "foto": "fotos/meiaponte_2001.jpg"
+  },
+  {
+   "ano": 2003,
+   "imagens": [
+    "2003-07-25 L5"
+   ],
+   "agua_km2": 0.53,
+   "turbidez": 4.42,
+   "mata_ciliar": 8.9,
+   "solo_exposto": 23.3,
+   "foto": "fotos/meiaponte_2003.jpg"
+  },
+  {
+   "ano": 2004,
+   "imagens": [
+    "2004-07-11 L5",
+    "2004-08-28 L5",
+    "2004-08-12 L5"
+   ],
+   "agua_km2": 0.57,
+   "turbidez": 5.26,
+   "mata_ciliar": 4.8,
+   "solo_exposto": 25.6,
+   "foto": "fotos/meiaponte_2004.jpg"
+  },
+  {
+   "ano": 2005,
+   "imagens": [
+    "2005-08-15 L5",
+    "2005-08-31 L5"
+   ],
+   "agua_km2": 0.55,
+   "turbidez": 5.49,
+   "mata_ciliar": 2.55,
+   "solo_exposto": 37.05,
+   "foto": "fotos/meiaponte_2005.jpg"
+  },
+  {
+   "ano": 2006,
+   "imagens": [
+    "2006-07-17 L5",
+    "2006-07-01 L5"
+   ],
+   "agua_km2": 0.61,
+   "turbidez": 4.48,
+   "mata_ciliar": 14.25,
+   "solo_exposto": 18.5,
+   "foto": "fotos/meiaponte_2006.jpg"
+  },
+  {
+   "ano": 2008,
+   "imagens": [
+    "2008-08-07 L5"
+   ],
+   "agua_km2": 0.52,
+   "turbidez": 4.7,
+   "mata_ciliar": 6.8,
+   "solo_exposto": 22.2,
+   "foto": "fotos/meiaponte_2008.jpg"
+  },
+  {
+   "ano": 2009,
+   "imagens": [
+    "2009-09-27 L5",
+    "2009-08-10 L5",
+    "2009-06-07 L5"
+   ],
+   "agua_km2": 0.58,
+   "turbidez": 5.29,
+   "mata_ciliar": 38.4,
+   "solo_exposto": 18.3,
+   "foto": "fotos/meiaponte_2009.jpg"
+  },
+  {
+   "ano": 2010,
+   "imagens": [
+    "2010-07-12 L5",
+    "2010-05-25 L5"
+   ],
+   "agua_km2": 1.19,
+   "turbidez": 3.38,
+   "mata_ciliar": 13.7,
+   "solo_exposto": 22.6,
+   "foto": "fotos/meiaponte_2010.jpg"
+  },
+  {
+   "ano": 2013,
+   "imagens": [
+    "2013-08-05 L8",
+    "2013-09-06 L8",
+    "2013-08-21 L8"
+   ],
+   "agua_km2": 0.65,
+   "turbidez": 4.31,
+   "mata_ciliar": 17.1,
+   "solo_exposto": 17.7,
+   "foto": "fotos/meiaponte_2013.jpg"
+  },
+  {
+   "ano": 2014,
+   "imagens": [
+    "2014-08-24 L8",
+    "2014-08-08 L8",
+    "2014-06-21 L8"
+   ],
+   "agua_km2": 0.78,
+   "turbidez": 3.04,
+   "mata_ciliar": 20.4,
+   "solo_exposto": 21.9,
+   "foto": "fotos/meiaponte_2014.jpg"
+  },
+  {
+   "ano": 2015,
+   "imagens": [
+    "2015-08-11 L8",
+    "2015-07-10 L8",
+    "2015-06-08 L8"
+   ],
+   "agua_km2": 0.68,
+   "turbidez": 2.85,
+   "mata_ciliar": 40.9,
+   "solo_exposto": 14.4,
+   "foto": "fotos/meiaponte_2015.jpg"
+  },
+  {
+   "ano": 2016,
+   "imagens": [
+    "2016-07-28 L8",
+    "2016-07-12 L8",
+    "2016-06-26 L8"
+   ],
+   "agua_km2": 0.83,
+   "turbidez": 3.19,
+   "mata_ciliar": 24.3,
+   "solo_exposto": 18.9,
+   "foto": "fotos/meiaponte_2016.jpg"
+  },
+  {
+   "ano": 2017,
+   "imagens": [
+    "2017-09-17 L8",
+    "2017-09-01 L8",
+    "2017-05-12 L8"
+   ],
+   "agua_km2": 0.83,
+   "turbidez": 3.61,
+   "mata_ciliar": 13.9,
+   "solo_exposto": 20.9,
+   "foto": "fotos/meiaponte_2017.jpg"
+  },
+  {
+   "ano": 2018,
+   "imagens": [
+    "2018-07-18 L8",
+    "2018-07-02 L8",
+    "2018-08-19 L8"
+   ],
+   "agua_km2": 0.84,
+   "turbidez": 1.27,
+   "mata_ciliar": 26.8,
+   "solo_exposto": 18.4,
+   "foto": "fotos/meiaponte_2018.jpg"
+  },
+  {
+   "ano": 2019,
+   "imagens": [
+    "2019-09-07 L8",
+    "2019-08-22 L8",
+    "2019-06-19 L8"
+   ],
+   "agua_km2": 1.78,
+   "turbidez": 1.58,
+   "mata_ciliar": 13.6,
+   "solo_exposto": 15.5,
+   "foto": "fotos/meiaponte_2019.jpg"
+  },
+  {
+   "ano": 2020,
+   "imagens": [
+    "2020-09-09 L8",
+    "2020-07-07 L8",
+    "2020-06-21 L8"
+   ],
+   "agua_km2": 0.66,
+   "turbidez": 2.44,
+   "mata_ciliar": 36.0,
+   "solo_exposto": 12.5,
+   "foto": "fotos/meiaponte_2020.jpg"
+  },
+  {
+   "ano": 2021,
+   "imagens": [
+    "2021-07-26 L8",
+    "2021-07-10 L8",
+    "2021-06-24 L8"
+   ],
+   "agua_km2": 0.75,
+   "turbidez": 3.31,
+   "mata_ciliar": 28.6,
+   "solo_exposto": 13.8,
+   "foto": "fotos/meiaponte_2021.jpg"
+  },
+  {
+   "ano": 2022,
+   "imagens": [
+    "2022-09-07 L9",
+    "2022-08-30 L8",
+    "2022-08-06 L9"
+   ],
+   "agua_km2": 0.61,
+   "turbidez": 3.55,
+   "mata_ciliar": 12.2,
+   "solo_exposto": 21.3,
+   "foto": "fotos/meiaponte_2022.jpg"
+  },
+  {
+   "ano": 2023,
+   "imagens": [
+    "2023-09-10 L9",
+    "2023-08-01 L8",
+    "2023-06-22 L9"
+   ],
+   "agua_km2": 0.51,
+   "turbidez": 2.57,
+   "mata_ciliar": 24.9,
+   "solo_exposto": 14.2,
+   "foto": "fotos/meiaponte_2023.jpg"
+  },
+  {
+   "ano": 2024,
+   "imagens": [
+    "2024-09-20 L8",
+    "2024-09-12 L9",
+    "2024-09-04 L8"
+   ],
+   "agua_km2": 0.5,
+   "turbidez": 5.74,
+   "mata_ciliar": 11.1,
+   "solo_exposto": 22.1,
+   "foto": "fotos/meiaponte_2024.jpg"
+  },
+  {
+   "ano": 2025,
+   "imagens": [
+    "2025-09-15 L9",
+    "2025-09-07 L8",
+    "2025-08-22 L8"
+   ],
+   "agua_km2": 0.58,
+   "turbidez": 3.66,
+   "mata_ciliar": 17.5,
+   "solo_exposto": 19.5,
+   "foto": "fotos/meiaponte_2025.jpg"
+  },
+  {
+   "ano": 2026,
+   "imagens": [
+    "2026-08-17 L9",
+    "2026-08-01 L9",
+    "2026-07-24 L8"
+   ],
+   "agua_km2": 0.5,
+   "turbidez": 3.5,
+   "mata_ciliar": 28.3,
+   "solo_exposto": 16.8,
+   "foto": "fotos/meiaponte_2026.jpg"
+  }
+ ]
+}

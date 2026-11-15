@@ -14,7 +14,8 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
   const [mine, setMine] = useState(false)
   const nav: [string, string, () => void, boolean, string?][] = [
     ['relogio', 'Histórico do rio', () => go('historico'), s.view === 'historico'],
-    ['radar', 'Agora no rio', () => go('inicio'), s.view === 'inicio' && s.focus !== 'alerts'],
+    ['camadas', 'Aquíferos', () => go('aquiferos'), s.view === 'aquiferos'],
+    ['radar', 'Rio agora (radar)', () => go('inicio'), s.view === 'inicio' && s.focus !== 'alerts'],
     ['sino', 'Alertas', () => go('inicio', 'alerts'), s.view === 'inicio' && s.focus === 'alerts', String(ds.alerts.length)],
     ['grafico', 'Comparar passagens', () => go('comparar'), s.view === 'comparar'],
     ['alvo', 'Validação', () => go('validacao'), s.view === 'validacao'],

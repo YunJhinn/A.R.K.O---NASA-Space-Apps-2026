@@ -58,9 +58,9 @@ export function MapPanel() {
       </div>
       <div className="chiprow">
         <div className="chips chips2" role="group" aria-label={t('Filtrar por tipo de evento')}>
-          {(['todos', 'fogo', 'agua', 'arvore', 'solo'] as const).filter(k => !(real && k === 'fogo' && !ds.riscos?.fogo)).map(k => {
+          {(['todos', 'agua', 'arvore', 'solo'] as const).map(k => {
             const on = s.type === k, col = k === 'todos' ? '#5F6670' : ds.types[k].c
-            const kv = k === 'todos' ? null : real && k === 'fogo' ? { v: `${fogoResumo(ds.riscos!.fogo).risco.length} ${s.lang === 'en' ? 'risky' : 'de risco'}`, d: '' } : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
+            const kv = k === 'todos' ? null : (real && (k as string) === 'fogo') ? { v: `${fogoResumo(ds.riscos!.fogo).risco.length} ${s.lang === 'en' ? 'risky' : 'de risco'}`, d: '' } : real ? { v: kmf(base.filter(e => e.k === k).reduce((a, e) => a + (e.a ?? 0), 0)), d: '' } : demoKpi(k)
             return (
               <button key={k} className={cx('chip', on && 'on', k === 'todos' && 'all')} aria-pressed={on} style={{ '--c': col, opacity: !on && kv && /^0([.,]0+)?( |$)/.test(kv.v) ? 0.5 : 1 } as CSSProperties} onClick={() => set({ type: k })}
                 title={k === 'todos' ? undefined : t(`${counts[k] ?? 0} focos`)}>
@@ -150,7 +150,7 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
   const mc = (e: Ev) => (s.colorBy === 'mes' && e.st !== 'prev' ? evMonth(e.d)[3] : ds.types[e.k].c)
   const sel = ev.find(e => e.id === s.sel)
   // pontos de risco (previsões, montanha, LHASA, FIRMS): cada um abre uma ficha com Resumo, Dados e Polarização
-  const riskMk = (() => {
+  const riskMkOld = (() => {
     if (!real) return []
     const pj = projector(ds.realMeta.imagem), r = ds.riscos, mt = ds.real.meta.montanha ?? []
     const mk: { id: string; lon: number; lat: number; ic: string; col: string; lbl: string; prev?: boolean; baixo?: boolean; x: number; y: number }[] = []
@@ -163,6 +163,8 @@ function ChangeMap({ ev }: { ev: Ev[] }) {
     if (todos || s.type === 'fogo') r?.fogo?.grupos.forEach((g, i) => { const pq = pequena(g); push({ id: `r-f-${i}`, lon: g.lon, lat: g.lat, ic: 'fogo', col: pq ? '#9AA0A8' : '#E2553A', baixo: pq, lbl: pq ? `${en ? 'Small burn' : 'Pequena queima'} · ${g.n} ${en ? 'spot(s)' : g.n === 1 ? 'foco' : 'focos'}` : `${en ? 'Risky fire' : 'Queimada de risco'} · ${g.n} ${en ? 'spots' : g.n === 1 ? 'foco' : 'focos'}` }) })
     return mk.filter(m => m.x >= 0 && m.x <= MAP_W && m.y >= 0 && m.y <= MAP_H)
   })()
+  const riskMk: typeof riskMkOld = []   // v7.1: sem camadas de fogo/deslizamento no mapa do rio
+  void riskMkOld
   const selR = riskMk.find(m => m.id === s.sel)
   const heats = !real && s.colorBy !== 'mes' && !step
     ? (Object.entries(ds.region.heat) as [EvType, [number, number, number]][]).filter(([k]) => s.type === 'todos' || s.type === k)
@@ -287,7 +289,7 @@ function Legend() {
     const used = new Set(ds.ev.filter(e => e.st !== 'prev' && inRange(e.d)).map(e => evMonth(e.d)[0]))
     body = <><b>{t('Mês da detecção')}</b>{MES.map(m => <span key={m[0]} style={{ opacity: used.has(m[0]) ? 1 : 0.35 }}><i className="dot" style={{ background: m[3], width: 10, height: 10 }} />{t(`${m[1]} 2026`)}</span>)}<span style={{ color: 'var(--mu)' }}>{t('O ícone continua mostrando o tipo')}</span></>
   } else {
-    body = <><b>{t('Legenda')}</b>{(['fogo', 'agua', 'arvore', 'solo'] as const).map(k => <span key={k}><Icon k={k} size={14} />{t(ds.types[k].s)}</span>)}<span><i className="dot" style={{ width: 14, height: 14, border: '1.5px dashed #5F6670', margin: '0 4px' }} />{t('Previsão (alerta)')}</span></>
+    body = <><b>{t('Legenda')}</b>{(['agua', 'arvore', 'solo'] as const).map(k => <span key={k}><Icon k={k} size={14} />{t(ds.types[k].s)}</span>)}</>
   }
   return <div className={cx('float legend', open && 'open')} onClick={e => { e.stopPropagation(); setOpen(!open) }}>{body}</div>
 }

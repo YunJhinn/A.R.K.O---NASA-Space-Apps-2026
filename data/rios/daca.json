@@ -24,25 +24,26 @@
   {
    "ano": 1988,
    "imagens": [
-    "1988-02-19 L5",
-    "1988-01-02 L5"
+    "1988-02-19 L5"
    ],
-   "agua_km2": 21.28,
-   "turbidez": 6.53,
-   "mata_ciliar": 12.0,
-   "solo_exposto": 19.4
+   "agua_km2": 11.46,
+   "turbidez": 4.62,
+   "mata_ciliar": 17.4,
+   "solo_exposto": 17.9,
+   "foto": "fotos/daca_1988.jpg"
   },
   {
    "ano": 1989,
    "imagens": [
     "1989-02-05 L5",
-    "1989-03-09 L5",
-    "1989-02-21 L5"
+    "1989-02-21 L5",
+    "1989-01-04 L5"
    ],
-   "agua_km2": 13.53,
+   "agua_km2": 19.34,
    "turbidez": 5.99,
-   "mata_ciliar": 6.5,
-   "solo_exposto": 23.6
+   "mata_ciliar": 2.9,
+   "solo_exposto": 25.4,
+   "foto": "fotos/daca_1989.jpg"
   },
   {
    "ano": 1990,
@@ -67,7 +68,8 @@
    "agua_km2": 23.07,
    "turbidez": 8.08,
    "mata_ciliar": 8.5,
-   "solo_exposto": 19.7
+   "solo_exposto": 19.7,
+   "foto": "fotos/daca_1991.jpg"
   },
   {
    "ano": 1992,
@@ -79,7 +81,8 @@
    "agua_km2": 51.65,
    "turbidez": 9.67,
    "mata_ciliar": 1.8,
-   "solo_exposto": 27.8
+   "solo_exposto": 27.8,
+   "foto": "fotos/daca_1992.jpg"
   },
   {
    "ano": 1993,
@@ -91,7 +94,8 @@
    "agua_km2": 46.6,
    "turbidez": 9.42,
    "mata_ciliar": 9.5,
-   "solo_exposto": 15.6
+   "solo_exposto": 15.6,
+   "foto": "fotos/daca_1993.jpg"
   },
   {
    "ano": 1994,
@@ -103,7 +107,8 @@
    "agua_km2": 18.07,
    "turbidez": 6.38,
    "mata_ciliar": 5.1,
-   "solo_exposto": 23.5
+   "solo_exposto": 23.5,
+   "foto": "fotos/daca_1994.jpg"
   },
   {
    "ano": 1995,
@@ -128,18 +133,21 @@
    "agua_km2": 52.32,
    "turbidez": 8.18,
    "mata_ciliar": 10.8,
-   "solo_exposto": 27.3
+   "solo_exposto": 27.3,
+   "foto": "fotos/daca_1996.jpg"
   },
   {
    "ano": 1997,
    "imagens": [
     "1996-12-25 L5",
-    "1997-01-26 L5"
+    "1997-01-26 L5",
+    "1996-11-07 L5"
    ],
-   "agua_km2": 30.81,
-   "turbidez": 7.48,
-   "mata_ciliar": 3.85,
-   "solo_exposto": 30.15
+   "agua_km2": 34.82,
+   "turbidez": 7.88,
+   "mata_ciliar": 6.3,
+   "solo_exposto": 25.9,
+   "foto": "fotos/daca_1997.jpg"
   },
   {
    "ano": 1998,
@@ -151,7 +159,8 @@
    "agua_km2": 10.74,
    "turbidez": 3.89,
    "mata_ciliar": 18.4,
-   "solo_exposto": 21.1
+   "solo_exposto": 21.1,
+   "foto": "fotos/daca_1998.jpg"
   },
   {
    "ano": 1999,
@@ -163,7 +172,8 @@
    "agua_km2": 8.96,
    "turbidez": 5.12,
    "mata_ciliar": 12.0,
-   "solo_exposto": 37.2
+   "solo_exposto": 37.2,
+   "foto": "fotos/daca_1999.jpg"
   },
   {
    "ano": 2000,
@@ -188,7 +198,8 @@
    "agua_km2": 32.64,
    "turbidez": 10.18,
    "mata_ciliar": 0.4,
-   "solo_exposto": 55.0
+   "solo_exposto": 55.0,
+   "foto": "fotos/daca_2001.jpg"
   },
   {
    "ano": 2002,
@@ -200,7 +211,8 @@
    "agua_km2": 15.11,
    "turbidez": 6.89,
    "mata_ciliar": 11.4,
-   "solo_exposto": 29.2
+   "solo_exposto": 29.2,
+   "foto": "fotos/daca_2002.jpg"
   },
   {
    "ano": 2003,
@@ -212,18 +224,19 @@
    "agua_km2": 42.78,
    "turbidez": 9.13,
    "mata_ciliar": 12.9,
-   "solo_exposto": 28.1
+   "solo_exposto": 28.1,
+   "foto": "fotos/daca_2003.jpg"
   },
   {
    "ano": 2004,
    "imagens": [
-    "2004-02-15 L5",
-    "2004-03-02 L5"
+    "2004-02-15 L5"
    ],
-   "agua_km2": 13.49,
-   "turbidez": 6.45,
-   "mata_ciliar": 9.65,
-   "solo_exposto": 36.0
+   "agua_km2": 19.16,
+   "turbidez": 7.36,
+   "mata_ciliar": 2.0,
+   "solo_exposto": 40.7,
+   "foto": "fotos/daca_2004.jpg"
   },
   {
    "ano": 2005,
@@ -248,7 +261,8 @@
    "agua_km2": 28.63,
    "turbidez": 6.83,
    "mata_ciliar": 5.8,
-   "solo_exposto": 29.2
+   "solo_exposto": 29.2,
+   "foto": "fotos/daca_2006.jpg"
   },
   {
    "ano": 2007,
@@ -260,18 +274,8 @@
    "agua_km2": 27.47,
    "turbidez": 7.56,
    "mata_ciliar": 0.2,
-   "solo_exposto": 57.2
-  },
-  {
-   "ano": 2008,
-   "imagens": [
-    "2008-04-14 L5",
-    "2008-04-30 L5"
-   ],
-   "agua_km2": 9.25,
-   "turbidez": 6.61,
-   "mata_ciliar": 8.95,
-   "solo_exposto": 29.3
+   "solo_exposto": 57.2,
+   "foto": "fotos/daca_2007.jpg"
   },
   {
    "ano": 2009,
@@ -283,7 +287,8 @@
    "agua_km2": 35.63,
    "turbidez": 6.98,
    "mata_ciliar": 2.4,
-   "solo_exposto": 44.2
+   "solo_exposto": 44.2,
+   "foto": "fotos/daca_2009.jpg"
   },
   {
    "ano": 2010,
@@ -308,7 +313,8 @@
    "agua_km2": 24.71,
    "turbidez": 6.92,
    "mata_ciliar": 4.3,
-   "solo_exposto": 40.0
+   "solo_exposto": 40.0,
+   "foto": "fotos/daca_2011.jpg"
   },
   {
    "ano": 2012,
@@ -320,7 +326,8 @@
    "agua_km2": 21.91,
    "turbidez": 4.52,
    "mata_ciliar": 11.0,
-   "solo_exposto": 34.3
+   "solo_exposto": 34.3,
+   "foto": "fotos/daca_2012.jpg"
   },
   {
    "ano": 2013,
@@ -330,7 +337,8 @@
    "agua_km2": 8.19,
    "turbidez": 5.35,
    "mata_ciliar": 10.1,
-   "solo_exposto": 34.3
+   "solo_exposto": 34.3,
+   "foto": "fotos/daca_2013.jpg"
   },
   {
    "ano": 2014,
@@ -342,7 +350,8 @@
    "agua_km2": 17.5,
    "turbidez": 4.96,
    "mata_ciliar": 5.2,
-   "solo_exposto": 45.0
+   "solo_exposto": 45.0,
+   "foto": "fotos/daca_2014.jpg"
   },
   {
    "ano": 2015,
@@ -367,7 +376,8 @@
    "agua_km2": 20.3,
    "turbidez": 9.06,
    "mata_ciliar": 3.1,
-   "solo_exposto": 63.6
+   "solo_exposto": 63.6,
+   "foto": "fotos/daca_2016.jpg"
   },
   {
    "ano": 2017,
@@ -379,31 +389,34 @@
    "agua_km2": 17.8,
    "turbidez": 6.66,
    "mata_ciliar": 3.1,
-   "solo_exposto": 55.2
+   "solo_exposto": 55.2,
+   "foto": "fotos/daca_2017.jpg"
   },
   {
    "ano": 2018,
    "imagens": [
     "2017-12-03 L8",
-    "2018-02-21 L8",
-    "2018-01-20 L8"
+    "2018-01-20 L8",
+    "2018-01-04 L8"
    ],
-   "agua_km2": 17.5,
+   "agua_km2": 20.88,
    "turbidez": 5.78,
    "mata_ciliar": 6.1,
-   "solo_exposto": 47.5
+   "solo_exposto": 47.5,
+   "foto": "fotos/daca_2018.jpg"
   },
   {
    "ano": 2019,
    "imagens": [
-    "2019-01-23 L8",
     "2019-01-07 L8",
-    "2018-12-22 L8"
+    "2018-12-22 L8",
+    "2019-02-24 L8"
    ],
    "agua_km2": 14.72,
-   "turbidez": 5.43,
-   "mata_ciliar": 6.0,
-   "solo_exposto": 43.4
+   "turbidez": 4.05,
+   "mata_ciliar": 8.8,
+   "solo_exposto": 40.9,
+   "foto": "fotos/daca_2019.jpg"
   },
   {
    "ano": 2020,
@@ -428,43 +441,46 @@
    "agua_km2": 18.79,
    "turbidez": 7.71,
    "mata_ciliar": 2.7,
-   "solo_exposto": 56.7
+   "solo_exposto": 56.7,
+   "foto": "fotos/daca_2021.jpg"
   },
   {
    "ano": 2022,
    "imagens": [
     "2022-03-20 L8",
     "2022-01-31 L8",
-    "2022-02-16 L8"
+    "2022-01-07 L9"
    ],
-   "agua_km2": 12.22,
+   "agua_km2": 16.99,
    "turbidez": 5.53,
-   "mata_ciliar": 7.5,
-   "solo_exposto": 40.2
+   "mata_ciliar": 6.5,
+   "solo_exposto": 44.7,
+   "foto": "fotos/daca_2022.jpg"
   },
   {
    "ano": 2023,
    "imagens": [
     "2023-02-03 L8",
-    "2023-04-08 L8",
-    "2022-12-25 L9"
+    "2022-12-25 L9",
+    "2023-01-10 L9"
    ],
-   "agua_km2": 12.43,
+   "agua_km2": 16.07,
    "turbidez": 5.86,
    "mata_ciliar": 3.5,
-   "solo_exposto": 55.3
+   "solo_exposto": 55.3,
+   "foto": "fotos/daca_2023.jpg"
   },
   {
    "ano": 2024,
    "imagens": [
-    "2023-11-26 L9",
     "2023-11-10 L9",
-    "2024-03-01 L9"
+    "2023-12-28 L9"
    ],
-   "agua_km2": 15.79,
-   "turbidez": 4.91,
-   "mata_ciliar": 8.9,
-   "solo_exposto": 34.7
+   "agua_km2": 15.87,
+   "turbidez": 6.53,
+   "mata_ciliar": 7.2,
+   "solo_exposto": 39.15,
+   "foto": "fotos/daca_2024.jpg"
   },
   {
    "ano": 2025,
@@ -489,7 +505,8 @@
    "agua_km2": 13.19,
    "turbidez": 6.56,
    "mata_ciliar": 2.2,
-   "solo_exposto": 60.4
+   "solo_exposto": 60.4,
+   "foto": "fotos/daca_2026.jpg"
   }
  ],
  "swot": {

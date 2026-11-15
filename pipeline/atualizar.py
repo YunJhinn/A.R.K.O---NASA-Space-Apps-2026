@@ -540,6 +540,20 @@ def main():
             periodos.append("rios SWOT " + dt.date.today().isoformat())
         except Exception as e:
             print("ERRO no SWOT dos rios:", e)
+        # A.R.K.O Rios (v7.1): monitor contínuo, imagens HLS novas (a cada 2–5 dias), incremental
+        try:
+            import rios_hls
+            if rios_hls.main():
+                periodos.append("rios HLS " + dt.date.today().isoformat())
+        except Exception as e:
+            print("ERRO no HLS dos rios:", e)
+        # A.R.K.O Rios (v7.1): aquíferos pelo GRACE/GRACE-FO (só quando o GFZ publica um mês novo)
+        try:
+            import aquiferos_grace
+            if aquiferos_grace.main():
+                periodos.append("aquiferos GRACE " + dt.date.today().isoformat())
+        except Exception as e:
+            print("ERRO no GRACE dos aquíferos:", e)
     saida("novo", str(novo).lower())
     if periodos:
         saida("periodo", "; ".join(periodos))

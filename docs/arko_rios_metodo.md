@@ -7,6 +7,18 @@ Objetivo: **conservar os rios que abastecem cidades de água potável**, mostran
 - **SWOT L2 RiverSP (NASA/CNES)**, pelo serviço aberto Hydrocron do PO.DAAC. Os trechos de rio vêm do SWORD v17. Script: `pipeline/rios_swot.py` (atualizado todo dia pelo robô).
 - **NISAR GCOV (NASA/ISRO)**, **LHASA** e **FIRMS (NASA)**: o rio agora e os riscos na bacia (`pipeline/atualizar.py`, `pipeline/riscos.py`).
 
+## Monitor contínuo (v7.1)
+- **HLS v2.0 (NASA)**: Landsat 8/9 + Sentinel-2 harmonizados, 30 m, uma imagem a cada 2–5 dias quando não há nuvem. Script: `pipeline/rios_hls.py` (incremental, rodado todo dia pelo robô). Recortes do mesmo dia viram um mosaico.
+- Cada imagem nova é comparada com o **normal do mês** (percentis 10 a 90 das imagens do mesmo mês nos anos anteriores). Imagem fora do normal, para o lado ruim da medida, vira alerta. Um ponto fora do normal é motivo para verificar; dois seguidos, para agir.
+- No mapa, a linha do tempo mostra o trecho do rio em cada ano (Landsat, 1985 →) e a imagem HLS mais recente.
+
+## Aquíferos (v7.1)
+- **GRACE (NASA/DLR) e GRACE-FO (NASA/GFZ)**: grade mensal de armazenamento total de água (TWS, cm), GFZ GravIS RL06, aberta. Script: `pipeline/aquiferos_grace.py` (o robô baixa só quando sai mês novo).
+- Média ponderada pela área sobre uma caixa aproximada de cada aquífero; tendência Theil–Sen; volume = tendência × área × anos.
+- Regra mais rígida que a dos rios: perda ≤ −0,15 cm/ano ou 3 dos últimos 6 meses abaixo do percentil 10 do mês = atenção; ≤ −0,8 cm/ano (ou ≤ −0,3 com 4 meses abaixo do normal) = em risco.
+- Validação: noroeste da Índia, −4,0 cm/ano no A.R.K.O; Rodell et al. (Nature, 2009) publicaram 4,0 ± 1,0 cm/ano.
+- Limites: o GRACE vê regiões de ~300 km; mede a água total (solo + superfície + subterrânea); caixas aproximadas; qualidade da água não aparece do espaço.
+
 ## Como cada número é medido
 Para cada rio, uma caixa de ~20 km sobre o trecho que abastece a cidade. Em cada ano, até 3 imagens Landsat sem nuvem na estação seca; o valor do ano é a mediana delas.
 - **Área de água:** pixels com MNDWI > 0,1.
@@ -15,15 +27,21 @@ Para cada rio, uma caixa de ~20 km sobre o trecho que abastece a cidade. Em cada
 - **Gelo (montanha):** NDSI > 0,4; a menor área do ano (a geleira, sem a neve que cai e derrete); só anos com 3 ou mais imagens.
 - **Tendência:** Theil–Sen (robusta) nos últimos 15 anos (série inteira para o gelo). A projeção para 2030 supõe que a tendência continue: é um alerta, não uma previsão.
 
-## Resultado (média dos 10 primeiros anos → últimos 3 anos)
-| Rio | Anos | Imagens Landsat | Turbidez (%) | Água (km²) | Mata ciliar (%) | Solo exposto (%) | Gelo (km²) | Medições SWOT |
-|---|---|---|---|---|---|---|---|---|
-| Rio Tapajós em Itaituba | 1985–2026 | 107 | 8.5 → 4.8 | 53.0 → 53.1 | 82.0 → 76.0 | 1.5 → 3.5 | — | 154 |
-| Rio Madeira em Nova Olinda do Norte | 1985–2026 | 93 | 8.8 → 6.1 | 122.9 → 125.6 | 89.8 → 84.0 | 0.3 → 1.1 | — | 54 |
-| Lago Guaíba em Porto Alegre | 1985–2026 | 108 | 9.9 → 8.3 | 93.2 → 92.2 | 52.3 → 56.8 | 12.8 → 14.5 | — | 134 |
-| Rios Buriganga e Turag em Daca | 1988–2026 | 111 | 8.1 → 6.0 | 30.9 → 14.8 | 6.0 → 5.0 | 23.6 → 44.4 | — | 45 |
-| Geleiras do Langtang (nascente do Trishuli) | 1988–2025 | 100 | — | — | — | — | 49.1 → 40.7 | 72 |
-| Barragem de Massingir (rio dos Elefantes, bacia do Limpopo) | 1989–2026 | 88 | 4.2 → 1.3 | 68.0 → 121.2 | 3.9 → 14.6 | 31.2 → 5.3 | — | 91 |
+## Resultado (média dos 10 primeiros anos analisados → últimos 3 anos)
+| Rio | Anos analisados | Imagens Landsat | Imagens HLS | Turbidez (%) | Água (km²) | Mata ciliar (%) | Solo exposto (%) | Gelo (km²) | Medições SWOT |
+|---|---|---|---|---|---|---|---|---|---|
+| Reservatório do João Leite (abastece Goiânia) | 2010–2026 | 57 | 377 | 2.1 → 1.5 | 11.7 → 11.6 | 50.0 → 41.9 | 2.3 → 3.1 | — | 0 |
+| Rio Meia Ponte em Goiânia | 1985–2026 | 82 | 395 | 5.4 → 3.7 | 0.3 → 0.5 | 2.4 → 17.5 | 21.8 → 19.5 | — | 0 |
+| Rio Araguaia em Aruanã | 1985–2025 | 96 | 393 | 9.9 → 6.2 | 9.3 → 7.1 | 57.2 → 67.0 | 5.1 → 5.0 | — | 94 |
+| Lago de Serra da Mesa (rio Tocantins) | 1999–2024 | 91 | 368 | 2.5 → 1.1 | 332.4 → 347.6 | 3.5 → 14.6 | 31.1 → 14.3 | — | 0 |
+| Rio Tapajós em Itaituba | 1985–2026 | 107 | 128 | 8.5 → 4.8 | 53.0 → 53.1 | 82.0 → 76.0 | 1.5 → 3.5 | — | 154 |
+| Rio Madeira em Nova Olinda do Norte | 1985–2026 | 87 | 91 | 8.8 → 7.5 | 122.9 → 125.1 | 89.8 → 84.0 | 0.3 → 1.2 | — | 54 |
+| Lago Guaíba em Porto Alegre | 1985–2026 | 108 | 344 | 9.9 → 8.3 | 93.2 → 92.2 | 52.3 → 56.8 | 12.8 → 14.5 | — | 134 |
+| Rios Buriganga e Turag em Daca | 1988–2026 | 107 | 214 | 8.1 → 6.5 | 32.9 → 14.8 | 5.9 → 5.0 | 24.4 → 44.4 | — | 45 |
+| Geleiras do Langtang (nascente do Trishuli) | 1988–2025 | 100 | 20 | — | — | — | — | 49.1 → 40.7 | 72 |
+| Barragem de Massingir (rio dos Elefantes, bacia do Limpopo) | 1989–2026 | 83 | 266 | 4.2 → 1.3 | 71.0 → 121.2 | 3.9 → 14.6 | 27.4 → 5.3 | — | 91 |
+
+Represas (João Leite, Serra da Mesa): a análise começa quando o lago encheu.
 
 ## Validação com registros independentes (4 de 4)
 1. **Tapajós, corrida do ouro dos anos 80–90:** Lobo et al. (Remote Sensing of Environment, 2015) mostraram que o sedimento do Tapajós acompanha o garimpo, com pico no começo dos anos 90. O A.R.K.O achou o ano mais turvo em 1989 e a média de 1987–1991 cerca de 2,8 vezes a de 1998–2013.

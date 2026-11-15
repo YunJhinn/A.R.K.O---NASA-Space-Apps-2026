@@ -1,0 +1,893 @@
+{
+ "id": "araguaia",
+ "nome": "Rio Araguaia em Aruanã",
+ "pais": "Brasil · GO",
+ "bbox": [
+  -51.15,
+  -15.0,
+  -51.0,
+  -14.85
+ ],
+ "meses": [
+  6,
+  7,
+  8,
+  9
+ ],
+ "cidade": "Aruanã",
+ "pressao": "assoreamento e desmatamento do Cerrado na bacia",
+ "montanha": false,
+ "gerado": "2026-11-14",
+ "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
+ "serie": [
+  {
+   "ano": 1985,
+   "imagens": [
+    "1985-08-15 L5",
+    "1985-07-14 L5",
+    "1985-06-12 L5"
+   ],
+   "agua_km2": 9.78,
+   "turbidez": 8.36,
+   "mata_ciliar": 63.4,
+   "solo_exposto": 4.8,
+   "foto": "fotos/araguaia_1985.jpg"
+  },
+  {
+   "ano": 1986,
+   "imagens": [
+    "1986-09-19 L5",
+    "1986-07-17 L5",
+    "1986-09-03 L5"
+   ],
+   "agua_km2": 8.56,
+   "turbidez": 10.47,
+   "mata_ciliar": 35.5,
+   "solo_exposto": 4.4,
+   "foto": "fotos/araguaia_1986.jpg"
+  },
+  {
+   "ano": 1987,
+   "imagens": [
+    "1987-07-20 L5",
+    "1987-06-18 L5",
+    "1987-08-05 L5"
+   ],
+   "agua_km2": 8.37,
+   "turbidez": 9.12,
+   "mata_ciliar": 58.5,
+   "solo_exposto": 6.7,
+   "foto": "fotos/araguaia_1987.jpg"
+  },
+  {
+   "ano": 1988,
+   "imagens": [
+    "1988-09-24 L5",
+    "1988-09-08 L5",
+    "1988-08-07 L5"
+   ],
+   "agua_km2": 8.98,
+   "turbidez": 9.79,
+   "mata_ciliar": 45.7,
+   "solo_exposto": 15.2,
+   "foto": "fotos/araguaia_1988.jpg"
+  },
+  {
+   "ano": 1989,
+   "imagens": [
+    "1989-07-25 L5",
+    "1989-06-07 L5",
+    "1989-09-27 L5"
+   ],
+   "agua_km2": 9.4,
+   "turbidez": 11.25,
+   "mata_ciliar": 65.6,
+   "solo_exposto": 4.9,
+   "foto": "fotos/araguaia_1989.jpg"
+  },
+  {
+   "ano": 1990,
+   "imagens": [
+    "1990-06-10 L5"
+   ],
+   "agua_km2": 9.69,
+   "turbidez": 10.46,
+   "mata_ciliar": 69.3,
+   "solo_exposto": 4.1,
+   "foto": "fotos/araguaia_1990.jpg"
+  },
+  {
+   "ano": 1991,
+   "imagens": [
+    "1991-07-31 L5",
+    "1991-07-15 L5",
+    "1991-06-29 L5"
+   ],
+   "agua_km2": 9.79,
+   "turbidez": 11.01,
+   "mata_ciliar": 49.3,
+   "solo_exposto": 4.4,
+   "foto": "fotos/araguaia_1991.jpg"
+  },
+  {
+   "ano": 1992,
+   "imagens": [
+    "1992-08-02 L5",
+    "1992-07-17 L5",
+    "1992-09-19 L5"
+   ],
+   "agua_km2": 9.37,
+   "turbidez": 10.08,
+   "mata_ciliar": 42.8,
+   "solo_exposto": 6.3,
+   "foto": "fotos/araguaia_1992.jpg"
+  },
+  {
+   "ano": 1993,
+   "imagens": [
+    "1993-08-21 L5",
+    "1993-08-05 L5",
+    "1993-07-04 L5"
+   ],
+   "agua_km2": 8.88,
+   "turbidez": 9.17,
+   "mata_ciliar": 55.9,
+   "solo_exposto": 7.9,
+   "foto": "fotos/araguaia_1993.jpg"
+  },
+  {
+   "ano": 1994,
+   "imagens": [
+    "1994-07-07 L5",
+    "1994-06-21 L5",
+    "1994-08-08 L5"
+   ],
+   "agua_km2": 9.3,
+   "turbidez": 8.06,
+   "mata_ciliar": 67.7,
+   "solo_exposto": 5.2,
+   "foto": "fotos/araguaia_1994.jpg"
+  },
+  {
+   "ano": 1995,
+   "imagens": [
+    "1995-08-11 L5",
+    "1995-07-26 L5",
+    "1995-07-10 L5"
+   ],
+   "agua_km2": 9.4,
+   "turbidez": 7.72,
+   "mata_ciliar": 65.5,
+   "solo_exposto": 4.7,
+   "foto": "fotos/araguaia_1995.jpg"
+  },
+  {
+   "ano": 1996,
+   "imagens": [
+    "1996-08-29 L5"
+   ],
+   "agua_km2": 8.36,
+   "turbidez": 8.42,
+   "mata_ciliar": 53.2,
+   "solo_exposto": 7.3,
+   "foto": "fotos/araguaia_1996.jpg"
+  },
+  {
+   "ano": 1997,
+   "imagens": [
+    "1997-08-16 L5",
+    "1997-07-31 L5"
+   ],
+   "agua_km2": 10.92,
+   "turbidez": 8.2,
+   "mata_ciliar": 54.7,
+   "solo_exposto": 3.4,
+   "foto": "fotos/araguaia_1997.jpg"
+  },
+  {
+   "ano": 1998,
+   "imagens": [
+    "1998-09-04 L5",
+    "1998-07-02 L5",
+    "1998-06-16 L5"
+   ],
+   "agua_km2": 8.77,
+   "turbidez": 7.25,
+   "mata_ciliar": 63.3,
+   "solo_exposto": 6.0,
+   "foto": "fotos/araguaia_1998.jpg"
+  },
+  {
+   "ano": 1999,
+   "imagens": [
+    "1999-07-21 L5",
+    "1999-06-19 L5",
+    "1999-08-06 L5"
+   ],
+   "agua_km2": 9.8,
+   "turbidez": 6.96,
+   "mata_ciliar": 61.5,
+   "solo_exposto": 6.9,
+   "foto": "fotos/araguaia_1999.jpg"
+  },
+  {
+   "ano": 2000,
+   "imagens": [
+    "2000-08-08 L5",
+    "2000-07-07 L5",
+    "2000-06-05 L5"
+   ],
+   "agua_km2": 9.61,
+   "turbidez": 7.34,
+   "mata_ciliar": 63.4,
+   "solo_exposto": 5.5,
+   "foto": "fotos/araguaia_2000.jpg"
+  },
+  {
+   "ano": 2001,
+   "imagens": [
+    "2001-08-27 L5",
+    "2001-07-10 L5",
+    "2001-06-08 L5"
+   ],
+   "agua_km2": 6.28,
+   "turbidez": 7.14,
+   "mata_ciliar": 58.2,
+   "solo_exposto": 6.2,
+   "foto": "fotos/araguaia_2001.jpg"
+  },
+  {
+   "ano": 2002,
+   "imagens": [
+    "2002-07-13 L5"
+   ],
+   "agua_km2": 9.74,
+   "turbidez": 8.3,
+   "mata_ciliar": 47.4,
+   "solo_exposto": 5.3,
+   "foto": "fotos/araguaia_2002.jpg"
+  },
+  {
+   "ano": 2003,
+   "imagens": [
+    "2003-08-17 L5",
+    "2003-07-16 L5",
+    "2003-08-01 L5"
+   ],
+   "agua_km2": 9.06,
+   "turbidez": 7.23,
+   "mata_ciliar": 55.1,
+   "solo_exposto": 7.1,
+   "foto": "fotos/araguaia_2003.jpg"
+  },
+  {
+   "ano": 2004,
+   "imagens": [
+    "2004-09-04 L5",
+    "2004-08-19 L5",
+    "2004-07-18 L5"
+   ],
+   "agua_km2": 9.19,
+   "turbidez": 7.0,
+   "mata_ciliar": 54.6,
+   "solo_exposto": 6.3,
+   "foto": "fotos/araguaia_2004.jpg"
+  },
+  {
+   "ano": 2005,
+   "imagens": [
+    "2005-08-22 L5",
+    "2005-08-06 L5",
+    "2005-07-21 L5"
+   ],
+   "agua_km2": 8.75,
+   "turbidez": 6.77,
+   "mata_ciliar": 55.9,
+   "solo_exposto": 7.6,
+   "foto": "fotos/araguaia_2005.jpg"
+  },
+  {
+   "ano": 2006,
+   "imagens": [
+    "2006-08-09 L5",
+    "2006-07-24 L5",
+    "2006-07-08 L5"
+   ],
+   "agua_km2": 8.78,
+   "turbidez": 6.9,
+   "mata_ciliar": 58.9,
+   "solo_exposto": 5.7,
+   "foto": "fotos/araguaia_2006.jpg"
+  },
+  {
+   "ano": 2007,
+   "imagens": [
+    "2007-09-13 L5",
+    "2007-08-12 L5",
+    "2007-07-27 L5"
+   ],
+   "agua_km2": 8.54,
+   "turbidez": 6.83,
+   "mata_ciliar": 57.0,
+   "solo_exposto": 9.6,
+   "foto": "fotos/araguaia_2007.jpg"
+  },
+  {
+   "ano": 2008,
+   "imagens": [
+    "2008-08-30 L5",
+    "2008-07-29 L5"
+   ],
+   "agua_km2": 8.79,
+   "turbidez": 7.2,
+   "mata_ciliar": 50.85,
+   "solo_exposto": 8.0,
+   "foto": "fotos/araguaia_2008.jpg"
+  },
+  {
+   "ano": 2009,
+   "imagens": [
+    "2009-09-18 L5",
+    "2009-09-02 L5",
+    "2009-08-17 L5"
+   ],
+   "agua_km2": 9.03,
+   "turbidez": 7.35,
+   "mata_ciliar": 60.0,
+   "solo_exposto": 5.2,
+   "foto": "fotos/araguaia_2009.jpg"
+  },
+  {
+   "ano": 2010,
+   "imagens": [
+    "2010-09-21 L5",
+    "2010-09-05 L5",
+    "2010-07-03 L5"
+   ],
+   "agua_km2": 8.03,
+   "turbidez": 8.0,
+   "mata_ciliar": 41.9,
+   "solo_exposto": 12.1,
+   "foto": "fotos/araguaia_2010.jpg"
+  },
+  {
+   "ano": 2011,
+   "imagens": [
+    "2011-09-08 L5",
+    "2011-08-07 L5",
+    "2011-06-20 L5"
+   ],
+   "agua_km2": 8.49,
+   "turbidez": 7.06,
+   "mata_ciliar": 61.4,
+   "solo_exposto": 5.5,
+   "foto": "fotos/araguaia_2011.jpg"
+  },
+  {
+   "ano": 2013,
+   "imagens": [
+    "2013-06-09 L8",
+    "2013-09-13 L8"
+   ],
+   "agua_km2": 9.11,
+   "turbidez": 8.84,
+   "mata_ciliar": 69.05,
+   "solo_exposto": 4.15,
+   "foto": "fotos/araguaia_2013.jpg"
+  },
+  {
+   "ano": 2014,
+   "imagens": [
+    "2014-09-16 L8",
+    "2014-06-12 L8",
+    "2014-07-14 L8"
+   ],
+   "agua_km2": 9.16,
+   "turbidez": 5.9,
+   "mata_ciliar": 68.7,
+   "solo_exposto": 3.6,
+   "foto": "fotos/araguaia_2014.jpg"
+  },
+  {
+   "ano": 2015,
+   "imagens": [
+    "2015-07-17 L8",
+    "2015-07-01 L8",
+    "2015-08-18 L8"
+   ],
+   "agua_km2": 9.65,
+   "turbidez": 6.08,
+   "mata_ciliar": 73.2,
+   "solo_exposto": 2.6,
+   "foto": "fotos/araguaia_2015.jpg"
+  },
+  {
+   "ano": 2016,
+   "imagens": [
+    "2016-06-01 L8",
+    "2016-07-03 L8"
+   ],
+   "agua_km2": 8.69,
+   "turbidez": 6.08,
+   "mata_ciliar": 70.55,
+   "solo_exposto": 3.95,
+   "foto": "fotos/araguaia_2016.jpg"
+  },
+  {
+   "ano": 2017,
+   "imagens": [
+    "2017-09-24 L8"
+   ],
+   "agua_km2": 6.55,
+   "turbidez": 6.98,
+   "mata_ciliar": 47.9,
+   "solo_exposto": 10.2,
+   "foto": "fotos/araguaia_2017.jpg"
+  },
+  {
+   "ano": 2018,
+   "imagens": [
+    "2018-06-23 L8",
+    "2018-09-11 L8"
+   ],
+   "agua_km2": 7.77,
+   "turbidez": 6.29,
+   "mata_ciliar": 64.65,
+   "solo_exposto": 5.45,
+   "foto": "fotos/araguaia_2018.jpg"
+  },
+  {
+   "ano": 2020,
+   "imagens": [
+    "2020-07-14 L8",
+    "2020-06-28 L8",
+    "2020-07-30 L8"
+   ],
+   "agua_km2": 8.64,
+   "turbidez": 5.78,
+   "mata_ciliar": 73.7,
+   "solo_exposto": 3.4,
+   "foto": "fotos/araguaia_2020.jpg"
+  },
+  {
+   "ano": 2021,
+   "imagens": [
+    "2021-07-17 L8"
+   ],
+   "agua_km2": 8.02,
+   "turbidez": 5.49,
+   "mata_ciliar": 71.2,
+   "solo_exposto": 4.3,
+   "foto": "fotos/araguaia_2021.jpg"
+  },
+  {
+   "ano": 2022,
+   "imagens": [
+    "2022-07-28 L9",
+    "2022-07-12 L9"
+   ],
+   "agua_km2": 8.09,
+   "turbidez": 5.73,
+   "mata_ciliar": 63.45,
+   "solo_exposto": 4.8,
+   "foto": "fotos/araguaia_2022.jpg"
+  },
+  {
+   "ano": 2023,
+   "imagens": [
+    "2023-08-24 L8"
+   ],
+   "agua_km2": 7.04,
+   "turbidez": 6.32,
+   "mata_ciliar": 53.0,
+   "solo_exposto": 6.5,
+   "foto": "fotos/araguaia_2023.jpg"
+  },
+  {
+   "ano": 2024,
+   "imagens": [
+    "2024-07-17 L9"
+   ],
+   "agua_km2": 7.13,
+   "turbidez": 5.14,
+   "mata_ciliar": 71.0,
+   "solo_exposto": 5.0,
+   "foto": "fotos/araguaia_2024.jpg"
+  },
+  {
+   "ano": 2025,
+   "imagens": [
+    "2025-07-20 L9",
+    "2025-07-12 L8"
+   ],
+   "agua_km2": 7.82,
+   "turbidez": 6.17,
+   "mata_ciliar": 67.0,
+   "solo_exposto": 4.2,
+   "foto": "fotos/araguaia_2025.jpg"
+  }
+ ],
+ "swot": {
+  "reach_id": "62495300111",
+  "rio": "Rio Araguaia em Aruanã",
+  "serie": [
+   {
+    "d": "2023-08-06",
+    "wse": 243.62
+   },
+   {
+    "d": "2023-08-10",
+    "wse": 243.15
+   },
+   {
+    "d": "2023-08-27",
+    "wse": 243.01
+   },
+   {
+    "d": "2023-08-31",
+    "wse": 243.49
+   },
+   {
+    "d": "2023-09-17",
+    "wse": 243.25
+   },
+   {
+    "d": "2023-10-08",
+    "wse": 243.1
+   },
+   {
+    "d": "2023-10-11",
+    "wse": 243.06
+   },
+   {
+    "d": "2023-10-29",
+    "wse": 242.88
+   },
+   {
+    "d": "2023-11-01",
+    "wse": 243.0
+   },
+   {
+    "d": "2023-11-19",
+    "wse": 242.8
+   },
+   {
+    "d": "2023-11-22",
+    "wse": 242.89
+   },
+   {
+    "d": "2023-12-09",
+    "wse": 243.61
+   },
+   {
+    "d": "2023-12-13",
+    "wse": 243.46
+   },
+   {
+    "d": "2023-12-30",
+    "wse": 243.62
+   },
+   {
+    "d": "2024-01-03",
+    "wse": 243.53
+   },
+   {
+    "d": "2024-01-20",
+    "wse": 244.58
+   },
+   {
+    "d": "2024-01-24",
+    "wse": 244.15
+   },
+   {
+    "d": "2024-02-10",
+    "wse": 244.31
+   },
+   {
+    "d": "2024-02-14",
+    "wse": 245.27
+   },
+   {
+    "d": "2024-03-02",
+    "wse": 245.03
+   },
+   {
+    "d": "2024-03-05",
+    "wse": 244.78
+   },
+   {
+    "d": "2024-03-23",
+    "wse": 244.56
+   },
+   {
+    "d": "2024-04-16",
+    "wse": 246.39
+   },
+   {
+    "d": "2024-05-07",
+    "wse": 244.23
+   },
+   {
+    "d": "2024-05-28",
+    "wse": 243.68
+   },
+   {
+    "d": "2024-06-14",
+    "wse": 243.73
+   },
+   {
+    "d": "2024-06-18",
+    "wse": 243.54
+   },
+   {
+    "d": "2024-07-05",
+    "wse": 243.23
+   },
+   {
+    "d": "2024-07-09",
+    "wse": 243.52
+   },
+   {
+    "d": "2024-07-26",
+    "wse": 243.12
+   },
+   {
+    "d": "2024-07-29",
+    "wse": 243.06
+   },
+   {
+    "d": "2024-08-16",
+    "wse": 242.85
+   },
+   {
+    "d": "2024-08-19",
+    "wse": 242.94
+   },
+   {
+    "d": "2024-09-06",
+    "wse": 242.76
+   },
+   {
+    "d": "2024-09-09",
+    "wse": 242.79
+   },
+   {
+    "d": "2024-09-27",
+    "wse": 242.59
+   },
+   {
+    "d": "2024-10-21",
+    "wse": 243.23
+   },
+   {
+    "d": "2024-11-07",
+    "wse": 243.39
+   },
+   {
+    "d": "2024-11-11",
+    "wse": 244.7
+   },
+   {
+    "d": "2024-11-28",
+    "wse": 245.06
+   },
+   {
+    "d": "2024-12-02",
+    "wse": 244.65
+   },
+   {
+    "d": "2024-12-19",
+    "wse": 244.97
+   },
+   {
+    "d": "2025-02-23",
+    "wse": 245.26
+   },
+   {
+    "d": "2025-03-16",
+    "wse": 244.82
+   },
+   {
+    "d": "2025-04-02",
+    "wse": 245.14
+   },
+   {
+    "d": "2025-04-06",
+    "wse": 244.92
+   },
+   {
+    "d": "2025-04-23",
+    "wse": 245.18
+   },
+   {
+    "d": "2025-04-27",
+    "wse": 244.88
+   },
+   {
+    "d": "2025-05-14",
+    "wse": 244.27
+   },
+   {
+    "d": "2025-05-18",
+    "wse": 244.18
+   },
+   {
+    "d": "2025-06-04",
+    "wse": 243.9
+   },
+   {
+    "d": "2025-06-07",
+    "wse": 244.01
+   },
+   {
+    "d": "2025-06-25",
+    "wse": 243.45
+   },
+   {
+    "d": "2025-06-28",
+    "wse": 243.7
+   },
+   {
+    "d": "2025-07-16",
+    "wse": 243.39
+   },
+   {
+    "d": "2025-07-19",
+    "wse": 243.41
+   },
+   {
+    "d": "2025-08-06",
+    "wse": 243.08
+   },
+   {
+    "d": "2025-08-09",
+    "wse": 243.07
+   },
+   {
+    "d": "2025-08-26",
+    "wse": 242.84
+   },
+   {
+    "d": "2025-08-30",
+    "wse": 242.98
+   },
+   {
+    "d": "2025-09-16",
+    "wse": 242.77
+   },
+   {
+    "d": "2025-09-20",
+    "wse": 242.78
+   },
+   {
+    "d": "2025-10-07",
+    "wse": 242.7
+   },
+   {
+    "d": "2025-10-28",
+    "wse": 242.97
+   },
+   {
+    "d": "2025-10-31",
+    "wse": 242.93
+   },
+   {
+    "d": "2025-11-18",
+    "wse": 243.05
+   },
+   {
+    "d": "2025-11-21",
+    "wse": 242.66
+   },
+   {
+    "d": "2025-12-09",
+    "wse": 243.61
+   },
+   {
+    "d": "2025-12-12",
+    "wse": 244.05
+   },
+   {
+    "d": "2025-12-30",
+    "wse": 244.09
+   },
+   {
+    "d": "2026-01-02",
+    "wse": 243.98
+   },
+   {
+    "d": "2026-01-19",
+    "wse": 244.2
+   },
+   {
+    "d": "2026-01-23",
+    "wse": 244.28
+   },
+   {
+    "d": "2026-02-09",
+    "wse": 247.08
+   },
+   {
+    "d": "2026-02-13",
+    "wse": 246.58
+   },
+   {
+    "d": "2026-04-13",
+    "wse": 245.66
+   },
+   {
+    "d": "2026-05-04",
+    "wse": 244.39
+   },
+   {
+    "d": "2026-05-07",
+    "wse": 244.43
+   },
+   {
+    "d": "2026-05-25",
+    "wse": 244.68
+   },
+   {
+    "d": "2026-05-28",
+    "wse": 244.1
+   },
+   {
+    "d": "2026-06-15",
+    "wse": 243.97
+   },
+   {
+    "d": "2026-07-05",
+    "wse": 243.6
+   },
+   {
+    "d": "2026-07-09",
+    "wse": 243.64
+   },
+   {
+    "d": "2026-07-26",
+    "wse": 243.25
+   },
+   {
+    "d": "2026-07-30",
+    "wse": 243.37
+   },
+   {
+    "d": "2026-08-16",
+    "wse": 243.19
+   },
+   {
+    "d": "2026-08-20",
+    "wse": 243.33
+   },
+   {
+    "d": "2026-09-06",
+    "wse": 242.95
+   },
+   {
+    "d": "2026-09-09",
+    "wse": 243.61
+   },
+   {
+    "d": "2026-09-27",
+    "wse": 242.95
+   },
+   {
+    "d": "2026-09-30",
+    "wse": 243.24
+   },
+   {
+    "d": "2026-10-18",
+    "wse": 243.33
+   },
+   {
+    "d": "2026-10-21",
+    "wse": 243.8
+   },
+   {
+    "d": "2026-11-08",
+    "wse": 243.59
+   }
+  ],
+  "fonte": "SWOT L2 RiverSP (NASA/CNES) via Hydrocron, PO.DAAC"
+ }
+}

@@ -18,6 +18,7 @@ TRECHOS = {
     "daca": ("45220200225", "Rio Dhaleshwari/Buriganga, sul de Daca"),
     "langtang": ("45243601121", "Rio Trishuli, abaixo das geleiras"),
     "limpopo": ("12440300011", "Rio dos Elefantes (Olifants), abaixo de Massingir"),
+    "araguaia": ("62495300111", "Rio Araguaia em Aruanã"),
 }
 
 

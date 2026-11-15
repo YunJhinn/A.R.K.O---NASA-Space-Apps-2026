@@ -10,16 +10,18 @@ O A.R.K.O Rios usa satélites da NASA para **conservar os rios que abastecem as 
 | --- | --- | --- | --- |
 | Histórico do rio | **Landsat 4–9** (NASA/USGS) | 1985 → hoje | Turbidez, área de água, mata ciliar, solo exposto na margem, gelo das nascentes |
 | Nível do rio | **SWOT** (NASA/CNES) | 2023 → hoje | Altura da água no trecho que abastece a cidade |
+| Monitor contínuo | **HLS** (NASA: Landsat 8/9 + Sentinel-2) | a cada 2–5 dias (sem nuvem) | Cada imagem nova comparada com o normal do mês; o que sai do normal vira alerta |
 | O rio agora | **NISAR** (NASA/ISRO) | a cada ~12 dias | Água nova, água que recuou e margem perdendo vegetação, através das nuvens |
+| Aquíferos | **GRACE / GRACE-FO** (NASA/DLR/GFZ) | 2002 → hoje, mensal | Água guardada no chão e debaixo dele em 7 aquíferos; alerta mais rígido porque o dano é quase irreversível |
 | Riscos na bacia | **LHASA** e **FIRMS** (NASA) | diário | Chuva extrema (sedimento) e fogo (cinza e terra) |
 
-**6 rios:** Tapajós (garimpo), Madeira (dragas e desmatamento), Guaíba em Porto Alegre (cidade e cheias), rios de Daca (cidade crescendo sobre a água), nascentes do Trishuli no Nepal (gelo derretendo) e barragem de Massingir em Moçambique (secas).
+**10 rios (4 em Goiás: reservatório do João Leite e Meia Ponte, que abastecem Goiânia, Araguaia em Aruanã e Serra da Mesa) e 7 aquíferos (Goiás, Urucuia, Guarani, Grande Amazônia, Bengala, noroeste da Índia, Ogallala).** Também: Tapajós (garimpo), Madeira (dragas e desmatamento), Guaíba em Porto Alegre (cidade e cheias), rios de Daca (cidade crescendo sobre a água), nascentes do Trishuli no Nepal (gelo derretendo) e barragem de Massingir em Moçambique (secas).
 
 **Validado com registros reais (4 de 4):** a corrida do ouro dos anos 80–90 e a de 2019–2022 no Tapajós (Lobo et al. 2015; MapBiomas), a vazante recorde de 2024 em Itaituba (Serviço Geológico do Brasil) e a represa de Massingir enchendo depois da reforma de 2006. Veja `docs/arko_rios_metodo.md`.
 
 **O que ele não vê:** esgoto químico, agrotóxico e microplástico não aparecem do espaço. O satélite mostra o efeito visível e diz onde e quando coletar amostra em laboratório.
 
-Scripts: `pipeline/rios_landsat.py` (série de 40 anos, dados abertos, sem login) e `pipeline/rios_swot.py` (nível do rio, API aberta Hydrocron). O robô diário atualiza o SWOT e o NISAR.
+Scripts: `pipeline/rios_landsat.py` (série de 40 anos, dados abertos, sem login) e `pipeline/rios_swot.py` (nível do rio, API aberta Hydrocron). Também `pipeline/rios_hls.py` (monitor contínuo, incremental). O robô diário atualiza HLS, SWOT e NISAR.
 
 ---
 

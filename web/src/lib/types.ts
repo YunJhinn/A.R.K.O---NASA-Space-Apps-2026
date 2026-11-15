@@ -2,7 +2,7 @@
 
 export type Src = 'demo' | 'real'
 export type Lang = 'pt' | 'en'
-export type View = 'inicio' | 'comparar' | 'celular' | 'tutoriais' | 'futuro' | 'validacao' | 'historico'
+export type View = 'inicio' | 'comparar' | 'celular' | 'tutoriais' | 'futuro' | 'validacao' | 'historico' | 'aquiferos'
 export type EvType = 'fogo' | 'agua' | 'arvore' | 'solo' | 'vento'
 export type AlertType = EvType | 'tornado' | 'colapso' | 'deslizamento' | 'geleira'
 export type TypeFilter = 'todos' | EvType

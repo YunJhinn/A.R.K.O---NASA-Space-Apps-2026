@@ -10,16 +10,18 @@ A.R.K.O Rivers uses NASA satellites to **conserve the rivers that supply drinkin
 | --- | --- | --- | --- |
 | River history | **Landsat 4–9** (NASA/USGS) | 1985 → today | Water turbidity, water area, riverside forest, bare soil on the banks, glacier ice |
 | River level | **SWOT** (NASA/CNES) | 2023 → today | Water surface height of the river reach that supplies the city |
+| Continuous monitor | **HLS** (NASA: Landsat 8/9 + Sentinel-2) | every 2–5 days (cloud-free) | Each new image compared with the normal for its month; out-of-normal images become alerts |
 | River now | **NISAR** (NASA/ISRO) | every ~12 days | New water, receding water and banks losing vegetation, through clouds |
+| Aquifers | **GRACE / GRACE-FO** (NASA/DLR/GFZ) | 2002 → today, monthly | Water stored under and on the ground over 7 aquifers; stricter alert because damage is almost irreversible |
 | Risks in the basin | **LHASA** and **FIRMS** (NASA) | daily | Extreme rain (sediment) and fire (ash and soil) |
 
-**6 rivers:** Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka's rivers (city growing over water), Trishuli headwaters in Nepal (melting ice) and Massingir Dam in Mozambique (droughts).
+**10 rivers (4 in Goiás: João Leite reservoir and Meia Ponte, which supply Goiânia, Araguaia at Aruanã and Serra da Mesa) and 7 aquifers (Goiás, Urucuia, Guarani, Greater Amazon, Bengal, NW India, Ogallala).** Also: Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka's rivers (city growing over water), Trishuli headwaters in Nepal (melting ice) and Massingir Dam in Mozambique (droughts).
 
 **Validated against real records (4 of 4):** the 1980s–90s gold rush and the 2019–2022 gold rush on the Tapajós (Lobo et al. 2015; MapBiomas), the record low water of 2024 at Itaituba (Geological Survey of Brazil) and the refilling of Massingir Dam after its 2006 repair. See `docs/arko_rios_metodo.md`.
 
 **What it cannot see:** sewage chemicals, pesticides and microplastics are not visible from space. The satellite shows the visible effect and tells where and when to collect lab samples.
 
-Scripts: `pipeline/rios_landsat.py` (40-year series, open data, no login) and `pipeline/rios_swot.py` (river level, open Hydrocron API). The daily robot refreshes SWOT and NISAR.
+Scripts: `pipeline/rios_landsat.py` (40-year series, open data, no login) and `pipeline/rios_swot.py` (river level, open Hydrocron API). Also `pipeline/rios_hls.py` (continuous monitor, incremental). The daily robot refreshes HLS, SWOT and NISAR.
 
 ---
 

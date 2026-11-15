@@ -6,9 +6,7 @@ import { REGIONS, type Region, type RegionId } from './regions'
 import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type RealSet, type TimelinePoint } from './real'
 import { setI18n, tr } from './i18n'
 import { ago } from './util'
-import { eventAlerts } from './events'
-import { calibrar, mountainAlerts, riskAlerts } from './riscos'
-import { previsoes } from './previsao'
+import { calibrar } from './riscos'
 
 const ORD = { Alto: 0, 'Médio': 1, Baixo: 2 } as const
 /** colapso, depois as PREVISÕES por cruzamento (foco principal), depois o resto; dentro de cada grupo, do maior risco para o menor */
@@ -124,7 +122,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ob = localStorage.getItem('arko-ob') !== '1' && !location.hash
       localStorage.setItem('arko-ob', '1')
       const h = location.hash.slice(1)
-      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao' || h === 'historico') view = h
+      if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao' || h === 'historico' || h === 'aquiferos') view = h
     } catch { /* sem localStorage */ }
     let favs: MyPlace[] = [], recents: MyPlace[] = []
     try { favs = JSON.parse(localStorage.getItem('arko-favs') ?? '[]'); recents = JSON.parse(localStorage.getItem('arko-recentes') ?? '[]') } catch { /* ok */ }
@@ -181,7 +179,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (isReal) (Object.keys(TYPES_REAL) as EvType[]).forEach(k => { types[k] = { ...types[k], ...TYPES_REAL[k] } })
     return {
       ev: isReal ? real.ev : region.ev,
-      alerts: isReal ? ordenar([...eventAlerts(realMeta.id, s.lang), ...previsoes({ timeline, montanha: real.meta.montanha, riscos: riscos[realMeta.id], lang: s.lang }), ...riskAlerts(riscos[realMeta.id], s.lang), ...mountainAlerts(real.meta.montanha, real.meta.antes.data, real.meta.depois.data, s.lang), ...real.alerts]) : region.alerts,
+      // v7.1 · A.R.K.O Rios: só o que o radar viu no rio e na margem (sem queimadas, deslizamentos ou desastres)
+      alerts: isReal ? ordenar(real.alerts.filter(a => a.ty === 'agua' || a.ty === 'solo' || a.ty === 'arvore')) : region.alerts,
       riscos: isReal ? riscos[realMeta.id] : undefined,
       cities: isReal ? real.cities : region.cities,
       cmp: isReal ? real.cmp : region.cmp,
@@ -199,7 +198,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [s.lang])
   useEffect(() => { try { if (location.hash !== '#' + s.view) history.replaceState(null, '', '#' + s.view) } catch { /* ok */ } }, [s.view])
   useEffect(() => {
-    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao' || h === 'historico') set({ view: h }) }
+    const on = () => { const h = location.hash.slice(1); if (h === 'comparar' || h === 'celular' || h === 'inicio' || h === 'futuro' || h === 'validacao' || h === 'historico' || h === 'aquiferos') set({ view: h }) }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])

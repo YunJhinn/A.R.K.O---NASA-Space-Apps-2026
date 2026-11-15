@@ -11,6 +11,7 @@ import { Onboarding } from './components/Onboarding'
 import { Future } from './components/Future'
 import { Validacao } from './components/Validacao'
 import { Historico } from './components/Historico'
+import { Aquiferos } from './components/Aquiferos'
 
 function Screens() {
   const { s, t } = useApp()
@@ -28,6 +29,7 @@ function Screens() {
         <Sidebar open={menu} onNav={() => setMenu(false)} />
         <main className="main">
           {s.view === 'historico' && <Historico />}
+          {s.view === 'aquiferos' && <Aquiferos />}
           {s.view === 'inicio' && <Home />}
           {s.view === 'comparar' && <Compare />}
           {s.view === 'celular' && <PhoneView />}

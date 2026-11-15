@@ -42,7 +42,8 @@
    "agua_km2": 92.93,
    "turbidez": 5.11,
    "mata_ciliar": 57.5,
-   "solo_exposto": 11.5
+   "solo_exposto": 11.5,
+   "foto": "fotos/guaiba_1986.jpg"
   },
   {
    "ano": 1987,
@@ -54,7 +55,8 @@
    "agua_km2": 93.86,
    "turbidez": 12.27,
    "mata_ciliar": 51.0,
-   "solo_exposto": 12.3
+   "solo_exposto": 12.3,
+   "foto": "fotos/guaiba_1987.jpg"
   },
   {
    "ano": 1988,
@@ -65,7 +67,8 @@
    "agua_km2": 93.52,
    "turbidez": 8.68,
    "mata_ciliar": 48.6,
-   "solo_exposto": 15.3
+   "solo_exposto": 15.3,
+   "foto": "fotos/guaiba_1988.jpg"
   },
   {
    "ano": 1989,
@@ -75,7 +78,8 @@
    "agua_km2": 93.55,
    "turbidez": 12.63,
    "mata_ciliar": 52.3,
-   "solo_exposto": 13.2
+   "solo_exposto": 13.2,
+   "foto": "fotos/guaiba_1989.jpg"
   },
   {
    "ano": 1990,
@@ -99,7 +103,8 @@
    "agua_km2": 93.36,
    "turbidez": 9.91,
    "mata_ciliar": 52.8,
-   "solo_exposto": 12.3
+   "solo_exposto": 12.3,
+   "foto": "fotos/guaiba_1991.jpg"
   },
   {
    "ano": 1992,
@@ -111,7 +116,8 @@
    "agua_km2": 92.99,
    "turbidez": 9.83,
    "mata_ciliar": 52.9,
-   "solo_exposto": 11.15
+   "solo_exposto": 11.15,
+   "foto": "fotos/guaiba_1992.jpg"
   },
   {
    "ano": 1993,
@@ -123,7 +129,8 @@
    "agua_km2": 93.28,
    "turbidez": 10.61,
    "mata_ciliar": 53.4,
-   "solo_exposto": 11.9
+   "solo_exposto": 11.9,
+   "foto": "fotos/guaiba_1993.jpg"
   },
   {
    "ano": 1994,
@@ -135,7 +142,8 @@
    "agua_km2": 92.72,
    "turbidez": 9.26,
    "mata_ciliar": 48.0,
-   "solo_exposto": 14.3
+   "solo_exposto": 14.3,
+   "foto": "fotos/guaiba_1994.jpg"
   },
   {
    "ano": 1995,
@@ -160,7 +168,8 @@
    "agua_km2": 93.15,
    "turbidez": 6.83,
    "mata_ciliar": 47.8,
-   "solo_exposto": 12.0
+   "solo_exposto": 12.0,
+   "foto": "fotos/guaiba_1996.jpg"
   },
   {
    "ano": 1997,
@@ -171,7 +180,8 @@
    "agua_km2": 92.63,
    "turbidez": 7.57,
    "mata_ciliar": 56.35,
-   "solo_exposto": 11.5
+   "solo_exposto": 11.5,
+   "foto": "fotos/guaiba_1997.jpg"
   },
   {
    "ano": 1999,
@@ -183,7 +193,8 @@
    "agua_km2": 92.92,
    "turbidez": 7.42,
    "mata_ciliar": 49.5,
-   "solo_exposto": 14.8
+   "solo_exposto": 14.8,
+   "foto": "fotos/guaiba_1999.jpg"
   },
   {
    "ano": 2000,
@@ -204,7 +215,8 @@
    "agua_km2": 93.17,
    "turbidez": 9.47,
    "mata_ciliar": 55.7,
-   "solo_exposto": 12.6
+   "solo_exposto": 12.6,
+   "foto": "fotos/guaiba_2001.jpg"
   },
   {
    "ano": 2002,
@@ -216,7 +228,8 @@
    "agua_km2": 93.02,
    "turbidez": 9.56,
    "mata_ciliar": 49.4,
-   "solo_exposto": 12.75
+   "solo_exposto": 12.75,
+   "foto": "fotos/guaiba_2002.jpg"
   },
   {
    "ano": 2003,
@@ -228,7 +241,8 @@
    "agua_km2": 93.56,
    "turbidez": 9.72,
    "mata_ciliar": 53.9,
-   "solo_exposto": 12.4
+   "solo_exposto": 12.4,
+   "foto": "fotos/guaiba_2003.jpg"
   },
   {
    "ano": 2004,
@@ -240,7 +254,8 @@
    "agua_km2": 92.68,
    "turbidez": 8.37,
    "mata_ciliar": 52.9,
-   "solo_exposto": 13.4
+   "solo_exposto": 13.4,
+   "foto": "fotos/guaiba_2004.jpg"
   },
   {
    "ano": 2005,
@@ -263,7 +278,8 @@
    "agua_km2": 79.49,
    "turbidez": 8.51,
    "mata_ciliar": 46.2,
-   "solo_exposto": 12.2
+   "solo_exposto": 12.2,
+   "foto": "fotos/guaiba_2006.jpg"
   },
   {
    "ano": 2007,
@@ -275,7 +291,8 @@
    "agua_km2": 92.48,
    "turbidez": 4.41,
    "mata_ciliar": 53.7,
-   "solo_exposto": 14.0
+   "solo_exposto": 14.0,
+   "foto": "fotos/guaiba_2007.jpg"
   },
   {
    "ano": 2008,
@@ -287,7 +304,8 @@
    "agua_km2": 92.52,
    "turbidez": 5.57,
    "mata_ciliar": 52.3,
-   "solo_exposto": 15.5
+   "solo_exposto": 15.5,
+   "foto": "fotos/guaiba_2008.jpg"
   },
   {
    "ano": 2009,
@@ -299,7 +317,8 @@
    "agua_km2": 92.19,
    "turbidez": 5.38,
    "mata_ciliar": 50.9,
-   "solo_exposto": 16.4
+   "solo_exposto": 16.4,
+   "foto": "fotos/guaiba_2009.jpg"
   },
   {
    "ano": 2010,
@@ -322,7 +341,8 @@
    "agua_km2": 92.5,
    "turbidez": 11.06,
    "mata_ciliar": 50.9,
-   "solo_exposto": 15.6
+   "solo_exposto": 15.6,
+   "foto": "fotos/guaiba_2011.jpg"
   },
   {
    "ano": 2012,
@@ -334,7 +354,8 @@
    "agua_km2": 90.85,
    "turbidez": 6.09,
    "mata_ciliar": 55.1,
-   "solo_exposto": 14.4
+   "solo_exposto": 14.4,
+   "foto": "fotos/guaiba_2012.jpg"
   },
   {
    "ano": 2013,
@@ -346,7 +367,8 @@
    "agua_km2": 92.52,
    "turbidez": 6.65,
    "mata_ciliar": 53.9,
-   "solo_exposto": 15.0
+   "solo_exposto": 15.0,
+   "foto": "fotos/guaiba_2013.jpg"
   },
   {
    "ano": 2014,
@@ -358,7 +380,8 @@
    "agua_km2": 92.47,
    "turbidez": 5.0,
    "mata_ciliar": 56.3,
-   "solo_exposto": 13.7
+   "solo_exposto": 13.7,
+   "foto": "fotos/guaiba_2014.jpg"
   },
   {
    "ano": 2015,
@@ -383,7 +406,8 @@
    "agua_km2": 93.41,
    "turbidez": 9.3,
    "mata_ciliar": 56.2,
-   "solo_exposto": 13.9
+   "solo_exposto": 13.9,
+   "foto": "fotos/guaiba_2016.jpg"
   },
   {
    "ano": 2017,
@@ -395,7 +419,8 @@
    "agua_km2": 93.03,
    "turbidez": 9.13,
    "mata_ciliar": 56.0,
-   "solo_exposto": 15.1
+   "solo_exposto": 15.1,
+   "foto": "fotos/guaiba_2017.jpg"
   },
   {
    "ano": 2018,
@@ -407,7 +432,8 @@
    "agua_km2": 93.05,
    "turbidez": 7.93,
    "mata_ciliar": 57.8,
-   "solo_exposto": 13.2
+   "solo_exposto": 13.2,
+   "foto": "fotos/guaiba_2018.jpg"
   },
   {
    "ano": 2019,
@@ -419,7 +445,8 @@
    "agua_km2": 92.98,
    "turbidez": 6.19,
    "mata_ciliar": 59.6,
-   "solo_exposto": 13.5
+   "solo_exposto": 13.5,
+   "foto": "fotos/guaiba_2019.jpg"
   },
   {
    "ano": 2020,
@@ -444,7 +471,8 @@
    "agua_km2": 92.32,
    "turbidez": 4.98,
    "mata_ciliar": 57.7,
-   "solo_exposto": 14.8
+   "solo_exposto": 14.8,
+   "foto": "fotos/guaiba_2021.jpg"
   },
   {
    "ano": 2022,
@@ -456,7 +484,8 @@
    "agua_km2": 91.93,
    "turbidez": 4.95,
    "mata_ciliar": 57.7,
-   "solo_exposto": 12.7
+   "solo_exposto": 12.7,
+   "foto": "fotos/guaiba_2022.jpg"
   },
   {
    "ano": 2023,
@@ -468,7 +497,8 @@
    "agua_km2": 91.43,
    "turbidez": 7.72,
    "mata_ciliar": 58.0,
-   "solo_exposto": 12.9
+   "solo_exposto": 12.9,
+   "foto": "fotos/guaiba_2023.jpg"
   },
   {
    "ano": 2024,
@@ -480,7 +510,8 @@
    "agua_km2": 92.64,
    "turbidez": 8.28,
    "mata_ciliar": 56.0,
-   "solo_exposto": 14.5
+   "solo_exposto": 14.5,
+   "foto": "fotos/guaiba_2024.jpg"
   },
   {
    "ano": 2025,
@@ -505,7 +536,8 @@
    "agua_km2": 92.21,
    "turbidez": 6.13,
    "mata_ciliar": 57.1,
-   "solo_exposto": 13.9
+   "solo_exposto": 13.9,
+   "foto": "fotos/guaiba_2026.jpg"
   }
  ],
  "swot": {
