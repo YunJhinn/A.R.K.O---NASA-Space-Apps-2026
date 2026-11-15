@@ -20,6 +20,8 @@ export function Balanco() {
   const ult = ref ? [...ref.serie].reverse().find(a => a.mata_ciliar != null || a.agua_km2 != null) : null
 
   const onde = ds.escopo.ativo ? (en ? ` · ≤ ${ds.escopo.raio} km` : ` · até ${ds.escopo.raio} km`) : ds.escopo.nome ? (en ? ' · whole pass' : ' · passagem inteira') : ''
+  // v7.15 · zero aparece como "Nenhuma" (cinza), para não parecer dado faltando
+  const val = (x: { km2: number; focos: number }, cor: string): [string, string] => (x.focos === 0 ? [en ? 'None' : 'Nenhuma', '#667085'] : [`${f(x.km2, en, 2)} km²`, cor])
   const baixarCSV = () => {
     const blob = new Blob([csvFocos(ds.timeline)], { type: 'text/csv;charset=utf-8' })
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `arko_focos_${ds.realMeta.id}.csv`; a.click()
@@ -40,7 +42,7 @@ export function Balanco() {
       <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5" style={{ borderBottom: '1px solid #EAECF0' }}>
         <h3 className="m-0 flex items-center text-[14.5px]">
           {en ? 'Region balance' : 'Balanço da região'}
-          {B.de && <span className="ml-2 text-[12px] font-normal" style={{ color: '#667085' }}>{dCurta(B.de, en)} → {dCurta(B.ate!, en)} · {B.n} {en ? 'radar comparisons' : 'comparações do radar'}</span>}
+          {B.de && <span className="ml-2 text-[12px] font-normal" style={{ color: '#667085' }}>{dCurta(B.de, en)} → {dCurta(B.ate!, en)} · {B.n} {en ? 'radar comparisons' : 'comparações do radar'}<Ajuda txt={en ? 'Here each radar pass is compared with the previous one (about 12 days apart) and the changes are added up. The map below compares two dates directly (e.g. 3 Sep vs 21 Oct), so it can also show slow changes that add up between them. Both are correct; they answer different questions.' : 'Aqui cada passagem do radar é comparada com a anterior (cerca de 12 dias) e as mudanças são somadas. O mapa abaixo compara duas datas direto (ex.: 3 set com 21 out), então também mostra mudanças lentas que se acumulam entre elas. Os dois estão certos; respondem perguntas diferentes.'} /></span>}
         </h3>
         <div className="flex gap-2">
           <a href={geo} download={`arko_focos_${ds.realMeta.id}.geojson`} className="btn" style={{ fontSize: 12.5, padding: '5px 10px' }}>⬇ GeoJSON</a>
@@ -67,11 +69,11 @@ export function Balanco() {
         </div>
       )}
       <div className="grid grid-cols-2 gap-px lg:grid-cols-5" style={{ background: '#EAECF0' }}>
-        {cel(en ? 'Forest change (NISAR)' : 'Mudança na mata (NISAR)', `${f(B.r.arvore.km2, en, 2)} km²`, `${pl(B.r.arvore.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.arvore.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, '#2F9E44',
+        {cel(en ? 'Forest change (NISAR)' : 'Mudança na mata (NISAR)', val(B.r.arvore, '#2F9E44')[0], `${pl(B.r.arvore.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.arvore.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, val(B.r.arvore, '#2F9E44')[1],
           en ? 'Sum of areas where the radar vegetation signal (HV) dropped, each pass compared with the previous one. Can be clearing, fire, harvest or drought: verify on site.' : 'Soma das áreas onde o sinal de vegetação do radar (HV) caiu, cada passagem comparada com a anterior. Pode ser corte, queimada, colheita ou seca: verificar em campo.')}
-        {cel(en ? 'Water outside channel' : 'Água fora do leito', `${f(B.r.agua.km2, en, 2)} km²`, `${pl(B.r.agua.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.agua.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, '#1C7ED6',
+        {cel(en ? 'Water outside channel' : 'Água fora do leito', val(B.r.agua, '#1C7ED6')[0], `${pl(B.r.agua.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.agua.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, val(B.r.agua, '#1C7ED6')[1],
           en ? 'Sum of areas that turned into still water between passes (strong HH drop).' : 'Soma das áreas que viraram água parada entre passagens (queda forte do HH).')}
-        {cel(en ? 'Exposed bank' : 'Margem exposta', `${f(B.r.solo.km2, en, 2)} km²`, `${pl(B.r.solo.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.solo.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, '#B8692A',
+        {cel(en ? 'Exposed bank' : 'Margem exposta', val(B.r.solo, '#B8692A')[0], `${pl(B.r.solo.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.solo.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, val(B.r.solo, '#B8692A')[1],
           en ? 'Sum of areas where water left and the bed/bank became exposed.' : 'Soma das áreas onde a água saiu e o leito ou a margem ficou exposto.')}
         {cel(en ? 'Riparian forest (stock)' : 'Mata ciliar (estoque)', ult?.mata_ciliar != null ? `${f(ult.mata_ciliar, en, 0)}%` : '—', ref && ult ? `Landsat ${ult.ano} · ${ref.cidade}` : (en ? 'no reference stretch' : 'sem trecho de referência'), '#101828',
           en ? 'Share of the ~500 m band along the banks covered by dense vegetation (NDVI > 0.6), in the ~20 km Landsat reference stretch of this region. Stock, not change.' : 'Parte da faixa de ~500 m nas margens coberta por vegetação densa (NDVI > 0,6), no trecho de referência Landsat de ~20 km desta região. É estoque, não mudança.')}
