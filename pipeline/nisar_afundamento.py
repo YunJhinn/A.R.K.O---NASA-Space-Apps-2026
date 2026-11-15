@@ -163,11 +163,30 @@ def valor_em(grade, lons, lats, lon, lat, r=2):
     return float(np.nanmedian(v)) if np.isfinite(v).any() else float("nan")
 
 
+CONTORNO = {}   # nome do granulo -> pontos (lon, lat) do contorno, vindos da busca no catálogo
+
+
+def dentro(pts, p):
+    """ponto dentro do polígono (ray casting); sem contorno conhecido = não filtra"""
+    if not pts:
+        return True
+    x, y = p; c = False
+    for i in range(len(pts)):
+        x1, y1 = pts[i]; x2, y2 = pts[i - 1]
+        if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / ((y2 - y1) or 1e-12) + x1:
+            c = not c
+    return c
+
+
 def processar(alvo, buscar, abrir):
     """buscar(colecao, caixa) -> lista de nomes; abrir(colecao, nome) -> h5py.File. Separado para poder testar."""
     nomes, colecao = [], None
     for c in COLECOES:
         nomes = buscar(c, alvo["caixa"])
+        # v7.6: em Délhi a 1ª rodada pegou um quadro que cobria só 26% da área e não tinha o ponto de referência
+        cobre = [n for n in nomes if dentro(CONTORNO.get(n), alvo["estavel"]) and dentro(CONTORNO.get(n), alvo["quente"])]
+        if cobre:
+            nomes = cobre
         cad = corrente(nomes)
         if len(cad) >= 3:
             colecao = c; break
@@ -177,7 +196,7 @@ def processar(alvo, buscar, abrir):
     arq = os.path.join(RAIZ, f"afundamento_{alvo['id']}.json")
     if os.path.exists(arq):
         antigo = json.load(open(arq))
-        if antigo.get("pares") and antigo["pares"][-1]["n"] == cad[-1] and len(antigo["pares"]) == len(cad):
+        if antigo.get("pares") and antigo["pares"][-1]["n"] == cad[-1] and len(antigo["pares"]) == len(cad) and antigo.get("cobertura", 0) >= 0.6:
             print(f"  {alvo['id']}: sem par novo"); return False
     soma = cont = None; X = Y = epsg = None; lam = 0.2384; iono = []; sinal_arq = 0; usados = []
     for n in cad:
@@ -239,6 +258,7 @@ def processar(alvo, buscar, abrir):
         "quente_cm": round(valor_em(vert, lons, lats, *alvo["quente"]), 1),
         "cidades": alvo["cidades"], "estavel": alvo["estavel"], "quente": alvo["quente"], "literatura": alvo["literatura"],
         "sinal_fonte": sinal_fonte, "sinal_fonte_en": sinal_en, "ionosfera_corrigida": bool(iono) and all(iono), "comprimento_onda_m": round(lam, 4),
+        "cobertura": round(float(fin.mean()), 3),
         "fonte": f"NISAR (NASA–ISRO) · {colecao} · ASF DAAC · soma de {len(usados)} pares de 12 dias",
         "gerado": dt.date.today().isoformat(),
     }
@@ -258,7 +278,16 @@ def main(ids=None):
             res = earthaccess.search_data(short_name=colecao, bounding_box=caixa, temporal=(INICIO, dt.date.today().isoformat()))
         except Exception as e:
             print("  busca falhou:", colecao, e); return []
-        return [g["umm"]["GranuleUR"] for g in res]
+        out = []
+        for g in res:
+            try:
+                pol = g["umm"]["SpatialExtent"]["HorizontalSpatialDomain"]["Geometry"]["GPolygons"][0]["Boundary"]["Points"]
+                pts = [(float(q["Longitude"]), float(q["Latitude"])) for q in pol]
+            except Exception:
+                pts = None
+            CONTORNO[g["umm"]["GranuleUR"]] = pts
+            out.append(g["umm"]["GranuleUR"])
+        return out
 
     def abrir(colecao, nome):
         res = earthaccess.search_data(short_name=colecao, granule_name=nome)
