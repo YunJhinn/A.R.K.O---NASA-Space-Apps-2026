@@ -174,7 +174,7 @@ export function AquiferoAfundamento({ aq, en }: { aq: string; en: boolean }) {
           </div>
           <div className="mt-3 rounded-lg p-2.5 text-[12.5px] leading-snug" style={{ background: bate ? '#ECFDF3' : '#FFFAEB', border: `1px solid ${bate ? '#ABEFC6' : '#FEDF89'}` }}>
             <b>{!Q.confiavel ? (en ? '— Not compared (inconclusive)' : '— Não comparado (inconclusivo)') : bate ? (en ? '✓ Matches published studies' : '✓ Bate com estudos publicados') : (en ? '! Differs from published studies' : '! Diferente dos estudos publicados')}</b><br />
-            {ok.literatura.texto} · <a href={ok.literatura.url} target="_blank" rel="noreferrer" style={{ color: '#2563EB' }}>{ok.literatura.ref}</a>
+            {en ? ({ 'até ~30–40 cm/ano no leste da cidade': 'up to ~30–40 cm/yr in the east of the city', 'até ~11 cm/ano perto do aeroporto (Kapashera)': 'up to ~11 cm/yr near the airport (Kapashera)' } as Record<string, string>)[ok.literatura.texto] ?? ok.literatura.texto : ok.literatura.texto} · <a href={ok.literatura.url} target="_blank" rel="noreferrer" style={{ color: '#2563EB' }}>{ok.literatura.ref}</a>
           </div>
         </div>
       </div>

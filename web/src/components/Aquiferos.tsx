@@ -11,7 +11,7 @@ import { AquiferoHistorico } from './AquiferoHistorico'
 type Bi = [string, string]
 interface Aq { id: string; nome: string; onde: string; bbox: number[]; sobre: string; area_km2: number; tend_cm_ano: number; tend_km3_ano: number; proj2030_cm: number; serie: { d: string; cm: number }[]; anual: { ano: number; cm: number; n: number }[]; fonte: string; gerado: string; mapa?: MapaGrace; contexto?: { t: string; url: string } }
 const IDS = ['goias', 'urucuia', 'guarani', 'amazonia', 'bengala', 'india_nw', 'mexico', 'brandemburgo', 'ogallala']
-const NOME_EN: Record<string, string> = { goias: 'Groundwater of Goiás', urucuia: 'Urucuia Aquifer', guarani: 'Guarani Aquifer', amazonia: 'Greater Amazon Aquifer System (Alter do Chão)', bengala: 'Bengal Basin aquifers', india_nw: 'Northwest India aquifers', mexico: 'Valley of Mexico aquifer', brandemburgo: 'Brandenburg and Berlin aquifers', ogallala: 'Ogallala Aquifer (High Plains)' }
+export const NOME_EN: Record<string, string> = { goias: 'Groundwater of Goiás', urucuia: 'Urucuia Aquifer', guarani: 'Guarani Aquifer', amazonia: 'Greater Amazon Aquifer System (Alter do Chão)', bengala: 'Bengal Basin aquifers', india_nw: 'Northwest India aquifers', mexico: 'Valley of Mexico aquifer', brandemburgo: 'Brandenburg and Berlin aquifers', ogallala: 'Ogallala Aquifer (High Plains)' }
 
 const CURTO: Record<string, [string, string]> = {
   goias: ['Goiás e DF', 'Goiás & DF'], urucuia: ['Urucuia', 'Urucuia'], guarani: ['Guarani', 'Guarani'], amazonia: ['Grande Amazônia', 'Greater Amazon'],

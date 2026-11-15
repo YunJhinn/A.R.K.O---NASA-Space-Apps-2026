@@ -18,8 +18,12 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
   return (
     <aside className={cx('side side2', open && 'open')} aria-label={t('Menu principal')}>
       <div className="brand">
-        <img id="brandIcon" src={brandIcon} alt="" width={36} height={36} style={{ borderRadius: 9, border: '1px solid var(--bd)' }} />
-        <div><img src={brandWord} alt="A.R.K.O" style={{ height: 14, display: 'block', marginBottom: 4 }} /><small>{t('Rios · água potável')}</small></div>
+        {/* v7.19 · regra do Space Apps: imagem gerada por IA leva marca d'água visível */}
+        <span style={{ position: 'relative', display: 'inline-block', flex: 'none' }} title={s.lang === 'en' ? 'Logo generated with AI' : 'Logo gerado com IA'}>
+          <img id="brandIcon" src={brandIcon} alt="" width={36} height={36} style={{ borderRadius: 9, border: '1px solid var(--bd)', display: 'block' }} />
+          <span style={{ position: 'absolute', right: -4, bottom: -4, background: '#fff', color: '#0B1F33', fontSize: 8, fontWeight: 800, lineHeight: 1, padding: '2px 3px', borderRadius: 4, border: '1px solid #D0D5DD' }}>{s.lang === 'en' ? 'AI' : 'IA'}</span>
+        </span>
+        <div><img src={brandWord} alt="A.R.K.O" style={{ height: 14, display: 'block', marginBottom: 4 }} /><small>{t('Rios · água potável')}</small><small style={{ display: 'block', fontSize: 9, opacity: .7 }}>{s.lang === 'en' ? 'logo and icons: AI-generated' : 'logo e ícones: gerados por IA'}</small></div>
       </div>
       <nav className="snav" aria-label={t('Telas')}>
         {nav.map(([ic, label, fn, on, badge]) => (

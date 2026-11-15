@@ -67,6 +67,10 @@ Water disappears slowly: banks without forest silt up the river, headwaters with
 
 The robot (`.github/workflows/atualizar-nisar.yml`) runs `pipeline/atualizar.py` every day and updates `data/`. The NASA Earthdata password lives only in the repository Secrets (`EARTHDATA_USERNAME`, `EARTHDATA_PASSWORD`).
 
+## Use of AI
+
+This project was developed with the help of Claude (Anthropic), an AI assistant, for code (app and data pipeline), documentation and texts, all reviewed by the team. The A.R.K.O logo and the illustrated map icons are AI-generated and marked as such in the app. No AI model produces or alters the data, trends or alerts: every number comes from the satellite data and the statistical methods described above.
+
 ## Credits
 
 NASA-ISRO SAR (NISAR), ASF DAAC · Landsat (NASA/USGS) · HLS (NASA) · SWOT (NASA/CNES) · GRACE/GRACE-FO (NASA/DLR/GFZ) · ESA CCI Land Cover · Impact Observatory/Esri · Microsoft Planetary Computer · Natural Earth.

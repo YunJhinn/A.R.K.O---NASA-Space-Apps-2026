@@ -8,6 +8,7 @@ import { DATA_BASE, useApp } from '../lib/store'
 export interface NascenteJson {
   id: string; nome: string; onde: string; lon: number; lat: number; contexto: string; fonte_local: string
   raio_km: number; critico: number; critico_fonte: string
+  nome_en?: string; onde_en?: string; contexto_en?: string; critico_fonte_en?: string; fonte_local_en?: string
   cci: { ano: number; nativo: number }[]; io: { ano: number; nativo: number }[]
   fotos: { ano: number; foto: string; imagens: string[] }[]; fontes: string[]
 }
@@ -120,8 +121,8 @@ export function Nascentes() {
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <div className="text-[11.5px] font-bold uppercase tracking-wide" style={{ color: '#667085' }}>{en ? 'Headwaters · the vegetation that protects the water' : 'Nascentes · a vegetação que protege a água'}</div>
-          <h2 className="m-0 text-[18px] font-extrabold" style={{ color: '#101828' }}>{n.nome} <span className="text-[13px] font-semibold" style={{ color: '#667085' }}>· {n.onde}</span></h2>
-          <div className="text-[12.5px]" style={{ color: '#475467' }}>{n.contexto}</div>
+          <h2 className="m-0 text-[18px] font-extrabold" style={{ color: '#101828' }}>{en ? n.nome_en ?? n.nome : n.nome} <span className="text-[13px] font-semibold" style={{ color: '#667085' }}>· {en ? n.onde_en ?? n.onde : n.onde}</span></h2>
+          <div className="text-[12.5px]" style={{ color: '#475467' }}>{en ? n.contexto_en ?? n.contexto : n.contexto}</div>
         </div>
         <span className="rounded px-2.5 py-1 text-[12.5px] font-bold" style={{ background: cor + '14', color: cor }}>{status}</span>
       </div>
@@ -160,7 +161,7 @@ export function Nascentes() {
           </div>
         </div>
       </div>
-      <p className="m-0 mt-2 text-[11px]" style={{ color: '#98A2B3' }}>{n.critico_fonte} · {en ? 'Sources' : 'Fontes'}: {n.fontes.join(' · ')} · {n.fonte_local}</p>
+      <p className="m-0 mt-2 text-[11px]" style={{ color: '#98A2B3' }}>{en ? n.critico_fonte_en ?? n.critico_fonte : n.critico_fonte} · {en ? 'Sources' : 'Fontes'}: {n.fontes.join(' · ')} · {en ? n.fonte_local_en ?? n.fonte_local : n.fonte_local}</p>
     </div>
   )
 }

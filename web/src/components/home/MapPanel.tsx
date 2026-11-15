@@ -285,7 +285,7 @@ function Legend() {
   const real = s.src === 'real'
   let body
   if (real && s.colorBy !== 'mes') {
-    body = <><b>{t('Legenda')}</b>{(['agua', 'arvore', 'solo'] as const).map(k => <span key={k}><Icon k={k} size={14} />{t(REAL_NAMES[k])}</span>)}<span style={{ color: 'var(--mu)' }}>{t(`Mudança entre ${ds.rd.a} e ${ds.rd.b}`)}</span></>
+    body = <><b>{t('Legenda')}</b>{(['agua', 'arvore', 'solo'] as const).map(k => <span key={k}><Icon k={k} size={14} />{t(REAL_NAMES[k])}</span>)}<span style={{ color: 'var(--mu)' }}>{t(`Mudança entre ${ds.rd.a} e ${ds.rd.b}`)}</span><span style={{ color: 'var(--mu)', fontSize: 10 }}>{s.lang === 'en' ? 'Icons: AI-generated' : 'Ícones: gerados por IA'}</span></>
   } else if (s.colorBy === 'mes') {
     const used = new Set(ds.ev.filter(e => e.st !== 'prev' && inRange(e.d)).map(e => evMonth(e.d)[0]))
     body = <><b>{t('Mês da detecção')}</b>{MES.map(m => <span key={m[0]} style={{ opacity: used.has(m[0]) ? 1 : 0.35 }}><i className="dot" style={{ background: m[3], width: 10, height: 10 }} />{t(`${m[1]} 2026`)}</span>)}<span style={{ color: 'var(--mu)' }}>{t('O ícone continua mostrando o tipo')}</span></>

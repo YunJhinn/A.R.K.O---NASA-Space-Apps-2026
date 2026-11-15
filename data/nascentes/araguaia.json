@@ -616,5 +616,10 @@
   "Impact Observatory/Esri LULC 10 m v02 (2017–2023)",
   "Landsat 5/7/8/9 Collection 2 Level-2, NASA/USGS (fotos, ago–out)",
   "via Microsoft Planetary Computer"
- ]
+ ],
+ "nome_en": "Araguaia River headwaters",
+ "onde_en": "Serra do Caiapó, Mineiros (Goiás, Brazil)",
+ "contexto_en": "Recharge area of the Guarani Aquifer, surrounded by soy and corn fields.",
+ "critico_fonte_en": "A.R.K.O reference: at least 20% native vegetation, the same share as the Legal Reserve in the Cerrado outside the Legal Amazon (Brazilian Law 12.651/2012, art. 12). The law applies per property; here it is used as a yardstick for the 5 km area.",
+ "fonte_local_en": "Wikipedia (headwater coordinates) · Embrapa Doc. 17 (Guarani recharge)"
 }

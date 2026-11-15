@@ -7,6 +7,7 @@ import { analisar, carregarRio, fmt, METRICAS, RIOS, type Metrica, type RioJson 
 import { inflexao } from '../lib/inflexao'
 import { cenario, type Cenario } from '../lib/cenarios'
 import { serieAnual } from './AquiferoHistorico'
+import { NOME_EN } from './Aquiferos'
 import { Ajuda } from './Ajuda'
 import { Nascentes, NASCENTES, lerNascente, type NascenteJson } from './Nascentes'
 
@@ -66,7 +67,7 @@ export function Cenarios() {
         const I = inflexao(A.anos, [...v], 'alto')
         const C = cenario(A.anos, [...v], 'alto', lim, I); if (!C) return
         const k = classifica(C, agora)
-        out.push({ id: a.id + k0, lugar: a.nome, tipo: 'aquifero', ind: nome, un: 'cm', critico: `${fmt(lim, en, 1)} cm (${en ? 'worst before' : 'pior nível anterior'}, ${A.anos[iP]})`,
+        out.push({ id: a.id + k0, lugar: en ? NOME_EN[a.id] ?? a.nome : a.nome, tipo: 'aquifero', ind: nome, un: 'cm', critico: `${fmt(lim, en, 1)} cm (${en ? 'worst before' : 'pior nível anterior'}, ${A.anos[iP]})`,
           ritmo: `${C.ritmo > 0 ? '+' : ''}${fmt(C.ritmo, en, 2)} cm/${en ? 'yr' : 'ano'}${C.ritmoDe === 'inflexao' ? ` (${en ? 'since' : 'desde'} ${C.ritmoIni})` : ''}`, C, ...k, ref: a.id, view: 'aquiferos' })
       })
     })
@@ -74,7 +75,7 @@ export function Cenarios() {
       const L = lerNascente(n)
       const ordem = L.nivel === 'ok' ? 1000 : (L.cruza ?? agora) - agora
       const C = { cruza: L.nivel === 'ok' ? null : L.cruza, faixa: null, jaPassou: L.atual <= n.critico ? L.ult.ano : null, noLimite: false, longe: false, horizonte: agora + 50 } as unknown as Cenario
-      out.push({ id: 'n' + n.id, lugar: n.nome, tipo: 'nascente', ind: en ? 'Native vegetation within 5 km' : 'Vegetação nativa em 5 km', un: '%',
+      out.push({ id: 'n' + n.id, lugar: en ? n.nome_en ?? n.nome : n.nome, tipo: 'nascente', ind: en ? 'Native vegetation within 5 km' : 'Vegetação nativa em 5 km', un: '%',
         critico: `${n.critico}% (${en ? 'A.R.K.O reference · Legal Reserve' : 'régua A.R.K.O · Reserva Legal'})`,
         ritmo: `${L.r > 0 ? '+' : ''}${fmt(L.r * 10, en, 1)} ${en ? 'pts/decade' : 'pts/década'} (${n.io[0].ano}–${L.ult.ano})`,
         C, nivel: L.nivel, ordem, disparo: L.disparo, view: 'cenarios' })

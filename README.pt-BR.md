@@ -69,6 +69,10 @@ O robô (`.github/workflows/atualizar-nisar.yml`) roda `pipeline/atualizar.py` t
 
 Documentação: `docs/DOCUMENTACAO.pdf` (telas, uso, como adicionar dados) e `docs/ARKO_Glossario_Taxonomia.pdf` (termos, siglas e métodos).
 
+## Uso de IA
+
+Este projeto foi desenvolvido com a ajuda do Claude (Anthropic), um assistente de IA, no código (app e pipeline de dados), na documentação e nos textos, sempre revisados pela equipe. O logo do A.R.K.O e os ícones ilustrados do mapa foram gerados por IA e estão marcados assim no app. Nenhum modelo de IA produz ou altera os dados, as tendências ou os alertas: todo número vem dos dados de satélite e dos métodos estatísticos descritos acima.
+
 ## Crédito
 
 NASA-ISRO SAR (NISAR), ASF DAAC · Landsat (NASA/USGS) · HLS (NASA) · SWOT (NASA/CNES) · GRACE/GRACE-FO (NASA/DLR/GFZ) · ESA CCI Land Cover · Impact Observatory/Esri · Microsoft Planetary Computer · Natural Earth.
