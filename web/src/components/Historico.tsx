@@ -69,7 +69,8 @@ export function Historico() {
   const { s, ds } = useApp()
   const en = s.lang === 'en', B = (x: Bi) => x[en ? 1 : 0]
   const inicial = 'tapajos'
-  const [rid, setRid] = useState(inicial)
+  // v7.11 · a linha clicada em Cenários futuros abre direto o rio dela
+  const [rid, setRid] = useState(() => { try { const v = sessionStorage.getItem('arko_rio'); sessionStorage.removeItem('arko_rio'); return v || inicial } catch { return inicial } })
   const [rio, setRio] = useState<RioJson | null | 'erro'>(null)
   const [k, setK] = useState<Metrica>('turbidez')
   const [cont, setCont] = useState<ContinuoJson | null>(null)

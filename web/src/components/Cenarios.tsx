@@ -13,7 +13,7 @@ import { Nascentes, NASCENTES, lerNascente, type NascenteJson } from './Nascente
 const AQ = ['goias', 'urucuia', 'guarani', 'amazonia', 'bengala', 'india_nw', 'mexico', 'brandemburgo', 'ogallala']
 const JANELA = 10   // anos: o alerta acende quando o ponto crítico previsto está a 10 anos ou menos
 type Nivel = 'alerta' | 'atencao' | 'monitorar' | 'ok'
-interface Linha { id: string; lugar: string; tipo: 'rio' | 'aquifero' | 'nascente'; ind: string; un: string; critico: string; ritmo: string; C: Cenario; nivel: Nivel; ordem: number; disparo: number | null; view: 'historico' | 'aquiferos' | 'cenarios' }
+interface Linha { id: string; lugar: string; tipo: 'rio' | 'aquifero' | 'nascente'; ind: string; un: string; critico: string; ritmo: string; C: Cenario; ref?: string; nivel: Nivel; ordem: number; disparo: number | null; view: 'historico' | 'aquiferos' | 'cenarios' }
 
 function classifica(C: Cenario, agora: number): { nivel: Nivel; ordem: number; disparo: number | null } {
   if (C.jaPassou != null) return { nivel: 'alerta', ordem: -1000 + C.jaPassou - agora, disparo: C.jaPassou }
@@ -55,7 +55,7 @@ export function Cenarios() {
         out.push({ id: info.id + m, lugar: en ? info.nome_en : info.nome, tipo: 'rio', ind: B(MM.nome), un: MM.un,
           critico: `${fmt(lim, en, 1)} ${MM.un} (${MM.bom === 'alto' ? (en ? 'half of ' : 'metade de ') : x.base * 2 >= x.base + 5 ? (en ? 'double of ' : 'dobro de ') : '+5 · '}${per})`,
           ritmo: `${C.ritmo > 0 ? '+' : ''}${fmt(C.ritmo * 10, en, 1)} ${MM.un}/${en ? 'decade' : 'década'}${C.ritmoDe === 'inflexao' ? ` (${en ? 'since' : 'desde'} ${C.ritmoIni})` : ''}`,
-          C, ...k, view: 'historico' })
+          C, ...k, ref: info.id, view: 'historico' })
       })
     })
     Object.values(aqs).forEach(a => {
@@ -67,7 +67,7 @@ export function Cenarios() {
         const C = cenario(A.anos, [...v], 'alto', lim, I); if (!C) return
         const k = classifica(C, agora)
         out.push({ id: a.id + k0, lugar: a.nome, tipo: 'aquifero', ind: nome, un: 'cm', critico: `${fmt(lim, en, 1)} cm (${en ? 'worst before' : 'pior nível anterior'}, ${A.anos[iP]})`,
-          ritmo: `${C.ritmo > 0 ? '+' : ''}${fmt(C.ritmo, en, 2)} cm/${en ? 'yr' : 'ano'}${C.ritmoDe === 'inflexao' ? ` (${en ? 'since' : 'desde'} ${C.ritmoIni})` : ''}`, C, ...k, view: 'aquiferos' })
+          ritmo: `${C.ritmo > 0 ? '+' : ''}${fmt(C.ritmo, en, 2)} cm/${en ? 'yr' : 'ano'}${C.ritmoDe === 'inflexao' ? ` (${en ? 'since' : 'desde'} ${C.ritmoIni})` : ''}`, C, ...k, ref: a.id, view: 'aquiferos' })
       })
     })
     nasc.forEach(n => {
@@ -134,7 +134,7 @@ export function Cenarios() {
             </tr></thead>
             <tbody>
               {vis.map(l => (
-                <tr key={l.id} onClick={() => (l.view === 'cenarios' ? window.scrollTo({ top: 0, behavior: 'smooth' }) : go(l.view))} className="cursor-pointer" style={{ borderBottom: '1px solid #F2F4F7' }} title={en ? 'Open the history' : 'Abrir o histórico'}>
+                <tr key={l.id} onClick={() => { if (l.view === 'cenarios') { window.scrollTo({ top: 0, behavior: 'smooth' }); return } try { sessionStorage.setItem(l.view === 'historico' ? 'arko_rio' : 'arko_aq', l.ref ?? '') } catch { /* sem storage: abre o padrão */ } go(l.view); window.scrollTo({ top: 0 }) }} className="cursor-pointer" style={{ borderBottom: '1px solid #F2F4F7' }} title={l.tipo === 'nascente' ? (en ? 'See the headwater card above' : 'Ver o cartão da nascente acima') : (en ? `Open the history of ${l.lugar}` : `Abrir o histórico de ${l.lugar}`)}>
                   <td className="whitespace-nowrap px-3 py-2"><span className="rounded px-2 py-0.5 text-[11.5px] font-bold" style={{ background: NIV[l.nivel].bg, color: NIV[l.nivel].c }}>{NIV[l.nivel].t}</span></td>
                   <td className="px-3 py-2 font-semibold" style={{ color: '#101828' }}>{l.tipo === 'rio' ? '💧' : l.tipo === 'nascente' ? '🌱' : '⛲'} {l.lugar}</td>
                   <td className="px-3 py-2">{l.ind}</td>

@@ -70,7 +70,8 @@ export function Aquiferos() {
   const { s } = useApp()
   const en = s.lang === 'en', B = (x: Bi) => x[en ? 1 : 0]
   const [dados, setDados] = useState<Record<string, Aq>>({})
-  const [id, setId] = useState('goias')
+  // v7.11 · a linha clicada em Cenários futuros abre direto o aquífero dela
+  const [id, setId] = useState(() => { try { const v = sessionStorage.getItem('arko_aq'); sessionStorage.removeItem('arko_aq'); return v || 'goias' } catch { return 'goias' } })
   const [ord, setOrd] = useState<'tend' | 'km3' | 'perda' | 'abaixo' | 'p2030'>('tend')
   useEffect(() => {
     IDS.forEach(i => fetch(DATA_BASE + 'aquiferos/' + i + '.json', { cache: 'no-store' }).then(r => (r.ok ? r.json() : null)).then(d => d && setDados(x => ({ ...x, [i]: d }))).catch(() => {}))
