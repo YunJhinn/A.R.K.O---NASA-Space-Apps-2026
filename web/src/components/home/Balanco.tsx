@@ -1,6 +1,6 @@
 // v7.5 · Balanço da região para gestão: estoque (Landsat, trecho de referência) + saldo das mudanças
 // detectadas pelo NISAR ao longo das passagens + exportação dos focos para GIS.
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { DATA_BASE, useApp } from '../../lib/store'
 import { balanco, csvFocos } from '../../lib/gestao'
 import { carregarRio, RIOS, type RioJson } from '../../lib/rios'
@@ -17,7 +17,8 @@ export function Balanco() {
   const rio = RIOS.find(r => r.regiao === ds.realMeta.id)
   const [ref, setRef] = useState<RioJson | null>(null)
   useEffect(() => { setRef(null); if (rio) carregarRio(DATA_BASE, rio.id).then(d => setRef(d ?? null)) }, [rio?.id])   // eslint-disable-line
-  const ult = ref ? [...ref.serie].reverse().find(a => a.mata_ciliar != null || a.agua_km2 != null) : null
+  const ult = ref ? [...ref.serie].reverse().find(a => a.mata_ciliar != null || a.agua_km2 != null || a.gelo_km2 != null) : null
+  const gelo = ult?.mata_ciliar == null && ult?.gelo_km2 != null   // v7.16 · montanha (Langtang): o retrato é o gelo, não mata e água
 
   const onde = ds.escopo.ativo ? (en ? ` · ≤ ${ds.escopo.raio} km` : ` · até ${ds.escopo.raio} km`) : ds.escopo.nome ? (en ? ' · whole pass' : ' · passagem inteira') : ''
   // v7.15 · zero aparece como "Nenhuma" (cinza), para não parecer dado faltando
@@ -29,10 +30,20 @@ export function Balanco() {
   }
   const geo = `${DATA_BASE}${ds.realMeta.pasta}focos.geojson`
 
-  const cel = (rot: string, v: string, sub: string, cor: string, ajuda?: string) => (
+  // v7.16 · variação desde o último ciclo útil (ano anterior com medida) para as colunas "hoje"
+  const delta = (k: 'mata_ciliar' | 'agua_km2' | 'gelo_km2', un: string, d: number) => {
+    if (!ref || !ult || ult[k] == null) return null
+    const ant = [...ref.serie].reverse().find(a => a.ano < ult.ano && a[k] != null)
+    if (!ant) return null
+    const dv = ult[k]! - ant[k]!, ok = dv >= 0
+    const txt = Math.abs(dv) < 10 ** -d / 2 ? (en ? `no change vs ${ant.ano}` : `sem mudança vs ${ant.ano}`) : `${dv > 0 ? '▲ +' : '▼ −'}${f(Math.abs(dv), en, d)} ${d === 0 && Math.round(Math.abs(dv)) === 1 ? un.replace(/s$/, '') : un} vs ${ant.ano}`
+    return <span style={{ color: Math.abs(dv) < 10 ** -d / 2 ? '#667085' : ok ? '#067647' : '#B42318', fontWeight: 700 }}>{txt}</span>
+  }
+  const cel = (rot: string, v: string, sub: string, cor: string, ajuda?: string, var_?: ReactNode) => (
     <div className="bg-white px-4 py-2.5">
       <div className="flex items-center text-[11px] font-bold uppercase tracking-wide" style={{ color: '#667085' }}>{rot}{ajuda && <Ajuda txt={ajuda} />}</div>
       <div className="text-[20px] font-extrabold tabular-nums leading-tight" style={{ color: cor }}>{v}</div>
+      {var_ && <div className="text-[11.5px] tabular-nums">{var_}</div>}
       <div className="text-[11.5px]" style={{ color: '#667085' }}>{sub}</div>
     </div>
   )
@@ -60,11 +71,11 @@ export function Balanco() {
                   style={{ background: s.escopo === k ? '#0B1F33' : '#fff', color: s.escopo === k ? '#fff' : '#101828', border: '1px solid #D0D5DD' }}>{t}</button>
               ))}
               <span>{ds.escopo.ativo
-                ? (en ? `Only what the radar saw around ${ds.escopo.nome[1]}, the same stretch as the Landsat stock.` : `Só o que o radar viu em volta de ${ds.escopo.nome[0]}, o mesmo trecho do estoque Landsat.`)
-                : (en ? 'All rivers in the radar pass; the stock columns stay on the reference stretch.' : 'Todos os rios da passagem do radar; as colunas de estoque continuam no trecho de referência.')}</span>
+                ? (en ? `Only what the radar saw around ${ds.escopo.nome[1]}, the same stretch as the Landsat "today" columns.` : `Só o que o radar viu em volta de ${ds.escopo.nome[0]}, o mesmo trecho das colunas "hoje" do Landsat.`)
+                : (en ? 'All rivers in the radar pass; the "today" columns stay on the reference stretch.' : 'Todos os rios da passagem do radar; as colunas "hoje" continuam no trecho de referência.')}</span>
             </>
           ) : (
-            <span>{en ? `The reference stretch (${ds.escopo.nome[1]}) is outside this radar pass: showing the whole pass (~300 km). The stock columns are from the reference stretch.` : `O trecho de referência (${ds.escopo.nome[0]}) fica fora desta passagem do radar: mostrando a passagem inteira (~300 km). As colunas de estoque são do trecho de referência.`}</span>
+            <span>{en ? `The reference stretch (${ds.escopo.nome[1]}) is outside this radar pass: showing the whole pass (~300 km). The "today" columns are from the reference stretch.` : `O trecho de referência (${ds.escopo.nome[0]}) fica fora desta passagem do radar: mostrando a passagem inteira (~300 km). As colunas "hoje" são do trecho de referência.`}</span>
           )}
         </div>
       )}
@@ -75,10 +86,12 @@ export function Balanco() {
           en ? 'Sum of areas that turned into still water between passes (strong HH drop).' : 'Soma das áreas que viraram água parada entre passagens (queda forte do HH).')}
         {cel(en ? 'Exposed bank' : 'Margem exposta', val(B.r.solo, '#B8692A')[0], `${pl(B.r.solo.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.solo.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, val(B.r.solo, '#B8692A')[1],
           en ? 'Sum of areas where water left and the bed/bank became exposed.' : 'Soma das áreas onde a água saiu e o leito ou a margem ficou exposto.')}
-        {cel(en ? 'Riparian forest (stock)' : 'Mata ciliar (estoque)', ult?.mata_ciliar != null ? `${f(ult.mata_ciliar, en, 0)}%` : '—', ref && ult ? `Landsat ${ult.ano} · ${ref.cidade}` : (en ? 'no reference stretch' : 'sem trecho de referência'), '#101828',
-          en ? 'Share of the ~500 m band along the banks covered by dense vegetation (NDVI > 0.6), in the ~20 km Landsat reference stretch of this region. Stock, not change.' : 'Parte da faixa de ~500 m nas margens coberta por vegetação densa (NDVI > 0,6), no trecho de referência Landsat de ~20 km desta região. É estoque, não mudança.')}
-        {cel(en ? 'Water area (stock)' : 'Área de água (estoque)', ult?.agua_km2 != null ? `${f(ult.agua_km2, en, 1)} km²` : '—', ref && ult ? `Landsat ${ult.ano} · ${en ? 'dry season' : 'estação seca'}` : '—', '#101828',
-          en ? 'Open water in the ~20 km reference stretch (MNDWI > 0.1), dry-season median of the year.' : 'Água aberta no trecho de referência de ~20 km (MNDWI > 0,1), mediana da estação seca do ano.')}
+        {gelo ? cel(en ? 'Glacier ice today' : 'Gelo das nascentes hoje', `${f(ult!.gelo_km2!, en, 1)} km²`, `Landsat ${ult!.ano} · ${ref!.cidade}`, '#0891B2',
+          en ? 'Smallest snow and ice area of the year in the reference box (NDSI > 0.4): the glacier without the snow that falls and melts. A snapshot of what exists today, not a change.' : 'Menor área de neve e gelo do ano na caixa de referência (NDSI > 0,4): a geleira sem a neve que cai e derrete. É o retrato do que existe hoje, não uma mudança.', delta('gelo_km2', 'km²', 1))
+        : cel(en ? 'Riparian forest today' : 'Mata ciliar hoje', ult?.mata_ciliar != null ? `${f(ult.mata_ciliar, en, 0)}%` : '—', ref && ult ? `Landsat ${ult.ano} · ${ref.cidade}` : (en ? 'no reference stretch' : 'sem trecho de referência'), '#101828',
+          en ? 'Share of the ~500 m band along the banks covered by dense vegetation (NDVI > 0.6), in the ~20 km Landsat reference stretch of this region. A snapshot of what exists today (like a bank balance), not a change.' : 'Parte da faixa de ~500 m nas margens coberta por vegetação densa (NDVI > 0,6), no trecho de referência Landsat de ~20 km desta região. É o retrato do que existe hoje (como o saldo de uma conta), não uma mudança.', delta('mata_ciliar', en ? 'pts' : 'pontos', 0))}
+        {cel(en ? 'Water area today' : 'Área de água hoje', ult?.agua_km2 != null ? `${f(ult.agua_km2, en, 1)} km²` : '—', ult?.agua_km2 != null ? `Landsat ${ult.ano} · ${en ? 'dry season' : 'estação seca'}` : gelo ? (en ? 'not measured in the mountains (snow confuses water)' : 'não medida na montanha (a neve confunde a água)') : '—', '#101828',
+          en ? 'Open water in the ~20 km reference stretch (MNDWI > 0.1), dry-season median of the year.' : 'Água aberta no trecho de referência de ~20 km (MNDWI > 0,1), mediana da estação seca do ano.', delta('agua_km2', 'km²', 1))}
       </div>
     </div>
   )

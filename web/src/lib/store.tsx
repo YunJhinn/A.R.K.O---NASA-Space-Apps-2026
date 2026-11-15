@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useReducer,
 import type { Alert, CmpEntry, CustomRange, Ev, EvType, Info, Lang, Level, LinhaTempoJson, PresetKey, RealDates, Src, TypeFilter, View } from './types'
 import { INFO_DEMO, PRESETS, TYPES, TYPES_REAL, type TypeMeta } from './demo'
 import { REGIONS, type Region, type RegionId } from './regions'
-import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type RealSet, type TimelinePoint } from './real'
+import { buildReal, buildTimeline, realAlerts, REAL_DEFAULT, realShort, type RealMeta, type RealSet, type TimelinePoint } from './real'
 import { setI18n, tr } from './i18n'
 import { ago } from './util'
 import { calibrar } from './riscos'
@@ -193,7 +193,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return {
       ev: isReal ? fEv(real.ev) : region.ev,
       // v7.1 · A.R.K.O Rios: só o que o radar viu no rio e na margem (sem queimadas, deslizamentos ou desastres)
-      alerts: isReal ? ordenar(real.alerts.filter(a => (a.ty === 'agua' || a.ty === 'solo' || a.ty === 'arvore') && (!ativo || perto(a)))) : region.alerts,
+      // v7.15 · no recorte, os alertas são refeitos só com os focos perto do rio (antes, o limite de 4 alertas da passagem inteira podia esconder um foco próximo)
+      alerts: isReal ? ordenar((ativo ? realAlerts(fEv(real.ev), real.meta.focos, real.rd) : real.alerts).filter(a => a.ty === 'agua' || a.ty === 'solo' || a.ty === 'arvore')) : region.alerts,
       riscos: isReal ? riscos[realMeta.id] : undefined,
       cities: isReal ? real.cities : region.cities,
       cmp: isReal ? real.cmp : region.cmp,
