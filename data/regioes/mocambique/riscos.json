@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-14T19:27Z",
+ "atualizado": "2026-11-15T02:16Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,10 +17,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 299,
-  "duplicados_removidos": 72,
-  "focos_risco": 153,
-  "pequenas": 118,
+  "focos": 301,
+  "duplicados_removidos": 73,
+  "focos_risco": 154,
+  "pequenas": 119,
   "grupos": [
    {
     "lon": 31.0924,
@@ -56,6 +56,17 @@
     "lugar": "Bushbuckridge · Mepumalanga · África do Sul"
    },
    {
+    "lon": 33.7993,
+    "lat": -24.2122,
+    "n": 7,
+    "frp": 58.0,
+    "ultimo": "2026-11-14T23:35Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 2,
+    "lugar": "Chibuto · Gaza · Moçambique"
+   },
+   {
     "lon": 30.9035,
     "lat": -26.5842,
     "n": 6,
@@ -87,17 +98,6 @@
     "categoria": "risco",
     "dois_satelites": 3,
     "lugar": "Matutuíne · Maputo · Moçambique"
-   },
-   {
-    "lon": 33.7986,
-    "lat": -24.2125,
-    "n": 6,
-    "frp": 56.5,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 2,
-    "lugar": "Chibuto · Gaza · Moçambique"
    },
    {
     "lon": 33.7027,
