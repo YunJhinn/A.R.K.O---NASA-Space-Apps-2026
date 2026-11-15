@@ -31,6 +31,10 @@ AQUIFEROS = [
          sobre="Caso clássico do GRACE: irrigação esvaziando o aquífero mais rápido do que a chuva repõe."),
     dict(id="mexico", nome="Aquífero do Vale do México", onde="Cidade do México, México", bbox=(-100, 18.5, -98, 20.5),
          sobre="Abastece ~22 milhões de pessoas e é bombeado muito acima da recarga; a cidade afunda dezenas de cm por ano. Área pequena para o GRACE: aqui o radar NISAR mostra o detalhe."),
+    dict(id="brandemburgo", nome="Aquíferos de Brandemburgo e Berlim", onde="Leste da Alemanha", bbox=(12.0, 51.5, 15.0, 53.5),
+         sobre="Abastece Berlim e Brandemburgo, onde indústrias que usam muita água (bebidas, fábrica de carros) disputam a água subterrânea com os moradores.",
+         contexto=dict(t="Reportagem: planos da Red Bull perto de Berlim alarmam ambientalistas (DW, via IstoÉ Dinheiro)",
+                       url="https://istoedinheiro.com.br/planos-da-red-bull-perto-de-berlim-alarmam-ambientalistas")),
     dict(id="ogallala", nome="Aquífero Ogallala (High Plains)", onde="Estados Unidos", bbox=(-104, 32, -97, 43),
          sobre="Irriga uma das maiores regiões agrícolas do mundo e está sendo esvaziado no sul."),
 ]
@@ -119,7 +123,7 @@ def main(forcar=False):
         anual = {}
         for s in serie:
             anual.setdefault(int(s["d"][:4]), []).append(s["cm"])
-        out = {**{k: a[k] for k in ("id", "nome", "onde", "bbox", "sobre")},
+        out = {**{k: a[k] for k in ("id", "nome", "onde", "bbox", "sobre") }, **({"contexto": a["contexto"]} if "contexto" in a else {}),
                "area_km2": round(float(area)), "tend_cm_ano": round(m, 3), "tend_km3_ano": round(m * area * 1e-5, 2),
                "proj2030_cm": round(m * 2030.5 + b, 1), "serie": serie,
                "anual": [{"ano": y, "cm": round(float(np.mean(v)), 2), "n": len(v)} for y, v in sorted(anual.items())],

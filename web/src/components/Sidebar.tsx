@@ -9,6 +9,7 @@ export function Sidebar({ open = false, onNav }: { open?: boolean; onNav?: () =>
   const { s, set, t, ds, go } = useApp()
   const real = s.src === 'real'
   const nav: [string, string, () => void, boolean, string?][] = [
+    ['radar', 'Radar NISAR', () => go('inicio'), s.view === 'inicio'],
     ['relogio', 'Histórico do rio', () => go('historico'), s.view === 'historico'],
     ['camadas', 'Aquíferos', () => go('aquiferos'), s.view === 'aquiferos'],
     ['alvo', 'Validação', () => go('validacao'), s.view === 'validacao'],

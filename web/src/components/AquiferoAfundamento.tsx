@@ -55,32 +55,22 @@ export function AquiferoAfundamento({ aq, en }: { aq: string; en: boolean }) {
   }, [ok, lim])
 
   const cabeca = (
-    <div>
-      <div className="text-[11px] font-bold uppercase tracking-[.1em]" style={{ color: '#7A1450' }}>{en ? 'NISAR · the ground sinking (BETA)' : 'NISAR · o chão afundando (BETA)'}</div>
-      <h3 className="m-0 mt-1 flex items-center text-[16px]">
-        {en ? 'An image with no camera: the radar sees the aquifer through the ground' : 'Uma imagem sem câmera: o radar vê o aquífero pelo chão'}
-        <Ajuda txt={en ? 'When more water is pumped than rain refills, the clay layers of the aquifer compact and the ground sinks, permanently: that storage space is lost. The NISAR radar (NASA–ISRO, L-band) compares two passes 12 days apart and measures how much the distance to the ground changed, down to millimetres (interferometry). Adding up a chain of passes gives the sinking over months. Each pixel here is ~500 m, rebuilt only from the radar phase.' : 'Quando se bombeia mais água do que a chuva repõe, as camadas de argila do aquífero se compactam e o chão afunda, para sempre: aquele espaço de guardar água se perde. O radar NISAR (NASA–ISRO, banda L) compara duas passagens com 12 dias de diferença e mede quanto a distância até o chão mudou, em milímetros (interferometria). Somando uma corrente de passagens, temos o afundamento em meses. Cada pixel aqui tem ~500 m, reconstruído só com a fase do radar.'} />
-      </h3>
-    </div>
+    <h3 className="m-0 flex items-center text-[14.5px]">
+      {en ? 'Vertical ground motion · NISAR InSAR (BETA)' : 'Movimento vertical do solo · NISAR InSAR (BETA)'}
+      <Ajuda txt={en ? 'Pumping beyond recharge compacts the aquifer clay and the ground sinks permanently. NISAR (NASA–ISRO, L-band) GUNW pairs 12 days apart are chained and summed; ~500 m cells, relative to a stable rock point (▲). Line of sight converted to approx. vertical (÷ cos 37°). Grey = no reliable measurement.' : 'Bombear além da recarga compacta a argila do aquífero e o solo afunda de forma permanente. Pares GUNW do NISAR (NASA–ISRO, banda L) de 12 dias, encadeados e somados; células de ~500 m, relativas a um ponto de rocha estável (▲). Linha de visada convertida para vertical aprox. (÷ cos 37°). Cinza = sem medida confiável.'} />
+    </h3>
   )
 
   if (!alvo) return (
-    <div className="card" style={{ padding: 18 }}>
+    <div className="card flex flex-wrap items-center justify-between gap-2" style={{ padding: '12px 18px' }}>
       {cabeca}
-      <p className="m-0 mt-2 text-[13px] leading-relaxed" style={{ color: '#475467' }}>
-        {en ? 'For this aquifer the ground-sinking map is not processed yet. The robot already does it for Mexico City and New Delhi (open "Valley of Mexico" or "Northwest India"); new areas only need a new box in the robot.'
-          : 'Para este aquífero o mapa do chão afundando ainda não é processado. O robô já faz isso para a Cidade do México e Nova Délhi (abra "Vale do México" ou "noroeste da Índia"); áreas novas só precisam de uma nova caixa no robô.'}
-      </p>
+      <span className="text-[12.5px]" style={{ color: '#667085' }}>{en ? 'Not processed for this aquifer · available: Valley of Mexico, NW India' : 'Não processado para este aquífero · disponível: Vale do México, NO da Índia'}</span>
     </div>
   )
   if (!ok) return (
-    <div className="card" style={{ padding: 18 }}>
+    <div className="card flex flex-wrap items-center justify-between gap-2" style={{ padding: '12px 18px' }}>
       {cabeca}
-      <p className="m-0 mt-2 text-[13px] leading-relaxed" style={{ color: '#475467' }}>
-        {d === null ? (en ? 'Loading…' : 'Carregando…')
-          : en ? `The NISAR box over ${alvo.onde[1]} is already in the robot; the first map appears here after its next run (it adds up all 12-day pairs since 2026).`
-            : `A caixa do NISAR sobre ${alvo.onde[0]} já está no robô; o primeiro mapa aparece aqui depois da próxima rodada dele (ele soma todos os pares de 12 dias desde 2026).`}
-      </p>
+      <span className="text-[12.5px]" style={{ color: '#667085' }}>{d === null ? (en ? 'Loading…' : 'Carregando…') : (en ? 'Waiting for the first robot run' : 'Aguardando a primeira rodada do robô')}</span>
     </div>
   )
 
@@ -109,34 +99,26 @@ export function AquiferoAfundamento({ aq, en }: { aq: string; en: boolean }) {
             <div className="h-2.5 flex-1 rounded" style={{ background: `linear-gradient(90deg, rgb(${cor(-lim, lim)}), rgb(${cor(0, lim)}), rgb(${cor(lim, lim)}))` }} />
             <span>+{lim} cm {en ? 'rose' : 'subiu'}</span>
           </div>
-          <p className="mx-auto mt-1 max-w-[560px] text-[11.5px]" style={{ color: '#667085' }}>▲ {en ? 'stable reference point (rock): every value is relative to it. Grey: radar could not measure (water, fields that changed too much).' : 'ponto de referência estável (rocha): todos os valores são relativos a ele. Cinza: o radar não conseguiu medir (água, plantação que mudou demais).'}</p>
+          <p className="mx-auto mt-1 max-w-[560px] text-[11.5px]" style={{ color: '#667085' }}>▲ {en ? 'stable reference' : 'referência estável'} · {en ? 'grey = no measurement' : 'cinza = sem medida'}</p>
         </div>
 
         <div className="rounded-xl p-4" style={{ background: '#FDF2F8', border: '1px solid #FCCEEE' }}>
           <div className="text-[12px] font-bold uppercase tracking-wide" style={{ color: '#7A1450' }}>{en ? ok.nome_en : ok.nome}</div>
           <div className="mt-1 text-[12.5px]" style={{ color: '#475467' }}>{dataBR(ok.inicio, en)} → {dataBR(ok.fim, en)} · {ok.dias} {en ? 'days' : 'dias'} · {ok.pares.length} {en ? 'radar pairs' : 'pares do radar'}</div>
           <div className="mt-3 text-[30px] font-extrabold leading-none" style={{ color: '#7A1450' }}>{fmt(ok.max_cm, en, 1)} cm</div>
-          <div className="text-[12.5px]" style={{ color: '#475467' }}>{en ? `fastest-sinking spots in ${ok.dias} days` : `nos pontos que mais afundaram em ${ok.dias} dias`}</div>
+          <div className="text-[12.5px]" style={{ color: '#475467' }}>{en ? 'p01 (fastest-sinking cells)' : 'p01 (células que mais afundaram)'}</div>
           <div className="mt-3 text-[13px] leading-relaxed" style={{ color: '#1E2A3A' }}>
             <div>{en ? 'Pace: ' : 'Ritmo: '}<b>{fmt(Math.abs(taxa), en, 1)} cm/{en ? 'year' : 'ano'}</b></div>
-            <div>{en ? 'Area sinking 5 cm or more: ' : 'Área que afundou 5 cm ou mais: '}<b>{fmt(ok.area_5cm_km2, en, 0)} km²</b></div>
+            <div>{en ? 'Area ≤ −5 cm: ' : 'Área ≤ −5 cm: '}<b>{fmt(ok.area_5cm_km2, en, 0)} km²</b></div>
           </div>
           <div className="mt-3 rounded-lg p-2.5 text-[12.5px] leading-snug" style={{ background: bate ? '#ECFDF3' : '#FFFAEB', border: `1px solid ${bate ? '#ABEFC6' : '#FEDF89'}` }}>
             <b>{bate ? (en ? '✓ Matches published studies' : '✓ Bate com estudos publicados') : (en ? '! Differs from published studies' : '! Diferente dos estudos publicados')}</b><br />
-            {en ? 'Literature: ' : 'Literatura: '}{ok.literatura.texto} · <a href={ok.literatura.url} target="_blank" rel="noreferrer" style={{ color: '#2563EB' }}>{ok.literatura.ref}</a>
+            {ok.literatura.texto} · <a href={ok.literatura.url} target="_blank" rel="noreferrer" style={{ color: '#2563EB' }}>{ok.literatura.ref}</a>
           </div>
-          <p className="m-0 mt-3 text-[12.5px] leading-relaxed" style={{ color: '#3C4B5E' }}>
-            <b>{en ? 'What it means: ' : 'O que isso significa: '}</b>
-            {en ? 'The aquifer is being emptied faster than it refills. Compacted clay does not swell back: this water storage is lost for good. Sinking also breaks pipes, drains and buildings, and makes floods worse.'
-              : 'O aquífero está sendo esvaziado mais rápido do que se recarrega. A argila compactada não volta a inchar: esse espaço de guardar água se perde para sempre. O afundamento também quebra canos, esgoto e prédios e piora as enchentes.'}
-          </p>
         </div>
       </div>
-      <p className="m-0 mt-3 text-[12px] leading-relaxed" style={{ color: '#5B6B7F' }}>
-        {en ? 'How it was measured: ' : 'Como foi medido: '}{ok.fonte}. {en ? 'Values are along the radar line of sight converted to approximate vertical (÷ cos 37°).' : 'Valores na linha de visada do radar convertidos para vertical aproximado (÷ cos 37°).'}{' '}
-        {ok.ionosfera_corrigida ? (en ? 'Ionosphere corrected; troposphere not corrected (a few cm of noise).' : 'Ionosfera corrigida; troposfera não corrigida (alguns cm de ruído).') : (en ? 'Ionosphere and troposphere not corrected (a few cm of noise).' : 'Ionosfera e troposfera não corrigidas (alguns cm de ruído).')}{' '}
-        {en ? 'Direction of the sign: ' : 'Direção do sinal: '}{en ? ok.sinal_fonte_en ?? ok.sinal_fonte : ok.sinal_fonte}{' '}
-        {en ? 'BETA: NISAR provisional products, still in calibration.' : 'BETA: produtos provisórios do NISAR, ainda em calibração.'}
+      <p className="m-0 mt-3 text-[11.5px]" style={{ color: '#667085' }}>
+        {ok.fonte} · {ok.ionosfera_corrigida ? (en ? 'ionosphere corrected' : 'ionosfera corrigida') : (en ? 'no ionosphere correction' : 'sem correção de ionosfera')} · {en ? 'troposphere not corrected' : 'troposfera não corrigida'} · {en ? 'sign: ' : 'sinal: '}{en ? ok.sinal_fonte_en ?? ok.sinal_fonte : ok.sinal_fonte}
       </p>
     </div>
   )

@@ -73,3 +73,16 @@ Represas (João Leite, Serra da Mesa): a análise começa quando o lago encheu.
 4. leva para uma grade de ~500 m e calcula o afundamento máximo (percentil 1), o ritmo (cm/ano) e a área que afundou 5 cm ou mais.
 
 Limites honestos: a especificação do GUNW não documenta o sinal da fase; o robô procura a convenção nos atributos do arquivo e, se não houver, orienta o sinal para que o centro de afundamento já publicado desça (registrado em `sinal_fonte`). A checagem independente é a magnitude, comparada com a literatura: Cidade do México até ~30–40 cm/ano (Chaussard et al. 2014; Cigna & Tapete 2021); Nova Délhi até ~11 cm/ano perto do aeroporto (Garg et al. 2022). A troposfera não é corrigida (alguns cm de ruído). Testado com arquivos sintéticos na estrutura do GUNW (cuba de 30 cm/ano recuperada: −17,6 cm medidos contra −17,7 cm esperados em 216 dias); a primeira rodada com dados reais acontece no robô, que tem o login Earthdata.
+
+## v7.4 · Aquíferos para analistas
+
+- **Painel comparativo:** todos os aquíferos numa tabela com os mesmos indicadores, que pode ser ordenada: tendência (cm/ano), volume (km³/ano), perda acumulada desde 2002, média dos últimos 12 meses, meses abaixo do p10 (últimos 6) e projeção para 2030.
+- **Hierarquia da página:** tabela → ficha do aquífero (4 números) → série mensal → retrato anual (GRACE) → chão afundando (NISAR). Validação, limites e ações ficam recolhidos, com o resultado da validação visível no título.
+- **Novo aquífero: Brandemburgo e Berlim (Alemanha).** Indústrias que usam muita água disputam a água subterrânea com os moradores (reportagem da DW, via IstoÉ Dinheiro). O GRACE mede −0,66 cm/ano; a área fica perto do limite de resolução do GRACE.
+
+## v7.5 · NISAR no centro e foco em gestão
+
+- **Radar NISAR é a tela inicial**, com duas medidas do radar: *Mudança na superfície* (GCOV: água fora do leito, margem exposta, perda de mata) e *Movimento do solo* (GUNW: afundamento sobre aquíferos na Cidade do México e em Nova Délhi).
+- **Prioridade de gestão** (`web/src/lib/gestao.ts`): área da mesma mudança por perto (até 2 pts) + repetição em passagens anteriores (até 2) + sinal forte (1). 3+ = alta, 2 = média, 0–1 = baixa. Cada foco mostra "Por que esta prioridade".
+- **Balanço da região:** estoque (Landsat, trecho de referência) + saldo das mudanças do NISAR ao longo das passagens + exportação GeoJSON e CSV para GIS.
+- Tom de gestão: "Mudanças para verificar", "Ação sugerida", sem visual de emergência.

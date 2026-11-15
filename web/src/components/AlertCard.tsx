@@ -37,7 +37,7 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
       )}
       <p className="one">{t(a.m)}</p>
       {a.lvl !== 'Baixo' && (
-        <div className="acao"><b>{en ? 'Suggested response' : 'Sugestão de resposta'}</b><span>{recomendacao(a, s.lang)}</span></div>
+        <div className="acao"><b>{en ? 'Suggested action' : 'Ação sugerida'}</b><span>{recomendacao(a, s.lang)}</span></div>
       )}
       {open && (
         <div className="det">
@@ -52,10 +52,10 @@ export function AlertCard({ a, onMap, big = false }: { a: Alert; onMap?: () => v
       {open && a.provas && (
         <div className="det">
           <div>
-            <b>{en ? 'Why this forecast (data crossed in the same area)' : 'Por que esta previsão (dados cruzados na mesma área)'}</b>
+            <b>{a.id?.startsWith('p-') ? (en ? 'Why this forecast (data crossed in the same area)' : 'Por que esta previsão (dados cruzados na mesma área)') : (en ? 'Why this priority' : 'Por que esta prioridade')}</b>
             {a.provas.map(pv => <span key={pv}>• {pv}</span>)}
           </div>
-          <span className="nota">{en ? 'A.R.K.O rule that crosses the sources: a hypothesis to confirm on the ground, not a certainty.' : 'Regra do A.R.K.O que cruza as fontes: hipótese a confirmar em campo, não uma certeza.'}</span>
+          {a.id?.startsWith('p-') && <span className="nota">{en ? 'A.R.K.O rule that crosses the sources: a hypothesis to confirm on the ground, not a certainty.' : 'Regra do A.R.K.O que cruza as fontes: hipótese a confirmar em campo, não uma certeza.'}</span>}
         </div>
       )}
       {open && a.etapas && (
