@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T06:17Z",
+ "atualizado": "2026-11-15T10:13Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,10 +17,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 53,
+  "focos": 80,
   "duplicados_removidos": 2,
-  "focos_risco": 7,
-  "pequenas": 41,
+  "focos_risco": 10,
+  "pequenas": 61,
   "grupos": [
    {
     "lon": 91.138,
@@ -43,6 +43,17 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Hajo · Assam · Índia"
+   },
+   {
+    "lon": 89.8815,
+    "lat": 23.6132,
+    "n": 3,
+    "frp": 7.5,
+    "ultimo": "2026-11-15T07:09Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Faridpur · Bangladesh"
    },
    {
     "lon": 92.352,
@@ -78,15 +89,59 @@
     "lugar": "Hajo · Assam · Índia"
    },
    {
-    "lon": 89.8838,
-    "lat": 23.6174,
+    "lon": 90.823,
+    "lat": 26.2157,
     "n": 2,
-    "frp": 6.0,
-    "ultimo": "2026-11-13T07:05Z",
+    "frp": 9.0,
+    "ultimo": "2026-11-15T07:09Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Faridpur · Bangladesh"
+    "lugar": "Baghbor · Assam · Índia"
+   },
+   {
+    "lon": 92.5228,
+    "lat": 24.833,
+    "n": 2,
+    "frp": 7.0,
+    "ultimo": "2026-11-15T06:29Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Badarpur · Assam · Índia"
+   },
+   {
+    "lon": 87.897,
+    "lat": 25.909,
+    "n": 2,
+    "frp": 6.4,
+    "ultimo": "2026-11-15T07:09Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 88.2274,
+    "lat": 25.7712,
+    "n": 2,
+    "frp": 6.2,
+    "ultimo": "2026-11-15T07:09Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Hemtabad · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 88.5832,
+    "lat": 25.4406,
+    "n": 2,
+    "frp": 5.8,
+    "ultimo": "2026-11-15T07:09Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Gangarampur · Bengala Ocidental · Índia"
    },
    {
     "lon": 90.5309,
@@ -164,50 +219,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Mairang · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.3194,
-    "lat": 25.2272,
-    "n": 1,
-    "frp": 5.5,
-    "ultimo": "2026-11-13T07:05Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Khliehriat · Meghalaya · Índia"
-   },
-   {
-    "lon": 92.3497,
-    "lat": 23.7907,
-    "n": 1,
-    "frp": 5.2,
-    "ultimo": "2026-11-14T07:28Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Zawlnuam · Mizoram · Índia"
-   },
-   {
-    "lon": 91.5438,
-    "lat": 24.9285,
-    "n": 1,
-    "frp": 5.0,
-    "ultimo": "2026-11-14T07:30Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "ছাতক উপজেলা · সিলেট বিভাগ · Bangladeche"
-   },
-   {
-    "lon": 90.1377,
-    "lat": 23.4943,
-    "n": 1,
-    "frp": 4.7,
-    "ultimo": "2026-11-13T07:05Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "সদরপুর উপজেলা · Daca · Bangladeche"
    }
   ]
  }
