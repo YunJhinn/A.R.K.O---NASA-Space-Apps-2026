@@ -1,6 +1,26 @@
 {
  "passagens": [
   {
+   "data": "2026-06-21",
+   "produto": "NISAR_L2_PR_GCOV_023_103_A_175_2005_DHDH_A_20260621T092910_20260621T092945_P05023_N_F_J_001",
+   "imagem": "radar/2026-06-21.jpg",
+   "comparado_com": null,
+   "focos": [],
+   "resumo": {
+    "focos": 0,
+    "por_tipo": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    },
+    "area_km2": {
+     "agua": 0,
+     "solo": 0,
+     "arvore": 0
+    }
+   }
+  },
+  {
    "data": "2026-07-03",
    "produto": "NISAR_L2_PR_GCOV_024_103_A_175_2005_DHDH_A_20260703T092909_20260703T092944_P05023_N_F_J_001",
    "imagem": "radar/2026-07-03.jpg",
@@ -1264,5 +1284,5 @@
   "norte": -3.488,
   "sul": -6.669
  },
- "atualizado_em": "2026-11-15T00:13:34Z"
+ "atualizado_em": "2026-11-15T01:39:30Z"
 }
