@@ -29,8 +29,9 @@ FOTOS = set(range(1985, 2100))   # v7.1: uma foto por ano, para a linha do tempo
 RIOS = [
     dict(id="tapajos", nome="Rio Tapajós em Itaituba", pais="Brasil · PA", bbox=(-56.05, -4.35, -55.90, -4.20),
          meses=(7, 8, 9, 10), cidade="Itaituba", pressao="garimpo de ouro rio acima"),
-    dict(id="madeira", nome="Rio Madeira em Nova Olinda do Norte", pais="Brasil · AM", bbox=(-59.20, -4.00, -59.00, -3.80),
-         meses=(7, 8, 9, 10), cidade="Nova Olinda do Norte", pressao="dragas de garimpo e desmatamento"),
+    # v7.14: trecho movido de Nova Olinda do Norte para Novo Aripuanã, dentro da faixa do radar NISAR da região
+    dict(id="madeira", nome="Rio Madeira em Novo Aripuanã", pais="Brasil · AM", bbox=(-60.45, -5.20, -60.30, -5.05),
+         meses=(7, 8, 9, 10), cidade="Novo Aripuanã", pressao="dragas de garimpo e desmatamento"),
     dict(id="guaiba", nome="Lago Guaíba em Porto Alegre", pais="Brasil · RS", bbox=(-51.32, -30.15, -51.20, -30.00),
          meses=(11, 12, 1, 2, 3), cidade="Porto Alegre", pressao="esgoto urbano, cheias e lavouras na bacia"),
     dict(id="daca", nome="Rios Buriganga e Turag em Daca", pais="Bangladesh", bbox=(90.32, 23.68, 90.47, 23.83),
@@ -40,6 +41,9 @@ RIOS = [
     dict(id="limpopo", nome="Barragem de Massingir (rio dos Elefantes, bacia do Limpopo)", pais="Moçambique",
          bbox=(31.95, -23.95, 32.20, -23.70), meses=(5, 6, 7, 8, 9), cidade="Chókwè e Massingir",
          pressao="secas, cheias e uso para irrigação"),
+    # v7.14: rio Limpopo em Chókwè, dentro da faixa do radar NISAR da região (Massingir fica fora dela)
+    dict(id="chokwe", nome="Rio Limpopo em Chókwè", pais="Moçambique", bbox=(32.90, -24.60, 33.05, -24.45),
+         meses=(5, 6, 7, 8, 9), cidade="Chókwè", pressao="cheias, secas e irrigação do regadio de Chókwè"),
     # Goiás (v7.1): água de Goiânia e dois grandes corpos d'água do estado
     dict(id="joaoleite", nome="Reservatório do João Leite (abastece Goiânia)", pais="Brasil · GO", bbox=(-49.27, -16.62, -49.12, -16.47),
          meses=(5, 6, 7, 8, 9), cidade="Goiânia", pressao="crescimento urbano e agrícola na bacia, secas no Cerrado", inicio_analise=2010),

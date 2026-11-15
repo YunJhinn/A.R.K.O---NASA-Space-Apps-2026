@@ -11,7 +11,7 @@ const pl = (n: number, um: string, v: string) => `${n} ${n === 1 ? um : v}`
 const dCurta = (iso: string, en: boolean) => new Date(iso + 'T12:00:00').toLocaleDateString(en ? 'en-GB' : 'pt-BR', { day: '2-digit', month: 'short' })
 
 export function Balanco() {
-  const { s, ds } = useApp()
+  const { s, ds, set } = useApp()
   const en = s.lang === 'en'
   const B = useMemo(() => balanco(ds.timeline), [ds.timeline])
   const rio = RIOS.find(r => r.regiao === ds.realMeta.id)
@@ -19,6 +19,7 @@ export function Balanco() {
   useEffect(() => { setRef(null); if (rio) carregarRio(DATA_BASE, rio.id).then(d => setRef(d ?? null)) }, [rio?.id])   // eslint-disable-line
   const ult = ref ? [...ref.serie].reverse().find(a => a.mata_ciliar != null || a.agua_km2 != null) : null
 
+  const onde = ds.escopo.ativo ? (en ? ` · ≤ ${ds.escopo.raio} km` : ` · até ${ds.escopo.raio} km`) : ds.escopo.nome ? (en ? ' · whole pass' : ' · passagem inteira') : ''
   const baixarCSV = () => {
     const blob = new Blob([csvFocos(ds.timeline)], { type: 'text/csv;charset=utf-8' })
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `arko_focos_${ds.realMeta.id}.csv`; a.click()
@@ -46,12 +47,31 @@ export function Balanco() {
           <button type="button" onClick={baixarCSV} className="btn" style={{ fontSize: 12.5, padding: '5px 10px' }} disabled={!ds.timeline.length}>⬇ CSV {en ? '(all passes)' : '(todas as passagens)'}</button>
         </div>
       </div>
+      {/* v7.13 · recorte: o radar cobre ~300 km; o trecho de referência tem ~20 km */}
+      {ds.escopo.nome && (
+        <div className="flex flex-wrap items-center gap-2 px-4 py-2 text-[12.5px]" style={{ borderBottom: '1px solid #EAECF0', background: '#F8FAFC', color: '#475467' }}>
+          <b style={{ color: '#101828' }}>{en ? 'Area:' : 'Área:'}</b>
+          {ds.escopo.disponivel ? (
+            <>
+              {([['rio', en ? `Near the monitored river (≤ ${ds.escopo.raio} km)` : `Perto do rio monitorado (até ${ds.escopo.raio} km)`], ['tudo', en ? 'Whole radar pass (~300 km)' : 'Toda a passagem do radar (~300 km)']] as const).map(([k, t]) => (
+                <button key={k} type="button" onClick={() => set({ escopo: k, sel: null })} className="rounded-full px-3 py-0.5 font-semibold"
+                  style={{ background: s.escopo === k ? '#0B1F33' : '#fff', color: s.escopo === k ? '#fff' : '#101828', border: '1px solid #D0D5DD' }}>{t}</button>
+              ))}
+              <span>{ds.escopo.ativo
+                ? (en ? `Only what the radar saw around ${ds.escopo.nome[1]}, the same stretch as the Landsat stock.` : `Só o que o radar viu em volta de ${ds.escopo.nome[0]}, o mesmo trecho do estoque Landsat.`)
+                : (en ? 'All rivers in the radar pass; the stock columns stay on the reference stretch.' : 'Todos os rios da passagem do radar; as colunas de estoque continuam no trecho de referência.')}</span>
+            </>
+          ) : (
+            <span>{en ? `The reference stretch (${ds.escopo.nome[1]}) is outside this radar pass: showing the whole pass (~300 km). The stock columns are from the reference stretch.` : `O trecho de referência (${ds.escopo.nome[0]}) fica fora desta passagem do radar: mostrando a passagem inteira (~300 km). As colunas de estoque são do trecho de referência.`}</span>
+          )}
+        </div>
+      )}
       <div className="grid grid-cols-2 gap-px lg:grid-cols-5" style={{ background: '#EAECF0' }}>
-        {cel(en ? 'Forest change (NISAR)' : 'Mudança na mata (NISAR)', `${f(B.r.arvore.km2, en, 2)} km²`, `${pl(B.r.arvore.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.arvore.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}`, '#2F9E44',
+        {cel(en ? 'Forest change (NISAR)' : 'Mudança na mata (NISAR)', `${f(B.r.arvore.km2, en, 2)} km²`, `${pl(B.r.arvore.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.arvore.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, '#2F9E44',
           en ? 'Sum of areas where the radar vegetation signal (HV) dropped, each pass compared with the previous one. Can be clearing, fire, harvest or drought: verify on site.' : 'Soma das áreas onde o sinal de vegetação do radar (HV) caiu, cada passagem comparada com a anterior. Pode ser corte, queimada, colheita ou seca: verificar em campo.')}
-        {cel(en ? 'Water outside channel' : 'Água fora do leito', `${f(B.r.agua.km2, en, 2)} km²`, `${pl(B.r.agua.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.agua.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}`, '#1C7ED6',
+        {cel(en ? 'Water outside channel' : 'Água fora do leito', `${f(B.r.agua.km2, en, 2)} km²`, `${pl(B.r.agua.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.agua.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, '#1C7ED6',
           en ? 'Sum of areas that turned into still water between passes (strong HH drop).' : 'Soma das áreas que viraram água parada entre passagens (queda forte do HH).')}
-        {cel(en ? 'Exposed bank' : 'Margem exposta', `${f(B.r.solo.km2, en, 2)} km²`, `${pl(B.r.solo.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.solo.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}`, '#B8692A',
+        {cel(en ? 'Exposed bank' : 'Margem exposta', `${f(B.r.solo.km2, en, 2)} km²`, `${pl(B.r.solo.focos, en ? 'spot' : 'foco', en ? 'spots' : 'focos')} · ${pl(B.r.solo.passagens, en ? 'pass' : 'passagem', en ? 'passes' : 'passagens')}${onde}`, '#B8692A',
           en ? 'Sum of areas where water left and the bed/bank became exposed.' : 'Soma das áreas onde a água saiu e o leito ou a margem ficou exposto.')}
         {cel(en ? 'Riparian forest (stock)' : 'Mata ciliar (estoque)', ult?.mata_ciliar != null ? `${f(ult.mata_ciliar, en, 0)}%` : '—', ref && ult ? `Landsat ${ult.ano} · ${ref.cidade}` : (en ? 'no reference stretch' : 'sem trecho de referência'), '#101828',
           en ? 'Share of the ~500 m band along the banks covered by dense vegetation (NDVI > 0.6), in the ~20 km Landsat reference stretch of this region. Stock, not change.' : 'Parte da faixa de ~500 m nas margens coberta por vegetação densa (NDVI > 0,6), no trecho de referência Landsat de ~20 km desta região. É estoque, não mudança.')}

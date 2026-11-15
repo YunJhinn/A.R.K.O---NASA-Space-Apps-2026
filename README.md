@@ -1,102 +1,74 @@
-# A.R.K.O Rivers — Advanced Reconnaissance & Knowledge Operations
+# A.R.K.O · NISAR as a water management tool
 
 **NASA Space Apps Challenge 2026 · Dancing with the SARs** · [Leia em português](README.pt-BR.md)
 
-A.R.K.O Rivers uses NASA satellites to **conserve the rivers that supply drinking water**. For each river it tells, year by year since 1985, what happened to the water (turbidity, water area, riverside forest, bare banks, glacier ice), why it probably happened, where it is heading by 2030 if nothing changes, and who can act. Less than 1% of Earth's water is fresh and available to drink, and rivers are where we are degrading it.
+**From the riverbank to the sinking ground.** A.R.K.O monitors rivers, headwaters and aquifers continuously, over decades, and warns **years in advance** when any of them is heading toward a critical point.
 
-## A.R.K.O Rivers in one minute
+**App:** https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/app/index.html
 
-| Layer | Satellite | Years | What it shows |
-| --- | --- | --- | --- |
-| River history | **Landsat 4–9** (NASA/USGS) | 1985 → today | Water turbidity, water area, riverside forest, bare soil on the banks, glacier ice |
-| River level | **SWOT** (NASA/CNES) | 2023 → today | Water surface height of the river reach that supplies the city |
-| Continuous monitor | **HLS** (NASA: Landsat 8/9 + Sentinel-2) | every 2–5 days (cloud-free) | Each new image compared with the normal for its month; out-of-normal images become alerts |
-| River now | **NISAR** (NASA/ISRO) | every ~12 days | New water, receding water and banks losing vegetation, through clouds |
-| Aquifers | **GRACE / GRACE-FO** (NASA/DLR/GFZ) | 2002 → today, monthly | Water stored under and on the ground over 7 aquifers; stricter alert because damage is almost irreversible |
-| Risks in the basin | **LHASA** and **FIRMS** (NASA) | daily | Extreme rain (sediment) and fire (ash and soil) |
+## The problem
 
-**10 rivers (4 in Goiás: João Leite reservoir and Meia Ponte, which supply Goiânia, Araguaia at Aruanã and Serra da Mesa) and 7 aquifers (Goiás, Urucuia, Guarani, Greater Amazon, Bengal, NW India, Ogallala).** Also: Tapajós (gold mining), Madeira (dredges and clearing), Guaíba in Porto Alegre (city and floods), Dhaka's rivers (city growing over water), Trishuli headwaters in Nepal (melting ice) and Massingir Dam in Mozambique (droughts).
+Water disappears slowly: banks without forest silt up the river, headwaters without vegetation weaken, too many wells drain the aquifer and the ground starts to sink. Water managers usually see scattered measurements and only react when the crisis arrives. What is missing is someone saying: *"the pattern changed in year X and, if it continues, the critical point arrives in year Y"*.
 
-**Validated against real records (4 of 4):** the 1980s–90s gold rush and the 2019–2022 gold rush on the Tapajós (Lobo et al. 2015; MapBiomas), the record low water of 2024 at Itaituba (Geological Survey of Brazil) and the refilling of Massingir Dam after its 2006 repair. See `docs/arko_rios_metodo.md`.
+## How A.R.K.O solves it
 
-**What it cannot see:** sewage chemicals, pesticides and microplastics are not visible from space. The satellite shows the visible effect and tells where and when to collect lab samples.
+1. **Monitors continuously**: series of up to 40 years (1985 → today), updated by a daily robot.
+2. **Finds the inflection point**: the year the pattern changed (two Theil–Sen trend segments).
+3. **Projects the scenario**: if nothing changes, when the critical point is reached, with a likely range.
+4. **Warns early**: the alert turns on 10 years before the critical point. Red = critical, yellow = attention, green = within the normal range.
+5. **Says what to do**: management priority and a suggested action for whoever can act.
 
-Scripts: `pipeline/rios_landsat.py` (40-year series, open data, no login) and `pipeline/rios_swot.py` (river level, open Hydrocron API). Also `pipeline/rios_hls.py` (continuous monitor, incremental). The daily robot refreshes HLS, SWOT and NISAR.
+## Where NISAR comes in
 
----
+**NISAR** (NASA-ISRO, L-band radar, 12-day repeat) sees through clouds and smoke and measures the ground in centimetres. It is the app's home screen, with two measures:
 
-*Earlier versions of A.R.K.O focused on disaster alerts; that work is still in the app ("River now", "Alerts") and in the history below.*
+| Product | What it measures | What it is for |
+| --- | --- | --- |
+| **GCOV** · surface change | Radar backscatter (HH/HV) compared between two passes: water outside the channel, forest loss, exposed banks | Knowing where to check first, even in the rainy season |
+| **GUNW** · ground motion | Interferometry: how much the ground went down between passes | Finding where the aquifer is being drained. Mexico City: ~26 cm/yr, consistent with published studies |
 
+## Screens
 
-## What is in this repository
-
-| Folder | What it holds |
+| Screen | What it shows |
 | --- | --- |
-| `web/` | **App source (v2.0): React + TypeScript + Tailwind.** Run `npm install` and `npm run dev` inside `web/`. See `web/README.md`. |
-| `app/` | The published app (built from `web/` by GitHub Actions). Open it on GitHub Pages. PT / EN, *Example / Real NISAR*, region and world search in the left menu and header. |
-| `pipeline/` | Python scripts that search, read and compare real NISAR data and write the detections and timeline files. |
-| `data/` | Results from real NISAR data: `focos.json`, `focos.geojson` (open in QGIS or geojson.io) and the radar image. |
-| `docs/` | Links to the pitch, roadmap, design-thinking documents and Figma. |
+| **NISAR Radar** | Surface change (GCOV) and ground motion (GUNW), with a priority list and GeoJSON/CSV export |
+| **River history** | 10 rivers, 1985 → today: condition, why, likely cause, what to do, inflection and scenarios |
+| **Aquifers** | 9 aquifers (GRACE/GRACE-FO, 2002 → today): trend, loss in km³, inflection and scenarios |
+| **Future scenarios** | Araguaia headwaters (Landsat before/after, native vegetation, critical point) and every place ranked by urgency |
+| **Validation** | Checks against real records and published studies |
 
-## Real data, step by step
+## Data sources (all public)
 
-We compared two real NISAR passes over the Madeira River (Amazonas, Brazil): **September 3** and **October 21, 2026**, same orbit (track 132, frame 175). Result: **10 detections** (7 vegetation loss, 2 water that disappeared in the drought, 1 new water).
-
-1. **Search** — `buscar.py` lists NISAR passes (GCOV product, L-band) for an area and period in NASA's public archive (ASF DAAC).
-2. **Compare** — `processar.py` streams only the needed part of two passes (~80 m grid), compares the radar signal point by point and flags changes:
-   - new water: HH drops more than 4 dB and falls below −16 dB
-   - water gone: the reverse
-   - vegetation loss: HV drops more than 2.5 dB where there was forest
-3. **Build app files** — `imagem_app.py` groups changes into detections (area in km², 0–100 degree of change, nearest town) and draws the background radar image.
-4. **Show** — the prototype has two modes, *Example* and *Real NISAR*. The switch (left menu and map) changes the whole app: top numbers, map, alerts, comparison, mobile view and onboarding.
-
-### Run it yourself
-
-```bash
-cd pipeline
-python -m venv .venv
-.venv/Scripts/activate        # Windows  (macOS/Linux: source .venv/bin/activate)
-pip install -r requirements.txt
-python login.py               # once: your free NASA Earthdata account (urs.earthdata.nasa.gov)
-python buscar.py              # list passes
-python processar.py           # compare two passes -> focos.json + conferencia.png
-python imagem_app.py          # radar image + focos_app.json
-```
-
-To run another region of the world, change `BBOX` / dates in `buscar.py` and the two product names in `processar.py`.
+| What | Source |
+| --- | --- |
+| Radar: surface and subsidence | NISAR GCOV and GUNW (NASA/ISRO, ASF DAAC) |
+| River history and photos | Landsat 5/7/8/9 Collection 2 Level-2 (NASA/USGS) |
+| Continuous monitor | HLS (NASA: Landsat 8/9 + Sentinel-2) |
+| River and lake level | SWOT (NASA/CNES), Hydrocron service |
+| Water stored in aquifers | GRACE and GRACE-FO (NASA/DLR/GFZ), GFZ GravIS grid |
+| Native vegetation at headwaters | ESA CCI Land Cover and Impact Observatory/Esri LULC |
 
 ## Honest limits
 
-- Radar alone cannot tell clearing from fire, so we label it **vegetation loss**.
-- Thresholds are simple and not yet validated with field data.
-- Wind and tornado alerts in the prototype come from weather models, not NISAR, and are marked **external source**. Items in *Example* mode are illustrative.
+- NISAR data is still in beta. When quality is not enough, the screen says "inconclusive".
+- Critical points are A.R.K.O references (half the original water or forest, double the turbidity, 20% vegetation at the headwaters), always explained on screen.
+- A scenario is not a forecast: it shows where things go if nothing changes.
+- Satellites do not see sewage, pesticides or microplastics: they show the visible effect and point where to sample.
 
-## Data source and credit
+## Repository
 
-NASA-ISRO Synthetic Aperture Radar (NISAR) — L-band GCOV, PROVISIONAL release, distributed by the Alaska Satellite Facility DAAC (ASF DAAC). NISAR data are open and free. Basemap: Natural Earth.
+| Folder | Contents |
+| --- | --- |
+| `web/` | React + TypeScript + Tailwind app. `npm install` and `npm run dev` inside `web/` |
+| `pipeline/` | Python scripts that fetch and process the data (NISAR, Landsat, HLS, SWOT, GRACE, headwaters) |
+| `data/` | Results read by the app (JSON, GeoJSON, images) |
+| `app/` | App published on GitHub Pages |
+| `docs/` | Team documentation, glossary and method (Portuguese) |
 
-## Team
+The robot (`.github/workflows/atualizar-nisar.yml`) runs `pipeline/atualizar.py` every day and updates `data/`. The NASA Earthdata password lives only in the repository Secrets (`EARTHDATA_USERNAME`, `EARTHDATA_PASSWORD`).
 
-Team A.R.K.O · NASA Space Apps Challenge 2026.
+## Credits
 
-## Automatic updates
+NASA-ISRO SAR (NISAR), ASF DAAC · Landsat (NASA/USGS) · HLS (NASA) · SWOT (NASA/CNES) · GRACE/GRACE-FO (NASA/DLR/GFZ) · ESA CCI Land Cover · Impact Observatory/Esri · Microsoft Planetary Computer · Natural Earth.
 
-`pipeline/atualizar.py` runs every day on GitHub Actions (`.github/workflows/atualizar-nisar.yml`):
-
-1. It lists the NISAR passes of the pilot orbit (track 132, frame 175) on ASF DAAC.
-2. If there is a newer pass, it compares it with a pass at least 45 days earlier of the same orbit.
-3. It rewrites `data/` (`focos_app.json`, `radar.jpg`, `focos.geojson`, `historico.json`) and adds the new pass to the timeline (`linha_tempo.json` + `radar/YYYY-MM-DD.jpg`), then commits.
-4. The app reads `data/focos_app.json` and `data/linha_tempo.json` when it opens, so the *Real NISAR* mode and the animated timeline always show the newest passes, with no rebuild.
-
-Setup (once): add the repository secrets `EARTHDATA_USERNAME` and `EARTHDATA_PASSWORD` (Settings → Secrets and variables → Actions). To run it now: Actions → *Atualizar dados NISAR* → Run workflow.
-
-## v2.0 — what is new
-
-- **App rebuilt in React + TypeScript + Tailwind** (`web/`), Python stays as the data pipeline (`pipeline/`).
-- **Weather-broadcast style**: dark radar maps, illustrated 3D icons, main data panel and *Risk alert* panel.
-- **Animated timeline** under the map: one point per real NISAR pass, updated automatically every ~12 days. Pick a date, drag or press play.
-- **Compare periods** shows the icons on both sides and the number of detections by type.
-- **World search**: type any place (OpenStreetMap). Places inside a region with data open that region with a pin; others show which regions have data.
-- **Two example regions**: Amazon (pilot, also with real NISAR data) and Southern Brazil (floods and windstorms).
-
-Full guide to the project files: `docs/DOCUMENTACAO.pdf` (Portuguese).
+A.R.K.O team · NASA Space Apps Challenge 2026.

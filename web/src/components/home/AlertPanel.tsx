@@ -59,6 +59,13 @@ export function AlertPanel() {
           const vis = all ? lista : lista.slice(0, 3)
           return (
             <>
+              {!lista.length && real && (
+                <div className="rounded-lg p-3 text-[13px]" style={{ background: '#ECFDF3', border: '1px solid #ABEFC6', color: '#067647' }}>
+                  <b>{ds.escopo.ativo ? (en ? `No change within ${ds.escopo.raio} km of the monitored river in this comparison.` : `Nenhuma mudança a até ${ds.escopo.raio} km do rio monitorado nesta comparação.`) : (en ? 'No change in this comparison.' : 'Nenhuma mudança nesta comparação.')}</b>
+                  {ds.escopo.ativo && <div className="mt-1" style={{ color: '#344054' }}>{en ? 'Other passes or the whole radar pass may have changes: ' : 'Outras passagens ou a passagem inteira do radar podem ter mudanças: '}
+                    <button type="button" className="font-semibold underline" style={{ color: '#0B6E99' }} onClick={() => set({ escopo: 'tudo' })}>{en ? 'see the whole pass' : 'ver a passagem inteira'}</button></div>}
+                </div>
+              )}
               {vis.map((a, i) => <AlertCard key={(a.id ?? a.t) + i} a={a} onMap={() => seeOnMap(a.id)} />)}
               {lista.length > 3 && (
                 <button type="button" className="alist-more" onClick={() => setAll(!all)}>
@@ -73,7 +80,7 @@ export function AlertPanel() {
       {!real && <div className="note note2">
         <Icon k="info" size={14} className="text-acc" />
         <span>{real
-          ? <>{t(`Dados reais do NISAR: duas passagens (${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) sobre`)} {t(ds.realMeta.nome)}. {t(ds.riscos ? 'Deslizamento e queimadas são atualizados todo dia pelo robô, com dados públicos da NASA.' : 'Fogo e previsões do tempo ainda não entram nesta versão.')}{ds.realMeta.evento?.tipo === 'enchente' ? <> {t('Esta região mostra o antes e o durante da enchente do rio Limpopo (jan 2026), com dados BETA do NISAR (antes da calibração final); o ponto vermelho marca Chókwè.')}</> : ds.realMeta.evento ? <> {t('Esta região mostra o antes e o depois do colapso de rocha e gelo do Langtang Lirung (26 ago 2026); o ponto vermelho no mapa marca onde ele começou.')}</> : ds.realMeta.id !== 'amazonia' && <> {t('Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.')}</>}</>
+          ? <>{t(`Dados reais do NISAR: duas passagens (${ds.rd.a} e ${ds.rd.b} ${ds.rd.y}) sobre`)} {t(ds.realMeta.nome)}. {t(ds.riscos ? 'Deslizamento e queimadas são atualizados todo dia pelo robô, com dados públicos da NASA.' : 'Fogo e previsões do tempo ainda não entram nesta versão.')}{ds.realMeta.evento?.tipo === 'enchente' ? <> {s.lang === 'en' ? 'Context: the second pass caught the Limpopo flood (Jan 2026, NISAR BETA data). Water outside the channel there is mostly the natural flood, not a change in the river. The grey marker shows Chókwè.' : 'Contexto: a segunda passagem pegou a cheia do Limpopo (jan 2026, dados BETA do NISAR). A água fora do leito ali é, em boa parte, a cheia natural, não uma mudança no rio. O marcador cinza mostra Chókwè.'}</> : ds.realMeta.evento ? <> {s.lang === 'en' ? 'Context: these passes include the Langtang Lirung rock-ice collapse (26 Aug 2026); the grey marker shows where it started.' : 'Contexto: estas passagens incluem o colapso de rocha e gelo do Langtang Lirung (26 ago 2026); o marcador cinza mostra onde ele começou.'}</> : ds.realMeta.id !== 'amazonia' && <> {t('Aqui há muita lavoura: parte da perda de vegetação pode ser colheita, não desmatamento.')}</>}</>
           : <>{t('Água, fogo, vegetação e solo vêm do radar NISAR. Ventos e tornados vêm de modelos do tempo (')}<b style={{ color: 'var(--amb2)', fontWeight: 500 }}>{t('fonte externa')}</b>).</>}</span>
       </div>}
     </div>

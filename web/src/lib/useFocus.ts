@@ -13,7 +13,7 @@ export interface Step { key: string; date: string; label: string; value: number;
 export function useSteps(): Step[] {
   const { s, ds } = useApp()
   if (s.src === 'real') {
-    return ds.timeline.map(p => ({ key: p.date, date: p.date, label: p.date, value: p.resumo.focos, hasImg: !!p.img }))
+    return ds.timeline.map(p => ({ key: p.date, date: p.date, label: p.date, value: ds.escopo.ativo ? p.ev.length : p.resumo.focos, hasImg: !!p.img }))
   }
   return HIST_DEMO.map((v, i) => {
     const d = new Date(REF.getTime() - (DEMO_WEEKS - 1 - i) * 7 * 864e5)

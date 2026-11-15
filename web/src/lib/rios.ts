@@ -15,11 +15,13 @@ export interface RioIndice { id: string; nome: string; nome_en: string; regiao: 
 type Bi = [string, string]
 export const RIOS: RioIndice[] = [
   { id: 'tapajos', nome: 'Rio Tapajós · Itaituba (PA)', nome_en: 'Tapajós River · Itaituba (Brazil)', regiao: 'tapajos', cidade: 'Itaituba', grupo: 'br' },
-  { id: 'madeira', nome: 'Rio Madeira · Nova Olinda do Norte (AM)', nome_en: 'Madeira River · Nova Olinda do Norte (Brazil)', regiao: 'amazonia', cidade: 'Nova Olinda do Norte', grupo: 'br' },
+  { id: 'madeira', nome: 'Rio Madeira · Novo Aripuanã (AM)', nome_en: 'Madeira River · Novo Aripuanã (Brazil)', regiao: 'amazonia', cidade: 'Novo Aripuanã', grupo: 'br' },
   { id: 'guaiba', nome: 'Lago Guaíba · Porto Alegre (RS)', nome_en: 'Guaíba Lake · Porto Alegre (Brazil)', regiao: 'sul', cidade: 'Porto Alegre', grupo: 'br' },
   { id: 'daca', nome: 'Rios Buriganga e Turag · Daca', nome_en: 'Buriganga and Turag rivers · Dhaka', regiao: 'bangladesh', cidade: 'Daca', grupo: 'mundo' },
   { id: 'langtang', nome: 'Geleiras do Langtang · nascente do Trishuli (Nepal)', nome_en: 'Langtang glaciers · Trishuli headwaters (Nepal)', regiao: 'nepal', cidade: 'Katmandu', grupo: 'mundo' },
-  { id: 'limpopo', nome: 'Barragem de Massingir · bacia do Limpopo (Moçambique)', nome_en: 'Massingir Dam · Limpopo basin (Mozambique)', regiao: 'mocambique', cidade: 'Chókwè', grupo: 'mundo' },
+  { id: 'limpopo', nome: 'Barragem de Massingir · bacia do Limpopo (Moçambique)', nome_en: 'Massingir Dam · Limpopo basin (Mozambique)', regiao: null, cidade: 'Chókwè', grupo: 'mundo' },
+  // v7.14 · trecho dentro da faixa do radar NISAR de Moçambique (Massingir fica fora dela)
+  { id: 'chokwe', nome: 'Rio Limpopo · Chókwè (Moçambique)', nome_en: 'Limpopo River · Chókwè (Mozambique)', regiao: 'mocambique', cidade: 'Chókwè', grupo: 'mundo' },
   { id: 'joaoleite', nome: 'Reservatório do João Leite · Goiânia (GO)', nome_en: 'João Leite Reservoir · Goiânia (Brazil)', regiao: null, cidade: 'Goiânia', grupo: 'go' },
   { id: 'meiaponte', nome: 'Rio Meia Ponte · Goiânia (GO)', nome_en: 'Meia Ponte River · Goiânia (Brazil)', regiao: null, cidade: 'Goiânia', grupo: 'go' },
   { id: 'araguaia', nome: 'Rio Araguaia · Aruanã (GO)', nome_en: 'Araguaia River · Aruanã (Brazil)', regiao: null, cidade: 'Aruanã', grupo: 'go' },
@@ -53,6 +55,7 @@ export const CONTEXTO: Record<string, { causa: Bi; fonte?: { t: string; url: str
   guaiba: { causa: ['O Guaíba é a principal fonte de água de Porto Alegre. A turbidez sobe em anos de cheia (barro dos rios Jacuí e Taquari); a margem muda com a cidade e as lavouras na bacia.', 'Guaíba is Porto Alegre’s main water source. Turbidity rises in flood years (mud from the Jacuí and Taquari rivers); the banks change with the city and farms in the basin.'] },
   daca: { causa: ['Daca cresceu sobre rios, canais e áreas alagáveis. Menos água e mais área construída na margem indicam aterro e ocupação, e com isso menos água limpa e mais esgoto direto no rio.', 'Dhaka has grown over rivers, canals and wetlands. Less water and more built-up banks point to landfill and encroachment, meaning less clean water and more sewage straight into the river.'] },
   langtang: { causa: ['O aquecimento derrete as geleiras do Himalaia. Menos gelo hoje significa menos água no rio na estação seca no futuro. A neve varia muito de ano para ano, então vale a tendência de longo prazo.', 'Warming melts Himalayan glaciers. Less ice today means less river water in future dry seasons. Snow varies a lot year to year, so the long-term trend is what matters.'] },
+  chokwe: { causa: ['O Limpopo em Chókwè alimenta um dos maiores regadios de Moçambique. A área de água muda muito com secas e cheias (como a de jan 2026), e a margem muda com a irrigação e com a barragem de Massingir rio acima.', 'The Limpopo at Chókwè feeds one of Mozambique’s largest irrigation schemes. Water area changes a lot with droughts and floods (such as Jan 2026), and the banks change with irrigation and with Massingir Dam upstream.'] },
   limpopo: { causa: ['A barragem de Massingir guarda água para beber e irrigar em Chókwè. Até 2006 ela vazava e não podia passar de 40% da capacidade; depois da reforma, terminada em 2006, a reserva encheu, e o satélite mostra a área de água quase dobrando. Secas longas ainda podem esvaziá-la. Atenção: aqui as medidas de margem (mata e solo exposto) mudaram sobretudo porque a beira da represa mudou de lugar quando ela encheu.', 'Massingir Dam stores water for drinking and irrigation in Chókwè. Until 2006 it leaked and could not exceed 40% of capacity; after the rehabilitation finished in 2006 the reservoir filled, and the satellite shows the water area almost doubling. Long droughts can still drain it. Note: here the bank measures (forest and bare soil) changed mainly because the reservoir’s edge moved when it filled.'],
     fonte: { t: 'LNEC · Massingir dam rehabilitation (2012)', url: 'https://repositorio.lnec.pt/handle/123456789/1003957' } },
 }
@@ -79,7 +82,8 @@ export function analisar(r: RioJson, k: Metrica): Analise | null {
   if (pts.length < 8) return null
   const M = METRICAS[k], bom = M.bom
   // linha de base: primeiros 10 anos da série (como o rio era)
-  const ini = pts.filter(([a]) => a < pts[0][0] + 10)
+  // v7.14 · com poucos anos válidos no começo (ex.: rio quase seco no Limpopo), usa no mínimo os 3 primeiros anos com dado
+  const ini0 = pts.filter(([a]) => a < pts[0][0] + 10), ini = ini0.length >= 3 ? ini0 : pts.slice(0, 3)
   const base = med(ini.map(p => p[1]))
   const ult = pts.slice(-3), agora = med(ult.map(p => p[1]))
   // tendência: últimos 15 anos; na montanha, a série inteira (nevascas isoladas distorcem janelas curtas)
@@ -134,7 +138,7 @@ export function acoes(r: RioJson, an: Partial<Record<Metrica, Analise | null>>, 
   const out: { quem: string; o_que: string }[] = []
   const ruim = (k: Metrica) => an[k] && (an[k]!.estado === 'alerta' || an[k]!.estado === 'atencao')
   if (ruim('turbidez')) {
-    out.push({ quem: L('Companhia de água', 'Water utility'), o_que: L('Reforçar o tratamento e medir sedimento e mercúrio na captação; a água bruta está mais suja do que era.', 'Step up treatment and test sediment and mercury at the intake; raw water is dirtier than it used to be.') })
+    out.push({ quem: L('Companhia de água', 'Water utility'), o_que: an.turbidez!.agora > an.turbidez!.base ? L(`Reforçar o tratamento e medir sedimento${/garimpo/.test(r.pressao ?? '') ? ' e mercúrio' : ''} na captação; a água bruta está mais suja do que era.`, `Step up treatment and test sediment${/garimpo/.test(r.pressao ?? '') ? ' and mercury' : ''} at the intake; raw water is dirtier than it used to be.`) : L('A turbidez voltou a subir nos últimos anos, mas ainda está abaixo da linha de base: acompanhar o sedimento na captação.', 'Turbidity has been rising again in recent years but is still below the baseline: keep monitoring sediment at the intake.') })
     out.push({ quem: L('Fiscalização (órgão ambiental, Ministério Público)', 'Enforcement (environment agency, prosecutors)'), o_que: L('Procurar a origem do barro rio acima: garimpo, dragas ou erosão nova aparecem antes nas imagens de satélite.', 'Trace the mud upstream: mining, dredges or new erosion show up first in satellite images.') })
   }
   if (ruim('mata_ciliar') || ruim('solo_exposto'))

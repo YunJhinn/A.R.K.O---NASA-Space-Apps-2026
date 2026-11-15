@@ -13,7 +13,7 @@ HC = "https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries"
 # trecho do SWORD v17 mais próximo da cidade (o de maior área de drenagem dentro da caixa analisada)
 TRECHOS = {
     "tapajos": ("62241500061", "Rio Tapajós em Itaituba"),
-    "madeira": ("62261700051", "Rio Madeira"),
+    "madeira": ("62261700051", "Rio Madeira em Nova Olinda do Norte (~150 km rio abaixo do trecho do Landsat)"),
     "guaiba": ("64120100011", "Delta do Jacuí (entrada do Guaíba)"),
     "daca": ("45220200225", "Rio Dhaleshwari/Buriganga, sul de Daca"),
     "langtang": ("45243601121", "Rio Trishuli, abaixo das geleiras"),

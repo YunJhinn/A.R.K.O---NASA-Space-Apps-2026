@@ -1,0 +1,403 @@
+{
+ "id": "chokwe",
+ "nome": "Rio Limpopo em Chókwè",
+ "pais": "Moçambique",
+ "bbox": [
+  32.9,
+  -24.6,
+  33.05,
+  -24.45
+ ],
+ "meses": [
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "cidade": "Chókwè",
+ "pressao": "cheias, secas e irrigação do regadio de Chókwè",
+ "montanha": false,
+ "gerado": "2026-11-15",
+ "fonte": "Landsat 4–9 Collection 2 Level-2 (NASA/USGS) via Microsoft Planetary Computer",
+ "serie": [
+  {
+   "ano": 1986,
+   "imagens": [
+    "1986-05-22 L5",
+    "1986-05-06 L5"
+   ],
+   "agua_km2": 2.12,
+   "turbidez": 13.57,
+   "mata_ciliar": 12.85,
+   "solo_exposto": 24.45,
+   "foto": "fotos/chokwe_1986.jpg"
+  },
+  {
+   "ano": 1989,
+   "imagens": [
+    "1989-08-02 L5",
+    "1989-07-01 L5"
+   ],
+   "agua_km2": 0.49,
+   "mata_ciliar": 2.1,
+   "solo_exposto": 46.1,
+   "foto": "fotos/chokwe_1989.jpg"
+  },
+  {
+   "ano": 1990,
+   "imagens": [
+    "1990-06-02 L5",
+    "1990-09-06 L5",
+    "1990-09-22 L5"
+   ],
+   "agua_km2": 0.42,
+   "mata_ciliar": 2.4,
+   "solo_exposto": 46.1,
+   "foto": "fotos/chokwe_1990.jpg"
+  },
+  {
+   "ano": 1991,
+   "imagens": [
+    "1991-07-23 L5",
+    "1991-05-20 L5",
+    "1991-08-24 L5"
+   ],
+   "agua_km2": 0.64,
+   "mata_ciliar": 4.5,
+   "solo_exposto": 34.7,
+   "foto": "fotos/chokwe_1991.jpg"
+  },
+  {
+   "ano": 1993,
+   "imagens": [
+    "1993-06-10 L5",
+    "1993-08-13 L5"
+   ],
+   "agua_km2": 0.4,
+   "mata_ciliar": 4.45,
+   "solo_exposto": 29.9,
+   "foto": "fotos/chokwe_1993.jpg"
+  },
+  {
+   "ano": 1994,
+   "imagens": [
+    "1994-08-16 L5",
+    "1994-06-13 L5",
+    "1994-07-15 L5"
+   ],
+   "agua_km2": 0.43,
+   "mata_ciliar": 1.6,
+   "solo_exposto": 48.1,
+   "foto": "fotos/chokwe_1994.jpg"
+  },
+  {
+   "ano": 1995,
+   "imagens": [
+    "1995-08-19 L5",
+    "1995-05-31 L5",
+    "1995-07-18 L5"
+   ],
+   "agua_km2": 0.18,
+   "mata_ciliar": 2.3,
+   "solo_exposto": 33.0,
+   "foto": "fotos/chokwe_1995.jpg"
+  },
+  {
+   "ano": 1996,
+   "imagens": [
+    "1996-09-06 L5",
+    "1996-07-04 L5",
+    "1996-06-18 L5"
+   ],
+   "agua_km2": 2.02,
+   "turbidez": 7.46,
+   "mata_ciliar": 24.5,
+   "solo_exposto": 18.3,
+   "foto": "fotos/chokwe_1996.jpg"
+  },
+  {
+   "ano": 1997,
+   "imagens": [
+    "1997-07-23 L5",
+    "1997-06-21 L5",
+    "1997-05-20 L5"
+   ],
+   "agua_km2": 2.11,
+   "turbidez": 8.62,
+   "mata_ciliar": 11.4,
+   "solo_exposto": 15.0,
+   "foto": "fotos/chokwe_1997.jpg"
+  },
+  {
+   "ano": 1998,
+   "imagens": [
+    "1998-06-24 L5",
+    "1998-05-07 L5",
+    "1998-05-23 L5"
+   ],
+   "agua_km2": 0.84,
+   "mata_ciliar": 3.7,
+   "solo_exposto": 27.6,
+   "foto": "fotos/chokwe_1998.jpg"
+  },
+  {
+   "ano": 1999,
+   "imagens": [
+    "1999-08-30 L5",
+    "1999-06-11 L5",
+    "1999-05-26 L5"
+   ],
+   "agua_km2": 1.17,
+   "turbidez": 6.58,
+   "mata_ciliar": 25.0,
+   "solo_exposto": 16.1,
+   "foto": "fotos/chokwe_1999.jpg"
+  },
+  {
+   "ano": 2001,
+   "imagens": [
+    "2001-06-16 L5"
+   ],
+   "agua_km2": 2.05,
+   "turbidez": 6.9,
+   "mata_ciliar": 7.8,
+   "solo_exposto": 21.7,
+   "foto": "fotos/chokwe_2001.jpg"
+  },
+  {
+   "ano": 2002,
+   "imagens": [
+    "2002-06-27 L7",
+    "2002-05-10 L7",
+    "2002-08-30 L7"
+   ],
+   "agua_km2": 1.38,
+   "turbidez": 6.06,
+   "mata_ciliar": 2.9,
+   "solo_exposto": 35.5,
+   "foto": "fotos/chokwe_2002.jpg"
+  },
+  {
+   "ano": 2004,
+   "imagens": [
+    "2004-05-23 L5"
+   ],
+   "agua_km2": 2.27,
+   "turbidez": 7.36,
+   "mata_ciliar": 36.4,
+   "solo_exposto": 13.0,
+   "foto": "fotos/chokwe_2004.jpg"
+  },
+  {
+   "ano": 2005,
+   "imagens": [
+    "2005-08-30 L5",
+    "2005-06-11 L5",
+    "2005-08-14 L5"
+   ],
+   "agua_km2": 0.6,
+   "mata_ciliar": 0.5,
+   "solo_exposto": 63.8,
+   "foto": "fotos/chokwe_2005.jpg"
+  },
+  {
+   "ano": 2007,
+   "imagens": [
+    "2007-09-21 L5",
+    "2007-08-20 L5",
+    "2007-07-19 L5"
+   ],
+   "agua_km2": 0.32,
+   "mata_ciliar": 1.9,
+   "solo_exposto": 57.1,
+   "foto": "fotos/chokwe_2007.jpg"
+  },
+  {
+   "ano": 2008,
+   "imagens": [
+    "2008-09-07 L5"
+   ],
+   "agua_km2": 0.89,
+   "mata_ciliar": 0.4,
+   "solo_exposto": 56.0,
+   "foto": "fotos/chokwe_2008.jpg"
+  },
+  {
+   "ano": 2013,
+   "imagens": [
+    "2013-05-16 L8",
+    "2013-07-03 L8",
+    "2013-07-19 L8"
+   ],
+   "agua_km2": 1.48,
+   "turbidez": 4.25,
+   "mata_ciliar": 25.7,
+   "solo_exposto": 14.3,
+   "foto": "fotos/chokwe_2013.jpg"
+  },
+  {
+   "ano": 2014,
+   "imagens": [
+    "2014-09-08 L8",
+    "2014-08-23 L8",
+    "2014-05-03 L8"
+   ],
+   "agua_km2": 1.32,
+   "turbidez": 8.0,
+   "mata_ciliar": 23.3,
+   "solo_exposto": 21.6,
+   "foto": "fotos/chokwe_2014.jpg"
+  },
+  {
+   "ano": 2015,
+   "imagens": [
+    "2015-06-23 L8",
+    "2015-09-27 L8",
+    "2015-06-07 L8"
+   ],
+   "agua_km2": 0.47,
+   "mata_ciliar": 17.5,
+   "solo_exposto": 21.4,
+   "foto": "fotos/chokwe_2015.jpg"
+  },
+  {
+   "ano": 2016,
+   "imagens": [
+    "2016-05-24 L8",
+    "2016-06-09 L8",
+    "2016-08-12 L8"
+   ],
+   "agua_km2": 0.3,
+   "mata_ciliar": 16.5,
+   "solo_exposto": 25.0,
+   "foto": "fotos/chokwe_2016.jpg"
+  },
+  {
+   "ano": 2017,
+   "imagens": [
+    "2017-09-16 L8",
+    "2017-08-15 L8",
+    "2017-06-28 L8"
+   ],
+   "agua_km2": 0.73,
+   "turbidez": 5.21,
+   "mata_ciliar": 16.2,
+   "solo_exposto": 22.7,
+   "foto": "fotos/chokwe_2017.jpg"
+  },
+  {
+   "ano": 2018,
+   "imagens": [
+    "2018-06-15 L8",
+    "2018-09-19 L8",
+    "2018-07-01 L8"
+   ],
+   "agua_km2": 0.95,
+   "mata_ciliar": 22.1,
+   "solo_exposto": 25.3,
+   "foto": "fotos/chokwe_2018.jpg"
+  },
+  {
+   "ano": 2019,
+   "imagens": [
+    "2019-09-22 L8",
+    "2019-07-04 L8",
+    "2019-08-05 L8"
+   ],
+   "agua_km2": 0.22,
+   "mata_ciliar": 8.9,
+   "solo_exposto": 24.4,
+   "foto": "fotos/chokwe_2019.jpg"
+  },
+  {
+   "ano": 2020,
+   "imagens": [
+    "2020-08-23 L8",
+    "2020-07-06 L8",
+    "2020-05-19 L8"
+   ],
+   "agua_km2": 0.27,
+   "mata_ciliar": 23.1,
+   "solo_exposto": 16.3,
+   "foto": "fotos/chokwe_2020.jpg"
+  },
+  {
+   "ano": 2021,
+   "imagens": [
+    "2021-09-27 L8",
+    "2021-06-23 L8",
+    "2021-07-09 L8"
+   ],
+   "agua_km2": 1.44,
+   "turbidez": 6.64,
+   "mata_ciliar": 49.5,
+   "solo_exposto": 12.2,
+   "foto": "fotos/chokwe_2021.jpg"
+  },
+  {
+   "ano": 2022,
+   "imagens": [
+    "2022-07-04 L9",
+    "2022-06-18 L9",
+    "2022-08-29 L8"
+   ],
+   "agua_km2": 1.98,
+   "turbidez": 6.53,
+   "mata_ciliar": 58.0,
+   "solo_exposto": 9.0,
+   "foto": "fotos/chokwe_2022.jpg"
+  },
+  {
+   "ano": 2023,
+   "imagens": [
+    "2023-09-01 L8",
+    "2023-07-15 L8",
+    "2023-07-07 L9"
+   ],
+   "agua_km2": 1.3,
+   "mata_ciliar": 34.7,
+   "solo_exposto": 15.0,
+   "foto": "fotos/chokwe_2023.jpg"
+  },
+  {
+   "ano": 2024,
+   "imagens": [
+    "2024-08-18 L8",
+    "2024-07-09 L9",
+    "2024-07-01 L8"
+   ],
+   "agua_km2": 1.23,
+   "turbidez": 6.49,
+   "mata_ciliar": 24.7,
+   "solo_exposto": 14.4,
+   "foto": "fotos/chokwe_2024.jpg"
+  },
+  {
+   "ano": 2025,
+   "imagens": [
+    "2025-09-22 L8",
+    "2025-08-05 L8",
+    "2025-06-26 L9"
+   ],
+   "agua_km2": 1.65,
+   "turbidez": 5.05,
+   "mata_ciliar": 30.4,
+   "solo_exposto": 15.3,
+   "foto": "fotos/chokwe_2025.jpg"
+  },
+  {
+   "ano": 2026,
+   "imagens": [
+    "2026-06-29 L9",
+    "2026-05-28 L9",
+    "2026-05-12 L9"
+   ],
+   "agua_km2": 5.75,
+   "turbidez": 9.09,
+   "mata_ciliar": 63.7,
+   "solo_exposto": 4.7,
+   "foto": "fotos/chokwe_2026.jpg"
+  }
+ ]
+}

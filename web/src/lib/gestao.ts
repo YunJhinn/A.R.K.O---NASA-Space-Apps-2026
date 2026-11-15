@@ -50,9 +50,10 @@ export function balanco(tl: TimelinePoint[]) {
   const tipos = ['arvore', 'agua', 'solo'] as const
   const comp = tl.filter(p => p.vs)
   const r = Object.fromEntries(tipos.map(k => [k, {
-    km2: +comp.reduce((t, p) => t + (p.resumo.area_km2[k] ?? 0), 0).toFixed(2),
-    focos: comp.reduce((t, p) => t + (p.resumo.por_tipo[k] ?? 0), 0),
-    passagens: comp.filter(p => (p.resumo.por_tipo[k] ?? 0) > 0).length,
+    // v7.13 · soma a partir dos focos (e não do resumo da passagem inteira), para respeitar o recorte em volta do rio
+    km2: +comp.reduce((t, p) => t + p.ev.filter(e => e.k === k).reduce((u, e) => u + (e.a ?? 0), 0), 0).toFixed(2),
+    focos: comp.reduce((t, p) => t + p.ev.filter(e => e.k === k).length, 0),
+    passagens: comp.filter(p => p.ev.some(e => e.k === k)).length,
   }])) as Record<typeof tipos[number], { km2: number; focos: number; passagens: number }>
   return { r, de: tl[0]?.date ?? null, ate: tl[tl.length - 1]?.date ?? null, n: comp.length }
 }

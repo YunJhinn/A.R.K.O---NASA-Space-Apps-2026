@@ -7,6 +7,7 @@ import { buildReal, buildTimeline, REAL_DEFAULT, realShort, type RealMeta, type 
 import { setI18n, tr } from './i18n'
 import { ago } from './util'
 import { calibrar } from './riscos'
+import { CORREDOR, kmAteCaixa, RAIO_KM } from './corredor'
 
 const ORD = { Alto: 0, 'Médio': 1, Baixo: 2 } as const
 /** colapso, depois as PREVISÕES por cruzamento (foco principal), depois o resto; dentro de cada grupo, do maior risco para o menor */
@@ -42,6 +43,8 @@ export interface State {
   tl: { a: number; b: number } | null
   /** linha do tempo: 'uma' data por vez ou um 'periodo' (vários passos juntos) */
   tlMode: 'uma' | 'periodo'
+  /** v7.13 · radar só perto do rio monitorado ('rio') ou a passagem inteira ('tudo') */
+  escopo: 'rio' | 'tudo'
   focus: 'map' | 'alerts' | null
   /** região escolhida (exemplo: amazonia, sul · real: as de data/regioes.json) */
   region: string
@@ -66,7 +69,7 @@ const initial: State = {
   profile: null, colorBy: 'tipo', ob: false, obStep: 0, tut: null,
   cmp: { k: 'arvore', a: 'a', b: 'b', swipe: 50 },
   phone: { tab: 'alertas', type: 'todos', sel: null, cType: 'arvore', when: 'depois' },
-  tl: null, tlMode: 'periodo', focus: null, region: 'amazonia', pin: null, favs: [], recents: [],
+  tl: null, tlMode: 'periodo', escopo: 'rio', focus: null, region: 'amazonia', pin: null, favs: [], recents: [],
 }
 
 type Patch = Partial<State> | ((s: State) => Partial<State>)
@@ -90,6 +93,8 @@ export interface DataSet {
   /** região real em uso e todas as regiões reais */
   realMeta: RealMeta
   realIndex: RealMeta[]
+  /** v7.13 · recorte do radar em volta do rio monitorado */
+  escopo: { raio: number; nome: [string, string] | null; disponivel: boolean; ativo: boolean; dentro: number; total: number }
 }
 
 interface Ctx {
@@ -177,18 +182,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const region = REGIONS[s.region as RegionId] ?? REGIONS.amazonia
     const types = { ...TYPES } as Record<EvType, TypeMeta>
     if (isReal) (Object.keys(TYPES_REAL) as EvType[]).forEach(k => { types[k] = { ...types[k], ...TYPES_REAL[k] } })
+    // v7.13 · recorte em volta do rio monitorado (ver lib/corredor.ts)
+    const cor = isReal ? CORREDOR[realMeta.id] : undefined
+    const perto = (o: { lon?: number; lat?: number }) => !cor || kmAteCaixa(cor.bbox, o.lon, o.lat) <= RAIO_KM
+    const todosEv = [...real.ev, ...timeline.flatMap(p => p.ev)] as (Ev & { lon?: number; lat?: number })[]
+    const dentro = cor ? todosEv.filter(perto).length : 0
+    const ativo = !!cor && s.escopo === 'rio' && dentro > 0
+    const fEv = (ev: Ev[]) => (ativo ? ev.filter(e => perto(e as Ev & { lon?: number; lat?: number })) : ev)
+    const tl2 = ativo ? timeline.map(p => ({ ...p, ev: fEv(p.ev) })) : timeline
     return {
-      ev: isReal ? real.ev : region.ev,
+      ev: isReal ? fEv(real.ev) : region.ev,
       // v7.1 · A.R.K.O Rios: só o que o radar viu no rio e na margem (sem queimadas, deslizamentos ou desastres)
-      alerts: isReal ? ordenar(real.alerts.filter(a => a.ty === 'agua' || a.ty === 'solo' || a.ty === 'arvore')) : region.alerts,
+      alerts: isReal ? ordenar(real.alerts.filter(a => (a.ty === 'agua' || a.ty === 'solo' || a.ty === 'arvore') && (!ativo || perto(a)))) : region.alerts,
       riscos: isReal ? riscos[realMeta.id] : undefined,
       cities: isReal ? real.cities : region.cities,
       cmp: isReal ? real.cmp : region.cmp,
       info: { ...INFO_DEMO, ...region.info, ...real.info, ...Object.assign({}, ...timeline.map(p => p.info)) },
       img: isReal ? real.img : region.img,
-      types, rd: real.rd, real, timeline, region, realMeta, realIndex,
+      types, rd: real.rd, real, timeline: tl2, region, realMeta, realIndex,
+      escopo: { raio: RAIO_KM, nome: cor?.nome ?? null, disponivel: !!cor && dentro > 0, ativo, dentro, total: todosEv.length },
     }
-  }, [s.src, s.region, s.lang, real, timeline, realMeta, realIndex, riscos])
+  }, [s.src, s.region, s.lang, s.escopo, real, timeline, realMeta, realIndex, riscos])
 
   // idioma: precisa estar pronto antes dos filhos renderizarem
   setI18n(s.lang, ds.rd)
