@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T10:13Z",
+ "atualizado": "2026-11-15T16:21Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -10,17 +10,17 @@
    "alto": 0.25
   },
   "max": 0.0298,
-  "p90": 0.0047,
+  "p90": 0.0048,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 80,
+  "focos": 82,
   "duplicados_removidos": 2,
   "focos_risco": 10,
-  "pequenas": 61,
+  "pequenas": 63,
   "grupos": [
    {
     "lon": 91.138,

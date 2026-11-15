@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-15T06:17Z",
+ "atualizado": "2026-11-15T16:21Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,10 +17,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 202,
+  "focos": 210,
   "duplicados_removidos": 47,
-  "focos_risco": 87,
-  "pequenas": 95,
+  "focos_risco": 93,
+  "pequenas": 97,
   "grupos": [
    {
     "lon": 31.0893,
@@ -133,6 +133,17 @@
     "lugar": "Panda · Inhambane · Moçambique"
    },
    {
+    "lon": 32.967,
+    "lat": -24.7055,
+    "n": 3,
+    "frp": 34.7,
+    "ultimo": "2026-11-15T11:19Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 19 km de Chókwè · Moçambique"
+   },
+   {
     "lon": 32.1723,
     "lat": -25.0413,
     "n": 3,
@@ -153,6 +164,17 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "a 15 km de Macia · Moçambique"
+   },
+   {
+    "lon": 31.6004,
+    "lat": -25.6991,
+    "n": 3,
+    "frp": 22.4,
+    "ultimo": "2026-11-15T11:59Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Nkomazi · Mepumalanga · África do Sul"
    },
    {
     "lon": 30.9867,
@@ -276,28 +298,6 @@
     "lugar": "Matutuíne · Maputo · Moçambique"
    },
    {
-    "lon": 34.8497,
-    "lat": -24.4302,
-    "n": 1,
-    "frp": 23.1,
-    "ultimo": "2026-11-14T10:38Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Mocumbi · Inhambane · Moçambique"
-   },
-   {
-    "lon": 33.3393,
-    "lat": -23.8617,
-    "n": 1,
-    "frp": 16.1,
-    "ultimo": "2026-11-13T11:55Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Guija · Gaza · Moçambique"
-   },
-   {
     "lon": 33.8254,
     "lat": -24.3673,
     "n": 2,
@@ -419,6 +419,17 @@
     "lugar": "a 15 km de Macia · Moçambique"
    },
    {
+    "lon": 35.107,
+    "lat": -23.5129,
+    "n": 2,
+    "frp": 9.2,
+    "ultimo": "2026-11-15T11:19Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Morrumbene · Inhambane · Moçambique"
+   },
+   {
     "lon": 33.4196,
     "lat": -24.7991,
     "n": 2,
@@ -450,17 +461,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
-    "lon": 31.604,
-    "lat": -25.6971,
-    "n": 2,
-    "frp": 7.1,
-    "ultimo": "2026-11-13T10:57Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Nkomazi · Mepumalanga · África do Sul"
    }
   ]
  }
