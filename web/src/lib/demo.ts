@@ -14,8 +14,9 @@ export const TYPES: Record<EvType, TypeMeta> = {
 }
 /** No modo real, "agua" e "solo" significam outra coisa */
 export const TYPES_REAL: Partial<Record<EvType, Pick<TypeMeta, 'n' | 's'>>> = {
-  agua: { n: 'Água nova', s: 'Água nova' },
-  solo: { n: 'Água que recuou', s: 'Água que recuou' },
+  agua: { n: 'Água fora do leito', s: 'Água fora do leito' },
+  solo: { n: 'Margem exposta', s: 'Margem exposta' },
+  arvore: { n: 'Perda de mata', s: 'Perda de mata' },
 }
 export const TORNADO_C = '#5B6575'
 export const COLAPSO_C = '#B42318'

@@ -48,8 +48,8 @@ const OB: Step[] = [
   },
   {
     art: 'comparar',
-    pt: ['Compare dois momentos', 'Compare décadas com as fotos do Histórico do rio, ou passagens recentes do radar em “Comparar passagens”.', ['Arraste a barra sobre a imagem para revelar a diferença.', 'O resumo explica a mudança em uma frase.']],
-    en: ['Compare two moments', 'Compare decades with the River history photos, or recent radar passes in “Compare passes”.', ['Drag the bar over the image to reveal the difference.', 'The summary explains the change in one sentence.']],
+    pt: ['Compare épocas e veja o rio agora', 'No Histórico do rio, a linha do tempo mostra cada época e o que mudou. Logo abaixo, o radar NISAR mostra o rio agora, mesmo com nuvem.', ['Aperte play ou arraste a barra para passar pelas épocas.', 'O radar marca água fora do leito, margem exposta e perda de mata.']],
+    en: ['Compare eras and see the river now', 'In River history, the timeline shows each era and what changed. Right below, the NISAR radar shows the river now, even under clouds.', ['Press play or drag the bar to move through the eras.', 'The radar marks water outside the channel, exposed banks and forest loss.']],
   },
   {
     art: 'perfil',

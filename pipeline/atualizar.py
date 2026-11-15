@@ -554,6 +554,14 @@ def main():
                 periodos.append("aquiferos GRACE " + dt.date.today().isoformat())
         except Exception as e:
             print("ERRO no GRACE dos aquíferos:", e)
+        # A.R.K.O Rios (v7.3): NISAR · chão afundando sobre aquíferos (soma de pares GUNW de 12 dias), BETA
+        try:
+            import nisar_afundamento
+            if nisar_afundamento.main():
+                novo = True
+                periodos.append("NISAR afundamento " + dt.date.today().isoformat())
+        except Exception as e:
+            print("ERRO no afundamento NISAR:", e)
     saida("novo", str(novo).lower())
     if periodos:
         saida("periodo", "; ".join(periodos))

@@ -4,11 +4,13 @@ import { useEffect, useMemo, useState } from 'react'
 import { DATA_BASE, useApp } from '../lib/store'
 import { fmt, theilSen } from '../lib/rios'
 import { Ajuda } from './Ajuda'
+import { AquiferoMapa, type MapaGrace } from './AquiferoMapa'
+import { AquiferoAfundamento } from './AquiferoAfundamento'
 
 type Bi = [string, string]
-interface Aq { id: string; nome: string; onde: string; bbox: number[]; sobre: string; area_km2: number; tend_cm_ano: number; tend_km3_ano: number; proj2030_cm: number; serie: { d: string; cm: number }[]; anual: { ano: number; cm: number; n: number }[]; fonte: string; gerado: string }
-const IDS = ['goias', 'urucuia', 'guarani', 'amazonia', 'bengala', 'india_nw', 'ogallala']
-const NOME_EN: Record<string, string> = { goias: 'Groundwater of Goiás', urucuia: 'Urucuia Aquifer', guarani: 'Guarani Aquifer', amazonia: 'Greater Amazon Aquifer System (Alter do Chão)', bengala: 'Bengal Basin aquifers', india_nw: 'Northwest India aquifers', ogallala: 'Ogallala Aquifer (High Plains)' }
+interface Aq { id: string; nome: string; onde: string; bbox: number[]; sobre: string; area_km2: number; tend_cm_ano: number; tend_km3_ano: number; proj2030_cm: number; serie: { d: string; cm: number }[]; anual: { ano: number; cm: number; n: number }[]; fonte: string; gerado: string; mapa?: MapaGrace }
+const IDS = ['goias', 'urucuia', 'guarani', 'amazonia', 'bengala', 'india_nw', 'mexico', 'ogallala']
+const NOME_EN: Record<string, string> = { goias: 'Groundwater of Goiás', urucuia: 'Urucuia Aquifer', guarani: 'Guarani Aquifer', amazonia: 'Greater Amazon Aquifer System (Alter do Chão)', bengala: 'Bengal Basin aquifers', india_nw: 'Northwest India aquifers', mexico: 'Valley of Mexico aquifer', ogallala: 'Ogallala Aquifer (High Plains)' }
 
 // rigor: limites de tendência (cm de água por ano) bem menores que os dos rios
 function estado(a: Aq, abaixo: number) {
@@ -122,6 +124,10 @@ export function Aquiferos() {
             </div>
           </div>
         </div>
+
+        {a.mapa && <AquiferoMapa id={id} m={a.mapa} bbox={a.bbox} ultimoMes={ultimo!.d} en={en} />}
+
+        <AquiferoAfundamento aq={id} en={en} />
 
         <div className="card" style={{ padding: 20 }}>
           <h3 className="m-0 flex items-center text-[15px]">{en ? 'Water stored under and on the ground, month by month (GRACE / GRACE-FO)' : 'Água guardada no chão e debaixo dele, mês a mês (GRACE / GRACE-FO)'}<Ajuda txt={en ? 'GRACE satellites measure Earth’s gravity: when a region loses water it becomes slightly lighter. The value is the total water (soil + surface + groundwater) in cm, compared with the 2002–2020 average. Light line: each month; dark line: 12-month average (takes out the rainy/dry season).' : 'Os satélites GRACE medem a gravidade da Terra: quando uma região perde água, fica um pouco mais leve. O valor é a água total (solo + superfície + subterrânea) em cm, comparada com a média de 2002–2020. Linha clara: cada mês; linha escura: média de 12 meses (tira o efeito da estação de chuva e seca).'} /></h3>

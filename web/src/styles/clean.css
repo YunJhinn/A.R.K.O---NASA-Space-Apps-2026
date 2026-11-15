@@ -165,3 +165,10 @@
   .ph2 .act .seg button, .ph2 .act .sci-btn, .ph2 .act button { font-size: 12.5px; }
 }
 @media (max-width: 600px) { #v-comparar .head > .relative, #v-futuro .head > .relative { display: none; } }
+/* v7.2 · radar NISAR dentro do Histórico */
+.radar-rio { padding: 18px; }
+@media (max-width: 640px) {
+  .radar-rio { padding: 12px 8px; }
+  .radar-rio .home2 .body > .card { padding-left: 10px; padding-right: 10px; border-radius: 12px; }
+  .radar-rio .alerts2 .al h4 { font-size: 14px; }
+}

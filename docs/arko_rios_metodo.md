@@ -61,3 +61,15 @@ Represas (João Leite, Serra da Mesa): a análise começa quando o lago encheu.
 - Serviço Geológico do Brasil, nota técnica Itaituba (2025), https://rigeo.sgb.gov.br/jspui/bitstream/doc/25671/1/250911_nota%20tecnica_itaituba.pdf
 - LNEC, Massingir dam rehabilitation (2012), https://repositorio.lnec.pt/handle/123456789/1003957
 - SWORD v17, https://zenodo.org/records/14727521
+
+## v7.3 · Aquíferos: retrato ano a ano e o chão afundando (NISAR)
+
+**Retrato do aquífero (GRACE / GRACE-FO).** Para cada aquífero, a média anual de cada célula de 1° (~110 km) da grade TWS do GFZ GravIS, numa caixa 2° maior que a do aquífero. É uma reconstrução a partir da gravidade, não uma foto. O ano corrente incompleto é trocado pelos últimos 12 meses (para não misturar só meses de chuva); anos com menos de 12 meses aparecem como "parciais". O quadro 2030 é a tendência Theil–Sen de cada célula nos últimos 15 anos completos: um alerta, não uma previsão.
+
+**NISAR · o chão afundando (BETA).** Quando o aquífero é esvaziado, a argila se compacta e o chão afunda de forma permanente. O produto NISAR L2 GUNW traz pares de 12 dias (fase desdobrada, 80 m). O robô (`pipeline/nisar_afundamento.py`):
+1. busca os GUNW (validado; se não houver, provisório) sobre a caixa e monta a maior corrente de pares encadeados do mesmo quadro (a passagem final de um par é a inicial do próximo), até 18 pares;
+2. em cada par recorta a caixa, descarta coerência < 0,35 e componente conexa 0, subtrai a tela ionosférica do próprio arquivo e zera a fase num ponto de rocha estável;
+3. soma as fases (ponto sem dado em mais de 20% dos pares sai do mapa), converte para cm (λ/4π, λ da frequência central do arquivo) e para vertical aproximado (÷ cos 37°);
+4. leva para uma grade de ~500 m e calcula o afundamento máximo (percentil 1), o ritmo (cm/ano) e a área que afundou 5 cm ou mais.
+
+Limites honestos: a especificação do GUNW não documenta o sinal da fase; o robô procura a convenção nos atributos do arquivo e, se não houver, orienta o sinal para que o centro de afundamento já publicado desça (registrado em `sinal_fonte`). A checagem independente é a magnitude, comparada com a literatura: Cidade do México até ~30–40 cm/ano (Chaussard et al. 2014; Cigna & Tapete 2021); Nova Délhi até ~11 cm/ano perto do aeroporto (Garg et al. 2022). A troposfera não é corrigida (alguns cm de ruído). Testado com arquivos sintéticos na estrutura do GUNW (cuba de 30 cm/ano recuperada: −17,6 cm medidos contra −17,7 cm esperados em 216 dias); a primeira rodada com dados reais acontece no robô, que tem o login Earthdata.

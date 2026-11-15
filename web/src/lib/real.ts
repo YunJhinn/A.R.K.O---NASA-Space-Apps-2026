@@ -72,11 +72,11 @@ export function realAlerts(ev: Ev[], focos: FocoJson[], rd: RealDates): Alert[] 
     const rep = g.slice().sort((a, b) => b.f.area_km2 - a.f.area_km2)[0]
     const lvl = gm >= 81 ? 'Alto' : gm >= 51 ? 'Médio' : n >= 3 ? 'Médio' : 'Baixo'
     const t = n > 1
-      ? { agua: 'Água nova em vários pontos', solo: 'Água recuou em vários pontos', arvore: 'Perda de floresta em grupo' }[k]
-      : { agua: 'Água nova', solo: 'Água que recuou', arvore: 'Queda no sinal da vegetação' }[k]
+      ? { agua: 'Água fora do leito em vários pontos', solo: 'Margem exposta em vários pontos', arvore: 'Perda de mata perto do rio em grupo' }[k]
+      : { agua: 'Água fora do leito', solo: 'Margem exposta', arvore: 'Possível perda de mata perto do rio' }[k]
     const m = n > 1
-      ? { agua: `${n} focos próximos somam ${kmf(area)} de água nova.`, solo: `${n} focos próximos somam ${kmf(area)} de margem exposta.`, arvore: `${n} focos próximos somam ${kmf(area)} de floresta perdida.` }[k]
-      : { agua: `${kmf(area)} de água parada onde não havia em ${rd.a}. O sinal caiu ${Math.round(rep.f.delta_db)} dB.`, solo: `Onde o radar via água em ${rd.a}, a água saiu.`, arvore: 'Queda no sinal da vegetação. Pode ser corte, queimada, colheita ou seca.' }[k]
+      ? { agua: `${n} focos próximos somam ${kmf(area)} de água nova.`, solo: `${n} focos próximos somam ${kmf(area)} onde a água recuou e o leito ficou exposto.`, arvore: `${n} focos próximos somam ${kmf(area)} com queda no sinal da vegetação.` }[k]
+      : { agua: `${kmf(area)} de água parada onde não havia em ${rd.a}. O sinal caiu ${Math.round(rep.f.delta_db)} dB.`, solo: `Onde o radar via água em ${rd.a}, o leito ficou exposto.`, arvore: 'Queda no sinal da vegetação. Pode ser corte, queimada, colheita ou seca.' }[k]
     return { id: rep.id, lvl, p: gm, t, l: rep.f.local, ty: k, m, pz: `Detectado em ${rd.b}`, src: 'NISAR', _x: rep.x, _y: rep.y, lon: rep.f.lon, lat: rep.f.lat }
   })
   const R = { Alto: 0, 'Médio': 1, Baixo: 2 }

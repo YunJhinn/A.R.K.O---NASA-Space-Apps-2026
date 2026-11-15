@@ -28,7 +28,7 @@ const scaleKm = (b: { oeste: number; leste: number; norte: number; sul: number }
 }
 
 export function MapPanel() {
-  const { s, set, t, ds, go, inRange, periodLabel } = useApp()
+  const { s, set, t, ds, inRange, periodLabel } = useApp()
   const real = s.src === 'real'
   const { ev: vis, base: tlBase, step } = useFocus()
   const base = tlBase ?? ds.ev.filter(e => e.st !== 'prev' && inRange(e.d))
@@ -52,7 +52,7 @@ export function MapPanel() {
           <div className="seg" role="group" aria-label={t('Camada')}>
             {s.src === 'real' && realBase(ds.realMeta.id)
               ? <><button className={cx(!s.radar && 'on')} aria-pressed={!s.radar} onClick={() => set({ radar: false })}>{t('Mapa')}</button><button className={cx(s.radar && 'on')} aria-pressed={s.radar} onClick={() => set({ radar: true })}>{t('Radar')}</button></>
-              : <button className="on">{t('Radar')}</button>}<button onClick={() => go('comparar')}>{t('Antes / depois')}</button>
+              : <button className="on">{t('Radar')}</button>}
           </div>
         </div>
       </div>
@@ -295,7 +295,7 @@ function Legend() {
 }
 
 function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; py: number }) {
-  const { s, set, t, ds, go } = useApp()
+  const { s, set, t, ds } = useApp()
   const real = s.src === 'real'
   const c = ds.types[e.k].c
   const [tab, setTab] = useState<'resumo' | 'dados' | 'pol'>('resumo')
@@ -400,14 +400,14 @@ function Popup({ e, W, H, px, py }: { e: Ev; W: number; H: number; px: number; p
           )}
         </div>
       )}
-      <div className="btns"><button className="btn pri" onClick={() => go('comparar')}>{t('Comparar períodos')}</button><button className="btn">{t('Compartilhar')}</button></div>
+      
     </div>
   )
 }
 
 /** Ficha de um ponto de risco: mesmo formato do card dos focos do radar */
 function RiskPopup({ id, W, H, px, py }: { id: string; W: number; H: number; px: number; py: number }) {
-  const { s, set, t, ds, go } = useApp()
+  const { s, set, t, ds } = useApp()
   const en = s.lang === 'en'
   const [tab, setTab] = useState<'resumo' | 'dados' | 'pol'>('resumo')
   useEffect(() => setTab('resumo'), [id])
@@ -474,7 +474,7 @@ function RiskPopup({ id, W, H, px, py }: { id: string; W: number; H: number; px:
           {f.pol.valores.length > 0 && <div className="mut">{f.pol.valores.map(v => <div key={v}>{v}</div>)}</div>}
         </div>
       )}
-      <div className="btns"><button className="btn pri" onClick={() => go('comparar')}>{t('Comparar períodos')}</button></div>
+      
     </div>
   )
 }

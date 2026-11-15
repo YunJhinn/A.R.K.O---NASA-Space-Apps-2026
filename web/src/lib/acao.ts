@@ -1,5 +1,5 @@
 // v5.5 · O que fazer com cada alerta: recomendação prática por tipo de perigo e nível.
-// São orientações gerais de resposta (Defesa Civil, bombeiros, fiscalização), para apoiar quem decide.
+// v7.2: para água, solo e mata, as sugestões são de conservação do rio (fiscalização, saneamento, comitê de bacia).
 import type { Alert } from './types'
 
 type Bi = [string, string]
@@ -13,8 +13,8 @@ const R: Record<string, Partial<Record<'Alto' | 'Médio' | 'Baixo', Bi>>> = {
     'Médio': ['Vistoriar as encostas mais próximas de casas e estradas. Deixar a rota de saída combinada com os moradores.', 'Inspect the slopes closest to homes and roads. Agree on an exit route with residents.'],
   },
   agua: {
-    Alto: ['Alertar moradores de áreas baixas e margens de rio. Preparar abrigos e acompanhar o nível do rio com a Defesa Civil.', 'Warn residents of low areas and riverbanks. Prepare shelters and track the river level with civil defense.'],
-    'Médio': ['Verificar no local os pontos de alagamento e avisar quem mora perto. Acompanhar na próxima passagem do radar.', 'Check the flooded spots on site and warn people living nearby. Follow up in the next radar pass.'],
+    Alto: ['Conferir no local se é cheia natural, barragem ou obra alterando o leito. Avisar o comitê de bacia e a companhia de saneamento: água fora do leito arrasta lixo, esgoto e terra para o rio.', 'Check on site whether it is a natural flood, a dam or works changing the channel. Notify the basin committee and the water utility: water outside the channel carries waste, sewage and soil into the river.'],
+    'Médio': ['Comparar com a imagem óptica (HLS) e com a cheia do mesmo mês em anos anteriores. Se não for cheia normal, pedir vistoria ambiental.', 'Compare with the optical image (HLS) and with the same month in past years. If it is not a normal flood, request an environmental inspection.'],
   },
   geleira: {
     Alto: ['Alertar comunidades rio abaixo. Evitar o leito do rio e enviar equipe para monitorar o lago e o gelo.', 'Warn downstream communities. Stay away from the riverbed and send a team to monitor the lake and the ice.'],
@@ -24,12 +24,12 @@ const R: Record<string, Partial<Record<'Alto' | 'Médio' | 'Baixo', Bi>>> = {
     Alto: ['Manter o alerta oficial: comunidades rio abaixo longe do leito do rio e prontas para sair. Seguir as autoridades locais.', 'Keep the official warning: downstream communities away from the riverbed and ready to leave. Follow local authorities.'],
   },
   arvore: {
-    Alto: ['Enviar fiscalização ambiental para conferir o desmatamento no local.', 'Send environmental inspectors to check the clearing on site.'],
-    'Médio': ['Conferir na imagem óptica e, se confirmado, acionar a fiscalização ambiental.', 'Check the optical image and, if confirmed, call environmental inspectors.'],
+    Alto: ['Enviar fiscalização ambiental: mata na margem é Área de Preservação Permanente (Código Florestal) e segura terra e lixo fora do rio.', 'Send environmental inspectors: riverbank forest is a legally protected area (Brazilian Forest Code) and keeps soil and waste out of the river.'],
+    'Médio': ['Conferir na imagem óptica se é corte, queimada ou colheita. Se for desmate na margem, acionar a fiscalização e planejar o replantio.', 'Check the optical image for clearing, fire or harvest. If riverbank clearing is confirmed, call inspectors and plan replanting.'],
   },
   solo: {
-    Alto: ['A água está baixando: avaliar danos, limpar lama e organizar a volta segura das famílias.', 'The water is going down: assess damage, clear mud and organize the safe return of families.'],
-    'Médio': ['Água baixando: checar estradas e casas antes de liberar o acesso.', 'Water going down: check roads and homes before reopening access.'],
+    Alto: ['Leito exposto: avisar a companhia de saneamento sobre risco para a captação. Comparar com a seca dos anos anteriores e revisar outorgas de retirada de água neste trecho.', 'Exposed riverbed: warn the water utility about risk to the intake. Compare with past dry seasons and review water withdrawal permits on this stretch.'],
+    'Médio': ['Acompanhar na próxima passagem. Se a margem seguir exposta fora da época seca, investigar retirada de água, assoreamento ou desvio.', 'Follow up in the next pass. If the bank stays exposed outside the dry season, investigate water withdrawal, silting or diversion.'],
   },
 }
 const BAIXO: Bi = ['Sem ação urgente: acompanhar na próxima atualização.', 'No urgent action: follow up in the next update.']

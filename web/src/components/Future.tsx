@@ -20,7 +20,7 @@ const ESCALA: { ic: string; t: Bi; d: Bi }[] = [
 
 const FASES: { t: Bi; d: Bi; hoje?: boolean }[] = [
   { hoje: true, t: ['Hoje · MVP', 'Today · MVP'], d: ['10 rios (4 em Goiás), 40 anos de Landsat, monitor contínuo HLS (2–5 dias), nível pelo SWOT, 7 aquíferos pelo GRACE desde 2002, radar NISAR e validação com fatos reais.', '10 rivers (4 in Goiás), 40 years of Landsat, HLS continuous monitor (2–5 days), level from SWOT, 7 aquifers from GRACE since 2002, NISAR radar and validation against real facts.'] },
-  { t: ['Fase 2 · Qualquer rio e água subterrânea separada', 'Phase 2 · Any river and separated groundwater'], d: ['A pessoa desenha o trecho do rio no mapa; separamos a água subterrânea do GRACE com modelos de umidade do solo (GLDAS) e somamos o NISAR GUNW, que mede o chão afundando onde se bombeia água demais.', 'People draw the river stretch on the map; we separate groundwater in GRACE using soil-moisture models (GLDAS) and add NISAR GUNW, which measures ground sinking where too much water is pumped.'] },
+  { t: ['Fase 2 · Qualquer rio e água subterrânea separada', 'Phase 2 · Any river and separated groundwater'], d: ['A pessoa desenha o trecho do rio no mapa; separamos a água subterrânea do GRACE com modelos de umidade do solo (GLDAS) e estendemos o NISAR GUNW (já em BETA para Cidade do México e Nova Délhi) a todo aquífero bombeado demais.', 'People draw the river stretch on the map; we separate groundwater in GRACE using soil-moisture models (GLDAS) and extend NISAR GUNW (already in BETA for Mexico City and New Delhi) to every pumped aquifer.'] },
   { t: ['Fase 3 · Alerta antes da água piorar', 'Phase 3 · Alerts before the water gets worse'], d: ['Aviso automático para a companhia de água e a comunidade quando a turbidez sobe, a mata ciliar cai ou o rio desce abaixo do normal para a época.', 'Automatic alerts to the water utility and the community when turbidity rises, riverside forest drops or the river falls below normal for the season.'] },
   { t: ['Fase 4 · Bacias inteiras e API aberta', 'Phase 4 · Whole basins and an open API'], d: ['Bacias inteiras ligadas (de onde vem o barro, para onde ele vai), API pública para governos, escolas e pesquisadores, e validação com medidas de laboratório.', 'Whole connected basins (where the mud comes from, where it goes), a public API for governments, schools and researchers, and validation with lab measurements.'] },
 ]
@@ -75,7 +75,7 @@ export function Future() {
         <div className="mx-5 mb-4 rounded-xl p-4" style={{ background: '#F5F3FF', border: '1px solid #DDD6FE' }}>
           <div className="mb-1 flex items-center gap-2">
             <span style={{ color: '#7C3AED', display: 'flex' }}><Icon k="deslizamento" size={18} /></span>
-            <b className="text-[14px]" style={{ color: '#4C1D95' }}>{en ? 'Next data source: NISAR GUNW (ground motion)' : 'Próxima fonte de dados: NISAR GUNW (movimento do solo)'}</b>
+            <b className="text-[14px]" style={{ color: '#4C1D95' }}>{en ? 'Already in BETA: NISAR GUNW (ground motion), in Aquifers' : 'Já em BETA: NISAR GUNW (movimento do solo), na aba Aquíferos'}</b>
           </div>
           <p className="m-0 text-[13px] leading-relaxed" style={{ color: '#3C4B5E' }}>
             {en

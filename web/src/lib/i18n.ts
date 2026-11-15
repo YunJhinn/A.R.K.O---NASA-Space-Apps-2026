@@ -117,6 +117,8 @@ export function fmtDate(iso: string, withYear = true) {
   return `${d} ${MPT[m - 1]}${withYear ? ` ${y}` : ''}`
 }
 RULES.push(
+  [/^(\d+) focos próximos somam ([\d,]+) km² onde a água recuou e o leito ficou exposto\.$/,(m,n,a)=>`${n} nearby detections add up to ${num(a)} km² where water receded and the riverbed is exposed.`],
+  [/^(\d+) focos próximos somam ([\d,]+) km² com queda no sinal da vegetação\.$/,(m,n,a)=>`${n} nearby detections add up to ${num(a)} km² with a drop in the vegetation signal.`],
   [/^([\d.]+) focos reais do NISAR até (.+) · clique em um foco para ver o que mudou$/, (m, n, d) => `${num(n)} real NISAR detections up to ${d} · click a detection to see what changed`],
   [/^([\d.]+) focos detectados até (.+) · clique em um foco para ver o que mudou$/, (m, n, d) => `${num(n)} detections up to ${d} · click a detection to see what changed`],
   [/^· (.+) · rio Madeira \(AM\) · (.+)$/, (m, d, s) => `· ${d} · Madeira River (AM) · ${s}`],
@@ -147,6 +149,9 @@ RULES.push(
   [/^Depois · (.+)$/, (m, d) => `After · ${d}`],
 )
 Object.assign(EN, {
+  'Água fora do leito em vários pontos': 'Water outside the channel at several spots', 'Margem exposta em vários pontos': 'Exposed bank at several spots', 'Perda de mata perto do rio em grupo': 'Clustered loss of forest near the river',
+  'Água fora do leito': 'Water outside the channel', 'Perda de mata': 'Forest loss', 'Margem exposta': 'Exposed bank', 'Possível perda de mata perto do rio': 'Possible loss of forest near the river',
+  'Onde o radar via água em @A@, o leito ficou exposto.': 'Where radar saw water on @A@, the riverbed is now exposed.',
   'Linha do tempo': 'Timeline', 'Rio Madeira · Amazonas': 'Madeira River · Amazonas', 'Porto Alegre e vale do Taquari · RS': 'Porto Alegre and Taquari valley · RS',
   'Daca e rio Jamuna · Bangladesh': 'Dhaka and Jamuna river · Bangladesh', 'Langtang e rio Trishuli · Nepal': 'Langtang and Trishuli river · Nepal', 'Rio Limpopo e Chókwè · Moçambique': 'Limpopo River and Chókwè · Mozambique', 'Rio Limpopo e Chókwè': 'Limpopo River and Chókwè', 'Radar de Moçambique': 'Mozambique radar', 'Moçambique': 'Mozambique', 'Esta região mostra o antes e o durante da enchente do rio Limpopo (jan 2026), com dados BETA do NISAR (antes da calibração final); o ponto vermelho marca Chókwè.': 'This region shows before and during the Limpopo River flood (Jan 2026), with NISAR BETA data (before final calibration); the red dot marks Chókwè.', 'Radar do Nepal': 'Nepal radar', 'Radar da Amazônia': 'Amazon radar', 'Nepal': 'Nepal', 'Colapso de rocha e gelo do Langtang Lirung': 'Langtang Lirung rock–ice collapse', 'Radar de Bangladesh': 'Bangladesh radar', 'Bangladesh': 'Bangladesh', 'Daca': 'Dhaka', 'Rio Madeira': 'Madeira River',
   '@A@ → @B@ @Y@': '@A@ → @B@, @Y@', 'Dados reais do NISAR: duas passagens (@A@ e @B@ @Y@) sobre': 'Real NISAR data: two passes (@A@ and @B@, @Y@) over',

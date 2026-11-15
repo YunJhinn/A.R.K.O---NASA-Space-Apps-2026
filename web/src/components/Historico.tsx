@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { DATA_BASE, useApp } from '../lib/store'
 import { MapaTempo, Monitor } from './RioMonitor'
 import { Ajuda } from './Ajuda'
+import { RadarRio } from './RadarRio'
 import { acoes, AJUDA, analisar, carregarContinuo, carregarRio, GRUPOS, meta, veredito, VEREDITO, type ContinuoJson, CONTEXTO, ESTADO, fmt, frase, METRICAS, RIOS, type Analise, type Metrica, type RioJson } from '../lib/rios'
 
 type Bi = [string, string]
@@ -63,7 +64,7 @@ function Swot({ r, en }: { r: RioJson; en: boolean }) {
 }
 
 export function Historico() {
-  const { s, ds, setRegion, go } = useApp()
+  const { s, ds } = useApp()
   const en = s.lang === 'en', B = (x: Bi) => x[en ? 1 : 0]
   const inicial = 'tapajos'
   const [rid, setRid] = useState(inicial)
@@ -188,7 +189,7 @@ export function Historico() {
                   <h2 style={{ margin: '2px 0 4px', fontSize: 18 }}>{en ? info.nome_en : info.nome}</h2>
                   <p className="m-0 text-[14px] leading-snug" style={{ color: '#1E2A3A' }}>{frase(a, en)}</p>
                 </div>
-                {temRegiao && <button type="button" className="btn" style={{ fontSize: 13 }} onClick={() => { setRegion(info.regiao!, { src: 'real' }); go('inicio') }}>{en ? 'See the river now (NISAR) →' : 'Ver o rio agora (NISAR) →'}</button>}
+                {temRegiao && <button type="button" className="btn" style={{ fontSize: 13 }} onClick={() => document.getElementById('radar-rio')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>{en ? 'See the river now (NISAR radar) ↓' : 'Ver o rio agora (radar NISAR) ↓'}</button>}
               </div>
               <div className="mt-3 overflow-x-auto"><div style={{ minWidth: 560 }}><Grafico a={a} en={en} cor={M.cor} un={M.un} /></div></div>
               <p className="m-0 mt-2 text-[12.5px]" style={{ color: '#5B6B7F' }}>{B(M.o_que)} {en ? `Purple line: trend (last 15 years; whole series for ice), robust Theil–Sen; dashed: where it goes by 2030 if nothing changes. It is a projection, not a certainty.` : `Linha roxa: tendência (últimos 15 anos; série inteira para o gelo), método robusto de Theil–Sen; tracejada: onde chega em 2030 se nada mudar. É uma projeção, não uma certeza.`}</p>
@@ -196,6 +197,8 @@ export function Historico() {
           )}
 
           <Monitor c={cont} en={en} k0={k} />
+
+          <RadarRio info={info} c={cont} en={en} />
 
           {/* causa provável + o que fazer */}
           <div className="grid gap-3 lg:grid-cols-2">

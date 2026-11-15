@@ -7,7 +7,7 @@ PT: os satélites GRACE (NASA/DLR) e GRACE-FO (NASA/GFZ) medem a gravidade da Te
 EN: GRACE/GRACE-FO terrestrial water storage averaged over approximate aquifer areas.
 Uso: python pipeline/aquiferos_grace.py   → data/aquiferos/<id>.json (baixa o arquivo só se houver versão nova)
 """
-import json, os, urllib.request, email.utils, datetime as dt
+import json, os, warnings, urllib.request, email.utils, datetime as dt
 import numpy as np
 from scipy.io import netcdf_file
 
@@ -29,6 +29,8 @@ AQUIFEROS = [
          sobre="Daca tira a maior parte da água de poços; o nível dos poços cai há décadas."),
     dict(id="india_nw", nome="Aquíferos do noroeste da Índia", onde="Punjab, Haryana e Rajastão", bbox=(73, 27, 78, 32),
          sobre="Caso clássico do GRACE: irrigação esvaziando o aquífero mais rápido do que a chuva repõe."),
+    dict(id="mexico", nome="Aquífero do Vale do México", onde="Cidade do México, México", bbox=(-100, 18.5, -98, 20.5),
+         sobre="Abastece ~22 milhões de pessoas e é bombeado muito acima da recarga; a cidade afunda dezenas de cm por ano. Área pequena para o GRACE: aqui o radar NISAR mostra o detalhe."),
     dict(id="ogallala", nome="Aquífero Ogallala (High Plains)", onde="Estados Unidos", bbox=(-104, 32, -97, 43),
          sobre="Irriga uma das maiores regiões agrícolas do mundo e está sendo esvaziado no sul."),
 ]
@@ -56,6 +58,37 @@ def baixar(versao):
 def theil(x, y):
     s = [(y[j] - y[i]) / (x[j] - x[i]) for i in range(len(x)) for j in range(i + 1, len(x)) if x[j] != x[i]]
     m = float(np.median(s)); return m, float(np.median(np.array(y) - m * np.array(x)))
+
+
+def mapa_anual(tws, lon2, lat, datas, bbox, margem=2):
+    """v7.3 · 'retrato' do aquífero: média anual de cada célula de 1° (cm de água vs média 2002–2020),
+    numa caixa um pouco maior que a do aquífero para mostrar o entorno. Ano só entra com ≥ 6 meses.
+    É uma reconstrução a partir da gravidade, não uma foto: cada célula tem ~110 km e o GRACE
+    'borra' o sinal em ~300 km, então o mapa mostra regiões, não poços."""
+    x0, y0, x1, y1 = bbox
+    mi = (lon2 >= x0 - margem) & (lon2 <= x1 + margem); mj = (lat >= y0 - margem) & (lat <= y1 + margem)
+    lons = lon2[mi]; lats = lat[mj]
+    oi = np.argsort(lons); oj = np.argsort(-lats)              # oeste → leste, norte → sul
+    sub = tws[:, mj][:, :, mi][:, oj][:, :, oi].copy()
+    sub[np.abs(sub) > 1e4] = np.nan
+    anos = {}
+    for k, d in enumerate(datas):
+        anos.setdefault(d.year, []).append(k)
+    out = {}
+    meses = {}
+    ult = max(anos)
+    if len(anos[ult]) < 12:          # ano corrente incompleto: usa os últimos 12 meses (chuva e seca na proporção certa)
+        anos[ult] = list(range(len(datas)))[-12:]
+        meses["ultimo12"] = f"{datas[-12].isoformat()[:7]}..{datas[-1].isoformat()[:7]}"
+    for y, ks in sorted(anos.items()):
+        if len(ks) < 6: continue
+        meses[str(y)] = len(ks)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)       # células de mar: média de nada = vazio
+            g = np.nanmean(sub[ks], axis=0)
+        out[str(y)] = [[None if not np.isfinite(v) else round(float(v), 1) for v in row] for row in g]
+    return {"lons": [round(float(v), 2) for v in lons[oi]], "lats": [round(float(v), 2) for v in lats[oj]],
+            "passo": 1.0, "anos": out, "meses": meses}
 
 
 def main(forcar=False):
@@ -92,6 +125,7 @@ def main(forcar=False):
                "anual": [{"ano": y, "cm": round(float(np.mean(v)), 2), "n": len(v)} for y, v in sorted(anual.items())],
                "fonte": "GRACE (NASA/DLR) e GRACE-FO (NASA/GFZ) · grade TWS GFZ GravIS RL06 (aberta)",
                "gerado": dt.date.today().isoformat(), "versao": versao}
+        out["mapa"] = mapa_anual(tws, lon2, lat, datas, a["bbox"])
         json.dump(out, open(os.path.join(RAIZ, a["id"] + ".json"), "w"), ensure_ascii=False, separators=(",", ":"))
         print(a["id"], f"{m:+.2f} cm/ano  {m * area * 1e-5:+.1f} km³/ano  meses={len(serie)}")
     return True
