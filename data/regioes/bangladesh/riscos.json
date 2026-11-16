@@ -1,59 +1,37 @@
 {
- "atualizado": "2026-11-15T16:21Z",
+ "atualizado": "2026-11-16T19:36Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-14",
+  "data": "2026-11-15",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0298,
-  "p90": 0.0048,
+  "max": 0.0085,
+  "p90": 0.0043,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 82,
-  "duplicados_removidos": 2,
-  "focos_risco": 10,
-  "pequenas": 63,
+  "focos": 66,
+  "duplicados_removidos": 4,
+  "focos_risco": 0,
+  "pequenas": 56,
   "grupos": [
    {
-    "lon": 91.138,
-    "lat": 25.2603,
-    "n": 4,
-    "frp": 22.7,
+    "lon": 91.1318,
+    "lat": 25.2601,
+    "n": 2,
+    "frp": 11.8,
     "ultimo": "2026-11-14T07:30Z",
-    "nivel": "Médio",
-    "categoria": "risco",
+    "nivel": "Baixo",
+    "categoria": "pequena",
     "dois_satelites": 2,
     "lugar": "Ranikor · Meghalaya · Índia"
-   },
-   {
-    "lon": 91.6451,
-    "lat": 26.2356,
-    "n": 3,
-    "frp": 17.0,
-    "ultimo": "2026-11-13T07:48Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Hajo · Assam · Índia"
-   },
-   {
-    "lon": 89.8815,
-    "lat": 23.6132,
-    "n": 3,
-    "frp": 7.5,
-    "ultimo": "2026-11-15T07:09Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Faridpur · Bangladesh"
    },
    {
     "lon": 92.352,
@@ -76,17 +54,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 91.5051,
-    "lat": 26.2327,
-    "n": 2,
-    "frp": 10.0,
-    "ultimo": "2026-11-14T07:30Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Hajo · Assam · Índia"
    },
    {
     "lon": 90.823,
@@ -144,6 +111,17 @@
     "lugar": "Gangarampur · Bengala Ocidental · Índia"
    },
    {
+    "lon": 89.8913,
+    "lat": 23.6045,
+    "n": 2,
+    "frp": 5.1,
+    "ultimo": "2026-11-16T06:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Faridpur · Bangladesh"
+   },
+   {
     "lon": 90.5309,
     "lat": 23.7015,
     "n": 2,
@@ -164,17 +142,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 14 km de Munshiganj · Bangladesh"
-   },
-   {
-    "lon": 91.8929,
-    "lat": 26.2693,
-    "n": 1,
-    "frp": 9.4,
-    "ultimo": "2026-11-13T07:07Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Sipajhar · Assam · Índia"
    },
    {
     "lon": 92.3216,
@@ -199,26 +166,26 @@
     "lugar": "a 29 km de Munshiganj · Bangladesh"
    },
    {
-    "lon": 89.8656,
-    "lat": 23.6883,
+    "lon": 91.5063,
+    "lat": 26.2338,
     "n": 1,
-    "frp": 5.7,
-    "ultimo": "2026-11-13T07:48Z",
+    "frp": 5.5,
+    "ultimo": "2026-11-14T07:30Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 9 km de Faridpur · Bangladesh"
+    "lugar": "Hajo · Assam · Índia"
    },
    {
-    "lon": 91.6863,
-    "lat": 25.7467,
+    "lon": 92.3497,
+    "lat": 23.7907,
     "n": 1,
-    "frp": 5.6,
-    "ultimo": "2026-11-13T07:05Z",
+    "frp": 5.2,
+    "ultimo": "2026-11-14T07:28Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Mairang · Meghalaya · Índia"
+    "lugar": "Zawlnuam · Mizoram · Índia"
    }
   ]
  }

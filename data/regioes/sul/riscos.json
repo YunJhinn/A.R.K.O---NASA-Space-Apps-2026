@@ -1,92 +1,37 @@
 {
- "atualizado": "2026-11-15T16:21Z",
+ "atualizado": "2026-11-16T19:36Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-14",
+  "data": "2026-11-15",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0174,
-  "p90": 0.0033,
+  "max": 0.0232,
+  "p90": 0.0043,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 55,
-  "duplicados_removidos": 16,
-  "focos_risco": 25,
-  "pequenas": 28,
+  "focos": 15,
+  "duplicados_removidos": 2,
+  "focos_risco": 4,
+  "pequenas": 10,
   "grupos": [
    {
-    "lon": -51.5269,
-    "lat": -30.1361,
-    "n": 8,
-    "frp": 60.1,
-    "ultimo": "2026-11-13T05:18Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 2,
-    "lugar": "a 11 km de Eldorado do Sul · RS"
-   },
-   {
-    "lon": -51.0634,
-    "lat": -29.5083,
-    "n": 5,
-    "frp": 109.7,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 20 km de Novo Hamburgo · RS"
-   },
-   {
-    "lon": -51.1767,
-    "lat": -29.8133,
-    "n": 4,
-    "frp": 6.0,
-    "ultimo": "2026-11-14T04:16Z",
+    "lon": -51.1763,
+    "lat": -29.8135,
+    "n": 3,
+    "frp": 6.1,
+    "ultimo": "2026-11-16T04:21Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "São Leopoldo · RS"
-   },
-   {
-    "lon": -50.468,
-    "lat": -29.5306,
-    "n": 2,
-    "frp": 28.1,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "São Francisco de Paula · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.9491,
-    "lat": -29.5381,
-    "n": 2,
-    "frp": 25.3,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 21 km de Taquara · RS"
-   },
-   {
-    "lon": -50.6265,
-    "lat": -27.5684,
-    "n": 2,
-    "frp": 22.1,
-    "ultimo": "2026-11-13T17:41Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Santa Catarina · Brasil"
    },
    {
     "lon": -50.7611,
@@ -100,28 +45,6 @@
     "lugar": "Santa Catarina · Brasil"
    },
    {
-    "lon": -50.1302,
-    "lat": -28.8766,
-    "n": 1,
-    "frp": 16.6,
-    "ultimo": "2026-11-13T16:58Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.1188,
-    "lat": -28.7729,
-    "n": 2,
-    "frp": 10.8,
-    "ultimo": "2026-11-13T16:58Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 2,
-    "lugar": "São José dos Ausentes · Rio Grande do Sul · Brasil"
-   },
-   {
     "lon": -52.4305,
     "lat": -29.0424,
     "n": 2,
@@ -131,83 +54,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.0282,
-    "lat": -29.752,
-    "n": 1,
-    "frp": 12.8,
-    "ultimo": "2026-11-13T16:58Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "Capão da Canoa · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.3049,
-    "lat": -28.8272,
-    "n": 1,
-    "frp": 10.3,
-    "ultimo": "2026-11-13T17:41Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.8634,
-    "lat": -29.6596,
-    "n": 1,
-    "frp": 10.0,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 20 km de Estrela · RS"
-   },
-   {
-    "lon": -52.1927,
-    "lat": -29.6279,
-    "n": 1,
-    "frp": 9.8,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Venâncio Aires · RS"
-   },
-   {
-    "lon": -50.9147,
-    "lat": -28.3143,
-    "n": 1,
-    "frp": 9.5,
-    "ultimo": "2026-11-13T17:41Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "Vacaria · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.6247,
-    "lat": -29.6961,
-    "n": 1,
-    "frp": 8.3,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 16 km de Taquara · RS"
-   },
-   {
-    "lon": -50.5301,
-    "lat": -28.8143,
-    "n": 1,
-    "frp": 8.3,
-    "ultimo": "2026-11-13T17:41Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.5289,
@@ -221,15 +67,15 @@
     "lugar": "a 22 km de Montenegro · RS"
    },
    {
-    "lon": -50.9562,
-    "lat": -28.8128,
+    "lon": -51.6806,
+    "lat": -27.8098,
     "n": 1,
-    "frp": 6.5,
-    "ultimo": "2026-11-13T16:58Z",
+    "frp": 7.9,
+    "ultimo": "2026-11-15T17:04Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Caxias do Sul · Rio Grande do Sul · Brasil"
+    "lugar": "Cacique Doble · Rio Grande do Sul · Brasil"
    },
    {
     "lon": -52.2894,
@@ -243,37 +89,70 @@
     "lugar": "a 29 km de Venâncio Aires · RS"
    },
    {
-    "lon": -49.7421,
-    "lat": -27.502,
+    "lon": -52.3937,
+    "lat": -28.7513,
     "n": 1,
-    "frp": 6.4,
-    "ultimo": "2026-11-13T17:41Z",
+    "frp": 4.0,
+    "ultimo": "2026-11-14T16:39Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Petrolândia · Santa Catarina · Brasil"
+    "lugar": "Soledade · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.2185,
-    "lat": -29.4778,
+    "lon": -49.8338,
+    "lat": -27.4698,
     "n": 1,
-    "frp": 5.6,
-    "ultimo": "2026-11-13T17:43Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 24 km de Novo Hamburgo · RS"
-   },
-   {
-    "lon": -50.983,
-    "lat": -27.5404,
-    "n": 1,
-    "frp": 4.6,
-    "ultimo": "2026-11-13T16:58Z",
+    "frp": 4.0,
+    "ultimo": "2026-11-14T17:24Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Santa Catarina · Brasil"
+   },
+   {
+    "lon": -51.1782,
+    "lat": -29.7762,
+    "n": 1,
+    "frp": 3.7,
+    "ultimo": "2026-11-14T04:16Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "São Leopoldo · RS"
+   },
+   {
+    "lon": -53.1334,
+    "lat": -29.2368,
+    "n": 1,
+    "frp": 2.7,
+    "ultimo": "2026-11-15T18:02Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Estrela Velha · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.6102,
+    "lat": -29.8327,
+    "n": 1,
+    "frp": 1.7,
+    "ultimo": "2026-11-14T17:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 21 km de Santa Cruz do Sul · RS"
+   },
+   {
+    "lon": -51.784,
+    "lat": -28.2932,
+    "n": 1,
+    "frp": 0.5,
+    "ultimo": "2026-11-14T04:14Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Rio Grande do Sul · Brasil"
    }
   ]
  }
