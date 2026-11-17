@@ -1,125 +1,27 @@
 {
- "atualizado": "2026-11-16T19:36Z",
+ "atualizado": "2026-11-17T18:36Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-15",
+  "data": "2026-11-16",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.325,
-  "p90": 0.0051,
-  "areas": [
-   {
-    "lon": 32.9542,
-    "lat": -26.1374,
-    "p": 0.325,
-    "km2": 24.6,
-    "nivel": "Alto",
-    "lugar": "a 43 km de Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9375,
-    "lat": -26.2874,
-    "p": 0.1745,
-    "km2": 5.4,
-    "nivel": "Médio",
-    "lugar": "a 51 km de Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9125,
-    "lat": -26.2958,
-    "p": 0.1528,
-    "km2": 0.8,
-    "nivel": "Médio",
-    "lugar": "Matutuíne · Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9125,
-    "lat": -26.2458,
-    "p": 0.127,
-    "km2": 1.5,
-    "nivel": "Médio",
-    "lugar": "Matutuíne · Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9042,
-    "lat": -26.2874,
-    "p": 0.1187,
-    "km2": 0.8,
-    "nivel": "Médio",
-    "lugar": "Matutuíne · Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9042,
-    "lat": -26.0208,
-    "p": 0.116,
-    "km2": 2.3,
-    "nivel": "Médio",
-    "lugar": "a 34 km de Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9125,
-    "lat": -26.0041,
-    "p": 0.095,
-    "km2": 1.5,
-    "nivel": "Baixo",
-    "lugar": "a 34 km de Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9708,
-    "lat": -26.0374,
-    "p": 0.0786,
-    "km2": 13.8,
-    "nivel": "Baixo",
-    "lugar": "a 41 km de Maputo · Moçambique"
-   }
-  ]
+  "max": 0.0176,
+  "p90": 0.0024,
+  "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 139,
-  "duplicados_removidos": 20,
-  "focos_risco": 68,
-  "pequenas": 58,
+  "focos": 80,
+  "duplicados_removidos": 2,
+  "focos_risco": 29,
+  "pequenas": 41,
   "grupos": [
-   {
-    "lon": 31.3622,
-    "lat": -24.5246,
-    "n": 9,
-    "frp": 145.0,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 4,
-    "lugar": "Bushbuckridge · Mepumalanga · África do Sul"
-   },
-   {
-    "lon": 31.3717,
-    "lat": -24.4449,
-    "n": 5,
-    "frp": 39.9,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Bushbuckridge · Mepumalanga · África do Sul"
-   },
-   {
-    "lon": 30.8096,
-    "lat": -23.8926,
-    "n": 4,
-    "frp": 57.0,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Ba-Phalaborwa Local Municipality · Limpopo · África do Sul"
-   },
    {
     "lon": 34.8949,
     "lat": -24.1067,
@@ -130,28 +32,6 @@
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "Panda · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.2452,
-    "lat": -24.3459,
-    "n": 4,
-    "frp": 42.4,
-    "ultimo": "2026-11-16T11:42Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
-    "lon": 31.0861,
-    "lat": -23.5033,
-    "n": 3,
-    "frp": 43.2,
-    "ultimo": "2026-11-14T10:40Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 2,
-    "lugar": "Greater Giyani Local Municipality · Limpopo · África do Sul"
    },
    {
     "lon": 32.967,
@@ -165,26 +45,15 @@
     "lugar": "a 19 km de Chókwè · Moçambique"
    },
    {
-    "lon": 32.1723,
-    "lat": -25.0413,
+    "lon": 34.2447,
+    "lat": -24.3515,
     "n": 3,
-    "frp": 30.2,
-    "ultimo": "2026-11-14T12:21Z",
+    "frp": 32.0,
+    "ultimo": "2026-11-16T11:42Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Moamba · Maputo · Moçambique"
-   },
-   {
-    "lon": 32.9965,
-    "lat": -25.1333,
-    "n": 3,
-    "frp": 24.6,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 15 km de Macia · Moçambique"
+    "lugar": "Mawayela · Inhambane · Moçambique"
    },
    {
     "lon": 34.9071,
@@ -198,26 +67,15 @@
     "lugar": "Panda · Inhambane · Moçambique"
    },
    {
-    "lon": 32.3947,
-    "lat": -26.3854,
+    "lon": 33.3066,
+    "lat": -23.6995,
     "n": 3,
-    "frp": 18.9,
-    "ultimo": "2026-11-14T11:36Z",
+    "frp": 16.2,
+    "ultimo": "2026-11-17T12:21Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Matutuíne · Maputo · Moçambique"
-   },
-   {
-    "lon": 33.8013,
-    "lat": -24.2115,
-    "n": 3,
-    "frp": 12.4,
-    "ultimo": "2026-11-14T23:35Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Chibuto · Gaza · Moçambique"
+    "lugar": "Chigubo · Gaza · Moçambique"
    },
    {
     "lon": 34.9434,
@@ -242,37 +100,15 @@
     "lugar": "Inkhundla Piggs Peak · Hhohho · Essuatíni"
    },
    {
-    "lon": 31.8378,
-    "lat": -25.7989,
+    "lon": 31.4358,
+    "lat": -25.5413,
     "n": 2,
-    "frp": 21.8,
-    "ultimo": "2026-11-14T11:36Z",
+    "frp": 28.3,
+    "ultimo": "2026-11-17T11:21Z",
     "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Nkomazi · Mepumalanga · África do Sul"
-   },
-   {
-    "lon": 34.054,
-    "lat": -24.1256,
-    "n": 2,
-    "frp": 20.4,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
-    "lon": 33.0377,
-    "lat": -24.158,
-    "n": 2,
-    "frp": 19.4,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Guija · Gaza · Moçambique"
    },
    {
     "lon": 34.9623,
@@ -297,17 +133,6 @@
     "lugar": "Morrumbene · Inhambane · Moçambique"
    },
    {
-    "lon": 34.3135,
-    "lat": -23.9129,
-    "n": 2,
-    "frp": 15.0,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
     "lon": 31.2409,
     "lat": -25.916,
     "n": 1,
@@ -317,28 +142,6 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Inkhundla Piggs Peak · Hhohho · Essuatíni"
-   },
-   {
-    "lon": 34.4213,
-    "lat": -23.896,
-    "n": 1,
-    "frp": 25.3,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Panda · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.8497,
-    "lat": -24.4302,
-    "n": 1,
-    "frp": 23.1,
-    "ultimo": "2026-11-14T10:38Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Mocumbi · Inhambane · Moçambique"
    },
    {
     "lon": 31.5934,
@@ -352,6 +155,17 @@
     "lugar": "Nkomazi · Mepumalanga · África do Sul"
    },
    {
+    "lon": 34.2304,
+    "lat": -24.1571,
+    "n": 2,
+    "frp": 13.2,
+    "ultimo": "2026-11-17T12:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "Panda · Inhambane · Moçambique"
+   },
+   {
     "lon": 34.8965,
     "lat": -24.1688,
     "n": 2,
@@ -363,125 +177,81 @@
     "lugar": "Panda · Inhambane · Moçambique"
    },
    {
-    "lon": 32.6715,
-    "lat": -25.4265,
+    "lon": 34.3978,
+    "lat": -24.2964,
     "n": 2,
-    "frp": 13.0,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 14 km de Manhiça · Moçambique"
-   },
-   {
-    "lon": 32.711,
-    "lat": -25.1161,
-    "n": 2,
-    "frp": 12.5,
-    "ultimo": "2026-11-14T12:21Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 12 km de Magude · Moçambique"
-   },
-   {
-    "lon": 33.4981,
-    "lat": -25.134,
-    "n": 2,
-    "frp": 11.0,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 17 km de Xai-Xai · Moçambique"
-   },
-   {
-    "lon": 33.054,
-    "lat": -24.631,
-    "n": 2,
-    "frp": 10.4,
-    "ultimo": "2026-11-16T11:42Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 13 km de Chókwè · Moçambique"
-   },
-   {
-    "lon": 33.9844,
-    "lat": -24.0032,
-    "n": 2,
-    "frp": 8.4,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.01,
-    "lat": -23.734,
-    "n": 2,
-    "frp": 8.4,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
-    "lon": 32.6874,
-    "lat": -25.5478,
-    "n": 2,
-    "frp": 6.4,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 20 km de Manhiça · Moçambique"
-   },
-   {
-    "lon": 33.3118,
-    "lat": -24.3072,
-    "n": 2,
-    "frp": 5.7,
-    "ultimo": "2026-11-16T11:42Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "Chibuto · Gaza · Moçambique"
-   },
-   {
-    "lon": 34.8978,
-    "lat": -24.658,
-    "n": 2,
-    "frp": 5.7,
-    "ultimo": "2026-11-14T11:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Quissico · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.3799,
-    "lat": -24.3691,
-    "n": 2,
-    "frp": 5.5,
-    "ultimo": "2026-11-14T11:36Z",
+    "frp": 12.9,
+    "ultimo": "2026-11-17T12:21Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Mocumbi · Inhambane · Moçambique"
    },
    {
-    "lon": 32.9143,
-    "lat": -25.332,
+    "lon": 34.1044,
+    "lat": -24.5367,
     "n": 2,
-    "frp": 4.6,
-    "ultimo": "2026-11-14T11:36Z",
+    "frp": 11.4,
+    "ultimo": "2026-11-17T11:21Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 13 km de Manhiça · Moçambique"
+    "lugar": "Manjacaze · Gaza · Moçambique"
+   },
+   {
+    "lon": 34.4494,
+    "lat": -24.2585,
+    "n": 2,
+    "frp": 10.9,
+    "ultimo": "2026-11-17T11:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Panda · Inhambane · Moçambique"
+   },
+   {
+    "lon": 34.2874,
+    "lat": -24.5584,
+    "n": 2,
+    "frp": 7.9,
+    "ultimo": "2026-11-17T11:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Manjacaze · Gaza · Moçambique"
+   },
+   {
+    "lon": 34.5763,
+    "lat": -23.9536,
+    "n": 2,
+    "frp": 7.8,
+    "ultimo": "2026-11-17T11:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Panda · Inhambane · Moçambique"
+   },
+   {
+    "lon": 32.5282,
+    "lat": -24.5137,
+    "n": 2,
+    "frp": 7.3,
+    "ultimo": "2026-11-17T12:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Magude · Maputo · Moçambique"
+   },
+   {
+    "lon": 33.5917,
+    "lat": -24.3975,
+    "n": 2,
+    "frp": 4.4,
+    "ultimo": "2026-11-16T23:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Chibuto · Gaza · Moçambique"
    },
    {
     "lon": 33.1423,
@@ -515,6 +285,39 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Manjacaze · Gaza · Moçambique"
+   },
+   {
+    "lon": 31.897,
+    "lat": -25.5679,
+    "n": 1,
+    "frp": 10.4,
+    "ultimo": "2026-11-15T11:59Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Nkomazi · Mepumalanga · África do Sul"
+   },
+   {
+    "lon": 33.2477,
+    "lat": -24.2463,
+    "n": 1,
+    "frp": 10.1,
+    "ultimo": "2026-11-16T11:42Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Guija · Gaza · Moçambique"
+   },
+   {
+    "lon": 34.0162,
+    "lat": -24.3041,
+    "n": 1,
+    "frp": 9.7,
+    "ultimo": "2026-11-17T11:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Mawayela · Inhambane · Moçambique"
    }
   ]
  }

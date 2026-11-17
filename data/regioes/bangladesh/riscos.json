@@ -1,70 +1,48 @@
 {
- "atualizado": "2026-11-16T19:36Z",
+ "atualizado": "2026-11-17T18:36Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-15",
+  "data": "2026-11-16",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0085,
-  "p90": 0.0043,
+  "max": 0.0111,
+  "p90": 0.0044,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 66,
-  "duplicados_removidos": 4,
-  "focos_risco": 0,
-  "pequenas": 56,
+  "focos": 59,
+  "duplicados_removidos": 3,
+  "focos_risco": 3,
+  "pequenas": 49,
   "grupos": [
    {
-    "lon": 91.1318,
-    "lat": 25.2601,
-    "n": 2,
-    "frp": 11.8,
-    "ultimo": "2026-11-14T07:30Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 2,
-    "lugar": "Ranikor · Meghalaya · Índia"
+    "lon": 88.2276,
+    "lat": 25.7684,
+    "n": 3,
+    "frp": 8.1,
+    "ultimo": "2026-11-17T07:30Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Hemtabad · Bengala Ocidental · Índia"
    },
    {
-    "lon": 92.352,
-    "lat": 25.2761,
+    "lon": 88.3063,
+    "lat": 23.2967,
     "n": 2,
-    "frp": 10.5,
-    "ultimo": "2026-11-14T07:30Z",
+    "frp": 8.0,
+    "ultimo": "2026-11-17T07:30Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Khliehriat · Meghalaya · Índia"
-   },
-   {
-    "lon": 88.1762,
-    "lat": 25.7428,
-    "n": 2,
-    "frp": 10.5,
-    "ultimo": "2026-11-14T06:46Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 90.823,
-    "lat": 26.2157,
-    "n": 2,
-    "frp": 9.0,
-    "ultimo": "2026-11-15T07:09Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Baghbor · Assam · Índia"
+    "lugar": "Kalna - I · Bengala Ocidental · Índia"
    },
    {
     "lon": 92.5228,
@@ -89,17 +67,6 @@
     "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
    },
    {
-    "lon": 88.2274,
-    "lat": 25.7712,
-    "n": 2,
-    "frp": 6.2,
-    "ultimo": "2026-11-15T07:09Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Hemtabad · Bengala Ocidental · Índia"
-   },
-   {
     "lon": 88.5832,
     "lat": 25.4406,
     "n": 2,
@@ -109,6 +76,17 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Gangarampur · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 92.7569,
+    "lat": 25.2533,
+    "n": 2,
+    "frp": 5.3,
+    "ultimo": "2026-11-17T06:31Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Saipung · Meghalaya · Índia"
    },
    {
     "lon": 89.8913,
@@ -122,70 +100,103 @@
     "lugar": "Faridpur · Bangladesh"
    },
    {
-    "lon": 90.5309,
-    "lat": 23.7015,
+    "lon": 91.9345,
+    "lat": 24.6546,
     "n": 2,
-    "frp": 2.1,
-    "ultimo": "2026-11-14T19:55Z",
+    "frp": 1.9,
+    "ultimo": "2026-11-16T20:16Z",
     "nivel": "Baixo",
     "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 10 km de Narayanganj · Bangladesh"
+    "dois_satelites": 2,
+    "lugar": "রাজনগর উপজেলা · সিলেট বিভাগ · Bangladeche"
    },
    {
-    "lon": 90.4758,
-    "lat": 23.42,
+    "lon": 90.8233,
+    "lat": 26.217,
     "n": 1,
-    "frp": 9.6,
-    "ultimo": "2026-11-14T07:28Z",
+    "frp": 6.3,
+    "ultimo": "2026-11-15T07:09Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 14 km de Munshiganj · Bangladesh"
+    "lugar": "Baghbor · Assam · Índia"
    },
    {
-    "lon": 92.3216,
-    "lat": 25.2625,
+    "lon": 88.4717,
+    "lat": 23.7438,
     "n": 1,
-    "frp": 8.2,
-    "ultimo": "2026-11-14T07:30Z",
+    "frp": 5.0,
+    "ultimo": "2026-11-17T06:31Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Khliehriat · Meghalaya · Índia"
+    "lugar": "Tehatta-II · Bengala Ocidental · Índia"
    },
    {
-    "lon": 90.7798,
-    "lat": 23.6594,
+    "lon": 90.2624,
+    "lat": 23.2601,
     "n": 1,
-    "frp": 6.9,
-    "ultimo": "2026-11-14T07:28Z",
+    "frp": 4.6,
+    "ultimo": "2026-11-17T07:30Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 29 km de Munshiganj · Bangladesh"
+    "lugar": "শরিয়তপুর · Daca · Bangladeche"
    },
    {
-    "lon": 91.5063,
-    "lat": 26.2338,
+    "lon": 88.0794,
+    "lat": 25.8277,
     "n": 1,
-    "frp": 5.5,
-    "ultimo": "2026-11-14T07:30Z",
+    "frp": 4.3,
+    "ultimo": "2026-11-15T07:09Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Hajo · Assam · Índia"
+    "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
-    "lon": 92.3497,
-    "lat": 23.7907,
+    "lon": 88.0946,
+    "lat": 25.7491,
     "n": 1,
-    "frp": 5.2,
-    "ultimo": "2026-11-14T07:28Z",
+    "frp": 4.3,
+    "ultimo": "2026-11-16T06:52Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Zawlnuam · Mizoram · Índia"
+    "lugar": "Raiganj · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 90.0092,
+    "lat": 23.7844,
+    "n": 1,
+    "frp": 4.3,
+    "ultimo": "2026-11-15T07:09Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 8 km de Manikganj · Bangladesh"
+   },
+   {
+    "lon": 90.3701,
+    "lat": 23.1532,
+    "n": 1,
+    "frp": 4.2,
+    "ultimo": "2026-11-16T06:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 32 km de Chandpur · Bangladesh"
+   },
+   {
+    "lon": 89.9769,
+    "lat": 23.582,
+    "n": 1,
+    "frp": 4.2,
+    "ultimo": "2026-11-15T07:09Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 14 km de Faridpur · Bangladesh"
    }
   ]
  }

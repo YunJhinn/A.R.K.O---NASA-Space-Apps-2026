@@ -1,70 +1,103 @@
 {
- "atualizado": "2026-11-16T19:36Z",
+ "atualizado": "2026-11-17T18:36Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-15",
+  "data": "2026-11-16",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0232,
-  "p90": 0.0043,
+  "max": 0.0237,
+  "p90": 0.0079,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 15,
-  "duplicados_removidos": 2,
-  "focos_risco": 4,
-  "pequenas": 10,
+  "focos": 24,
+  "duplicados_removidos": 0,
+  "focos_risco": 3,
+  "pequenas": 17,
   "grupos": [
    {
-    "lon": -51.1763,
-    "lat": -29.8135,
-    "n": 3,
-    "frp": 6.1,
-    "ultimo": "2026-11-16T04:21Z",
-    "nivel": "Médio",
+    "lon": -50.1607,
+    "lat": -28.4097,
+    "n": 2,
+    "frp": 15.4,
+    "ultimo": "2026-11-16T17:41Z",
+    "nivel": "Baixo",
     "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "São Leopoldo · RS"
+    "dois_satelites": 0,
+    "lugar": "São Joaquim · Santa Catarina · Brasil"
    },
    {
-    "lon": -50.7611,
-    "lat": -27.4885,
+    "lon": -51.6621,
+    "lat": -27.4683,
     "n": 1,
-    "frp": 108.8,
-    "ultimo": "2026-11-14T17:24Z",
+    "frp": 35.7,
+    "ultimo": "2026-11-16T17:43Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Santa Catarina · Brasil"
    },
    {
-    "lon": -52.4305,
-    "lat": -29.0424,
+    "lon": -51.0695,
+    "lat": -29.4921,
     "n": 2,
-    "frp": 8.1,
-    "ultimo": "2026-11-14T16:39Z",
+    "frp": 11.2,
+    "ultimo": "2026-11-16T16:45Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 22 km de Novo Hamburgo · RS"
+   },
+   {
+    "lon": -51.2582,
+    "lat": -29.6036,
+    "n": 2,
+    "frp": 10.2,
+    "ultimo": "2026-11-16T16:45Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 15 km de Novo Hamburgo · RS"
+   },
+   {
+    "lon": -51.5493,
+    "lat": -29.8401,
+    "n": 2,
+    "frp": 9.6,
+    "ultimo": "2026-11-16T16:45Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 19 km de Montenegro · RS"
+   },
+   {
+    "lon": -51.8312,
+    "lat": -27.8248,
+    "n": 2,
+    "frp": 5.2,
+    "ultimo": "2026-11-16T17:43Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.4418,
+    "lat": -29.0549,
+    "n": 1,
+    "frp": 7.9,
+    "ultimo": "2026-11-16T17:41Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.5289,
-    "lat": -29.4973,
-    "n": 1,
-    "frp": 7.9,
-    "ultimo": "2026-11-14T17:21Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 22 km de Montenegro · RS"
    },
    {
     "lon": -51.6806,
@@ -78,48 +111,81 @@
     "lugar": "Cacique Doble · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -52.2894,
-    "lat": -29.3631,
+    "lon": -52.1913,
+    "lat": -29.6273,
     "n": 1,
-    "frp": 6.4,
-    "ultimo": "2026-11-14T17:21Z",
+    "frp": 7.5,
+    "ultimo": "2026-11-16T16:45Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 29 km de Venâncio Aires · RS"
+    "lugar": "Venâncio Aires · RS"
    },
    {
-    "lon": -52.3937,
-    "lat": -28.7513,
+    "lon": -53.9815,
+    "lat": -28.4557,
     "n": 1,
-    "frp": 4.0,
-    "ultimo": "2026-11-14T16:39Z",
+    "frp": 6.7,
+    "ultimo": "2026-11-16T16:45Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Soledade · Rio Grande do Sul · Brasil"
+    "lugar": "Augusto Pestana · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -49.8338,
-    "lat": -27.4698,
+    "lon": -51.0381,
+    "lat": -27.5377,
     "n": 1,
-    "frp": 4.0,
-    "ultimo": "2026-11-14T17:24Z",
+    "frp": 6.5,
+    "ultimo": "2026-11-16T16:45Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Santa Catarina · Brasil"
    },
    {
-    "lon": -51.1782,
-    "lat": -29.7762,
+    "lon": -51.1258,
+    "lat": -28.902,
     "n": 1,
-    "frp": 3.7,
-    "ultimo": "2026-11-14T04:16Z",
+    "frp": 5.7,
+    "ultimo": "2026-11-16T17:41Z",
     "nivel": "Baixo",
     "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "São Leopoldo · RS"
+    "dois_satelites": 0,
+    "lugar": "a 30 km de Caxias do Sul · RS"
+   },
+   {
+    "lon": -51.1066,
+    "lat": -29.5479,
+    "n": 1,
+    "frp": 5.5,
+    "ultimo": "2026-11-16T17:41Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 15 km de Novo Hamburgo · RS"
+   },
+   {
+    "lon": -51.8573,
+    "lat": -29.6631,
+    "n": 1,
+    "frp": 4.1,
+    "ultimo": "2026-11-16T17:41Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 20 km de Estrela · RS"
+   },
+   {
+    "lon": -51.5994,
+    "lat": -29.6331,
+    "n": 1,
+    "frp": 3.4,
+    "ultimo": "2026-11-16T17:41Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 15 km de Montenegro · RS"
    },
    {
     "lon": -53.1334,
@@ -133,26 +199,15 @@
     "lugar": "Estrela Velha · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -52.6102,
-    "lat": -29.8327,
+    "lon": -50.7045,
+    "lat": -28.6989,
     "n": 1,
-    "frp": 1.7,
-    "ultimo": "2026-11-14T17:21Z",
+    "frp": 2.7,
+    "ultimo": "2026-11-16T17:41Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 21 km de Santa Cruz do Sul · RS"
-   },
-   {
-    "lon": -51.784,
-    "lat": -28.2932,
-    "n": 1,
-    "frp": 0.5,
-    "ultimo": "2026-11-14T04:14Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
+    "lugar": "Monte Alegre dos Campos · Rio Grande do Sul · Brasil"
    }
   ]
  }
