@@ -43,7 +43,7 @@ export function MapaTempo({ r, c, en, an }: { r: RioJson; c: ContinuoJson | null
         <div>
           <div className="relative overflow-hidden rounded-xl" style={{ aspectRatio: '1 / 1', background: '#0B1220' }}>
             <img src={DATA_BASE + 'rios/' + q.foto} alt={q.rot} className="absolute inset-0 h-full w-full object-cover" />
-            <span className="absolute left-2 top-2 rounded px-2.5 py-1 text-[14px] font-extrabold" style={{ background: q.k === 'ultima' ? '#1D4ED8' : '#000b', color: '#fff' }}>{q.rot}</span>
+            <span className="absolute left-2 top-2 rounded px-2.5 py-1 text-[14px] font-extrabold" style={{ background: q.k === 'ultima' ? '#0B78C4' : '#000b', color: '#fff' }}>{q.rot}</span>
             <span className="absolute bottom-2 right-2 rounded px-2 py-0.5 text-[10.5px]" style={{ background: '#000a', color: '#fff' }}>{q.k === 'ultima' ? `HLS · ${c!.ultima!.sat}` : (q.ano?.imagens[0]?.split(' ')[1] ?? 'Landsat')}</span>
           </div>
           <div className="mt-2 flex items-center gap-2">
@@ -150,7 +150,7 @@ export function Monitor({ c, en, k0 }: { c: ContinuoJson | null; en: boolean; k0
             const fora = n ? (ruimAlto ? v > n.p90 : v < n.p10) : false
             return <circle key={p.d + p.sat} cx={x(p.d)} cy={y(v)} r={fora ? 3.2 : 2.2} fill={fora ? '#D92D20' : M.cor} opacity={fora ? 0.95 : 0.55}><title>{`${dataBR(p.d, en)} · ${p.sat}: ${fmt(v, en)} ${M.un}`}</title></circle>
           })}
-          <circle cx={x(last.d)} cy={y(last[k] as number)} r={6} fill="none" stroke="#1D4ED8" strokeWidth={2} />
+          <circle cx={x(last.d)} cy={y(last[k] as number)} r={6} fill="none" stroke="#0B78C4" strokeWidth={2} />
         </svg>
       </div></div>
 

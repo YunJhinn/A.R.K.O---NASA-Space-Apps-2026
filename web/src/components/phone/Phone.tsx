@@ -239,7 +239,7 @@ function PAbout() {
       <h1 style={{ fontSize: 20, fontWeight: 600 }}>{t('Como o A.R.K.O funciona')}</h1>
       {items.map(([i, h, d]) => (
         <div key={h} className="card" style={{ padding: 14, display: 'flex', gap: 12 }}>
-          <span className="tile" style={{ width: 36, height: 36, background: 'rgba(26,95,209,.12)', color: 'var(--acc)', flex: 'none' }}><Icon k={i} size={18} /></span>
+          <span className="tile" style={{ width: 36, height: 36, background: 'rgba(11,120,196,.12)', color: 'var(--acc)', flex: 'none' }}><Icon k={i} size={18} /></span>
           <div><b style={{ fontSize: 14 }}>{t(h)}</b><p style={{ color: 'var(--mu)', fontSize: 12.5, marginTop: 3, lineHeight: 1.45 }}>{t(d)}</p></div>
         </div>
       ))}

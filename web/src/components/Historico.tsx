@@ -107,7 +107,7 @@ export function Historico() {
             <span className="w-[70px] text-[11px] font-bold uppercase tracking-[.08em]" style={{ color: '#667085' }}>{B(g.t)}</span>
             {RIOS.filter(r => r.grupo === g.k).map(r => (
               <button key={r.id} type="button" onClick={() => setRid(r.id)} className="rounded-full px-3 py-1.5 text-[12.5px] font-semibold"
-                style={{ background: r.id === rid ? '#1D4ED8' : '#fff', color: r.id === rid ? '#fff' : '#1E2A3A', border: '1px solid ' + (r.id === rid ? '#1D4ED8' : '#D0D5DD') }}>
+                style={{ background: r.id === rid ? '#0B78C4' : '#fff', color: r.id === rid ? '#fff' : '#1E2A3A', border: '1px solid ' + (r.id === rid ? '#0B78C4' : '#D0D5DD') }}>
                 💧 {en ? r.nome_en : r.nome}
               </button>
             ))}
@@ -256,7 +256,7 @@ export function Historico() {
               const sp = x.pts.slice(-20), lo = Math.min(...sp.map(p => p[1])), hi = Math.max(...sp.map(p => p[1]))
               const tend = (MM.bom === 'baixo' ? x.tend.m < 0 : x.tend.m > 0) ? (en ? 'improving' : 'melhorando') : Math.abs(x.tend.m) < Math.abs(x.base) * 0.005 ? (en ? 'stable' : 'estável') : (en ? 'worsening' : 'piorando')
               return (
-                <div key={m} role="button" tabIndex={0} onClick={() => setK(m)} onKeyDown={e => e.key === 'Enter' && setK(m)} className="card text-left" style={{ padding: 14, outline: m === k ? '2px solid #1D4ED8' : 'none', cursor: 'pointer', background: E.bg, borderLeft: `4px solid ${E.c}` }}>
+                <div key={m} role="button" tabIndex={0} onClick={() => setK(m)} onKeyDown={e => e.key === 'Enter' && setK(m)} className="card text-left" style={{ padding: 14, outline: m === k ? '2px solid #0B78C4' : 'none', cursor: 'pointer', background: E.bg, borderLeft: `4px solid ${E.c}` }}>
                   <div className="flex items-center text-[12px] font-bold uppercase tracking-wide" style={{ color: '#475467' }}>{B(MM.nome)}<Ajuda txt={B(AJUDA[m])} /></div>
                   <div className="mt-1 flex items-end justify-between gap-2">
                     <div className="text-[22px] font-extrabold leading-none" style={{ color: MM.cor }}>{fmt(x.agora, en)} <span className="text-[13px] font-bold">{MM.un}</span></div>

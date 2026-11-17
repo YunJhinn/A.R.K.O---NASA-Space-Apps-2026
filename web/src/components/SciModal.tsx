@@ -192,7 +192,7 @@ export function SciModal({ tab: t0, kind, onClose }: { tab: Tab; kind?: string; 
                   {SCI.rules.map(([n, r, w]) => (
                     <tr key={n[0]} style={{ borderBottom: '1px solid #E3EAF0' }}>
                       <td className="py-2 pr-3 font-bold" style={{ color: '#1E2A3A' }}>{L(lang, n)}</td>
-                      <td className="py-2 pr-3 font-mono text-[12px]" style={{ color: '#1D4ED8' }}>{L(lang, r)}</td>
+                      <td className="py-2 pr-3 font-mono text-[12px]" style={{ color: '#0B78C4' }}>{L(lang, r)}</td>
                       <td className="py-2">{L(lang, w)}</td>
                     </tr>
                   ))}

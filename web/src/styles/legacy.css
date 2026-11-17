@@ -127,7 +127,7 @@ svg.i {
   background: var(--surf);
 }
 .nav.on {
-  background: rgba(26, 95, 209, 0.1);
+  background: rgba(11, 120, 196, 0.1);
   color: var(--tx);
 }
 .datebtn svg,
@@ -294,8 +294,8 @@ svg.i {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(26, 95, 209, 0.1);
-  border: 1px solid rgba(26, 95, 209, 0.45);
+  background: rgba(11, 120, 196, 0.1);
+  border: 1px solid rgba(11, 120, 196, 0.45);
   font-weight: 600;
 }
 .kpis {
@@ -570,8 +570,8 @@ svg.i {
   background: linear-gradient(90deg, var(--amb2), var(--red));
 }
 .why {
-  background: rgba(26, 95, 209, 0.06);
-  border: 1px solid rgba(26, 95, 209, 0.22);
+  background: rgba(11, 120, 196, 0.06);
+  border: 1px solid rgba(11, 120, 196, 0.22);
   border-radius: 8px;
   padding: 8px 10px;
   font-size: 12px;
@@ -632,7 +632,7 @@ svg.i {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(26, 95, 209, 0.14);
+  background: rgba(11, 120, 196, 0.14);
   color: var(--acc);
   display: grid;
   place-items: center;
@@ -755,7 +755,7 @@ svg.i {
   margin-left: auto;
   padding: 7px 12px 7px 10px;
   border-radius: 6px;
-  background: linear-gradient(180deg, #2a6fe0, #1a5fd1) !important;
+  background: linear-gradient(180deg, #19a6d9, #0b78c4) !important;
   color: #fff !important;
   font-weight: 800 !important;
   font-size: 12px;
@@ -763,7 +763,7 @@ svg.i {
   text-decoration: none !important;
   cursor: pointer;
   box-shadow:
-    0 4px 10px rgba(26, 95, 209, 0.35),
+    0 4px 10px rgba(11, 120, 196, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition:
     transform 0.15s,
@@ -1149,7 +1149,7 @@ svg.i {
   font-size: 13px;
 }
 .dp .pre button.on {
-  background: rgba(26, 95, 209, 0.12);
+  background: rgba(11, 120, 196, 0.12);
   color: var(--acc);
   font-weight: 600;
 }
@@ -1192,7 +1192,7 @@ svg.i {
   color: var(--tx);
 }
 .months2 button.in {
-  background: rgba(26, 95, 209, 0.07);
+  background: rgba(11, 120, 196, 0.07);
 }
 .dates {
   display: grid;
@@ -1252,8 +1252,8 @@ svg.i {
   }
 }
 :root {
-  --bg: #e9ecf0;
-  --side: #111318;
+  --bg: #eaf1f4;
+  --side: #04111c;
   --surf: #ffffff;
   --surf2: #eef0f3;
   --bd: #d8dce2;
@@ -1262,12 +1262,12 @@ svg.i {
   --mu: #4b5260;
   --sub: #6f7783;
   --soft: #2a2f37;
-  --ink: #111318;
-  --ink2: #1c1f26;
-  --ink3: #2a2e37;
-  --acc: #1a5fd1;
-  --acc2: #154ca8;
-  --accbg: #eaf1fc;
+  --ink: #04111c;
+  --ink2: #0a2236;
+  --ink3: #123049;
+  --acc: #0b78c4;
+  --acc2: #095e9c;
+  --accbg: #e3f4fa;
   --on: #ffffff;
   --fire: #e8590c;
   --water: #0e9bd8;
@@ -1886,7 +1886,7 @@ select:focus-visible {
   font-weight: 600;
 }
 .phone {
-  border: 10px solid #111318;
+  border: 10px solid #04111c;
   background: var(--bg);
   box-shadow: 0 24px 60px rgba(16, 24, 40, 0.22);
 }
