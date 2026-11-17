@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A.R.K.O · Monitoramento de água doce com satélites da NASA</title>
+<meta name="description" content="O A.R.K.O cruza 5 missões de satélite da NASA para mostrar onde rios, nascentes e aquíferos estão perdendo água, por que, e quanto tempo falta até o ponto crítico. Ver antes, para agir a tempo.">
+<meta name="keywords" content="monitoramento de água, satélite NASA, NISAR, Landsat, GRACE, SWOT, aquíferos, nascentes, rios, recursos hídricos, comitê de bacia, Goiânia, Rio Meia Ponte">
+<meta name="author" content="Equipe A.R.K.O">
+<meta name="theme-color" content="#04111C">
+<link rel="canonical" href="https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/landing/">
+<link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/favicon-192.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="A.R.K.O">
+<meta property="og:title" content="A.R.K.O · A água some devagar. Nós vemos antes.">
+<meta property="og:description" content="5 missões da NASA, 40 anos de história, uma tela. Veja onde a água de rios, nascentes e aquíferos está sumindo, com anos de antecedência.">
+<meta property="og:url" content="https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/landing/">
+<meta property="og:image" content="https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/landing/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A.R.K.O · A água some devagar. Nós vemos antes.">
+<meta name="twitter:description" content="Monitoramento de água doce com 5 missões de satélite da NASA.">
+<meta name="twitter:image" content="https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/landing/assets/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"Organization","@id":"#org","name":"A.R.K.O","url":"https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/landing/","logo":"https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/landing/assets/favicon-192.png","email":"yunjhinn@gmail.com","telephone":"+55-62-99611-0385","address":{"@type":"PostalAddress","addressLocality":"Goiânia","addressRegion":"GO","addressCountry":"BR"},"sameAs":["https://www.linkedin.com/in/joao-vitor-alves-yun-dev","https://github.com/YunJhinn/A.R.K.O---NASA-Space-Apps-2026"]},
+    {"@type":"SoftwareApplication","name":"A.R.K.O","applicationCategory":"EnvironmentalApplication","operatingSystem":"Web","url":"https://yunjhinn.github.io/A.R.K.O---NASA-Space-Apps-2026/app/index.html","description":"Plataforma que cruza dados abertos das missões NISAR, Landsat, HLS, SWOT e GRACE para monitorar rios, nascentes e aquíferos e estimar o prazo até o ponto crítico.","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"publisher":{"@id":"#org"}},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"O A.R.K.O é em tempo real?","acceptedAnswer":{"@type":"Answer","text":"Não. É monitoramento contínuo: o sistema se atualiza sozinho todo dia, e o radar NISAR passa sobre cada área a cada cerca de 12 dias. Para água, que muda em semanas e anos, isso basta para agir antes."}},
+      {"@type":"Question","name":"De onde vêm os dados?","acceptedAnswer":{"@type":"Answer","text":"De dados abertos de 5 missões de satélite da NASA e parceiros: NISAR, Landsat, HLS, SWOT e GRACE/GRACE-FO, além de mapas de cobertura do solo da ESA e da Impact Observatory."}},
+      {"@type":"Question","name":"O A.R.K.O cobre a minha região?","acceptedAnswer":{"@type":"Answer","text":"Hoje o sistema cobre regiões de demonstração no Brasil e no mundo. Como os dados de satélite são globais, incluir uma nova bacia é o primeiro passo de um piloto."}},
+      {"@type":"Question","name":"Satélite substitui a medição de campo?","acceptedAnswer":{"@type":"Answer","text":"Não. O A.R.K.O aponta onde a equipe deve ir conferir, com coordenadas exportáveis em GeoJSON e CSV. Satélite e campo se complementam."}}
+    ]}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --abyss:#04111C; --deep:#07213A; --navy:#0B2E4F;
+  --aqua:#2BD9F0; --aqua2:#7DF3FF; --blue:#1A8CFF; --blue2:#0B6FB8;
+  --paper:#F1F6F8; --paper2:#E4EDF1; --ink:#0B1B2B; --muted:#5B6B7A;
+  --line:rgba(11,27,43,.12); --lined:rgba(255,255,255,.12);
+  --red:#FF5A4E; --amber:#F5A524; --green:#1FB57A;
+  --r:22px; --max:1200px;
+  --head:"Archivo",Inter,system-ui,sans-serif; --body:Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;font-family:var(--body);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.55}
+img,video{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--aqua);outline-offset:3px;border-radius:6px}
+
+/* ---------- header ---------- */
+header.top{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
+header.top.scrolled{background:rgba(4,17,28,.82);backdrop-filter:blur(14px);border-color:var(--lined)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;color:#fff}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:44px;height:44px}
+.brand b{font-family:var(--head);font-weight:900;font-size:20px;letter-spacing:.06em}
+.brand b i{font-style:normal;color:var(--aqua)}
+.brand small{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9fb6c8;font-weight:600}
+.menu{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.menu a{text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#c9d7e2;transition:color .2s}
+.menu a span{color:var(--aqua);font-size:10px;margin-right:4px}
+.menu a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.04em;padding:14px 22px;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-aqua{background:linear-gradient(135deg,var(--aqua2),var(--aqua) 40%,var(--blue));color:#02121F;box-shadow:0 10px 30px -8px rgba(43,217,240,.6)}
+.btn-aqua:hover{box-shadow:0 16px 40px -8px rgba(43,217,240,.8)}
+.btn-ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-wa{background:#25D366;color:#03210F}
+.btn svg{width:18px;height:18px;flex:none}
+.burger{display:none;background:none;border:0;color:#fff;padding:8px;cursor:pointer}
+@media (max-width:1280px){.brand small{display:none}}
+@media (max-width:980px){
+  .menu,.nav .btn-aqua.desk{display:none}
+  .burger{display:block}
+  .menu.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;gap:0;background:var(--abyss);border-bottom:1px solid var(--lined);padding:8px 24px 20px}
+  .menu.open a{display:block;padding:14px 0;border-bottom:1px solid var(--lined);font-size:14px}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--abyss);color:#fff;overflow:hidden;padding:140px 0 90px;isolation:isolate}
+.hero::before{content:"";position:absolute;width:900px;height:900px;right:-260px;top:-160px;background:radial-gradient(circle,rgba(26,140,255,.45),rgba(43,217,240,.12) 40%,transparent 68%);z-index:-1}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:180px;background:linear-gradient(transparent,rgba(4,17,28,1));z-index:-1}
+.stars{position:absolute;inset:0;z-index:-2;background-image:radial-gradient(1px 1px at 20% 30%,#fff8,transparent),radial-gradient(1px 1px at 70% 15%,#fff6,transparent),radial-gradient(1.5px 1.5px at 85% 60%,#fff5,transparent),radial-gradient(1px 1px at 40% 80%,#fff4,transparent),radial-gradient(1px 1px at 10% 70%,#fff5,transparent),radial-gradient(1px 1px at 55% 45%,#fff3,transparent);opacity:.8}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--aqua)}
+.eyebrow::before{content:"";width:34px;height:2px;background:currentColor}
+.eyebrow.eb-dark{color:var(--blue2)}
+h1{font-family:var(--head);font-weight:900;font-size:clamp(44px,6.4vw,88px);line-height:.94;letter-spacing:-.035em;margin:22px 0 26px}
+h1 .soft{font-weight:400;color:#8FB3CC}
+h1 .mark{background:linear-gradient(90deg,var(--aqua2),var(--aqua),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.lead{font-size:clamp(17px,1.6vw,20px);color:#C7D6E2;max-width:600px;margin:0 0 34px}
+.lead b{color:#fff}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.stats{display:grid;grid-template-columns:repeat(3,auto);gap:34px;margin-top:52px;padding-top:28px;border-top:1px solid var(--lined);max-width:620px}
+.stats b{display:block;font-family:var(--head);font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-.02em}
+.stats span{font-size:12px;color:#9FB6C8;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.eye-stage{position:relative;aspect-ratio:1;max-width:520px;margin-left:auto;width:100%}
+.eye-stage .ring{position:absolute;inset:6%;border-radius:50%;border:1px dashed rgba(125,243,255,.18);animation:spin 80s linear infinite}
+.eye-stage .ring.r2{inset:18%;border-style:solid;border-color:rgba(125,243,255,.1);animation-duration:120s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eye-stage svg.big{position:absolute;inset:14%;width:72%;height:72%;filter:drop-shadow(0 30px 60px rgba(26,140,255,.45))}
+.badge-live{position:absolute;left:4%;bottom:10%;background:rgba(7,33,58,.85);border:1px solid var(--lined);backdrop-filter:blur(10px);border-radius:16px;padding:12px 16px;font-size:13px;display:flex;gap:10px;align-items:center}
+.badge-live i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(31,181,122,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(31,181,122,0)}100%{box-shadow:0 0 0 0 rgba(31,181,122,0)}}
+.badge-live small{display:block;color:#9FB6C8;font-size:11px}
+.badge-risk{position:absolute;right:0;top:12%;background:rgba(7,33,58,.85);border:1px solid rgba(255,90,78,.35);border-radius:16px;padding:12px 16px;font-size:13px}
+.badge-risk b{color:var(--red);font-family:var(--head);font-size:22px;display:block}
+.badge-risk small{display:block;color:#9FB6C8;font-size:11px}
+@media (max-width:980px){
+  .hero{padding:110px 0 70px}
+  .hero-grid{grid-template-columns:1fr}
+  .eye-stage{max-width:360px;margin:10px auto 0}
+  .stats{grid-template-columns:repeat(3,1fr);gap:16px}
+}
+
+/* ---------- strip (marquee) ---------- */
+.strip{background:var(--abyss);color:#9FB6C8;border-top:1px solid var(--lined);border-bottom:1px solid var(--lined);overflow:hidden}
+.strip .track{display:flex;gap:56px;padding:18px 0;white-space:nowrap;animation:marquee 38s linear infinite;width:max-content}
+.strip span{font-family:var(--head);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.strip span b{color:var(--aqua)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:110px 0}
+.sec-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:56px}
+h2{font-family:var(--head);font-weight:800;font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.03em;margin:16px 0 0}
+h2 .soft{font-weight:400;color:var(--muted)}
+.sec-head p{color:var(--muted);font-size:17px;margin:0}
+.dark{background:var(--abyss);color:#fff}
+.dark h2 .soft{color:#8FB3CC}
+.dark .sec-head p{color:#B4C6D4}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr;gap:16px}section{padding:80px 0}}
+
+/* problem */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;position:relative;overflow:hidden}
+.pcard .big{font-family:var(--head);font-weight:900;font-size:clamp(44px,5vw,66px);letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.pcard .big.red{color:var(--red)}
+.pcard h3{font-family:var(--head);font-size:19px;margin:14px 0 8px}
+.pcard p{color:var(--muted);margin:0;font-size:15px}
+.pcard .src{display:inline-block;margin-top:16px;font-size:12px;color:var(--blue2);font-weight:600;text-decoration:none}
+.pcard .src:hover{text-decoration:underline}
+.quote-band{margin-top:22px;background:var(--ink);color:#fff;border-radius:var(--r);padding:38px 40px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.quote-band q{font-family:var(--head);font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.2;quotes:none}
+.quote-band .qmark{font-family:var(--head);font-size:90px;line-height:.6;color:var(--aqua)}
+@media (max-width:860px){.prob-grid{grid-template-columns:1fr}.quote-band{grid-template-columns:1fr;padding:30px}}
+
+/* how */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{border:1px solid var(--lined);border-radius:var(--r);padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));position:relative}
+.step::before{counter-increment:s;content:"/0" counter(s);font-family:var(--head);font-weight:700;color:var(--aqua);font-size:13px;letter-spacing:.1em}
+.step h3{font-family:var(--head);font-size:21px;margin:16px 0 8px}
+.step p{color:#B4C6D4;font-size:15px;margin:0}
+.missions{margin-top:44px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.mission{border-radius:18px;padding:20px;background:var(--deep);border:1px solid var(--lined);transition:transform .25s,border-color .25s}
+.mission:hover{transform:translateY(-4px);border-color:rgba(43,217,240,.5)}
+.mission b{font-family:var(--head);font-size:20px;font-weight:800;display:block}
+.mission em{font-style:normal;font-size:11px;color:var(--aqua);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.mission p{color:#B4C6D4;font-size:13.5px;margin:10px 0 0}
+.how-note{margin-top:18px;color:#8FB3CC;font-size:13px}
+@media (max-width:980px){.steps{grid-template-columns:1fr 1fr}.missions{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps,.missions{grid-template-columns:1fr}}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:12px 20px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:var(--ink);display:flex;gap:8px;align-items:center;transition:all .2s}
+.tab:hover{border-color:var(--blue2)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.panel{display:none;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:40px;animation:fade .4s}
+.panel.on{display:grid}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.panel h3{font-family:var(--head);font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.05;margin:12px 0 14px}
+.panel p{color:var(--muted);margin:0 0 18px}
+.panel ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+.panel li{display:flex;gap:10px;font-size:15px}
+.panel li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;margin-top:2px;background:var(--paper2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%230B6FB8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.panel .who{font-size:13px;color:var(--ink);background:var(--paper);border-radius:14px;padding:14px 16px}
+.panel .who b{color:var(--blue2)}
+.shot{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(11,27,43,.35);background:#fff}
+.shot figcaption{font-size:12px;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line);background:var(--paper)}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.kpi{border-radius:12px;padding:10px 14px;background:var(--paper);font-size:12px;color:var(--muted)}
+.kpi b{display:block;font-family:var(--head);font-size:22px;color:var(--ink)}
+.kpi.r b{color:var(--red)}.kpi.a b{color:var(--amber)}.kpi.g b{color:var(--green)}
+@media (max-width:900px){.panel{grid-template-columns:1fr;padding:24px}}
+
+/* before/after */
+.ba-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.ba{position:relative;aspect-ratio:385/400;border-radius:24px;overflow:hidden;user-select:none;touch-action:none;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);border:1px solid var(--lined);cursor:ew-resize}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.2);transform-origin:15% 85%}
+.ba .after{clip-path:inset(0 0 0 var(--x,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.ba .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-weight:900;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.ba .tag{position:absolute;top:14px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em;background:rgba(4,17,28,.8);color:#fff}
+.ba .tag.l{left:14px}.ba .tag.rr{right:14px;background:var(--aqua);color:#02121F}
+.ba input{position:absolute;inset:0;opacity:0;cursor:ew-resize;width:100%;height:100%;margin:0}
+.years{margin-top:30px;background:var(--deep);border:1px solid var(--lined);border-radius:22px;padding:22px;display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}
+.years .ywin{border-radius:12px;overflow:hidden;width:150px;aspect-ratio:385/400}.years img{width:100%;height:100%;object-fit:cover;transform:scale(1.2);transform-origin:15% 85%}
+.years .yr{font-family:var(--head);font-weight:900;font-size:46px;letter-spacing:-.03em;line-height:1}
+.years input[type=range]{width:100%;accent-color:var(--aqua);margin-top:14px}
+.years .row{display:flex;justify-content:space-between;color:#8FB3CC;font-size:12px}
+.play{margin-top:12px;background:none;border:1px solid var(--lined);color:#fff;border-radius:999px;padding:8px 16px;font-weight:700;cursor:pointer;font-size:13px}
+.ba-facts{display:grid;gap:14px;margin-top:26px}
+.fact{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--lined)}
+.fact b{font-family:var(--head);font-size:24px;min-width:92px;color:var(--aqua)}
+.fact b.r{color:var(--red)}
+.fact span{color:#C7D6E2;font-size:14.5px}
+@media (max-width:900px){.ba-grid{grid-template-columns:1fr}.years{grid-template-columns:110px 1fr}.years .ywin{width:110px}}
+
+/* continuous */
+.cont-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.timeline-x{display:grid;gap:14px;margin:26px 0 0}
+.tl{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:start;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.tl b{font-family:var(--head);font-size:15px;color:var(--blue2);letter-spacing:.04em}
+.tl span{font-size:15px;color:var(--muted)}
+.tl span strong{color:var(--ink)}
+.video-card{border-radius:22px;overflow:hidden;background:var(--ink);box-shadow:0 40px 80px -30px rgba(11,27,43,.5)}
+.video-card video{width:100%}
+.video-card .cap{color:#C7D6E2;font-size:13px;padding:12px 16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media (max-width:900px){.cont-grid{grid-template-columns:1fr}}
+
+/* proof */
+.proof-top{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+.pt{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.pt b{font-family:var(--head);font-weight:900;font-size:40px;letter-spacing:-.03em;color:var(--green);line-height:1}
+.pt p{margin:8px 0 0;font-size:14px;color:var(--muted)}
+.proof-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:start}
+.honest{background:var(--ink);color:#fff;border-radius:22px;padding:28px}
+.honest h3{font-family:var(--head);margin:0 0 12px;font-size:22px}
+.honest li{color:#C7D6E2;font-size:14.5px;margin-bottom:10px}
+@media (max-width:900px){.proof-top{grid-template-columns:1fr 1fr}.proof-grid{grid-template-columns:1fr}}
+
+/* who */
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wcard{border-radius:var(--r);padding:28px;background:var(--deep);border:1px solid var(--lined);display:flex;flex-direction:column;gap:10px;transition:transform .25s,border-color .25s}
+.wcard:hover{transform:translateY(-4px);border-color:rgba(43,217,240,.45)}
+.wcard .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(43,217,240,.12);color:var(--aqua)}
+.wcard .ic svg{width:26px;height:26px}
+.wcard h3{font-family:var(--head);font-size:20px;margin:6px 0 0}
+.wcard p{color:#B4C6D4;font-size:14.5px;margin:0}
+.wcard .gain{margin-top:auto;padding-top:12px;border-top:1px solid var(--lined);font-size:13px;color:var(--aqua2)}
+@media (max-width:900px){.who-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.who-grid{grid-template-columns:1fr}}
+
+/* sponsor */
+.sponsor{background:linear-gradient(135deg,var(--blue2),var(--deep) 60%,var(--abyss));color:#fff;border-radius:32px;padding:60px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;position:relative;overflow:hidden}
+.sponsor::after{content:"";position:absolute;right:-120px;bottom:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(43,217,240,.35),transparent 65%)}
+.sponsor h2{color:#fff}
+.sponsor p{color:#C7D6E2;font-size:17px}
+.offer{display:grid;gap:12px;position:relative;z-index:1}
+.offer div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px}
+.offer b{display:block;font-family:var(--head);font-size:18px}
+.offer span{color:#C7D6E2;font-size:14px}
+@media (max-width:900px){.sponsor{grid-template-columns:1fr;padding:32px}}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.member{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;gap:18px;align-items:center}
+.avatar{width:64px;height:64px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--head);font-weight:900;font-size:22px;color:#02121F;background:linear-gradient(135deg,var(--aqua2),var(--blue))}
+.member b{font-family:var(--head);font-size:19px;display:block}
+.member span{color:var(--muted);font-size:14px}
+@media (max-width:900px){.team{grid-template-columns:1fr}}
+
+/* faq */
+.faq{display:grid;gap:12px;max-width:880px}
+details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0 24px}
+summary{cursor:pointer;list-style:none;padding:22px 0;font-family:var(--head);font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;line-height:1;color:var(--blue2);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 22px;color:var(--muted)}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}
+.channels{display:grid;gap:12px}
+.ch{display:flex;align-items:center;gap:16px;background:var(--deep);border:1px solid var(--lined);border-radius:18px;padding:18px 20px;text-decoration:none;color:#fff;transition:border-color .2s}
+.ch:hover{border-color:rgba(43,217,240,.5)}
+.ch .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(43,217,240,.12);color:var(--aqua);flex:none}
+.ch .ic svg{width:22px;height:22px}
+.ch small{display:block;color:#8FB3CC;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.ch b{font-size:16px;font-weight:600;word-break:break-all}
+.ch .copy{margin-left:auto;background:rgba(255,255,255,.08);border:1px solid var(--lined);color:#fff;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer}
+form.compose{background:#fff;color:var(--ink);border-radius:26px;padding:30px}
+form.compose h3{font-family:var(--head);margin:0 0 6px;font-size:24px}
+form.compose > p{margin:0 0 20px;color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13px;font-weight:600;transition:all .2s}
+.chips input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chips input:focus-visible + span{outline:3px solid var(--aqua)}
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea{font:inherit;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--paper)}
+.field textarea{min-height:90px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.preview{background:#E7F7EE;border-radius:14px;padding:14px 16px;font-size:13.5px;white-space:pre-wrap;margin:6px 0 16px;color:#0B3B23;border-left:4px solid #25D366}
+.preview small{display:block;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#1C7A47;margin-bottom:6px}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+
+footer{background:#020B12;color:#8FB3CC;padding:60px 0 30px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;padding-bottom:30px;border-bottom:1px solid var(--lined)}
+.foot h4{color:#fff;font-family:var(--head);margin:0 0 12px;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.foot a{display:block;text-decoration:none;margin-bottom:8px;color:#B4C6D4}
+.foot a:hover{color:var(--aqua)}
+.foot a.brand{display:flex}
+.legal{padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px}
+@media (max-width:800px){.foot{grid-template-columns:1fr}}
+
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.5);transition:transform .2s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;color:#fff}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+.toast{visibility:hidden;position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;font-weight:600;z-index:80;transition:transform .3s}
+.toast.show{visibility:visible;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5.1 5.24-1.37A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.2 8.2 0 1 1 6.95 3.86Zm4.5-6.14c-.25-.12-1.47-.72-1.7-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.79.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.76-1.83c-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.8 2.8 0 0 0-.86 2.07 4.8 4.8 0 0 0 1 2.56 11 11 0 0 0 4.2 3.7c1.57.68 2.18.73 2.96.62.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.17-.48-.29Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4z M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.76-2.06 4.02 0 4.76 2.64 4.76 6.08V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></symbol>
+  <symbol id="i-app" viewBox="0 0 24 24"><path d="M3 5h18v12H3zM8 21h8M12 17v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="A.R.K.O, início">
+      <img src="assets/logo-icon.svg" alt="" width="44" height="44">
+      <span><b>A<i>.</i>R<i>.</i>K<i>.</i>O</b><small>O olho que vê a água</small></span>
+    </a>
+    <nav aria-label="Principal">
+      <ul class="menu" id="menu">
+        <li><a href="#problema"><span>01</span>Problema</a></li>
+        <li><a href="#como"><span>02</span>Como funciona</a></li>
+        <li><a href="#vemos"><span>03</span>O que vemos</a></li>
+        <li><a href="#prova"><span>04</span>Prova</a></li>
+        <li><a href="#parceria"><span>05</span>Parceria</a></li>
+        <li><a href="#contato"><span>06</span>Contato</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-aqua desk" href="../app/index.html">Abrir o sistema <svg><use href="#i-arrow"/></svg></a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <svg width="26" height="26" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- HERO -->
+<section class="hero" id="inicio" aria-labelledby="h-hero">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Satélites da NASA · Água doce</div>
+      <h1 id="h-hero">A água some devagar.<br><span class="soft">Nós vemos</span> <span class="mark">anos antes.</span></h1>
+      <p class="lead">O <b>A.R.K.O</b> cruza <b>5 missões de satélite da NASA</b> para mostrar onde rios, nascentes e aquíferos estão perdendo água, <b>por que</b>, e <b>quanto tempo falta</b> até o ponto crítico. Com coordenadas, para a equipe ir ao lugar certo.</p>
+      <div class="cta-row">
+        <a class="btn btn-aqua" href="../app/index.html">Abrir o sistema ao vivo <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#parceria">Quero patrocinar ou usar</a>
+      </div>
+      <div class="stats">
+        <div><b data-count="5">5</b><span>missões da NASA</span></div>
+        <div><b data-count="40">40</b><span>anos de história</span></div>
+        <div><b>24h</b><span>atualiza sozinho</span></div>
+      </div>
+    </div>
+    <div class="eye-stage" aria-hidden="true">
+      <div class="ring"></div><div class="ring r2"></div>
+      <svg class="big" viewBox="0 0 128 128">
+        <defs>
+          <linearGradient id="hl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7DF3FF"/><stop offset="1" stop-color="#1A8CFF"/></linearGradient>
+          <radialGradient id="hi" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#5FE3F5"/><stop offset=".55" stop-color="#1477D6"/><stop offset="1" stop-color="#062C5C"/></radialGradient>
+          <clipPath id="hc"><circle cx="64" cy="64" r="23"/></clipPath>
+        </defs>
+        <path d="M8.4 86.5 A60 26 -22 0 1 119.6 41.5" fill="none" stroke="#2BD9F0" stroke-opacity=".3" stroke-width="1.6"/>
+        <path d="M8 64 Q64 8 120 64 Q64 120 8 64 Z" fill="#04172A" stroke="url(#hl)" stroke-width="4.5" stroke-linejoin="round"/>
+        <circle cx="64" cy="64" r="23" fill="url(#hi)"/>
+        <g clip-path="url(#hc)" fill="none" stroke="#E6FDFF" stroke-linecap="round">
+          <path d="M25 70 q6.5 -5 13 0 t13 0 t13 0 t13 0 t13 0 t13 0" stroke-width="2.2" stroke-opacity=".75"><animateTransform attributeName="transform" type="translate" from="0 0" to="13 0" dur="2.4s" repeatCount="indefinite"/></path>
+          <path d="M25 78 q6.5 -5 13 0 t13 0 t13 0 t13 0 t13 0 t13 0" stroke-width="1.8" stroke-opacity=".45"><animateTransform attributeName="transform" type="translate" from="13 0" to="0 0" dur="3.2s" repeatCount="indefinite"/></path>
+        </g>
+        <path d="M64 49 C64 49 54 61 54 66.5 A10 10 0 0 0 74 66.5 C74 61 64 49 64 49 Z" fill="#021022"/>
+        <circle cx="60.5" cy="64" r="2.6" fill="#E6FDFF"/>
+        <path id="orb" d="M119.6 41.5 A60 26 -22 0 1 8.4 86.5 A60 26 -22 0 1 119.6 41.5" fill="none"/>
+        <path d="M119.6 41.5 A60 26 -22 0 1 8.4 86.5" fill="none" stroke="#2BD9F0" stroke-width="1.6" stroke-opacity=".9"/>
+        <g>
+          <animateMotion dur="14s" repeatCount="indefinite" rotate="auto"><mpath href="#orb"/></animateMotion>
+          <rect x="-10" y="-2.4" width="6" height="4.8" rx=".8" fill="#7DF3FF"/>
+          <rect x="4" y="-2.4" width="6" height="4.8" rx=".8" fill="#7DF3FF"/>
+          <rect x="-3.4" y="-3.4" width="6.8" height="6.8" rx="1.5" fill="#E8FBFF"/>
+        </g>
+      </svg>
+      <div class="badge-live"><i></i><div>Monitorando agora<small>atualização diária · NISAR a cada ~12 dias</small></div></div>
+      <div class="badge-risk"><b>19</b>indicadores em alerta<small>no painel de cenários</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true"><div class="track">
+  <span><b>NISAR</b> radar através das nuvens</span><span><b>Landsat</b> 40 anos de fotos</span><span><b>HLS</b> imagem a cada 2–5 dias</span><span><b>SWOT</b> altura dos rios</span><span><b>GRACE</b> peso da água no subsolo</span><span><b>NASA Space Apps</b> 2026</span>
+  <span><b>NISAR</b> radar através das nuvens</span><span><b>Landsat</b> 40 anos de fotos</span><span><b>HLS</b> imagem a cada 2–5 dias</span><span><b>SWOT</b> altura dos rios</span><span><b>GRACE</b> peso da água no subsolo</span><span><b>NASA Space Apps</b> 2026</span>
+</div></div>
+
+<!-- 01 PROBLEMA -->
+<section id="problema" aria-labelledby="h-prob">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow eb-dark">01 · O problema</div><h2 id="h-prob">A crise não chega de repente. <span class="soft">Ela chega sem aviso.</span></h2></div>
+      <p>Rios assoreiam, nascentes perdem a mata e aquíferos esvaziam um pouco a cada ano. Quem cuida da água mede em poucos pontos e só percebe quando a torneira seca.</p>
+    </div>
+    <div class="prob-grid">
+      <article class="pcard reveal">
+        <div class="big red">2026</div>
+        <h3>A ONU declarou falência hídrica global</h3>
+        <p>Em janeiro, a Universidade das Nações Unidas afirmou que o mundo entrou na era da falência hídrica: usamos mais água do que a natureza repõe.</p>
+        <a class="src" href="https://unu.edu/inweh/news/world-enters-era-of-global-water-bankruptcy" target="_blank" rel="noopener">Fonte: UNU-INWEH, 20/01/2026 ↗</a>
+      </article>
+      <article class="pcard reveal">
+        <div class="big">~70%</div>
+        <h3>dos grandes aquíferos estão em queda</h3>
+        <p>A água guardada embaixo da terra, que abastece cidades e lavouras, vem diminuindo há décadas na maior parte do mundo.</p>
+        <a class="src" href="https://unu.edu/inweh/news/world-enters-era-of-global-water-bankruptcy" target="_blank" rel="noopener">Fonte: UNU-INWEH ↗</a>
+      </article>
+      <article class="pcard reveal">
+        <div class="big red">−122 km³</div>
+        <h3>de água subterrânea em Goiás e no DF desde 2002</h3>
+        <p>Medido pelos satélites GRACE no A.R.K.O. É água que não aparece em nenhuma foto, mas faz falta em cada poço e nascente.</p>
+        <a class="src" href="../app/index.html#aquiferos">Ver no sistema ↗</a>
+      </article>
+    </div>
+    <div class="quote-band reveal">
+      <div class="qmark" aria-hidden="true">“</div>
+      <q>E se, em vez de descobrir a crise quando ela chega, a gente pudesse ver anos antes?</q>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COMO FUNCIONA -->
+<section class="dark" id="como" aria-labelledby="h-como">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow">02 · Como funciona</div><h2 id="h-como">Do espaço até a <span class="soft">equipe de campo.</span></h2></div>
+      <p>Um robô roda todo dia, baixa os dados abertos da NASA, calcula os indicadores com estatística robusta e publica tudo no sistema. Sem planilha, sem espera.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Satélites olham</h3><p>Cinco missões medem a superfície, a margem, a altura do rio e o peso da água no subsolo.</p></div>
+      <div class="step reveal"><h3>Um confirma o outro</h3><p>Cruzamos as fontes. Se o radar vê o chão afundando e o GRACE vê a água sumindo, o sinal é forte.</p></div>
+      <div class="step reveal"><h3>Comparamos com 40 anos</h3><p>Cada lugar é medido contra o seu próprio passado. Mostramos o ano em que o padrão mudou e o prazo até o ponto crítico.</p></div>
+      <div class="step reveal"><h3>Você age</h3><p>Focos priorizados, com ação sugerida, exportados em GeoJSON e CSV com coordenadas. A equipe vai direto ao lugar certo.</p></div>
+    </div>
+    <div class="missions">
+      <div class="mission reveal"><em>Radar · NASA-ISRO</em><b>NISAR</b><p>Enxerga através de nuvens e fumaça. Vê água, margem e mata mudando, e o chão afundando sobre aquíferos.</p></div>
+      <div class="mission reveal"><em>Óptico · desde 1985</em><b>Landsat</b><p>A memória de 40 anos: fotos reais, ano a ano, de cada trecho de rio.</p></div>
+      <div class="mission reveal"><em>Óptico · 2–5 dias</em><b>HLS</b><p>Imagem nova a cada poucos dias desde 2017. É o monitor contínuo de turbidez e mata ciliar.</p></div>
+      <div class="mission reveal"><em>Altimetria</em><b>SWOT</b><p>Mede a altura da água dos rios do espaço e mostra quando a vazante fica mais baixa que o normal.</p></div>
+      <div class="mission reveal"><em>Gravidade · desde 2002</em><b>GRACE</b><p>Pesa a água guardada no subsolo. É assim que vemos um aquífero esvaziar.</p></div>
+    </div>
+    <p class="how-note">Também usamos mapas de cobertura do solo da ESA (CCI) e da Impact Observatory para acompanhar a vegetação em volta das nascentes.</p>
+  </div>
+</section>
+
+<!-- 03 O QUE VEMOS -->
+<section id="vemos" aria-labelledby="h-vemos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow eb-dark">03 · O que vemos</div><h2 id="h-vemos">Um olho para cada <span class="soft">parte da água.</span></h2></div>
+      <p>Escolha uma aba. Todas as telas abaixo são do sistema funcionando, com dados reais.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Módulos do A.R.K.O">
+      <button class="tab" role="tab" id="t-rios" aria-controls="p-rios" aria-selected="true">Rios</button>
+      <button class="tab" role="tab" id="t-nasc" aria-controls="p-nasc" aria-selected="false" tabindex="-1">Nascentes</button>
+      <button class="tab" role="tab" id="t-aq" aria-controls="p-aq" aria-selected="false" tabindex="-1">Aquíferos</button>
+      <button class="tab" role="tab" id="t-radar" aria-controls="p-radar" aria-selected="false" tabindex="-1">Radar NISAR</button>
+      <button class="tab" role="tab" id="t-cen" aria-controls="p-cen" aria-selected="false" tabindex="-1">Cenários futuros</button>
+    </div>
+
+    <div class="panel on" role="tabpanel" id="p-rios" aria-labelledby="t-rios">
+      <div>
+        <div class="eyebrow eb-dark">Histórico do rio</div>
+        <h3>40 anos de cada rio, foto a foto.</h3>
+        <p>Turbidez, área de água, mata ciliar e solo exposto, comparados com o normal de cada mês. O sistema diz o que mudou, a causa provável e o que fazer agora.</p>
+        <div class="kpis">
+          <div class="kpi a"><b>Atenção</b>Meia Ponte: piorando</div>
+          <div class="kpi"><b>~2046</b>ponto crítico estimado</div>
+          <div class="kpi"><b>82</b>imagens Landsat</div>
+        </div>
+        <ul>
+          <li>Linha do tempo com fotos reais de satélite desde 1985</li>
+          <li>Alerta quando uma imagem nova sai da faixa normal</li>
+          <li>Causa provável e ações sugeridas para prefeitura e gestão da água</li>
+        </ul>
+        <div class="who"><b>Serve para:</b> comitês de bacia, companhias de saneamento e prefeituras que precisam proteger o manancial.</div>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/img/mp_timeline.webp" alt="Tela do A.R.K.O com a linha do tempo do Rio Meia Ponte e indicadores de turbidez, área de água, mata ciliar e solo exposto" loading="lazy" width="1400" height="872"><figcaption>Rio Meia Ponte, Goiânia: foto mais recente e estado de cada indicador.</figcaption></figure>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-nasc" aria-labelledby="t-nasc" hidden>
+      <div>
+        <div class="eyebrow eb-dark">Nascentes</div>
+        <h3>A mata que protege a água, medida em volta de cada nascente.</h3>
+        <p>Acompanhamos a vegetação nativa num raio de 5 km da nascente desde 1992 e mostramos quanto falta até o limite crítico de 20%.</p>
+        <div class="kpis">
+          <div class="kpi"><b>44,6%</b>vegetação nativa hoje</div>
+          <div class="kpi r"><b>−9,6 pts</b>desde 1992</div>
+          <div class="kpi g"><b>Estável</b>desde 1999</div>
+        </div>
+        <ul>
+          <li>Comparação lado a lado: 1986 e 2026</li>
+          <li>Ano de inflexão, quando o ritmo de perda mudou</li>
+          <li>Alerta 10 anos antes de chegar ao limite</li>
+        </ul>
+        <div class="who"><b>Serve para:</b> órgãos ambientais, produtores rurais e ONGs que cuidam de áreas de recarga.</div>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/img/nasc_araguaia.webp" alt="Tela do A.R.K.O com a Nascente do Rio Araguaia em 1986 e 2026 e o gráfico da vegetação nativa" loading="lazy" width="1400" height="645"><figcaption>Nascente do Rio Araguaia, Serra do Caiapó (GO).</figcaption></figure>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-aq" aria-labelledby="t-aq" hidden>
+      <div>
+        <div class="eyebrow eb-dark">Aquíferos</div>
+        <h3>A água que ninguém vê, pesada do espaço.</h3>
+        <p>Os satélites GRACE medem a massa de água no subsolo desde 2002. Mostramos a tendência, as secas de cada ano e para onde o aquífero vai se nada mudar.</p>
+        <div class="kpis">
+          <div class="kpi r"><b>Em risco</b>Goiás e DF</div>
+          <div class="kpi r"><b>−122 km³</b>desde 2002</div>
+          <div class="kpi"><b>10</b>aquíferos no painel</div>
+        </div>
+        <ul>
+          <li>Ranking dos aquíferos do mundo por velocidade de perda</li>
+          <li>Mapa anual de 2002 até a projeção de 2030</li>
+          <li>Radar NISAR mede o chão afundando sobre o aquífero</li>
+        </ul>
+        <div class="who"><b>Serve para:</b> gestores de outorga, saneamento que usa poços, agro irrigado e seguradoras.</div>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/img/aq_goias.webp" alt="Tela do A.R.K.O mostrando a água subterrânea de Goiás e DF em queda desde 2002, com projeção para 2030" loading="lazy" width="1400" height="630"><figcaption>Águas subterrâneas de Goiás e DF: tendência de −0,87 cm por ano.</figcaption></figure>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-radar" aria-labelledby="t-radar" hidden>
+      <div>
+        <div class="eyebrow eb-dark">Radar NISAR</div>
+        <h3>Através das nuvens, com coordenadas.</h3>
+        <p>O NISAR, novo satélite radar da NASA e da ISRO, vê a superfície mesmo com nuvem e fumaça. O A.R.K.O compara cada passagem e aponta onde a água, a margem e a mata mudaram.</p>
+        <div class="kpis">
+          <div class="kpi"><b>~12 dias</b>entre passagens</div>
+          <div class="kpi"><b>GeoJSON</b>e CSV para campo</div>
+        </div>
+        <ul>
+          <li>Focos classificados por prioridade e com ação sugerida</li>
+          <li>Água fora do leito, margem exposta e perda de mata</li>
+          <li>Movimento do solo: a Cidade do México afundando cerca de 26 cm por ano</li>
+        </ul>
+        <div class="who"><b>Serve para:</b> fiscalização ambiental e equipes que precisam saber exatamente onde ir.</div>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/img/radar_mapa.webp" alt="Mapa de radar NISAR do Rio Madeira no A.R.K.O com focos de mudança marcados perto de Novo Aripuanã" loading="lazy" width="1200" height="818"><figcaption>Radar NISAR sobre o Rio Madeira (AM), outubro de 2026.</figcaption></figure>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-cen" aria-labelledby="t-cen" hidden>
+      <div>
+        <div class="eyebrow eb-dark">Cenários futuros</div>
+        <h3>Se nada mudar, quando chega o ponto crítico?</h3>
+        <p>Todos os lugares e indicadores num ranking de urgência, com o ano provável do ponto crítico e quando o alerta deve começar. É uma projeção de tendência, não uma certeza, e o sistema deixa isso claro.</p>
+        <div class="kpis">
+          <div class="kpi r"><b>19</b>em alerta</div>
+          <div class="kpi a"><b>2</b>atenção</div>
+          <div class="kpi"><b>12</b>monitorar</div>
+          <div class="kpi g"><b>27</b>sem risco</div>
+        </div>
+        <ul>
+          <li>Rios, aquíferos e nascentes no mesmo ranking</li>
+          <li>Faixa provável do ano crítico, não um número mágico</li>
+          <li>Prioriza onde investir primeiro</li>
+        </ul>
+        <div class="who"><b>Serve para:</b> planos de bacia, planejamento público e relatórios ESG.</div>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/img/aq_tabela.webp" alt="Tabela do A.R.K.O comparando aquíferos do mundo por tendência e projeção para 2030" loading="lazy" width="1400" height="438"><figcaption>Aquíferos do mundo comparados pela mesma régua.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES / DEPOIS -->
+<section class="dark" id="antes-depois" aria-labelledby="h-ba">
+  <div class="wrap ba-grid">
+    <div class="reveal">
+      <div class="ba" id="ba" style="--x:50%">
+        <img src="../data/rios/fotos/meiaponte_1985.jpg" alt="Rio Meia Ponte em Goiânia em 1985, imagem Landsat" width="385" height="400">
+        <img class="after" src="../data/rios/fotos/meiaponte_2026.jpg" alt="Rio Meia Ponte em Goiânia em 2026, imagem de satélite" width="385" height="400">
+        <div class="handle"></div>
+        <span class="tag l">1985</span><span class="tag rr">2026</span>
+        <input type="range" min="0" max="100" value="50" aria-label="Arraste para comparar 1985 e 2026">
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Arraste e veja</div>
+      <h2 id="h-ba">Goiânia, <span class="soft">41 anos depois.</span></h2>
+      <p style="color:#C7D6E2;font-size:17px">O mesmo trecho do Rio Meia Ponte, fonte de água da cidade, visto pelo Landsat em 1985 e hoje. A cidade avançou sobre as margens, e o sistema mede o que isso fez com o rio.</p>
+      <div class="ba-facts">
+        <div class="fact"><b class="r">−40%</b><span>área de água hoje em relação ao melhor período (2010–2019)</span></div>
+        <div class="fact"><b>~2046</b><span>se nada mudar, a área de água chega ao nível crítico por volta desse ano</span></div>
+        <div class="fact"><b>17,5%</b><span>de mata ciliar hoje; a meta de recuperação é 24,9%</span></div>
+      </div>
+      <div class="years" id="years">
+        <div class="ywin"><img id="yimg" src="../data/rios/fotos/meiaponte_1985.jpg" alt="Rio Meia Ponte no ano selecionado" width="150" height="156"></div>
+        <div>
+          <div class="yr" id="ylabel">1985</div>
+          <input type="range" id="yrange" min="0" max="0" value="0" aria-label="Escolha o ano">
+          <div class="row"><span>1985</span><span>2026</span></div>
+          <button class="play" id="yplay" type="button">▶ Reproduzir os 40 anos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONITORAMENTO CONTINUO -->
+<section id="continuo" aria-labelledby="h-cont">
+  <div class="wrap cont-grid">
+    <div class="reveal">
+      <div class="eyebrow eb-dark">Por que anos, e não um dia</div>
+      <h2 id="h-cont">Uma foto não diz nada. <span class="soft">Quarenta anos dizem tudo.</span></h2>
+      <p style="color:var(--muted);font-size:17px;margin-top:20px">Um rio pode parecer normal numa imagem e estar piorando há uma década. Só o acompanhamento contínuo separa o ruído de um dia da tendência que leva à crise.</p>
+      <div class="timeline-x">
+        <div class="tl"><b>Passado</b><span><strong>Qual era o normal?</strong> 40 anos de Landsat definem a régua de cada lugar.</span></div>
+        <div class="tl"><b>Virada</b><span><strong>Quando mudou?</strong> Encontramos o ano em que o padrão virou.</span></div>
+        <div class="tl"><b>Hoje</b><span><strong>Está fora do normal?</strong> Cada imagem nova, a cada 2–5 dias, é comparada com o normal do mês.</span></div>
+        <div class="tl"><b>Futuro</b><span><strong>Quanto tempo resta?</strong> A tendência indica quando o ponto crítico chega, e o alerta toca 10 anos antes.</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="video-card">
+        <video src="assets/img/demo_meiaponte.mp4" poster="assets/img/demo_poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Demonstração do A.R.K.O: fotos de satélite do Rio Meia Ponte ano a ano e gráficos"></video>
+        <div class="cap"><span>Rio Meia Ponte no A.R.K.O: 40 anos em segundos</span><a href="../app/index.html#historico" style="color:var(--aqua2)">Abrir ao vivo ↗</a></div>
+      </div>
+      <figure class="shot" style="margin:18px 0 0"><img src="assets/img/mp_turbidez.webp" alt="Gráfico de turbidez da água do Rio Meia Ponte de 1985 a 2026 com projeção para 2030" loading="lazy" width="1400" height="652"><figcaption>Turbidez do Meia Ponte desde 1985, com a tendência e a projeção.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PROVA -->
+<section id="prova" style="background:var(--paper2)" aria-labelledby="h-prova">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow eb-dark">04 · Prova</div><h2 id="h-prova">Bate com a realidade? <span class="soft">Conferimos.</span></h2></div>
+      <p>Comparamos o que o A.R.K.O mediu do espaço com estudos científicos e registros oficiais. E dizemos com clareza o que os dados não provam.</p>
+    </div>
+    <div class="proof-top">
+      <div class="pt reveal"><b>4 de 4</b><p>checagens independentes batem com o sistema</p></div>
+      <div class="pt reveal"><b>1989</b><p>ano mais turvo do Tapajós, auge da corrida do ouro</p></div>
+      <div class="pt reveal"><b>2024</b><p>rio mais baixo medido pelo SWOT, como registrou o Serviço Geológico do Brasil</p></div>
+      <div class="pt reveal"><b>2006</b><p>reserva de Massingir encheu após a reforma, como dizem os engenheiros</p></div>
+    </div>
+    <div class="proof-grid">
+      <figure class="shot reveal" style="margin:0"><img src="assets/img/val_tapajos.webp" alt="Gráfico do A.R.K.O mostrando a turbidez do Rio Tapajós com picos nas corridas do ouro" loading="lazy" width="1400" height="560"><figcaption>Tapajós: o sistema achou a corrida do ouro dos anos 80 e 90, como um estudo de 2015.</figcaption></figure>
+      <div class="honest reveal">
+        <h3>O que não afirmamos</h3>
+        <ul>
+          <li>Não é em tempo real: atualiza todo dia, e o NISAR passa a cada ~12 dias.</li>
+          <li>Não substitui a medição de campo: aponta onde ir medir.</li>
+          <li>Projeções supõem que a tendência continua. São alerta, não previsão.</li>
+          <li>Quando o dado não é confiável, o sistema mostra “inconclusivo”.</li>
+        </ul>
+        <a class="btn btn-aqua" href="../app/index.html#validacao" style="margin-top:8px">Ver a validação completa <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="dark" id="para-quem" aria-labelledby="h-quem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow">Para quem</div><h2 id="h-quem">Quem cuida da água <span class="soft">ganha tempo.</span></h2></div>
+      <p>O mesmo sistema responde a perguntas diferentes, conforme quem está olhando.</p>
+    </div>
+    <div class="who-grid">
+      <article class="wcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18c3-3 6 3 9 0s6 3 9 0M3 13c3-3 6 3 9 0s6 3 9 0"/></svg></div><h3>Comitês de bacia</h3><p>Dados de 40 anos para o plano de bacia, a alocação de água e as prioridades de investimento.</p><div class="gain">Decidir com histórico, não com sorte</div></article>
+      <article class="wcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Órgãos ambientais</h3><p>Onde fiscalizar primeiro: focos ordenados por prioridade, exportados com coordenadas.</p><div class="gain">Equipe pequena, estado inteiro</div></article>
+      <article class="wcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg></div><h3>Saneamento</h3><p>A saúde do manancial e do aquífero que abastecem a cidade, com prazo até o ponto crítico.</p><div class="gain">Evitar o rodízio antes dele</div></article>
+      <article class="wcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10l8-6 8 6v10M9 20v-6h6v6"/></svg></div><h3>Agro, indústria e energia</h3><p>Risco hídrico de cada fazenda, planta ou reservatório, antes que a outorga aperte.</p><div class="gain">Operação sem surpresa</div></article>
+      <article class="wcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19h16M6 16V9M10 16V5M14 16v-6M18 16V8"/></svg></div><h3>Seguradoras e ESG</h3><p>Indicadores independentes, de satélite, para medir risco climático e provar impacto.</p><div class="gain">Dado auditável, de fonte pública</div></article>
+      <article class="wcard reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8l9-4 9 4-9 4zM7 10v5c3 2 7 2 10 0v-5"/></svg></div><h3>Pesquisa e escolas</h3><p>40 anos de imagens para estudar, ensinar e mostrar à comunidade o que mudou no seu rio.</p><div class="gain">Ciência aberta, na prática</div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PARCERIA -->
+<section id="parceria" aria-labelledby="h-parc">
+  <div class="wrap">
+    <div class="sponsor reveal">
+      <div>
+        <div class="eyebrow">05 · Parceria</div>
+        <h2 id="h-parc">Vamos tirar o A.R.K.O da tela e levar ao campo.</h2>
+        <p>O sistema já funciona e se atualiza sozinho. O próximo passo é validar em campo, com quem cuida da água de verdade. Procuramos parceiros para isso.</p>
+        <div class="cta-row" style="margin-top:26px">
+          <a class="btn btn-aqua" href="#contato">Quero conversar <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" data-wa="Olá! Vi a página do A.R.K.O e quero saber mais sobre patrocínio e parceria." href="#">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="offer">
+        <div><b>Piloto de 90 dias, sem custo</b><span>Para um comitê de bacia, órgão ambiental ou companhia de saneamento. Você escolhe a bacia, nós entregamos relatório e conferimos os focos em campo juntos.</span></div>
+        <div><b>Patrocínio e fomento</b><span>Apoio para infraestrutura, validação em campo e expansão para novas regiões, com sua marca ligada à proteção da água.</span></div>
+        <div><b>Parceria científica</b><span>Pesquisadores de recursos hídricos para validar métodos e publicar resultados com a gente.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" style="padding-top:0" aria-labelledby="h-eq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow eb-dark">Equipe</div><h2 id="h-eq">Feito em Goiânia, <span class="soft">no NASA Space Apps 2026.</span></h2></div>
+      <p>Criado no desafio “Dancing with the SARs”, dedicado ao satélite NISAR. Uma equipe que junta tecnologia, dados, design, comunicação e negócios.</p>
+    </div>
+    <div class="team">
+      <div class="member reveal"><div class="avatar">JV</div><div><b>João Vitor Alves</b><span>Tecnologia, design e dados</span></div></div>
+      <div class="member reveal"><div class="avatar">DP</div><div><b>Danillo Peixoto</b><span>Comunicação e negócios</span></div></div>
+      <div class="member reveal"><div class="avatar">JP</div><div><b>Joe Pereira</b><span>Tecnologia e dados</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow eb-dark">Perguntas</div><h2 id="h-faq">Perguntas <span class="soft">frequentes.</span></h2></div></div>
+    <div class="faq">
+      <details class="reveal"><summary>O A.R.K.O é em tempo real?</summary><p>Não, e preferimos ser precisos. É monitoramento contínuo: o sistema se atualiza sozinho todo dia, e o radar NISAR passa sobre cada área a cada cerca de 12 dias. Para água, que muda em semanas e anos, isso basta para agir antes.</p></details>
+      <details class="reveal"><summary>De onde vêm os dados?</summary><p>De dados abertos de 5 missões de satélite: NISAR (NASA e ISRO), Landsat, HLS, SWOT e GRACE/GRACE-FO, além de mapas de cobertura do solo da ESA e da Impact Observatory. Cada número no sistema mostra a sua fonte.</p></details>
+      <details class="reveal"><summary>Cobre a minha região?</summary><p>Hoje cobrimos regiões de demonstração: quatro em Goiás, outras no Brasil e no mundo, e dez aquíferos. Como os dados de satélite são globais, incluir a sua bacia é o primeiro passo de um piloto.</p></details>
+      <details class="reveal"><summary>Satélite substitui a medição de campo?</summary><p>Não. O A.R.K.O aponta onde a equipe deve ir conferir e exporta os focos com coordenadas em GeoJSON e CSV. Satélite e campo se complementam.</p></details>
+      <details class="reveal"><summary>Quanto custa?</summary><p>O sistema de demonstração é aberto e gratuito. Para organizações, oferecemos um piloto de 90 dias sem custo. Depois, o modelo é combinado conforme a área e as necessidades de cada parceiro.</p></details>
+      <details class="reveal"><summary>O que é o NASA Space Apps Challenge?</summary><p>É um hackathon internacional organizado pela NASA, em que equipes do mundo inteiro criam soluções com dados abertos da agência. O A.R.K.O nasceu na edição de 2026, em Goiânia.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 06 CONTATO -->
+<section class="dark" id="contato" aria-labelledby="h-cont2">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow">06 · Contato</div><h2 id="h-cont2">Fale com a gente. <span class="soft">A água não espera.</span></h2></div>
+      <p>Patrocínio, piloto, pesquisa ou imprensa: escolha o assunto, a mensagem sai pronta no WhatsApp.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="channels reveal">
+        <a class="ch" data-wa="Olá! Vi a página do A.R.K.O e quero conversar." href="#"><span class="ic"><svg><use href="#i-wa"/></svg></span><span><small>WhatsApp</small><b>(62) 99611-0385</b></span><button class="copy" type="button" data-copy="+55 62 99611-0385">Copiar</button></a>
+        <a class="ch" href="mailto:yunjhinn@gmail.com?subject=A.R.K.O%20%E2%80%93%20contato"><span class="ic"><svg><use href="#i-mail"/></svg></span><span><small>E-mail</small><b>yunjhinn@gmail.com</b></span><button class="copy" type="button" data-copy="yunjhinn@gmail.com">Copiar</button></a>
+        <a class="ch" id="ch-in" href="#" target="_blank" rel="noopener" hidden><span class="ic"><svg><use href="#i-in"/></svg></span><span><small>LinkedIn</small><b id="in-label">João Vitor Alves</b></span></a>
+        <a class="ch" href="../app/index.html"><span class="ic"><svg><use href="#i-app"/></svg></span><span><small>Sistema ao vivo</small><b>Abrir o MVP do A.R.K.O</b></span></a>
+        <a class="ch" href="https://github.com/YunJhinn/A.R.K.O---NASA-Space-Apps-2026" target="_blank" rel="noopener"><span class="ic"><svg><use href="#i-gh"/></svg></span><span><small>Código aberto</small><b>GitHub do projeto</b></span></a>
+      </div>
+      <form class="compose reveal" id="compose" novalidate>
+        <h3>Monte sua mensagem</h3>
+        <p>Escolha o assunto e preencha. Você revisa antes de enviar.</p>
+        <div class="chips" role="group" aria-label="Assunto">
+          <label><input type="radio" name="assunto" value="patrocinar o A.R.K.O" checked><span>Patrocinar</span></label>
+          <label><input type="radio" name="assunto" value="fazer um piloto do A.R.K.O na minha região"><span>Piloto</span></label>
+          <label><input type="radio" name="assunto" value="uma parceria de pesquisa"><span>Pesquisa</span></label>
+          <label><input type="radio" name="assunto" value="uma pauta de imprensa sobre o A.R.K.O"><span>Imprensa</span></label>
+          <label><input type="radio" name="assunto" value="saber mais sobre o A.R.K.O"><span>Outro</span></label>
+        </div>
+        <div class="two">
+          <div class="field"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" placeholder="Maria Silva"></div>
+          <div class="field"><label for="f-org">Organização</label><input id="f-org" name="org" autocomplete="organization" placeholder="Comitê, empresa, universidade..."></div>
+        </div>
+        <div class="field"><label for="f-msg">Mensagem (opcional)</label><textarea id="f-msg" name="msg" placeholder="Qual rio, nascente ou região interessa a você?"></textarea></div>
+        <div class="preview" aria-live="polite"><small>Prévia</small><span id="prev"></span></div>
+        <button class="btn btn-wa" type="submit"><svg><use href="#i-wa"/></svg> Enviar no WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#inicio" style="color:#fff;margin-bottom:14px"><img src="assets/logo-icon.svg" alt="" width="40" height="40"><span><b>A<i>.</i>R<i>.</i>K<i>.</i>O</b><small>Ver antes, para agir a tempo</small></span></a>
+        <p style="max-width:380px">Monitoramento de água doce com dados abertos de satélites da NASA. Criado em Goiânia no NASA Space Apps Challenge 2026.</p>
+      </div>
+      <div><h4>Navegar</h4><a href="#como">Como funciona</a><a href="#vemos">O que vemos</a><a href="#prova">Validação</a><a href="#parceria">Parceria</a><a href="#faq">Perguntas</a></div>
+      <div><h4>Contato</h4><a href="#" data-wa="Olá! Vi a página do A.R.K.O e quero conversar.">WhatsApp</a><a href="mailto:yunjhinn@gmail.com">yunjhinn@gmail.com</a><a id="ft-in" href="#" target="_blank" rel="noopener" hidden>LinkedIn</a><a href="../app/index.html">Abrir o sistema</a><a href="https://github.com/YunJhinn/A.R.K.O---NASA-Space-Apps-2026" target="_blank" rel="noopener">GitHub</a></div>
+    </div>
+    <div class="legal"><span>© 2026 A.R.K.O · Projeto independente, sem vínculo oficial com a NASA. Usa dados abertos da NASA e parceiros.</span><a href="#top" style="color:#8FB3CC">Voltar ao topo ↑</a></div>
+  </div>
+</footer>
+
+<a class="wa-float" href="#" data-wa="Olá! Vi a página do A.R.K.O e quero conversar." aria-label="Falar no WhatsApp"><svg><use href="#i-wa"/></svg></a>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const CONFIG={
+  whatsapp:"5562996110385",
+  linkedin:"https://www.linkedin.com/in/joao-vitor-alves-yun-dev" // cole aqui o link do LinkedIn (ex.: https://www.linkedin.com/in/seu-perfil) para ele aparecer na página
+};
+const waLink=t=>`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`;
+document.querySelectorAll('[data-wa]').forEach(a=>{a.href=waLink(a.dataset.wa);a.target="_blank";a.rel="noopener"});
+if(CONFIG.linkedin){for(const id of ['ch-in','ft-in']){const el=document.getElementById(id);el.href=CONFIG.linkedin;el.hidden=false}}
+
+/* header + menu */
+const top_=document.getElementById('top');
+const onScroll=()=>top_.classList.toggle('scrolled',scrollY>30);onScroll();addEventListener('scroll',onScroll,{passive:true});
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* tabs (teclado incluso) */
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function sel(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;const p=document.getElementById(x.getAttribute('aria-controls'));p.hidden=!on;p.classList.toggle('on',on)})}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(j!==null){sel(tabs[j]);tabs[j].focus()}})});
+
+/* antes/depois */
+const ba=document.getElementById('ba'),bar=ba.querySelector('input');
+bar.addEventListener('input',()=>ba.style.setProperty('--x',bar.value+'%'));
+
+/* linha do tempo por ano */
+const YEARS=[1985,1986,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2003,2004,2005,2006,2008,2009,2010,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
+const yr=document.getElementById('yrange'),yimg=document.getElementById('yimg'),yl=document.getElementById('ylabel'),yp=document.getElementById('yplay');
+yr.max=YEARS.length-1;
+YEARS.forEach(y=>{const i=new Image();i.src=`../data/rios/fotos/meiaponte_${y}.jpg`});
+const showY=i=>{const y=YEARS[i];yimg.src=`../data/rios/fotos/meiaponte_${y}.jpg`;yl.textContent=y;yr.value=i};
+yr.addEventListener('input',()=>showY(+yr.value));
+let timer=null;
+yp.addEventListener('click',()=>{if(timer){clearInterval(timer);timer=null;yp.textContent='▶ Reproduzir os 40 anos';return}
+  let i=+yr.value>=YEARS.length-1?0:+yr.value;yp.textContent='❚❚ Pausar';
+  timer=setInterval(()=>{showY(i);i++;if(i>=YEARS.length){clearInterval(timer);timer=null;yp.textContent='▶ Reproduzir de novo'}},450)});
+
+/* contadores */
+document.querySelectorAll('[data-count]').forEach(el=>{const n=+el.dataset.count;let c=0;const st=setInterval(()=>{c++;el.textContent=c;if(c>=n)clearInterval(st)},Math.max(20,900/n))});
+
+/* copiar */
+const toast=document.getElementById('toast');
+const say=t=>{toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)};
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();navigator.clipboard?.writeText(b.dataset.copy).then(()=>say('Copiado!'),()=>say(b.dataset.copy))}));
+
+/* formulário -> WhatsApp */
+const f=document.getElementById('compose'),prev=document.getElementById('prev');
+function msg(){const d=new FormData(f);const nome=(d.get('nome')||'').trim(),org=(d.get('org')||'').trim(),m=(d.get('msg')||'').trim();
+  let t=`Olá, equipe A.R.K.O!${nome?` Sou ${nome}`:''}${org?`, de ${org}`:''}${nome||org?'.':''} Tenho interesse em ${d.get('assunto')}.`;
+  if(m)t+=`\n\n${m}`;return t}
+const upd=()=>prev.textContent=msg();f.addEventListener('input',upd);f.addEventListener('change',upd);upd();
+f.addEventListener('submit',e=>{e.preventDefault();open(waLink(msg()),'_blank','noopener')});
+</script>
+</body>
+</html>
