@@ -1,37 +1,70 @@
 {
- "atualizado": "2026-11-17T18:36Z",
+ "atualizado": "2026-11-18T18:10Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-16",
+  "data": "2026-11-17",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0111,
-  "p90": 0.0044,
+  "max": 0.0354,
+  "p90": 0.0051,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 59,
-  "duplicados_removidos": 3,
-  "focos_risco": 3,
-  "pequenas": 49,
+  "focos": 43,
+  "duplicados_removidos": 2,
+  "focos_risco": 4,
+  "pequenas": 34,
   "grupos": [
    {
-    "lon": 88.2276,
-    "lat": 25.7684,
+    "lon": 88.154,
+    "lat": 25.69,
     "n": 3,
-    "frp": 8.1,
-    "ultimo": "2026-11-17T07:30Z",
+    "frp": 13.3,
+    "ultimo": "2026-11-18T07:11Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
+    "lugar": "Raiganj · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 89.8617,
+    "lat": 25.7408,
+    "n": 1,
+    "frp": 20.7,
+    "ultimo": "2026-11-18T07:54Z",
+    "nivel": "Baixo",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Mankachar · Assam · Índia"
+   },
+   {
+    "lon": 88.215,
+    "lat": 25.6647,
+    "n": 2,
+    "frp": 11.0,
+    "ultimo": "2026-11-18T07:54Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
     "lugar": "Hemtabad · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 89.8549,
+    "lat": 25.796,
+    "n": 2,
+    "frp": 10.6,
+    "ultimo": "2026-11-18T07:54Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "South Salmara · Assam · Índia"
    },
    {
     "lon": 88.3063,
@@ -45,37 +78,15 @@
     "lugar": "Kalna - I · Bengala Ocidental · Índia"
    },
    {
-    "lon": 92.5228,
-    "lat": 24.833,
+    "lon": 87.9286,
+    "lat": 26.0665,
     "n": 2,
-    "frp": 7.0,
-    "ultimo": "2026-11-15T06:29Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Badarpur · Assam · Índia"
-   },
-   {
-    "lon": 87.897,
-    "lat": 25.909,
-    "n": 2,
-    "frp": 6.4,
-    "ultimo": "2026-11-15T07:09Z",
+    "frp": 7.6,
+    "ultimo": "2026-11-18T07:11Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.5832,
-    "lat": 25.4406,
-    "n": 2,
-    "frp": 5.8,
-    "ultimo": "2026-11-15T07:09Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Gangarampur · Bengala Ocidental · Índia"
    },
    {
     "lon": 92.7569,
@@ -89,37 +100,15 @@
     "lugar": "Saipung · Meghalaya · Índia"
    },
    {
-    "lon": 89.8913,
-    "lat": 23.6045,
-    "n": 2,
-    "frp": 5.1,
-    "ultimo": "2026-11-16T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Faridpur · Bangladesh"
-   },
-   {
-    "lon": 91.9345,
-    "lat": 24.6546,
-    "n": 2,
-    "frp": 1.9,
-    "ultimo": "2026-11-16T20:16Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 2,
-    "lugar": "রাজনগর উপজেলা · সিলেট বিভাগ · Bangladeche"
-   },
-   {
-    "lon": 90.8233,
-    "lat": 26.217,
+    "lon": 88.9041,
+    "lat": 26.3079,
     "n": 1,
-    "frp": 6.3,
-    "ultimo": "2026-11-15T07:09Z",
+    "frp": 11.8,
+    "ultimo": "2026-11-18T06:14Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Baghbor · Assam · Índia"
+    "lugar": "Haldibari · Bengala Ocidental · Índia"
    },
    {
     "lon": 88.4717,
@@ -144,17 +133,6 @@
     "lugar": "শরিয়তপুর · Daca · Bangladeche"
    },
    {
-    "lon": 88.0794,
-    "lat": 25.8277,
-    "n": 1,
-    "frp": 4.3,
-    "ultimo": "2026-11-15T07:09Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
     "lon": 88.0946,
     "lat": 25.7491,
     "n": 1,
@@ -166,17 +144,6 @@
     "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
-    "lon": 90.0092,
-    "lat": 23.7844,
-    "n": 1,
-    "frp": 4.3,
-    "ultimo": "2026-11-15T07:09Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 8 km de Manikganj · Bangladesh"
-   },
-   {
     "lon": 90.3701,
     "lat": 23.1532,
     "n": 1,
@@ -185,18 +152,62 @@
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 32 km de Chandpur · Bangladesh"
+    "lugar": "ডামুড্যা উপজেলা · Daca · Bangladeche"
    },
    {
-    "lon": 89.9769,
-    "lat": 23.582,
+    "lon": 90.0718,
+    "lat": 25.9787,
     "n": 1,
-    "frp": 4.2,
-    "ultimo": "2026-11-15T07:09Z",
+    "frp": 4.1,
+    "ultimo": "2026-11-18T07:54Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 14 km de Faridpur · Bangladesh"
+    "lugar": "South Salmara · Assam · Índia"
+   },
+   {
+    "lon": 90.598,
+    "lat": 23.5163,
+    "n": 1,
+    "frp": 4.1,
+    "ultimo": "2026-11-18T07:09Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Munshiganj · Bangladesh"
+   },
+   {
+    "lon": 87.8785,
+    "lat": 26.1186,
+    "n": 1,
+    "frp": 3.6,
+    "ultimo": "2026-11-18T07:56Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Kochadhamin · Bihar · Índia"
+   },
+   {
+    "lon": 89.9057,
+    "lat": 23.6042,
+    "n": 1,
+    "frp": 3.6,
+    "ultimo": "2026-11-16T06:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Faridpur · Bangladesh"
+   },
+   {
+    "lon": 91.3049,
+    "lat": 25.371,
+    "n": 1,
+    "frp": 3.4,
+    "ultimo": "2026-11-18T06:14Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "Mawkyrwat · Meghalaya · Índia"
    }
   ]
  }

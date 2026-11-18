@@ -1,27 +1,38 @@
 {
- "atualizado": "2026-11-17T18:36Z",
+ "atualizado": "2026-11-18T18:10Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-16",
+  "data": "2026-11-17",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0176,
-  "p90": 0.0024,
+  "max": 0.0095,
+  "p90": 0.0017,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 80,
+  "focos": 89,
   "duplicados_removidos": 2,
-  "focos_risco": 29,
-  "pequenas": 41,
+  "focos_risco": 38,
+  "pequenas": 42,
   "grupos": [
+   {
+    "lon": 31.3857,
+    "lat": -25.6687,
+    "n": 9,
+    "frp": 162.8,
+    "ultimo": "2026-11-18T12:01Z",
+    "nivel": "Alto",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Nkomazi · Mepumalanga · África do Sul"
+   },
    {
     "lon": 34.8949,
     "lat": -24.1067,
@@ -34,15 +45,15 @@
     "lugar": "Panda · Inhambane · Moçambique"
    },
    {
-    "lon": 32.967,
-    "lat": -24.7055,
-    "n": 3,
-    "frp": 34.7,
-    "ultimo": "2026-11-15T11:19Z",
+    "lon": 33.767,
+    "lat": -24.1439,
+    "n": 4,
+    "frp": 29.8,
+    "ultimo": "2026-11-18T12:01Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "a 19 km de Chókwè · Moçambique"
+    "lugar": "Chibuto · Gaza · Moçambique"
    },
    {
     "lon": 34.2447,
@@ -122,15 +133,15 @@
     "lugar": "Pembe · Inhambane · Moçambique"
    },
    {
-    "lon": 35.1157,
-    "lat": -23.5022,
+    "lon": 34.8249,
+    "lat": -24.4222,
     "n": 2,
-    "frp": 15.6,
-    "ultimo": "2026-11-16T10:57Z",
+    "frp": 15.4,
+    "ultimo": "2026-11-18T11:04Z",
     "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Morrumbene · Inhambane · Moçambique"
+    "lugar": "Mocumbi · Inhambane · Moçambique"
    },
    {
     "lon": 31.2409,
@@ -142,17 +153,6 @@
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Inkhundla Piggs Peak · Hhohho · Essuatíni"
-   },
-   {
-    "lon": 31.5934,
-    "lat": -25.7031,
-    "n": 1,
-    "frp": 15.3,
-    "ultimo": "2026-11-15T11:59Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Nkomazi · Mepumalanga · África do Sul"
    },
    {
     "lon": 34.2304,
@@ -254,17 +254,6 @@
     "lugar": "Chibuto · Gaza · Moçambique"
    },
    {
-    "lon": 33.1423,
-    "lat": -23.8935,
-    "n": 2,
-    "frp": 2.3,
-    "ultimo": "2026-11-15T23:13Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Guija · Gaza · Moçambique"
-   },
-   {
     "lon": 34.0856,
     "lat": -24.0635,
     "n": 1,
@@ -287,15 +276,15 @@
     "lugar": "Manjacaze · Gaza · Moçambique"
    },
    {
-    "lon": 31.897,
-    "lat": -25.5679,
+    "lon": 33.4675,
+    "lat": -23.9066,
     "n": 1,
-    "frp": 10.4,
-    "ultimo": "2026-11-15T11:59Z",
+    "frp": 10.9,
+    "ultimo": "2026-11-18T12:01Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Nkomazi · Mepumalanga · África do Sul"
+    "lugar": "Chibuto · Gaza · Moçambique"
    },
    {
     "lon": 33.2477,
@@ -317,7 +306,18 @@
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
+    "lugar": "a 65 km de Chibuto · Moçambique"
+   },
+   {
+    "lon": 35.1184,
+    "lat": -23.4916,
+    "n": 1,
+    "frp": 9.7,
+    "ultimo": "2026-11-16T10:57Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Morrumbene · Inhambane · Moçambique"
    }
   ]
  }

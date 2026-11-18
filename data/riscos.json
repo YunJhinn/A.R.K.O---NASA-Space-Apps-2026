@@ -1,48 +1,103 @@
 {
- "atualizado": "2026-11-17T18:36Z",
+ "atualizado": "2026-11-18T18:10Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-16",
+  "data": "2026-11-17",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0074,
-  "p90": 0.0028,
+  "max": 0.0062,
+  "p90": 0.0033,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 29,
-  "duplicados_removidos": 3,
-  "focos_risco": 20,
-  "pequenas": 8,
+  "focos": 61,
+  "duplicados_removidos": 18,
+  "focos_risco": 43,
+  "pequenas": 15,
   "grupos": [
    {
-    "lon": -59.9757,
-    "lat": -4.3454,
-    "n": 10,
-    "frp": 27.3,
-    "ultimo": "2026-11-17T05:35Z",
+    "lon": -59.1565,
+    "lat": -3.9739,
+    "n": 13,
+    "frp": 182.9,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Alto",
+    "categoria": "risco",
+    "dois_satelites": 2,
+    "lugar": "a 12 km de Nova Olinda do Norte · AM"
+   },
+   {
+    "lon": -59.3124,
+    "lat": -4.0675,
+    "n": 9,
+    "frp": 256.6,
+    "ultimo": "2026-11-17T17:32Z",
     "nivel": "Alto",
     "categoria": "risco",
     "dois_satelites": 1,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.977,
+    "lat": -4.3487,
+    "n": 6,
+    "frp": 56.6,
+    "ultimo": "2026-11-17T18:13Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 2,
     "lugar": "Autazes · Amazonas · Brasil"
    },
    {
-    "lon": -59.1572,
-    "lat": -3.9712,
-    "n": 7,
-    "frp": 118.8,
-    "ultimo": "2026-11-16T16:52Z",
+    "lon": -60.2838,
+    "lat": -5.109,
+    "n": 3,
+    "frp": 19.6,
+    "ultimo": "2026-11-17T18:13Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 1,
-    "lugar": "a 12 km de Nova Olinda do Norte · AM"
+    "lugar": "a 11 km de Novo Aripuanã · AM"
+   },
+   {
+    "lon": -60.3072,
+    "lat": -5.1562,
+    "n": 3,
+    "frp": 17.8,
+    "ultimo": "2026-11-17T18:13Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 9 km de Novo Aripuanã · AM"
+   },
+   {
+    "lon": -59.2316,
+    "lat": -3.9707,
+    "n": 3,
+    "frp": 15.1,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 18 km de Nova Olinda do Norte · AM"
+   },
+   {
+    "lon": -59.1095,
+    "lat": -4.0091,
+    "n": 2,
+    "frp": 27.6,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Baixo",
+    "categoria": "risco",
+    "dois_satelites": 2,
+    "lugar": "a 13 km de Nova Olinda do Norte · AM"
    },
    {
     "lon": -59.1937,
@@ -56,6 +111,17 @@
     "lugar": "a 14 km de Nova Olinda do Norte · AM"
    },
    {
+    "lon": -59.9167,
+    "lat": -4.1572,
+    "n": 1,
+    "frp": 66.5,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Autazes · Amazonas · Brasil"
+   },
+   {
     "lon": -59.2748,
     "lat": -4.0379,
     "n": 1,
@@ -67,15 +133,37 @@
     "lugar": "a 26 km de Nova Olinda do Norte · AM"
    },
    {
-    "lon": -60.3089,
-    "lat": -5.155,
+    "lon": -60.0099,
+    "lat": -4.2748,
     "n": 2,
-    "frp": 9.5,
-    "ultimo": "2026-11-16T17:49Z",
+    "frp": 12.5,
+    "ultimo": "2026-11-17T18:13Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "Autazes · Amazonas · Brasil"
+   },
+   {
+    "lon": -59.7618,
+    "lat": -4.3461,
+    "n": 2,
+    "frp": 9.8,
+    "ultimo": "2026-11-17T17:32Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 9 km de Novo Aripuanã · AM"
+    "lugar": "a 20 km de Borba · AM"
+   },
+   {
+    "lon": -59.3105,
+    "lat": -3.9974,
+    "n": 2,
+    "frp": 8.6,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 27 km de Nova Olinda do Norte · AM"
    },
    {
     "lon": -59.1339,
@@ -133,6 +221,28 @@
     "lugar": "Amazonas · Brasil"
    },
    {
+    "lon": -59.7436,
+    "lat": -4.3008,
+    "n": 1,
+    "frp": 4.4,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 20 km de Borba · AM"
+   },
+   {
+    "lon": -59.0306,
+    "lat": -3.948,
+    "n": 1,
+    "frp": 3.2,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 9 km de Nova Olinda do Norte · AM"
+   },
+   {
     "lon": -59.8893,
     "lat": -4.4261,
     "n": 1,
@@ -144,6 +254,28 @@
     "lugar": "Amazonas · Brasil"
    },
    {
+    "lon": -59.9057,
+    "lat": -4.6203,
+    "n": 1,
+    "frp": 2.9,
+    "ultimo": "2026-11-17T17:30Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -60.3497,
+    "lat": -5.1765,
+    "n": 1,
+    "frp": 2.8,
+    "ultimo": "2026-11-17T17:30Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Novo Aripuanã · AM"
+   },
+   {
     "lon": -59.4445,
     "lat": -4.2135,
     "n": 1,
@@ -153,6 +285,17 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 25 km de Borba · AM"
+   },
+   {
+    "lon": -59.5334,
+    "lat": -4.3469,
+    "n": 1,
+    "frp": 0.3,
+    "ultimo": "2026-11-17T17:32Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Borba · AM"
    }
   ]
  }

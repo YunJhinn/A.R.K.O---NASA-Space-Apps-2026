@@ -1,27 +1,38 @@
 {
- "atualizado": "2026-11-17T18:36Z",
+ "atualizado": "2026-11-18T18:10Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-16",
+  "data": "2026-11-17",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0237,
-  "p90": 0.0079,
+  "max": 0.0295,
+  "p90": 0.0091,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 24,
+  "focos": 29,
   "duplicados_removidos": 0,
-  "focos_risco": 3,
+  "focos_risco": 6,
   "pequenas": 17,
   "grupos": [
+   {
+    "lon": -51.72,
+    "lat": -29.8477,
+    "n": 3,
+    "frp": 3.6,
+    "ultimo": "2026-11-18T04:40Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 10 km de Triunfo · RS"
+   },
    {
     "lon": -50.1607,
     "lat": -28.4097,
@@ -89,6 +100,28 @@
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
+    "lon": -51.1758,
+    "lat": -29.8143,
+    "n": 2,
+    "frp": 3.3,
+    "ultimo": "2026-11-18T04:40Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "São Leopoldo · RS"
+   },
+   {
+    "lon": -51.8032,
+    "lat": -30.0053,
+    "n": 2,
+    "frp": 1.1,
+    "ultimo": "2026-11-18T04:40Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 11 km de Triunfo · RS"
+   },
+   {
     "lon": -52.4418,
     "lat": -29.0549,
     "n": 1,
@@ -98,17 +131,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.6806,
-    "lat": -27.8098,
-    "n": 1,
-    "frp": 7.9,
-    "ultimo": "2026-11-15T17:04Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Cacique Doble · Rio Grande do Sul · Brasil"
    },
    {
     "lon": -52.1913,
@@ -152,7 +174,7 @@
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 30 km de Caxias do Sul · RS"
+    "lugar": "São Marcos · Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.1066,
@@ -186,17 +208,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 15 km de Montenegro · RS"
-   },
-   {
-    "lon": -53.1334,
-    "lat": -29.2368,
-    "n": 1,
-    "frp": 2.7,
-    "ultimo": "2026-11-15T18:02Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Estrela Velha · Rio Grande do Sul · Brasil"
    },
    {
     "lon": -50.7045,
