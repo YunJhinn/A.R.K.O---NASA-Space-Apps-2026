@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-20T17:48Z",
+ "atualizado": "2026-11-21T16:47Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,54 +17,21 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 19,
-  "duplicados_removidos": 1,
-  "focos_risco": 10,
-  "pequenas": 9,
+  "focos": 9,
+  "duplicados_removidos": 0,
+  "focos_risco": 0,
+  "pequenas": 8,
   "grupos": [
    {
-    "lon": -60.5905,
-    "lat": -4.0182,
-    "n": 4,
-    "frp": 56.8,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Careiro · Amazonas · Brasil"
-   },
-   {
-    "lon": -59.1596,
-    "lat": -3.9824,
-    "n": 3,
-    "frp": 21.7,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 13 km de Nova Olinda do Norte · AM"
-   },
-   {
-    "lon": -59.1952,
-    "lat": -3.9598,
+    "lon": -60.5906,
+    "lat": -4.0187,
     "n": 2,
-    "frp": 16.2,
-    "ultimo": "2026-11-18T17:56Z",
+    "frp": 9.5,
+    "ultimo": "2026-11-19T17:36Z",
     "nivel": "Baixo",
-    "categoria": "risco",
+    "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 14 km de Nova Olinda do Norte · AM"
-   },
-   {
-    "lon": -59.5702,
-    "lat": -4.657,
-    "n": 1,
-    "frp": 24.3,
-    "ultimo": "2026-11-18T17:56Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 30 km de Borba · AM"
+    "lugar": "Careiro · Amazonas · Brasil"
    },
    {
     "lon": -59.029,
@@ -89,26 +56,15 @@
     "lugar": "a 8 km de Manicoré · AM"
    },
    {
-    "lon": -59.2599,
-    "lat": -4.3598,
+    "lon": -59.1669,
+    "lat": -3.9797,
     "n": 1,
-    "frp": 5.8,
-    "ultimo": "2026-11-18T17:56Z",
+    "frp": 5.4,
+    "ultimo": "2026-11-19T17:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -59.5301,
-    "lat": -4.4151,
-    "n": 1,
-    "frp": 5.0,
-    "ultimo": "2026-11-18T17:11Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Borba · AM"
+    "lugar": "a 13 km de Nova Olinda do Norte · AM"
    },
    {
     "lon": -61.2569,
@@ -131,17 +87,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 28 km de Borba · AM"
-   },
-   {
-    "lon": -61.3923,
-    "lat": -5.9139,
-    "n": 1,
-    "frp": 3.5,
-    "ultimo": "2026-11-18T17:13Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 15 km de Manicoré · AM"
    },
    {
     "lon": -59.9609,

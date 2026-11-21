@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-20T17:48Z",
+ "atualizado": "2026-11-21T16:47Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,98 +17,131 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 366,
-  "duplicados_removidos": 65,
-  "focos_risco": 307,
-  "pequenas": 45,
+  "focos": 453,
+  "duplicados_removidos": 102,
+  "focos_risco": 392,
+  "pequenas": 49,
   "grupos": [
    {
-    "lon": -54.0959,
-    "lat": -3.507,
-    "n": 53,
-    "frp": 496.2,
-    "ultimo": "2026-11-20T05:35Z",
+    "lon": -54.1101,
+    "lat": -3.4984,
+    "n": 56,
+    "frp": 504.2,
+    "ultimo": "2026-11-21T05:16Z",
     "nivel": "Alto",
     "categoria": "risco",
-    "dois_satelites": 6,
+    "dois_satelites": 20,
     "lugar": "Uruará · Pará · Brasil"
    },
    {
-    "lon": -54.0727,
-    "lat": -3.6031,
-    "n": 17,
-    "frp": 78.4,
-    "ultimo": "2026-11-20T04:38Z",
+    "lon": -54.3595,
+    "lat": -3.5169,
+    "n": 21,
+    "frp": 125.2,
+    "ultimo": "2026-11-21T05:16Z",
     "nivel": "Alto",
     "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Uruará · Pará · Brasil"
+    "dois_satelites": 5,
+    "lugar": "Placas · Pará · Brasil"
    },
    {
-    "lon": -54.3599,
-    "lat": -3.5151,
-    "n": 16,
-    "frp": 106.4,
-    "ultimo": "2026-11-20T04:38Z",
+    "lon": -54.3082,
+    "lat": -3.5163,
+    "n": 21,
+    "frp": 57.7,
+    "ultimo": "2026-11-21T05:16Z",
     "nivel": "Alto",
     "categoria": "risco",
     "dois_satelites": 3,
     "lugar": "Placas · Pará · Brasil"
    },
    {
-    "lon": -54.1367,
-    "lat": -3.494,
-    "n": 14,
-    "frp": 62.2,
-    "ultimo": "2026-11-20T04:38Z",
+    "lon": -54.19,
+    "lat": -3.7387,
+    "n": 17,
+    "frp": 57.3,
+    "ultimo": "2026-11-21T05:16Z",
     "nivel": "Alto",
     "categoria": "risco",
-    "dois_satelites": 7,
+    "dois_satelites": 4,
     "lugar": "Uruará · Pará · Brasil"
    },
    {
-    "lon": -54.2692,
-    "lat": -3.6158,
-    "n": 13,
-    "frp": 49.1,
-    "ultimo": "2026-11-20T05:35Z",
+    "lon": -54.2691,
+    "lat": -3.6184,
+    "n": 14,
+    "frp": 49.4,
+    "ultimo": "2026-11-21T05:16Z",
     "nivel": "Alto",
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "Placas · Pará · Brasil"
    },
    {
-    "lon": -54.2995,
-    "lat": -3.511,
-    "n": 12,
-    "frp": 39.8,
+    "lon": -54.0727,
+    "lat": -3.6029,
+    "n": 14,
+    "frp": 46.7,
     "ultimo": "2026-11-20T04:38Z",
     "nivel": "Alto",
     "categoria": "risco",
-    "dois_satelites": 2,
-    "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -54.1912,
-    "lat": -3.7397,
-    "n": 10,
-    "frp": 43.2,
-    "ultimo": "2026-11-20T04:38Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 2,
+    "dois_satelites": 0,
     "lugar": "Uruará · Pará · Brasil"
    },
    {
-    "lon": -54.2381,
-    "lat": -3.9409,
+    "lon": -56.1178,
+    "lat": -4.4212,
+    "n": 9,
+    "frp": 50.0,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 3,
+    "lugar": "a 22 km de Itaituba · PA"
+   },
+   {
+    "lon": -54.24,
+    "lat": -3.9398,
     "n": 8,
-    "frp": 72.7,
-    "ultimo": "2026-11-20T04:38Z",
+    "frp": 27.6,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Placas · Pará · Brasil"
+   },
+   {
+    "lon": -55.8092,
+    "lat": -3.7858,
+    "n": 7,
+    "frp": 266.3,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Alto",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Aveiro · Pará · Brasil"
+   },
+   {
+    "lon": -55.6697,
+    "lat": -3.9708,
+    "n": 7,
+    "frp": 99.7,
+    "ultimo": "2026-11-20T16:34Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Aveiro · Pará · Brasil"
+   },
+   {
+    "lon": -55.5812,
+    "lat": -4.1228,
+    "n": 7,
+    "frp": 90.4,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Pará · Brasil"
    },
    {
     "lon": -55.9172,
@@ -122,15 +155,26 @@
     "lugar": "Aveiro · Pará · Brasil"
    },
    {
-    "lon": -56.117,
-    "lat": -4.423,
+    "lon": -54.4855,
+    "lat": -3.8203,
     "n": 7,
-    "frp": 46.6,
-    "ultimo": "2026-11-19T16:52Z",
+    "frp": 26.5,
+    "ultimo": "2026-11-20T16:34Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 2,
-    "lugar": "a 22 km de Itaituba · PA"
+    "lugar": "Placas · Pará · Brasil"
+   },
+   {
+    "lon": -54.984,
+    "lat": -4.4263,
+    "n": 7,
+    "frp": 14.7,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Pará · Brasil"
    },
    {
     "lon": -55.4516,
@@ -144,6 +188,28 @@
     "lugar": "Pará · Brasil"
    },
    {
+    "lon": -55.5512,
+    "lat": -3.634,
+    "n": 6,
+    "frp": 153.9,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Alto",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "a 26 km de Aveiro · PA"
+   },
+   {
+    "lon": -55.6806,
+    "lat": -3.5805,
+    "n": 6,
+    "frp": 80.2,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 2,
+    "lugar": "Aveiro · Pará · Brasil"
+   },
+   {
     "lon": -55.6179,
     "lat": -4.3226,
     "n": 6,
@@ -155,37 +221,70 @@
     "lugar": "Pará · Brasil"
    },
    {
-    "lon": -55.547,
-    "lat": -3.6319,
-    "n": 5,
-    "frp": 151.6,
-    "ultimo": "2026-11-20T04:38Z",
-    "nivel": "Alto",
+    "lon": -54.1489,
+    "lat": -3.4967,
+    "n": 6,
+    "frp": 25.1,
+    "ultimo": "2026-11-21T04:21Z",
+    "nivel": "Médio",
     "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "a 25 km de Aveiro · PA"
+    "dois_satelites": 2,
+    "lugar": "Uruará · Pará · Brasil"
    },
    {
-    "lon": -55.6668,
-    "lat": -3.9658,
+    "lon": -54.4601,
+    "lat": -3.975,
+    "n": 6,
+    "frp": 18.4,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Placas · Pará · Brasil"
+   },
+   {
+    "lon": -54.2358,
+    "lat": -3.5492,
+    "n": 6,
+    "frp": 13.1,
+    "ultimo": "2026-11-21T05:16Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 2,
+    "lugar": "Uruará · Pará · Brasil"
+   },
+   {
+    "lon": -56.1671,
+    "lat": -3.9508,
     "n": 5,
-    "frp": 88.4,
-    "ultimo": "2026-11-19T17:36Z",
+    "frp": 318.4,
+    "ultimo": "2026-11-21T05:18Z",
+    "nivel": "Alto",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Aveiro · Pará · Brasil"
+   },
+   {
+    "lon": -55.7638,
+    "lat": -3.867,
+    "n": 5,
+    "frp": 54.8,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "Aveiro · Pará · Brasil"
    },
    {
-    "lon": -55.5819,
-    "lat": -4.1233,
+    "lon": -55.4345,
+    "lat": -3.853,
     "n": 5,
-    "frp": 80.6,
-    "ultimo": "2026-11-20T04:38Z",
+    "frp": 29.4,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
+    "lugar": "a 30 km de Aveiro · PA"
    },
    {
     "lon": -54.2326,
@@ -197,105 +296,6 @@
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -54.4581,
-    "lat": -3.9755,
-    "n": 5,
-    "frp": 17.1,
-    "ultimo": "2026-11-20T04:38Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -54.4853,
-    "lat": -3.8195,
-    "n": 5,
-    "frp": 13.6,
-    "ultimo": "2026-11-20T04:38Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 2,
-    "lugar": "Placas · Pará · Brasil"
-   },
-   {
-    "lon": -54.9831,
-    "lat": -4.4235,
-    "n": 5,
-    "frp": 11.5,
-    "ultimo": "2026-11-20T04:38Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
-   },
-   {
-    "lon": -56.166,
-    "lat": -3.9498,
-    "n": 4,
-    "frp": 317.1,
-    "ultimo": "2026-11-20T05:35Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Aveiro · Pará · Brasil"
-   },
-   {
-    "lon": -55.8086,
-    "lat": -3.7858,
-    "n": 4,
-    "frp": 259.3,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Aveiro · Pará · Brasil"
-   },
-   {
-    "lon": -55.1093,
-    "lat": -4.2706,
-    "n": 4,
-    "frp": 165.0,
-    "ultimo": "2026-11-19T16:52Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 30 km de Rurópolis · PA"
-   },
-   {
-    "lon": -55.4597,
-    "lat": -4.4622,
-    "n": 4,
-    "frp": 154.4,
-    "ultimo": "2026-11-19T16:52Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
-   },
-   {
-    "lon": -55.5028,
-    "lat": -4.4139,
-    "n": 4,
-    "frp": 102.2,
-    "ultimo": "2026-11-19T16:52Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
-   },
-   {
-    "lon": -58.4019,
-    "lat": -3.7519,
-    "n": 4,
-    "frp": 54.6,
-    "ultimo": "2026-11-18T17:56Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
    },
    {
     "lon": -56.0726,
@@ -320,26 +320,15 @@
     "lugar": "Aveiro · Pará · Brasil"
    },
    {
-    "lon": -58.2823,
-    "lat": -3.84,
+    "lon": -55.7087,
+    "lat": -3.956,
     "n": 2,
-    "frp": 11.2,
-    "ultimo": "2026-11-18T17:56Z",
+    "frp": 9.4,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Baixo",
     "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Maués · Amazonas · Brasil"
-   },
-   {
-    "lon": -54.4524,
-    "lat": -3.7145,
-    "n": 2,
-    "frp": 8.9,
-    "ultimo": "2026-11-19T16:54Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Placas · Pará · Brasil"
+    "dois_satelites": 1,
+    "lugar": "Aveiro · Pará · Brasil"
    },
    {
     "lon": -55.7462,
@@ -351,17 +340,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Pará · Brasil"
-   },
-   {
-    "lon": -54.3363,
-    "lat": -3.6162,
-    "n": 2,
-    "frp": 7.3,
-    "ultimo": "2026-11-19T04:57Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Placas · Pará · Brasil"
    },
    {
     "lon": -55.1507,
@@ -386,26 +364,26 @@
     "lugar": "Pará · Brasil"
    },
    {
-    "lon": -54.5561,
-    "lat": -3.4998,
+    "lon": -55.5496,
+    "lat": -3.5914,
     "n": 2,
-    "frp": 3.9,
-    "ultimo": "2026-11-19T04:57Z",
+    "frp": 3.6,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Placas · Pará · Brasil"
+    "lugar": "a 26 km de Aveiro · PA"
    },
    {
-    "lon": -54.0756,
-    "lat": -3.6595,
+    "lon": -55.7289,
+    "lat": -3.8663,
     "n": 2,
-    "frp": 3.3,
-    "ultimo": "2026-11-20T04:38Z",
+    "frp": 3.6,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Uruará · Pará · Brasil"
+    "lugar": "Aveiro · Pará · Brasil"
    },
    {
     "lon": -54.2016,
@@ -419,15 +397,15 @@
     "lugar": "Uruará · Pará · Brasil"
    },
    {
-    "lon": -55.0615,
-    "lat": -4.4345,
+    "lon": -54.9196,
+    "lat": -4.1177,
     "n": 2,
-    "frp": 2.6,
-    "ultimo": "2026-11-19T04:57Z",
+    "frp": 2.1,
+    "ultimo": "2026-11-21T05:18Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Pará · Brasil"
+    "lugar": "Rurópolis · PA"
    },
    {
     "lon": -54.48,
@@ -461,6 +439,28 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 22 km de Aveiro · PA"
+   },
+   {
+    "lon": -55.4143,
+    "lat": -3.6233,
+    "n": 1,
+    "frp": 12.6,
+    "ultimo": "2026-11-19T17:36Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 11 km de Aveiro · PA"
+   },
+   {
+    "lon": -54.5769,
+    "lat": -3.9219,
+    "n": 1,
+    "frp": 12.1,
+    "ultimo": "2026-11-19T17:36Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Placas · Pará · Brasil"
    }
   ]
  }

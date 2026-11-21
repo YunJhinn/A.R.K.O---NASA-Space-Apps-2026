@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-20T17:48Z",
+ "atualizado": "2026-11-21T16:47Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -26,33 +26,11 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 25,
+  "focos": 15,
   "duplicados_removidos": 2,
-  "focos_risco": 7,
-  "pequenas": 13,
+  "focos_risco": 0,
+  "pequenas": 11,
   "grupos": [
-   {
-    "lon": -50.2533,
-    "lat": -28.5346,
-    "n": 4,
-    "frp": 35.0,
-    "ultimo": "2026-11-19T16:45Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.72,
-    "lat": -29.8477,
-    "n": 3,
-    "frp": 3.6,
-    "ultimo": "2026-11-18T04:40Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "a 10 km de Triunfo · RS"
-   },
    {
     "lon": -50.7872,
     "lat": -28.8407,
@@ -87,26 +65,26 @@
     "lugar": "Monte Alegre dos Campos · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.1755,
+    "lon": -51.1762,
     "lat": -29.8126,
     "n": 2,
-    "frp": 2.4,
-    "ultimo": "2026-11-20T04:01Z",
+    "frp": 2.8,
+    "ultimo": "2026-11-21T04:25Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 1,
     "lugar": "São Leopoldo · RS"
    },
    {
-    "lon": -51.8032,
-    "lat": -30.0053,
-    "n": 2,
-    "frp": 1.1,
-    "ultimo": "2026-11-18T04:40Z",
+    "lon": -50.2502,
+    "lat": -28.5349,
+    "n": 1,
+    "frp": 5.3,
+    "ultimo": "2026-11-19T16:45Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 11 km de Triunfo · RS"
+    "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.9353,
@@ -142,17 +120,6 @@
     "lugar": "Vacaria · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -50.8479,
-    "lat": -28.5697,
-    "n": 1,
-    "frp": 1.9,
-    "ultimo": "2026-11-18T17:47Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Monte Alegre dos Campos · Rio Grande do Sul · Brasil"
-   },
-   {
     "lon": -53.3572,
     "lat": -29.6477,
     "n": 1,
@@ -173,17 +140,6 @@
     "categoria": "pequena",
     "dois_satelites": 1,
     "lugar": "São Leopoldo · RS"
-   },
-   {
-    "lon": -51.3189,
-    "lat": -30.1314,
-    "n": 1,
-    "frp": 1.3,
-    "ultimo": "2026-11-18T04:40Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Guaíba · RS"
    },
    {
     "lon": -51.9619,

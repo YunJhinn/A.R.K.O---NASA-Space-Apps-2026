@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-20T17:48Z",
+ "atualizado": "2026-11-21T16:47Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
@@ -17,10 +17,10 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 43,
-  "duplicados_removidos": 1,
-  "focos_risco": 16,
-  "pequenas": 23,
+  "focos": 27,
+  "duplicados_removidos": 0,
+  "focos_risco": 10,
+  "pequenas": 15,
   "grupos": [
    {
     "lon": 88.1935,
@@ -45,39 +45,6 @@
     "lugar": "Hemtabad · Bengala Ocidental · Índia"
    },
    {
-    "lon": 88.2133,
-    "lat": 25.6632,
-    "n": 3,
-    "frp": 14.3,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Hemtabad · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.9034,
-    "lat": 26.3083,
-    "n": 2,
-    "frp": 15.1,
-    "ultimo": "2026-11-19T07:35Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Haldibari · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 89.8617,
-    "lat": 25.7408,
-    "n": 1,
-    "frp": 20.7,
-    "ultimo": "2026-11-18T07:54Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Mankachar · Assam · Índia"
-   },
-   {
     "lon": 89.851,
     "lat": 25.8303,
     "n": 2,
@@ -87,28 +54,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "South Salmara · Assam · Índia"
-   },
-   {
-    "lon": 89.8549,
-    "lat": 25.796,
-    "n": 2,
-    "frp": 10.6,
-    "ultimo": "2026-11-18T07:54Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "South Salmara · Assam · Índia"
-   },
-   {
-    "lon": 88.1562,
-    "lat": 25.6923,
-    "n": 2,
-    "frp": 9.8,
-    "ultimo": "2026-11-18T07:11Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
     "lon": 89.4714,
@@ -177,17 +122,6 @@
     "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
-    "lon": 87.9277,
-    "lat": 26.0694,
-    "n": 1,
-    "frp": 4.5,
-    "ultimo": "2026-11-18T07:11Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
-   },
-   {
     "lon": 87.8899,
     "lat": 25.9745,
     "n": 1,
@@ -210,37 +144,70 @@
     "lugar": "Goalpokhar - I · Bengala Ocidental · Índia"
    },
    {
-    "lon": 90.0718,
-    "lat": 25.9787,
+    "lon": 88.2099,
+    "lat": 25.6603,
     "n": 1,
-    "frp": 4.1,
-    "ultimo": "2026-11-18T07:54Z",
+    "frp": 3.3,
+    "ultimo": "2026-11-19T06:52Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "South Salmara · Assam · Índia"
+    "lugar": "Hemtabad · Bengala Ocidental · Índia"
    },
    {
-    "lon": 90.598,
-    "lat": 23.5163,
+    "lon": 88.9026,
+    "lat": 26.3087,
     "n": 1,
-    "frp": 4.1,
-    "ultimo": "2026-11-18T07:09Z",
+    "frp": 3.3,
+    "ultimo": "2026-11-19T07:35Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Munshiganj · Bangladesh"
+    "lugar": "Haldibari · Bengala Ocidental · Índia"
    },
    {
-    "lon": 87.8785,
-    "lat": 26.1186,
+    "lon": 88.5697,
+    "lat": 25.3395,
     "n": 1,
-    "frp": 3.6,
-    "ultimo": "2026-11-18T07:56Z",
+    "frp": 2.9,
+    "ultimo": "2026-11-19T07:37Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Kochadhamin · Bihar · Índia"
+    "lugar": "Tapan · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 87.878,
+    "lat": 26.3634,
+    "n": 1,
+    "frp": 2.4,
+    "ultimo": "2026-11-19T06:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Dighalbank · Bihar · Índia"
+   },
+   {
+    "lon": 88.2505,
+    "lat": 25.8019,
+    "n": 1,
+    "frp": 2.0,
+    "ultimo": "2026-11-19T06:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Hemtabad · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 92.6047,
+    "lat": 26.2333,
+    "n": 1,
+    "frp": 1.7,
+    "ultimo": "2026-11-19T06:52Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Raha · Assam · Índia"
    }
   ]
  }
