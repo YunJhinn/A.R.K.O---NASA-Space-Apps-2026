@@ -1,24 +1,80 @@
 {
- "atualizado": "2026-11-21T16:47Z",
+ "atualizado": "2026-11-22T17:09Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-19",
+  "data": "2026-11-21",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0586,
-  "p90": 0.0091,
+  "max": 0.0635,
+  "p90": 0.02,
   "areas": [
    {
-    "lon": -49.9958,
-    "lat": -29.3708,
-    "p": 0.0586,
-    "km2": 11.9,
+    "lon": -50.1625,
+    "lat": -28.9624,
+    "p": 0.0635,
+    "km2": 1.5,
     "nivel": "Baixo",
-    "lugar": "Morrinhos do Sul · Rio Grande do Sul · Brasil"
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.1792,
+    "lat": -28.9291,
+    "p": 0.0635,
+    "km2": 9.0,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.1375,
+    "lat": -28.9458,
+    "p": 0.0635,
+    "km2": 4.5,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.1208,
+    "lat": -28.9291,
+    "p": 0.0635,
+    "km2": 0.7,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.1125,
+    "lat": -28.9208,
+    "p": 0.0635,
+    "km2": 0.7,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.2958,
+    "lat": -28.7958,
+    "p": 0.0618,
+    "km2": 3.7,
+    "nivel": "Baixo",
+    "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.0875,
+    "lat": -28.9291,
+    "p": 0.06,
+    "km2": 1.5,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.1625,
+    "lat": -27.8041,
+    "p": 0.0573,
+    "km2": 1.5,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
    }
   ]
  },
@@ -26,44 +82,11 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 15,
-  "duplicados_removidos": 2,
+  "focos": 8,
+  "duplicados_removidos": 1,
   "focos_risco": 0,
-  "pequenas": 11,
+  "pequenas": 7,
   "grupos": [
-   {
-    "lon": -50.7872,
-    "lat": -28.8407,
-    "n": 2,
-    "frp": 9.3,
-    "ultimo": "2026-11-19T16:45Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "São Francisco de Paula · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -52.3455,
-    "lat": -30.2712,
-    "n": 2,
-    "frp": 8.4,
-    "ultimo": "2026-11-19T18:25Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Pantano Grande · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -50.9088,
-    "lat": -28.7574,
-    "n": 2,
-    "frp": 7.6,
-    "ultimo": "2026-11-19T16:45Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Monte Alegre dos Campos · Rio Grande do Sul · Brasil"
-   },
    {
     "lon": -51.1762,
     "lat": -29.8126,
@@ -76,70 +99,59 @@
     "lugar": "São Leopoldo · RS"
    },
    {
-    "lon": -50.2502,
-    "lat": -28.5349,
+    "lon": -52.145,
+    "lat": -28.4727,
     "n": 1,
-    "frp": 5.3,
-    "ultimo": "2026-11-19T16:45Z",
+    "frp": 6.5,
+    "ultimo": "2026-11-21T16:52Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Bom Jesus · Rio Grande do Sul · Brasil"
+    "lugar": "Marau · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.9353,
-    "lat": -28.8147,
+    "lon": -51.5914,
+    "lat": -29.5448,
     "n": 1,
-    "frp": 4.0,
-    "ultimo": "2026-11-19T17:30Z",
+    "frp": 4.4,
+    "ultimo": "2026-11-21T17:47Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Guaporé · Rio Grande do Sul · Brasil"
+    "lugar": "a 20 km de Montenegro · RS"
    },
    {
-    "lon": -51.6885,
-    "lat": -29.4921,
+    "lon": -51.3642,
+    "lat": -30.5621,
     "n": 1,
-    "frp": 3.8,
-    "ultimo": "2026-11-19T17:30Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 25 km de Estrela · RS"
-   },
-   {
-    "lon": -50.9239,
-    "lat": -28.1681,
-    "n": 1,
-    "frp": 2.8,
-    "ultimo": "2026-11-19T16:45Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Vacaria · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -53.3572,
-    "lat": -29.6477,
-    "n": 1,
-    "frp": 1.5,
-    "ultimo": "2026-11-19T16:45Z",
+    "frp": 4.3,
+    "ultimo": "2026-11-21T17:47Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.1772,
-    "lat": -29.778,
+    "lon": -52.4171,
+    "lat": -29.783,
     "n": 1,
-    "frp": 1.4,
-    "ultimo": "2026-11-19T04:23Z",
+    "frp": 2.7,
+    "ultimo": "2026-11-21T16:52Z",
     "nivel": "Baixo",
     "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "São Leopoldo · RS"
+    "dois_satelites": 0,
+    "lugar": "Santa Cruz do Sul · RS"
+   },
+   {
+    "lon": -52.6738,
+    "lat": -27.7417,
+    "n": 1,
+    "frp": 2.5,
+    "ultimo": "2026-11-21T17:49Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.9619,

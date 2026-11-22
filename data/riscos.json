@@ -1,115 +1,26 @@
 {
- "atualizado": "2026-11-21T16:47Z",
+ "atualizado": "2026-11-22T17:09Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-19",
+  "data": "2026-11-21",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0072,
-  "p90": 0.0031,
+  "max": 0.0141,
+  "p90": 0.0038,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 9,
+  "focos": 0,
   "duplicados_removidos": 0,
   "focos_risco": 0,
-  "pequenas": 8,
-  "grupos": [
-   {
-    "lon": -60.5906,
-    "lat": -4.0187,
-    "n": 2,
-    "frp": 9.5,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Careiro · Amazonas · Brasil"
-   },
-   {
-    "lon": -59.029,
-    "lat": -3.9509,
-    "n": 1,
-    "frp": 7.9,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 10 km de Nova Olinda do Norte · AM"
-   },
-   {
-    "lon": -61.3313,
-    "lat": -5.8759,
-    "n": 1,
-    "frp": 6.6,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 8 km de Manicoré · AM"
-   },
-   {
-    "lon": -59.1669,
-    "lat": -3.9797,
-    "n": 1,
-    "frp": 5.4,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 13 km de Nova Olinda do Norte · AM"
-   },
-   {
-    "lon": -61.2569,
-    "lat": -4.6481,
-    "n": 1,
-    "frp": 4.7,
-    "ultimo": "2026-11-19T18:34Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -59.8355,
-    "lat": -4.4246,
-    "n": 1,
-    "frp": 4.5,
-    "ultimo": "2026-11-19T16:54Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 28 km de Borba · AM"
-   },
-   {
-    "lon": -59.9609,
-    "lat": -4.3998,
-    "n": 1,
-    "frp": 3.5,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
-    "lon": -60.9737,
-    "lat": -5.6031,
-    "n": 1,
-    "frp": 3.1,
-    "ultimo": "2026-11-19T17:36Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Manicoré · Amazonas · Brasil"
-   }
-  ]
+  "pequenas": 0,
+  "grupos": []
  }
 }

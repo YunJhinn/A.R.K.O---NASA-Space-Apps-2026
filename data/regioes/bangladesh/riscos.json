@@ -1,38 +1,92 @@
 {
- "atualizado": "2026-11-21T16:47Z",
+ "atualizado": "2026-11-22T17:09Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-19",
+  "data": "2026-11-21",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0367,
-  "p90": 0.0124,
-  "areas": []
+  "max": 0.0568,
+  "p90": 0.0158,
+  "areas": [
+   {
+    "lon": 92.7375,
+    "lat": 23.7292,
+    "p": 0.0568,
+    "km2": 0.8,
+    "nivel": "Baixo",
+    "lugar": "Aizawl · Mizoram · Índia"
+   },
+   {
+    "lon": 92.7625,
+    "lat": 23.7292,
+    "p": 0.0568,
+    "km2": 78.3,
+    "nivel": "Baixo",
+    "lugar": "Aizawl · Mizoram · Índia"
+   },
+   {
+    "lon": 92.7208,
+    "lat": 24.0042,
+    "p": 0.0568,
+    "km2": 1.6,
+    "nivel": "Baixo",
+    "lugar": "'N' Thingdawl · Mizoram · Índia"
+   },
+   {
+    "lon": 92.7625,
+    "lat": 24.0042,
+    "p": 0.0568,
+    "km2": 13.3,
+    "nivel": "Baixo",
+    "lugar": "'N' Thingdawl · Mizoram · Índia"
+   },
+   {
+    "lon": 92.4208,
+    "lat": 24.2626,
+    "p": 0.0551,
+    "km2": 0.8,
+    "nivel": "Baixo",
+    "lugar": "Ramkrishna Nagar · Assam · Índia"
+   },
+   {
+    "lon": 92.6875,
+    "lat": 23.8959,
+    "p": 0.0541,
+    "km2": 1.6,
+    "nivel": "Baixo",
+    "lugar": "'N' Thingdawl · Mizoram · Índia"
+   },
+   {
+    "lon": 92.5792,
+    "lat": 24.2459,
+    "p": 0.0526,
+    "km2": 0.8,
+    "nivel": "Baixo",
+    "lugar": "Bilkhawthlir · Mizoram · Índia"
+   },
+   {
+    "lon": 92.7042,
+    "lat": 24.0876,
+    "p": 0.05,
+    "km2": 0.8,
+    "nivel": "Baixo",
+    "lugar": "'N' Thingdawl · Mizoram · Índia"
+   }
+  ]
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 27,
+  "focos": 7,
   "duplicados_removidos": 0,
-  "focos_risco": 10,
-  "pequenas": 15,
+  "focos_risco": 3,
+  "pequenas": 3,
   "grupos": [
-   {
-    "lon": 88.1935,
-    "lat": 25.7552,
-    "n": 7,
-    "frp": 34.3,
-    "ultimo": "2026-11-20T06:33Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
    {
     "lon": 88.2476,
     "lat": 25.7653,
@@ -45,33 +99,11 @@
     "lugar": "Hemtabad · Bengala Ocidental · Índia"
    },
    {
-    "lon": 89.851,
-    "lat": 25.8303,
+    "lon": 88.199,
+    "lat": 25.7665,
     "n": 2,
-    "frp": 10.8,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "South Salmara · Assam · Índia"
-   },
-   {
-    "lon": 89.4714,
-    "lat": 26.3308,
-    "n": 2,
-    "frp": 6.3,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Cooch Behar - II · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.182,
-    "lat": 25.6479,
-    "n": 1,
-    "frp": 10.7,
-    "ultimo": "2026-11-19T07:35Z",
+    "frp": 14.8,
+    "ultimo": "2026-11-20T06:33Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
@@ -89,125 +121,15 @@
     "lugar": "Raiganj · Bengala Ocidental · Índia"
    },
    {
-    "lon": 88.1027,
-    "lat": 25.7545,
+    "lon": 88.1771,
+    "lat": 25.7378,
     "n": 1,
-    "frp": 6.9,
-    "ultimo": "2026-11-19T07:35Z",
+    "frp": 4.4,
+    "ultimo": "2026-11-20T06:33Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.1843,
-    "lat": 25.4062,
-    "n": 1,
-    "frp": 6.2,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Harirampur · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.1952,
-    "lat": 25.7185,
-    "n": 1,
-    "frp": 4.9,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 87.8899,
-    "lat": 25.9745,
-    "n": 1,
-    "frp": 4.4,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 87.9765,
-    "lat": 26.1189,
-    "n": 1,
-    "frp": 4.4,
-    "ultimo": "2026-11-19T07:35Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Goalpokhar - I · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.2099,
-    "lat": 25.6603,
-    "n": 1,
-    "frp": 3.3,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Hemtabad · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.9026,
-    "lat": 26.3087,
-    "n": 1,
-    "frp": 3.3,
-    "ultimo": "2026-11-19T07:35Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Haldibari · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.5697,
-    "lat": 25.3395,
-    "n": 1,
-    "frp": 2.9,
-    "ultimo": "2026-11-19T07:37Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Tapan · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 87.878,
-    "lat": 26.3634,
-    "n": 1,
-    "frp": 2.4,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Dighalbank · Bihar · Índia"
-   },
-   {
-    "lon": 88.2505,
-    "lat": 25.8019,
-    "n": 1,
-    "frp": 2.0,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Hemtabad · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 92.6047,
-    "lat": 26.2333,
-    "n": 1,
-    "frp": 1.7,
-    "ultimo": "2026-11-19T06:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raha · Assam · Índia"
    }
   ]
  }
