@@ -1,80 +1,80 @@
 {
- "atualizado": "2026-11-22T17:09Z",
+ "atualizado": "2026-11-23T21:23Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-21",
+  "data": "2026-11-22",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0568,
-  "p90": 0.0158,
+  "max": 0.068,
+  "p90": 0.0222,
   "areas": [
    {
-    "lon": 92.7375,
-    "lat": 23.7292,
-    "p": 0.0568,
-    "km2": 0.8,
+    "lon": 92.7042,
+    "lat": 25.6042,
+    "p": 0.068,
+    "km2": 8.5,
     "nivel": "Baixo",
-    "lugar": "Aizawl · Mizoram · Índia"
+    "lugar": "Donka · Assam · Índia"
    },
    {
-    "lon": 92.7625,
-    "lat": 23.7292,
-    "p": 0.0568,
-    "km2": 78.3,
+    "lon": 92.7125,
+    "lat": 25.8376,
+    "p": 0.0667,
+    "km2": 1.5,
     "nivel": "Baixo",
-    "lugar": "Aizawl · Mizoram · Índia"
+    "lugar": "Donka · Assam · Índia"
+   },
+   {
+    "lon": 92.3375,
+    "lat": 25.7542,
+    "p": 0.0657,
+    "km2": 3.8,
+    "nivel": "Baixo",
+    "lugar": "Donka · Assam · Índia"
+   },
+   {
+    "lon": 92.3958,
+    "lat": 25.7792,
+    "p": 0.0657,
+    "km2": 1.5,
+    "nivel": "Baixo",
+    "lugar": "Donka · Assam · Índia"
+   },
+   {
+    "lon": 92.3208,
+    "lat": 25.7876,
+    "p": 0.0657,
+    "km2": 3.1,
+    "nivel": "Baixo",
+    "lugar": "Donka · Assam · Índia"
+   },
+   {
+    "lon": 92.2208,
+    "lat": 25.7959,
+    "p": 0.065,
+    "km2": 3.8,
+    "nivel": "Baixo",
+    "lugar": "Donka · Assam · Índia"
    },
    {
     "lon": 92.7208,
-    "lat": 24.0042,
-    "p": 0.0568,
-    "km2": 1.6,
+    "lat": 25.7126,
+    "p": 0.0589,
+    "km2": 3.1,
     "nivel": "Baixo",
-    "lugar": "'N' Thingdawl · Mizoram · Índia"
+    "lugar": "Donka · Assam · Índia"
    },
    {
-    "lon": 92.7625,
-    "lat": 24.0042,
-    "p": 0.0568,
-    "km2": 13.3,
-    "nivel": "Baixo",
-    "lugar": "'N' Thingdawl · Mizoram · Índia"
-   },
-   {
-    "lon": 92.4208,
-    "lat": 24.2626,
-    "p": 0.0551,
+    "lon": 92.7292,
+    "lat": 25.7459,
+    "p": 0.0589,
     "km2": 0.8,
     "nivel": "Baixo",
-    "lugar": "Ramkrishna Nagar · Assam · Índia"
-   },
-   {
-    "lon": 92.6875,
-    "lat": 23.8959,
-    "p": 0.0541,
-    "km2": 1.6,
-    "nivel": "Baixo",
-    "lugar": "'N' Thingdawl · Mizoram · Índia"
-   },
-   {
-    "lon": 92.5792,
-    "lat": 24.2459,
-    "p": 0.0526,
-    "km2": 0.8,
-    "nivel": "Baixo",
-    "lugar": "Bilkhawthlir · Mizoram · Índia"
-   },
-   {
-    "lon": 92.7042,
-    "lat": 24.0876,
-    "p": 0.05,
-    "km2": 0.8,
-    "nivel": "Baixo",
-    "lugar": "'N' Thingdawl · Mizoram · Índia"
+    "lugar": "Donka · Assam · Índia"
    }
   ]
  },
@@ -82,54 +82,21 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 7,
+  "focos": 1,
   "duplicados_removidos": 0,
-  "focos_risco": 3,
-  "pequenas": 3,
+  "focos_risco": 0,
+  "pequenas": 1,
   "grupos": [
    {
-    "lon": 88.2476,
-    "lat": 25.7653,
-    "n": 3,
-    "frp": 15.6,
-    "ultimo": "2026-11-20T06:33Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Hemtabad · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.199,
-    "lat": 25.7665,
-    "n": 2,
-    "frp": 14.8,
-    "ultimo": "2026-11-20T06:33Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.1314,
-    "lat": 25.7742,
+    "lon": 90.6154,
+    "lat": 23.622,
     "n": 1,
-    "frp": 9.8,
-    "ultimo": "2026-11-20T07:16Z",
+    "frp": 2.1,
+    "ultimo": "2026-11-22T19:06Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.1771,
-    "lat": 25.7378,
-    "n": 1,
-    "frp": 4.4,
-    "ultimo": "2026-11-20T06:33Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Raiganj · Bengala Ocidental · Índia"
+    "lugar": "a 12 km de Narayanganj · Bangladesh"
    }
   ]
  }
