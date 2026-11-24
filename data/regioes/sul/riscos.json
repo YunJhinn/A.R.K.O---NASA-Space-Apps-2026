@@ -1,91 +1,26 @@
 {
- "atualizado": "2026-11-23T21:23Z",
+ "atualizado": "2026-11-24T20:09Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-22",
+  "data": "2026-11-23",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.3469,
-  "p90": 0.028,
-  "areas": [
-   {
-    "lon": -49.7958,
-    "lat": -28.7624,
-    "p": 0.3469,
-    "km2": 574.7,
-    "nivel": "Alto",
-    "lugar": "Santa Catarina · Brasil"
-   },
-   {
-    "lon": -49.6375,
-    "lat": -28.8041,
-    "p": 0.2403,
-    "km2": 12.7,
-    "nivel": "Médio",
-    "lugar": "Meleiro · Santa Catarina · Brasil"
-   },
-   {
-    "lon": -51.4125,
-    "lat": -27.5958,
-    "p": 0.2081,
-    "km2": 225.7,
-    "nivel": "Médio",
-    "lugar": "Santa Catarina · Brasil"
-   },
-   {
-    "lon": -49.5958,
-    "lat": -28.8624,
-    "p": 0.2017,
-    "km2": 3.0,
-    "nivel": "Médio",
-    "lugar": "Meleiro · Santa Catarina · Brasil"
-   },
-   {
-    "lon": -51.8042,
-    "lat": -28.4791,
-    "p": 0.1888,
-    "km2": 27.0,
-    "nivel": "Médio",
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -49.6375,
-    "lat": -27.7541,
-    "p": 0.1775,
-    "km2": 237.5,
-    "nivel": "Médio",
-    "lugar": "Bom Retiro · Santa Catarina · Brasil"
-   },
-   {
-    "lon": -49.6792,
-    "lat": -28.8958,
-    "p": 0.1657,
-    "km2": 4.5,
-    "nivel": "Médio",
-    "lugar": "Turvo · Santa Catarina · Brasil"
-   },
-   {
-    "lon": -49.9042,
-    "lat": -27.6958,
-    "p": 0.1576,
-    "km2": 3.0,
-    "nivel": "Médio",
-    "lugar": "Santa Catarina · Brasil"
-   }
-  ]
+  "max": 0.0234,
+  "p90": 0.0087,
+  "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 18,
+  "focos": 14,
   "duplicados_removidos": 0,
   "focos_risco": 3,
-  "pequenas": 13,
+  "pequenas": 9,
   "grupos": [
    {
     "lon": -50.7771,
@@ -121,26 +56,15 @@
     "lugar": "Carlos Barbosa · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.1771,
-    "lat": -29.8133,
+    "lon": -51.178,
+    "lat": -29.8128,
     "n": 2,
-    "frp": 2.7,
-    "ultimo": "2026-11-23T04:46Z",
+    "frp": 3.0,
+    "ultimo": "2026-11-24T04:27Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "São Leopoldo · RS"
-   },
-   {
-    "lon": -52.145,
-    "lat": -28.4727,
-    "n": 1,
-    "frp": 6.5,
-    "ultimo": "2026-11-21T16:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Marau · Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.34,
@@ -152,28 +76,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 26 km de Caxias do Sul · RS"
-   },
-   {
-    "lon": -51.5914,
-    "lat": -29.5448,
-    "n": 1,
-    "frp": 4.4,
-    "ultimo": "2026-11-21T17:47Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 20 km de Montenegro · RS"
-   },
-   {
-    "lon": -51.3642,
-    "lat": -30.5621,
-    "n": 1,
-    "frp": 4.3,
-    "ultimo": "2026-11-21T17:47Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
     "lon": -52.0417,
@@ -220,28 +122,6 @@
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -52.4171,
-    "lat": -29.783,
-    "n": 1,
-    "frp": 2.7,
-    "ultimo": "2026-11-21T16:52Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Santa Cruz do Sul · RS"
-   },
-   {
-    "lon": -52.6738,
-    "lat": -27.7417,
-    "n": 1,
-    "frp": 2.5,
-    "ultimo": "2026-11-21T17:49Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
     "lon": -51.2689,
     "lat": -28.8331,
     "n": 1,
@@ -251,6 +131,17 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -49.9795,
+    "lat": -29.6672,
+    "n": 1,
+    "frp": 0.4,
+    "ultimo": "2026-11-24T04:27Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Capão da Canoa · Rio Grande do Sul · Brasil"
    }
   ]
  }

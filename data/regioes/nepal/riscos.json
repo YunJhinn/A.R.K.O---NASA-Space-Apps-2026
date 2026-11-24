@@ -1,9 +1,9 @@
 {
- "atualizado": "2026-11-23T21:23Z",
+ "atualizado": "2026-11-24T20:09Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-22",
+  "data": "2026-11-23",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
@@ -17,32 +17,54 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 3,
+  "focos": 7,
   "duplicados_removidos": 0,
-  "focos_risco": 2,
-  "pequenas": 1,
+  "focos_risco": 3,
+  "pequenas": 3,
   "grupos": [
    {
-    "lon": 84.8483,
-    "lat": 28.4135,
-    "n": 2,
-    "frp": 16.2,
-    "ultimo": "2026-11-23T08:02Z",
-    "nivel": "Baixo",
+    "lon": 84.8509,
+    "lat": 28.4151,
+    "n": 3,
+    "frp": 17.1,
+    "ultimo": "2026-11-23T19:44Z",
+    "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
     "lugar": "गोरखा · Gandaki Pradesh · Nepal"
    },
    {
-    "lon": 84.816,
+    "lon": 84.8155,
     "lat": 27.7267,
-    "n": 1,
-    "frp": 0.6,
-    "ultimo": "2026-11-21T20:23Z",
+    "n": 2,
+    "frp": 1.4,
+    "ultimo": "2026-11-23T20:27Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 22 km de Dhading Besi · Nepal"
+   },
+   {
+    "lon": 85.8622,
+    "lat": 28.0243,
+    "n": 1,
+    "frp": 6.2,
+    "ultimo": "2026-11-24T07:41Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "सिन्धुपाल्चोक जिल्ला · बागमती प्रदेश · Nepal"
+   },
+   {
+    "lon": 84.9629,
+    "lat": 28.3939,
+    "n": 1,
+    "frp": 1.8,
+    "ultimo": "2026-11-23T19:44Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "गोरखा · Gandaki Pradesh · Nepal"
    }
   ]
  }
