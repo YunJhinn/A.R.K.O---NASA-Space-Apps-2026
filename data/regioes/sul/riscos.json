@@ -1,17 +1,82 @@
 {
- "atualizado": "2026-11-24T20:09Z",
+ "atualizado": "2026-11-25T19:15Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-23",
+  "data": "2026-11-24",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0234,
-  "p90": 0.0087,
-  "areas": []
+  "max": 0.3015,
+  "p90": 0.0772,
+  "areas": [
+   {
+    "lon": -52.2208,
+    "lat": -28.6874,
+    "p": 0.3015,
+    "km2": 6518.4,
+    "nivel": "Alto",
+    "lugar": "Nova Alvorada · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.5792,
+    "lat": -28.6041,
+    "p": 0.2748,
+    "km2": 343.0,
+    "nivel": "Alto",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.9292,
+    "lat": -27.8958,
+    "p": 0.2271,
+    "km2": 2565.5,
+    "nivel": "Médio",
+    "lugar": "Sananduva · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -49.8208,
+    "lat": -27.5291,
+    "p": 0.2242,
+    "km2": 275.1,
+    "nivel": "Médio",
+    "lugar": "Santa Catarina · Brasil"
+   },
+   {
+    "lon": -50.2958,
+    "lat": -28.8458,
+    "p": 0.2112,
+    "km2": 353.4,
+    "nivel": "Médio",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.3792,
+    "lat": -29.2874,
+    "p": 0.188,
+    "km2": 64.1,
+    "nivel": "Médio",
+    "lugar": "a 23 km de Caxias do Sul · RS"
+   },
+   {
+    "lon": -49.7708,
+    "lat": -28.5041,
+    "p": 0.1802,
+    "km2": 52.6,
+    "nivel": "Médio",
+    "lugar": "São José dos Ausentes · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.1958,
+    "lat": -29.2958,
+    "p": 0.1785,
+    "km2": 345.9,
+    "nivel": "Médio",
+    "lugar": "a 14 km de Caxias do Sul · RS"
+   }
+  ]
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
