@@ -1,80 +1,80 @@
 {
- "atualizado": "2026-11-25T19:15Z",
+ "atualizado": "2026-11-26T19:00Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-24",
+  "data": "2026-11-25",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.3015,
-  "p90": 0.0772,
+  "max": 0.0863,
+  "p90": 0.0176,
   "areas": [
    {
-    "lon": -52.2208,
-    "lat": -28.6874,
-    "p": 0.3015,
-    "km2": 6518.4,
-    "nivel": "Alto",
-    "lugar": "Nova Alvorada · Rio Grande do Sul · Brasil"
+    "lon": -52.3042,
+    "lat": -28.8874,
+    "p": 0.0863,
+    "km2": 12.0,
+    "nivel": "Baixo",
+    "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -52.5792,
-    "lat": -28.6041,
-    "p": 0.2748,
-    "km2": 343.0,
-    "nivel": "Alto",
+    "lon": -51.5875,
+    "lat": -28.9958,
+    "p": 0.0779,
+    "km2": 20.9,
+    "nivel": "Baixo",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.9292,
-    "lat": -27.8958,
-    "p": 0.2271,
-    "km2": 2565.5,
-    "nivel": "Médio",
-    "lugar": "Sananduva · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -49.8208,
-    "lat": -27.5291,
-    "p": 0.2242,
-    "km2": 275.1,
-    "nivel": "Médio",
-    "lugar": "Santa Catarina · Brasil"
-   },
-   {
-    "lon": -50.2958,
-    "lat": -28.8458,
-    "p": 0.2112,
-    "km2": 353.4,
-    "nivel": "Médio",
+    "lon": -51.5208,
+    "lat": -28.9874,
+    "p": 0.0779,
+    "km2": 13.5,
+    "nivel": "Baixo",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.3792,
-    "lat": -29.2874,
-    "p": 0.188,
-    "km2": 64.1,
-    "nivel": "Médio",
-    "lugar": "a 23 km de Caxias do Sul · RS"
+    "lon": -51.5458,
+    "lat": -28.9791,
+    "p": 0.0764,
+    "km2": 6.7,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -49.7708,
-    "lat": -28.5041,
-    "p": 0.1802,
-    "km2": 52.6,
-    "nivel": "Médio",
-    "lugar": "São José dos Ausentes · Rio Grande do Sul · Brasil"
+    "lon": -52.3458,
+    "lat": -28.8791,
+    "p": 0.0662,
+    "km2": 2.2,
+    "nivel": "Baixo",
+    "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.1958,
-    "lat": -29.2958,
-    "p": 0.1785,
-    "km2": 345.9,
-    "nivel": "Médio",
-    "lugar": "a 14 km de Caxias do Sul · RS"
+    "lon": -51.5875,
+    "lat": -28.9124,
+    "p": 0.0562,
+    "km2": 0.7,
+    "nivel": "Baixo",
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.3125,
+    "lat": -28.8291,
+    "p": 0.0554,
+    "km2": 0.7,
+    "nivel": "Baixo",
+    "lugar": "Soledade · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.5625,
+    "lat": -29.0958,
+    "p": 0.054,
+    "km2": 0.7,
+    "nivel": "Baixo",
+    "lugar": "Bento Gonçalves · Rio Grande do Sul · Brasil"
    }
   ]
  },
@@ -82,120 +82,32 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 14,
+  "focos": 4,
   "duplicados_removidos": 0,
-  "focos_risco": 3,
-  "pequenas": 9,
+  "focos_risco": 0,
+  "pequenas": 3,
   "grupos": [
    {
-    "lon": -50.7771,
-    "lat": -29.2228,
+    "lon": -51.1768,
+    "lat": -29.8134,
     "n": 2,
-    "frp": 21.1,
-    "ultimo": "2026-11-23T17:53Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "São Francisco de Paula · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -52.4329,
-    "lat": -29.0959,
-    "n": 1,
-    "frp": 27.3,
-    "ultimo": "2026-11-23T17:13Z",
-    "nivel": "Baixo",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.629,
-    "lat": -29.3659,
-    "n": 2,
-    "frp": 12.6,
-    "ultimo": "2026-11-23T17:53Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Carlos Barbosa · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.178,
-    "lat": -29.8128,
-    "n": 2,
-    "frp": 3.0,
-    "ultimo": "2026-11-24T04:27Z",
+    "frp": 3.4,
+    "ultimo": "2026-11-26T04:33Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "São Leopoldo · RS"
    },
    {
-    "lon": -51.34,
-    "lat": -29.3591,
+    "lon": -51.1828,
+    "lat": -30.1663,
     "n": 1,
-    "frp": 4.7,
-    "ultimo": "2026-11-23T17:11Z",
+    "frp": 0.4,
+    "ultimo": "2026-11-26T04:33Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 26 km de Caxias do Sul · RS"
-   },
-   {
-    "lon": -52.0417,
-    "lat": -30.5363,
-    "n": 1,
-    "frp": 4.1,
-    "ultimo": "2026-11-23T17:11Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -52.4513,
-    "lat": -30.462,
-    "n": 1,
-    "frp": 4.1,
-    "ultimo": "2026-11-23T17:53Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Encruzilhada do Sul · Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.5408,
-    "lat": -29.5008,
-    "n": 1,
-    "frp": 3.6,
-    "ultimo": "2026-11-23T17:53Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 22 km de Montenegro · RS"
-   },
-   {
-    "lon": -51.4263,
-    "lat": -28.9142,
-    "n": 1,
-    "frp": 2.8,
-    "ultimo": "2026-11-23T17:13Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -51.2689,
-    "lat": -28.8331,
-    "n": 1,
-    "frp": 1.4,
-    "ultimo": "2026-11-23T17:13Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Rio Grande do Sul · Brasil"
+    "lugar": "a 15 km de Guaíba · RS"
    },
    {
     "lon": -49.9795,

@@ -1,26 +1,26 @@
 {
- "atualizado": "2026-11-25T19:15Z",
+ "atualizado": "2026-11-26T19:00Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-24",
+  "data": "2026-11-25",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0103,
-  "p90": 0.0029,
+  "max": 0.0062,
+  "p90": 0.0025,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 22,
+  "focos": 26,
   "duplicados_removidos": 4,
-  "focos_risco": 11,
-  "pequenas": 9,
+  "focos_risco": 14,
+  "pequenas": 10,
   "grupos": [
    {
     "lon": -59.8788,
@@ -32,6 +32,17 @@
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "Amazonas · Brasil"
+   },
+   {
+    "lon": -59.8763,
+    "lat": -4.1114,
+    "n": 3,
+    "frp": 11.0,
+    "ultimo": "2026-11-26T05:25Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Autazes · Amazonas · Brasil"
    },
    {
     "lon": -59.113,
@@ -100,15 +111,26 @@
     "lugar": "Amazonas · Brasil"
    },
    {
-    "lon": -59.8758,
-    "lat": -4.1121,
+    "lon": -59.9798,
+    "lat": -4.2151,
     "n": 2,
-    "frp": 10.2,
-    "ultimo": "2026-11-25T05:42Z",
+    "frp": 12.6,
+    "ultimo": "2026-11-25T16:41Z",
     "nivel": "Baixo",
     "categoria": "pequena",
-    "dois_satelites": 1,
+    "dois_satelites": 0,
     "lugar": "Autazes · Amazonas · Brasil"
+   },
+   {
+    "lon": -59.318,
+    "lat": -4.0333,
+    "n": 1,
+    "frp": 13.4,
+    "ultimo": "2026-11-25T17:24Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 30 km de Nova Olinda do Norte · AM"
    },
    {
     "lon": -59.9353,
@@ -155,17 +177,6 @@
     "lugar": "Amazonas · Brasil"
    },
    {
-    "lon": -59.3706,
-    "lat": -4.0736,
-    "n": 1,
-    "frp": 3.7,
-    "ultimo": "2026-11-23T18:02Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Amazonas · Brasil"
-   },
-   {
     "lon": -59.9373,
     "lat": -4.2147,
     "n": 1,
@@ -175,6 +186,17 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Autazes · Amazonas · Brasil"
+   },
+   {
+    "lon": -59.8886,
+    "lat": -4.4127,
+    "n": 1,
+    "frp": 3.2,
+    "ultimo": "2026-11-25T18:21Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Amazonas · Brasil"
    },
    {
     "lon": -59.9723,
