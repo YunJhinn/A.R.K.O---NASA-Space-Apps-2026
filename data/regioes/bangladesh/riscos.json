@@ -1,36 +1,115 @@
 {
- "atualizado": "2026-11-26T19:00Z",
+ "atualizado": "2026-11-27T18:58Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-25",
+  "data": "2026-11-26",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0559,
-  "p90": 0.0137,
-  "areas": [
-   {
-    "lon": 92.3542,
-    "lat": 25.0792,
-    "p": 0.0559,
-    "km2": 7.0,
-    "nivel": "Baixo",
-    "lugar": "Khliehriat · Meghalaya · Índia"
-   }
-  ]
+  "max": 0.0085,
+  "p90": 0.0043,
+  "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 65,
+  "focos": 101,
   "duplicados_removidos": 8,
-  "focos_risco": 6,
-  "pequenas": 52,
+  "focos_risco": 33,
+  "pequenas": 61,
   "grupos": [
+   {
+    "lon": 91.3814,
+    "lat": 24.2734,
+    "n": 4,
+    "frp": 4.8,
+    "ultimo": "2026-11-26T19:32Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "হবিগঞ্জ · সিলেট বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 90.5241,
+    "lat": 23.6979,
+    "n": 4,
+    "frp": 2.0,
+    "ultimo": "2026-11-26T19:32Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "a 9 km de Narayanganj · Bangladesh"
+   },
+   {
+    "lon": 91.2644,
+    "lat": 24.2267,
+    "n": 3,
+    "frp": 25.1,
+    "ultimo": "2026-11-27T06:46Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "নাসিরনগর উপজেলা · চট্টগ্রাম বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 88.0707,
+    "lat": 25.8653,
+    "n": 3,
+    "frp": 13.9,
+    "ultimo": "2026-11-27T07:43Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Karandighi · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 89.7759,
+    "lat": 24.0105,
+    "n": 3,
+    "frp": 12.4,
+    "ultimo": "2026-11-27T07:41Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 28 km de Manikganj · Bangladesh"
+   },
+   {
+    "lon": 88.2024,
+    "lat": 25.7575,
+    "n": 3,
+    "frp": 12.0,
+    "ultimo": "2026-11-27T07:43Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Raiganj · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 87.9471,
+    "lat": 25.9291,
+    "n": 3,
+    "frp": 10.4,
+    "ultimo": "2026-11-27T06:46Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 89.799,
+    "lat": 24.1448,
+    "n": 3,
+    "frp": 8.5,
+    "ultimo": "2026-11-27T07:41Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 17 km de Tangail · Bangladesh"
+   },
    {
     "lon": 88.2446,
     "lat": 25.743,
@@ -43,15 +122,26 @@
     "lugar": "Hemtabad · Bengala Ocidental · Índia"
    },
    {
-    "lon": 91.9353,
-    "lat": 24.6553,
+    "lon": 91.9355,
+    "lat": 24.6552,
     "n": 3,
-    "frp": 2.1,
-    "ultimo": "2026-11-25T19:06Z",
+    "frp": 2.9,
+    "ultimo": "2026-11-26T20:27Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 1,
     "lugar": "রাজনগর উপজেলা · সিলেট বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 90.0342,
+    "lat": 23.5974,
+    "n": 1,
+    "frp": 15.4,
+    "ultimo": "2026-11-27T06:44Z",
+    "nivel": "Baixo",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 20 km de Faridpur · Bangladesh"
    },
    {
     "lon": 92.3828,
@@ -65,6 +155,39 @@
     "lugar": "Marigaon · Assam · Índia"
    },
    {
+    "lon": 91.2945,
+    "lat": 24.2016,
+    "n": 2,
+    "frp": 8.3,
+    "ultimo": "2026-11-27T07:41Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "নাসিরনগর উপজেলা · চট্টগ্রাম বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 91.2694,
+    "lat": 24.1809,
+    "n": 2,
+    "frp": 8.2,
+    "ultimo": "2026-11-27T06:46Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "নাসিরনগর উপজেলা · চট্টগ্রাম বিভাগ · Bangladeche"
+   },
+   {
+    "lon": 88.1671,
+    "lat": 25.7753,
+    "n": 2,
+    "frp": 6.3,
+    "ultimo": "2026-11-27T07:43Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Raiganj · Bengala Ocidental · Índia"
+   },
+   {
     "lon": 88.2287,
     "lat": 25.7727,
     "n": 2,
@@ -74,28 +197,6 @@
     "categoria": "pequena",
     "dois_satelites": 1,
     "lugar": "Hemtabad · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 88.0905,
-    "lat": 25.8592,
-    "n": 2,
-    "frp": 5.0,
-    "ultimo": "2026-11-25T07:24Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Karandighi · Bengala Ocidental · Índia"
-   },
-   {
-    "lon": 89.7968,
-    "lat": 24.1465,
-    "n": 2,
-    "frp": 5.0,
-    "ultimo": "2026-11-25T06:39Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "a 17 km de Tangail · Bangladesh"
    },
    {
     "lon": 87.9157,
@@ -109,22 +210,11 @@
     "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
    },
    {
-    "lon": 90.53,
-    "lat": 23.7028,
+    "lon": 91.2356,
+    "lat": 25.5431,
     "n": 2,
-    "frp": 1.8,
-    "ultimo": "2026-11-25T19:08Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 1,
-    "lugar": "a 10 km de Narayanganj · Bangladesh"
-   },
-   {
-    "lon": 91.2344,
-    "lat": 25.5427,
-    "n": 2,
-    "frp": 1.8,
-    "ultimo": "2026-11-25T19:06Z",
+    "frp": 2.5,
+    "ultimo": "2026-11-26T19:32Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 2,
@@ -140,17 +230,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "ঈশ্বরদী উপজেলা · রাজশাহী বিভাগ · Bangladeche"
-   },
-   {
-    "lon": 90.0608,
-    "lat": 26.3563,
-    "n": 1,
-    "frp": 5.6,
-    "ultimo": "2026-11-24T07:41Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Bhowraguri · Assam · Índia"
    },
    {
     "lon": 90.4462,
@@ -197,17 +276,6 @@
     "lugar": "Sipajhar · Assam · Índia"
    },
    {
-    "lon": 88.0402,
-    "lat": 26.0015,
-    "n": 1,
-    "frp": 4.6,
-    "ultimo": "2026-11-24T06:58Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Goalpokhar - II · Bengala Ocidental · Índia"
-   },
-   {
     "lon": 88.0047,
     "lat": 26.1027,
     "n": 1,
@@ -217,6 +285,28 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Goalpokhar - I · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 88.2323,
+    "lat": 25.4968,
+    "n": 1,
+    "frp": 4.5,
+    "ultimo": "2026-11-25T07:24Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Itahar · Bengala Ocidental · Índia"
+   },
+   {
+    "lon": 89.7935,
+    "lat": 24.2324,
+    "n": 1,
+    "frp": 4.4,
+    "ultimo": "2026-11-26T07:03Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 13 km de Tangail · Bangladesh"
    }
   ]
  }

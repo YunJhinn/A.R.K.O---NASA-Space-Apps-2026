@@ -1,37 +1,37 @@
 {
- "atualizado": "2026-11-26T19:00Z",
+ "atualizado": "2026-11-27T18:58Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-25",
+  "data": "2026-11-26",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.023,
-  "p90": 0.0032,
+  "max": 0.008,
+  "p90": 0.0015,
   "areas": []
  },
  "fogo": {
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 57,
-  "duplicados_removidos": 2,
-  "focos_risco": 41,
-  "pequenas": 16,
+  "focos": 60,
+  "duplicados_removidos": 6,
+  "focos_risco": 32,
+  "pequenas": 26,
   "grupos": [
    {
-    "lon": 34.357,
-    "lat": -23.7821,
+    "lon": 32.8793,
+    "lat": -24.8267,
     "n": 8,
-    "frp": 71.8,
-    "ultimo": "2026-11-24T11:51Z",
+    "frp": 78.6,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Médio",
     "categoria": "risco",
-    "dois_satelites": 1,
-    "lugar": "Urrene · Inhambane · Moçambique"
+    "dois_satelites": 3,
+    "lugar": "Magude · Maputo · Moçambique"
    },
    {
     "lon": 31.9078,
@@ -45,70 +45,59 @@
     "lugar": "Nkomazi · Mepumalanga · África do Sul"
    },
    {
-    "lon": 34.2517,
-    "lat": -23.7487,
-    "n": 6,
-    "frp": 65.5,
-    "ultimo": "2026-11-24T10:51Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.3291,
-    "lat": -23.6902,
-    "n": 6,
-    "frp": 50.6,
-    "ultimo": "2026-11-24T10:51Z",
-    "nivel": "Médio",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Funhalouro · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.2268,
-    "lat": -23.626,
+    "lon": 31.3823,
+    "lat": -25.9071,
     "n": 4,
-    "frp": 241.7,
-    "ultimo": "2026-11-24T10:51Z",
-    "nivel": "Alto",
-    "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Funhalouro · Inhambane · Moçambique"
-   },
-   {
-    "lon": 33.6493,
-    "lat": -23.5957,
-    "n": 4,
-    "frp": 52.3,
-    "ultimo": "2026-11-24T10:51Z",
+    "frp": 147.0,
+    "ultimo": "2026-11-27T10:51Z",
     "nivel": "Médio",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Chigubo · Gaza · Moçambique"
+    "lugar": "Inkhundla Piggs Peak · Hhohho · Essuatíni"
    },
    {
-    "lon": 34.812,
-    "lat": -24.2678,
+    "lon": 32.9487,
+    "lat": -25.2018,
+    "n": 4,
+    "frp": 19.1,
+    "ultimo": "2026-11-27T11:36Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "a 24 km de Macia · Moçambique"
+   },
+   {
+    "lon": 30.9148,
+    "lat": -25.6185,
+    "n": 3,
+    "frp": 28.9,
+    "ultimo": "2026-11-27T10:51Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 0,
+    "lugar": "Umjindi Local Municipality · Mepumalanga · África do Sul"
+   },
+   {
+    "lon": 32.1029,
+    "lat": -25.5489,
     "n": 2,
-    "frp": 25.6,
-    "ultimo": "2026-11-24T11:49Z",
+    "frp": 17.4,
+    "ultimo": "2026-11-27T10:51Z",
     "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Inharrime · Inhambane · Moçambique"
+    "lugar": "Moamba · Maputo · Moçambique"
    },
    {
-    "lon": 34.3793,
-    "lat": -23.5416,
+    "lon": 33.0096,
+    "lat": -24.77,
     "n": 2,
-    "frp": 15.0,
-    "ultimo": "2026-11-24T11:51Z",
+    "frp": 16.9,
+    "ultimo": "2026-11-27T12:31Z",
     "nivel": "Baixo",
     "categoria": "risco",
-    "dois_satelites": 0,
-    "lugar": "Funhalouro · Inhambane · Moçambique"
+    "dois_satelites": 1,
+    "lugar": "a 27 km de Chókwè · Moçambique"
    },
    {
     "lon": 31.648,
@@ -122,70 +111,114 @@
     "lugar": "Nkomazi · Mepumalanga · África do Sul"
    },
    {
-    "lon": 33.6244,
-    "lat": -24.2173,
+    "lon": 32.3537,
+    "lat": -25.6615,
     "n": 1,
-    "frp": 19.0,
-    "ultimo": "2026-11-24T10:51Z",
+    "frp": 25.4,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "risco",
     "dois_satelites": 0,
-    "lugar": "Chibuto · Gaza · Moçambique"
+    "lugar": "Moamba · Maputo · Moçambique"
    },
    {
-    "lon": 33.3914,
-    "lat": -24.1443,
-    "n": 1,
-    "frp": 13.0,
-    "ultimo": "2026-11-24T10:51Z",
+    "lon": 32.2243,
+    "lat": -25.5241,
+    "n": 2,
+    "frp": 14.5,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Chibuto · Gaza · Moçambique"
+    "lugar": "Moamba · Maputo · Moçambique"
    },
    {
-    "lon": 34.2369,
-    "lat": -24.4169,
-    "n": 1,
-    "frp": 9.1,
-    "ultimo": "2026-11-24T10:51Z",
+    "lon": 32.5224,
+    "lat": -26.3275,
+    "n": 2,
+    "frp": 11.5,
+    "ultimo": "2026-11-27T10:51Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Mocumbi · Inhambane · Moçambique"
+    "lugar": "Matutuíne · Maputo · Moçambique"
    },
    {
-    "lon": 35.2068,
-    "lat": -24.354,
+    "lon": 31.4684,
+    "lat": -23.4691,
     "n": 1,
-    "frp": 8.6,
-    "ultimo": "2026-11-24T10:51Z",
+    "frp": 11.4,
+    "ultimo": "2026-11-27T12:31Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Inharrime · Inhambane · Moçambique"
+    "lugar": "Ba-Phalaborwa Local Municipality · Limpopo · África do Sul"
    },
    {
-    "lon": 34.0586,
-    "lat": -23.727,
+    "lon": 32.3072,
+    "lat": -25.2505,
     "n": 1,
-    "frp": 8.4,
-    "ultimo": "2026-11-24T10:51Z",
+    "frp": 10.3,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Mawayela · Inhambane · Moçambique"
+    "lugar": "Moamba · Maputo · Moçambique"
    },
    {
-    "lon": 34.4474,
-    "lat": -24.2634,
+    "lon": 32.915,
+    "lat": -25.1596,
     "n": 1,
-    "frp": 7.7,
-    "ultimo": "2026-11-24T11:49Z",
+    "frp": 9.0,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Panda · Inhambane · Moçambique"
+    "lugar": "a 24 km de Macia · Moçambique"
+   },
+   {
+    "lon": 33.9251,
+    "lat": -24.5615,
+    "n": 1,
+    "frp": 7.8,
+    "ultimo": "2026-11-27T11:36Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Manjacaze · Gaza · Moçambique"
+   },
+   {
+    "lon": 32.8009,
+    "lat": -23.4834,
+    "n": 1,
+    "frp": 7.5,
+    "ultimo": "2026-11-27T11:36Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Mabalane · Gaza · Moçambique"
+   },
+   {
+    "lon": 32.8413,
+    "lat": -25.0944,
+    "n": 1,
+    "frp": 7.2,
+    "ultimo": "2026-11-27T12:31Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 21 km de Magude · Moçambique"
+   },
+   {
+    "lon": 35.1883,
+    "lat": -23.5785,
+    "n": 1,
+    "frp": 7.2,
+    "ultimo": "2026-11-27T11:36Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Morrumbene · Inhambane · Moçambique"
    },
    {
     "lon": 31.7372,
@@ -199,103 +232,59 @@
     "lugar": "Inkhundla Mhlangatane · Hhohho · Essuatíni"
    },
    {
-    "lon": 35.0521,
-    "lat": -24.1573,
+    "lon": 35.021,
+    "lat": -24.1397,
     "n": 1,
-    "frp": 6.8,
-    "ultimo": "2026-11-24T11:49Z",
+    "frp": 5.6,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "Homoine · Inhambane · Moçambique"
    },
    {
-    "lon": 34.32,
-    "lat": -23.9135,
-    "n": 1,
-    "frp": 6.5,
-    "ultimo": "2026-11-24T10:51Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Panda · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.2809,
-    "lat": -24.3299,
-    "n": 1,
-    "frp": 5.8,
-    "ultimo": "2026-11-24T10:51Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Panda · Inhambane · Moçambique"
-   },
-   {
-    "lon": 34.8542,
-    "lat": -24.6117,
+    "lon": 32.5795,
+    "lat": -23.9294,
     "n": 1,
     "frp": 4.8,
-    "ultimo": "2026-11-24T11:49Z",
+    "ultimo": "2026-11-27T10:51Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Quissico · Inhambane · Moçambique"
+    "lugar": "a 10 km de Mabalane · Moçambique"
    },
    {
-    "lon": 33.1808,
-    "lat": -24.321,
+    "lon": 34.6551,
+    "lat": -24.2162,
     "n": 1,
-    "frp": 4.5,
-    "ultimo": "2026-11-24T10:51Z",
+    "frp": 4.8,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Guija · Gaza · Moçambique"
+    "lugar": "Panda · Inhambane · Moçambique"
    },
    {
-    "lon": 32.5461,
-    "lat": -26.0934,
+    "lon": 32.5741,
+    "lat": -23.8703,
     "n": 1,
-    "frp": 3.3,
-    "ultimo": "2026-11-26T11:53Z",
+    "frp": 4.8,
+    "ultimo": "2026-11-27T10:51Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "a 14 km de Maputo · Moçambique"
+    "lugar": "Mabalane · Moçambique"
    },
    {
-    "lon": 33.9747,
-    "lat": -24.7881,
+    "lon": 32.9523,
+    "lat": -25.143,
     "n": 1,
-    "frp": 3.1,
-    "ultimo": "2026-11-24T22:05Z",
+    "frp": 4.8,
+    "ultimo": "2026-11-27T11:36Z",
     "nivel": "Baixo",
     "categoria": "pequena",
     "dois_satelites": 0,
-    "lugar": "Chongoene · Gaza · Moçambique"
-   },
-   {
-    "lon": 32.2003,
-    "lat": -24.706,
-    "n": 1,
-    "frp": 2.5,
-    "ultimo": "2026-11-24T11:49Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Magude · Maputo · Moçambique"
-   },
-   {
-    "lon": 34.5721,
-    "lat": -24.4012,
-    "n": 1,
-    "frp": 2.1,
-    "ultimo": "2026-11-24T11:49Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Mocumbi · Inhambane · Moçambique"
+    "lugar": "a 19 km de Macia · Moçambique"
    }
   ]
  }

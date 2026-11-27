@@ -1,80 +1,80 @@
 {
- "atualizado": "2026-11-26T19:00Z",
+ "atualizado": "2026-11-27T18:58Z",
  "deslizamento": {
   "fonte": "NASA LHASA 2 (chuva GPM IMERG + solo, neve, relevo)",
   "url": "https://gpm.nasa.gov/landslides/projects.html",
-  "data": "2026-11-25",
+  "data": "2026-11-26",
   "limiares": {
    "baixo": 0.05,
    "medio": 0.1,
    "alto": 0.25
   },
-  "max": 0.0863,
-  "p90": 0.0176,
+  "max": 0.0701,
+  "p90": 0.017,
   "areas": [
-   {
-    "lon": -52.3042,
-    "lat": -28.8874,
-    "p": 0.0863,
-    "km2": 12.0,
-    "nivel": "Baixo",
-    "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
-   },
    {
     "lon": -51.5875,
     "lat": -28.9958,
-    "p": 0.0779,
-    "km2": 20.9,
+    "p": 0.0701,
+    "km2": 20.2,
     "nivel": "Baixo",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
     "lon": -51.5208,
     "lat": -28.9874,
-    "p": 0.0779,
-    "km2": 13.5,
+    "p": 0.0701,
+    "km2": 7.5,
     "nivel": "Baixo",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.5458,
-    "lat": -28.9791,
-    "p": 0.0764,
-    "km2": 6.7,
-    "nivel": "Baixo",
-    "lugar": "Rio Grande do Sul · Brasil"
-   },
-   {
-    "lon": -52.3458,
-    "lat": -28.8791,
-    "p": 0.0662,
-    "km2": 2.2,
+    "lon": -52.3042,
+    "lat": -28.8874,
+    "p": 0.0693,
+    "km2": 6.0,
     "nivel": "Baixo",
     "lugar": "Fontoura Xavier · Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.5875,
-    "lat": -28.9124,
-    "p": 0.0562,
-    "km2": 0.7,
+    "lon": -51.5458,
+    "lat": -28.9791,
+    "p": 0.0687,
+    "km2": 5.2,
     "nivel": "Baixo",
     "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -52.3125,
+    "lon": -51.5042,
     "lat": -28.8291,
-    "p": 0.0554,
-    "km2": 0.7,
+    "p": 0.0682,
+    "km2": 4.5,
     "nivel": "Baixo",
-    "lugar": "Soledade · Rio Grande do Sul · Brasil"
+    "lugar": "Rio Grande do Sul · Brasil"
    },
    {
-    "lon": -51.5625,
-    "lat": -29.0958,
-    "p": 0.054,
-    "km2": 0.7,
+    "lon": -51.6458,
+    "lat": -28.9958,
+    "p": 0.0642,
+    "km2": 2.2,
     "nivel": "Baixo",
-    "lugar": "Bento Gonçalves · Rio Grande do Sul · Brasil"
+    "lugar": "Cotiporã · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.2292,
+    "lat": -28.9958,
+    "p": 0.0635,
+    "km2": 6.7,
+    "nivel": "Baixo",
+    "lugar": "Putinga · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -52.2208,
+    "lat": -28.9708,
+    "p": 0.0635,
+    "km2": 5.2,
+    "nivel": "Baixo",
+    "lugar": "Putinga · Rio Grande do Sul · Brasil"
    }
   ]
  },
@@ -82,16 +82,137 @@
   "fonte": "NASA FIRMS · VIIRS NOAA-20 e NOAA-21",
   "url": "https://firms.modaps.eosdis.nasa.gov/",
   "janela_h": 48,
-  "focos": 4,
-  "duplicados_removidos": 0,
-  "focos_risco": 0,
-  "pequenas": 3,
+  "focos": 17,
+  "duplicados_removidos": 4,
+  "focos_risco": 3,
+  "pequenas": 12,
   "grupos": [
    {
-    "lon": -51.1768,
-    "lat": -29.8134,
+    "lon": -52.3051,
+    "lat": -30.4395,
+    "n": 3,
+    "frp": 19.4,
+    "ultimo": "2026-11-26T17:53Z",
+    "nivel": "Médio",
+    "categoria": "risco",
+    "dois_satelites": 1,
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.9249,
+    "lat": -30.5537,
     "n": 2,
-    "frp": 3.4,
+    "frp": 10.1,
+    "ultimo": "2026-11-26T16:58Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "São Jerônimo · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.2867,
+    "lat": -30.2982,
+    "n": 2,
+    "frp": 8.0,
+    "ultimo": "2026-11-27T04:14Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 1,
+    "lugar": "Palmares do Sul · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.9058,
+    "lat": -30.3409,
+    "n": 1,
+    "frp": 5.7,
+    "ultimo": "2026-11-26T16:58Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "São Jerônimo · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.791,
+    "lat": -30.5537,
+    "n": 1,
+    "frp": 5.3,
+    "ultimo": "2026-11-26T17:53Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -50.2582,
+    "lat": -30.2813,
+    "n": 1,
+    "frp": 4.4,
+    "ultimo": "2026-11-26T17:53Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Balneário Pinhal · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.8734,
+    "lat": -30.3557,
+    "n": 1,
+    "frp": 3.3,
+    "ultimo": "2026-11-26T16:58Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "São Jerônimo · Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.5799,
+    "lat": -29.8404,
+    "n": 1,
+    "frp": 2.8,
+    "ultimo": "2026-11-26T17:53Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 17 km de Triunfo · RS"
+   },
+   {
+    "lon": -51.193,
+    "lat": -29.0237,
+    "n": 1,
+    "frp": 1.9,
+    "ultimo": "2026-11-26T17:56Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 16 km de Caxias do Sul · RS"
+   },
+   {
+    "lon": -50.916,
+    "lat": -29.4159,
+    "n": 1,
+    "frp": 1.6,
+    "ultimo": "2026-11-26T17:56Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "a 29 km de Taquara · RS"
+   },
+   {
+    "lon": -51.6486,
+    "lat": -29.1796,
+    "n": 1,
+    "frp": 1.6,
+    "ultimo": "2026-11-27T04:14Z",
+    "nivel": "Baixo",
+    "categoria": "pequena",
+    "dois_satelites": 0,
+    "lugar": "Rio Grande do Sul · Brasil"
+   },
+   {
+    "lon": -51.1754,
+    "lat": -29.8141,
+    "n": 1,
+    "frp": 1.5,
     "ultimo": "2026-11-26T04:33Z",
     "nivel": "Baixo",
     "categoria": "pequena",
@@ -108,17 +229,6 @@
     "categoria": "pequena",
     "dois_satelites": 0,
     "lugar": "a 15 km de Guaíba · RS"
-   },
-   {
-    "lon": -49.9795,
-    "lat": -29.6672,
-    "n": 1,
-    "frp": 0.4,
-    "ultimo": "2026-11-24T04:27Z",
-    "nivel": "Baixo",
-    "categoria": "pequena",
-    "dois_satelites": 0,
-    "lugar": "Capão da Canoa · Rio Grande do Sul · Brasil"
    }
   ]
  }
